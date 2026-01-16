@@ -1,11 +1,12 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
-import { useTable } from '../context/DataContext';
+import { useTable, useData } from '../context/DataContext';
 import {
   getRecord,
   createRecord,
   updateRecord,
   deleteRecord,
+  getRelatedRecords,
 } from '../api/mockApi';
 import {
   SNButton,
@@ -16,7 +17,7 @@ import {
   SNTabs,
   SNRichTextEditor,
 } from '../components/sn/common';
-import type { SNRecord, FieldDefinition } from '../types';
+import type { SNRecord, FieldDefinition, RelatedListDefinition, TableDefinition } from '../types';
 import {
   ChevronLeft,
   Paperclip,
@@ -26,6 +27,14 @@ import {
 } from 'lucide-react';
 import { cn } from '../utils/cn';
 
+/** Data for a single related list */
+interface RelatedListData {
+  definition: RelatedListDefinition;
+  records: SNRecord[];
+  loading: boolean;
+  relatedTableDef?: TableDefinition;
+}
+
 /**
  * Form view page for viewing/editing a record
  */
@@ -33,11 +42,14 @@ export function FormPage() {
   const { table, sysId } = useParams<{ table: string; sysId: string }>();
   const navigate = useNavigate();
   const tableDef = useTable(table || '');
+  const { tables } = useData();
 
   const [record, setRecord] = useState<SNRecord | null>(null);
   const [formData, setFormData] = useState<Partial<SNRecord>>({});
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
+  const [activeRelatedTab, setActiveRelatedTab] = useState<string | null>(null);
+  const [relatedListsData, setRelatedListsData] = useState<RelatedListData[]>([]);
 
   const isNew = !sysId || sysId === 'new';
 
@@ -62,6 +74,54 @@ export function FormPage() {
 
     fetchRecord();
   }, [table, sysId, isNew]);
+
+  // Fetch related lists data
+  const fetchRelatedLists = useCallback(async () => {
+    if (!tableDef?.relatedLists || isNew || !sysId) return;
+
+    // Initialize related lists with loading state
+    const initialData: RelatedListData[] = tableDef.relatedLists.map((def) => ({
+      definition: def,
+      records: [],
+      loading: true,
+      relatedTableDef: tables.find((t) => t.name === def.table),
+    }));
+    setRelatedListsData(initialData);
+
+    // Set default active tab to the first related list
+    if (!activeRelatedTab && tableDef.relatedLists.length > 0) {
+      setActiveRelatedTab(tableDef.relatedLists[0].table);
+    }
+
+    // Fetch records for each related list
+    for (const def of tableDef.relatedLists) {
+      try {
+        const response = await getRelatedRecords(def.table, def.parentField, sysId);
+        setRelatedListsData((prev) =>
+          prev.map((item) =>
+            item.definition.table === def.table
+              ? { ...item, records: response.data, loading: false }
+              : item
+          )
+        );
+      } catch (error) {
+        console.error(`Failed to fetch related records for ${def.table}:`, error);
+        setRelatedListsData((prev) =>
+          prev.map((item) =>
+            item.definition.table === def.table
+              ? { ...item, loading: false }
+              : item
+          )
+        );
+      }
+    }
+  }, [tableDef, tables, sysId, isNew, activeRelatedTab]);
+
+  useEffect(() => {
+    if (!loading && record) {
+      fetchRelatedLists();
+    }
+  }, [loading, record, fetchRelatedLists]);
 
   // Handle field change
   const handleFieldChange = (fieldName: string, value: unknown) => {
@@ -254,7 +314,7 @@ export function FormPage() {
       {/* Form Content */}
       <div className="flex-1 overflow-auto p-6 bg-sn-neutral-1">
         <div className="max-w-5xl mx-auto bg-white rounded-sn border border-sn-neutral-3">
-          {tableDef.form.sections.map((section, sectionIndex) => {
+          {tableDef.form.sections.map((section) => {
             const sectionFields = section.fields
               .map((fieldName) =>
                 tableDef.fields.find((f) => f.name === fieldName)
@@ -292,16 +352,107 @@ export function FormPage() {
           })}
         </div>
 
-        {/* Related Lists (placeholder) */}
-        {!isNew && (
+        {/* Related Lists */}
+        {!isNew && relatedListsData.length > 0 && (
           <div className="max-w-5xl mx-auto mt-6">
             <SNTabs
-              tabs={[
-                { id: 'notes', label: 'Notes', count: 0 },
-                { id: 'related', label: 'Related Records' },
-                { id: 'resolution', label: 'Resolution Information' },
-              ]}
+              tabs={relatedListsData.map((rl) => ({
+                id: rl.definition.table,
+                label: rl.definition.title,
+                count: rl.loading ? undefined : rl.records.length,
+              }))}
+              activeTab={activeRelatedTab || undefined}
+              onTabChange={setActiveRelatedTab}
             />
+
+            {/* Related List Content */}
+            {relatedListsData.map((rl) => {
+              if (rl.definition.table !== activeRelatedTab) return null;
+
+              const columns =
+                rl.definition.columns ||
+                rl.relatedTableDef?.list.columns ||
+                [];
+              const fields = rl.relatedTableDef?.fields || [];
+
+              return (
+                <div
+                  key={rl.definition.table}
+                  className="bg-white border border-t-0 border-sn-neutral-3 rounded-b-sn"
+                >
+                  {rl.loading ? (
+                    <div className="flex items-center justify-center py-8">
+                      <span className="animate-spin h-5 w-5 border-2 border-sn-primary border-t-transparent rounded-full" />
+                      <span className="ml-2 text-sm text-sn-neutral-6">
+                        Loading...
+                      </span>
+                    </div>
+                  ) : rl.records.length === 0 ? (
+                    <div className="py-8 text-center text-sm text-sn-neutral-6">
+                      No records found
+                    </div>
+                  ) : (
+                    <table className="w-full">
+                      <thead>
+                        <tr className="border-b border-sn-neutral-3 bg-sn-neutral-1">
+                          {columns.map((colName) => {
+                            const field = fields.find((f) => f.name === colName);
+                            return (
+                              <th
+                                key={colName}
+                                className="px-3 py-2 text-left text-xs font-semibold text-sn-neutral-8 uppercase tracking-wide"
+                              >
+                                {field?.label || colName}
+                              </th>
+                            );
+                          })}
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {rl.records.map((rec) => (
+                          <tr
+                            key={rec.sys_id}
+                            className="border-b border-sn-neutral-2 hover:bg-sn-neutral-1"
+                          >
+                            {columns.map((colName, colIndex) => {
+                              const field = fields.find((f) => f.name === colName);
+                              const value = rec[colName];
+                              const displayValue =
+                                value === null || value === undefined || value === ''
+                                  ? ''
+                                  : field?.type === 'datetime'
+                                  ? new Date(value as string).toLocaleString()
+                                  : field?.type === 'date'
+                                  ? new Date(value as string).toLocaleDateString()
+                                  : field?.type === 'boolean'
+                                  ? value
+                                    ? 'Yes'
+                                    : 'No'
+                                  : String(value);
+
+                              return (
+                                <td key={colName} className="px-3 py-2 text-sm">
+                                  {colIndex === 0 ? (
+                                    <Link
+                                      to={`/${rl.definition.table}/${rec.sys_id}`}
+                                      className="text-sn-link hover:text-sn-link-hover hover:underline"
+                                    >
+                                      {displayValue || rec.sys_id}
+                                    </Link>
+                                  ) : (
+                                    displayValue
+                                  )}
+                                </td>
+                              );
+                            })}
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  )}
+                </div>
+              );
+            })}
           </div>
         )}
       </div>

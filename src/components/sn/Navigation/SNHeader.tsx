@@ -8,7 +8,6 @@ import {
   LayoutGrid,
   Star,
   Clock,
-  LayoutDashboard,
   MoreVertical,
   Globe,
   MessageSquare,

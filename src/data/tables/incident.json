@@ -139,6 +139,12 @@
       "type": "string",
       "label": "Updated by",
       "readonly": true
+    },
+    {
+      "name": "parent",
+      "type": "reference",
+      "label": "Parent Incident",
+      "reference": "incident"
     }
   ],
   "list": {
@@ -177,7 +183,8 @@
           "urgency",
           "assignment_group",
           "priority",
-          "assigned_to"
+          "assigned_to",
+          "parent"
         ]
       },
       {
@@ -201,6 +208,14 @@
       }
     ]
   },
+  "relatedLists": [
+    {
+      "table": "incident",
+      "title": "Child Incidents",
+      "parentField": "parent",
+      "columns": ["number", "short_description", "state", "priority", "assigned_to"]
+    }
+  ],
   "data": [
     {
       "sys_id": "inc001",
@@ -237,6 +252,7 @@
       "assignment_group": "",
       "assigned_to": "",
       "channel": "Self-service",
+      "parent": "inc001",
       "sys_updated_on": "2025-09-03T14:47:34",
       "sys_updated_by": "joseph.vannieuwenhuyse"
     },
@@ -256,6 +272,7 @@
       "assignment_group": "",
       "assigned_to": "user003",
       "channel": "Phone",
+      "parent": "inc001",
       "sys_updated_on": "2025-07-29T08:45:03",
       "sys_updated_by": "robert.reed"
     },
