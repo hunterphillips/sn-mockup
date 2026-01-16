@@ -157,9 +157,11 @@ export async function getRecords(
   if (query.sortField) {
     const direction = query.sortDirection === 'desc' ? -1 : 1;
     records.sort((a, b) => {
-      const aVal = String(a[query.sortField!] ?? '');
-      const bVal = String(b[query.sortField!] ?? '');
-      return aVal.localeCompare(bVal) * direction;
+      const aVal = a[query.sortField!] ?? '';
+      const bVal = b[query.sortField!] ?? '';
+      if (aVal < bVal) return -1 * direction;
+      if (aVal > bVal) return 1 * direction;
+      return 0;
     });
   }
 
