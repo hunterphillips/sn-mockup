@@ -277,3 +277,28 @@ export async function getDisplayValue(
   if (!record) return '';
   return String(record[displayField] ?? record.sys_id);
 }
+
+/** Get related records where a field equals a specific value */
+export async function getRelatedRecords(
+  tableName: string,
+  parentField: string,
+  parentSysId: string
+): Promise<ListResponse> {
+  await delay();
+
+  const tableData = data.get(tableName);
+  if (!tableData) {
+    return { data: [], total: 0, page: 1, pageSize: 20 };
+  }
+
+  const records = tableData.filter(
+    (record) => record[parentField] === parentSysId
+  );
+
+  return {
+    data: records,
+    total: records.length,
+    page: 1,
+    pageSize: records.length,
+  };
+}

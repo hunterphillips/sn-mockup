@@ -10,6 +10,7 @@ export interface DataTableColumn {
   field: string
   label: string
   type: FieldDefinition['type']
+  reference?: string // Target table name for reference fields
   sortable?: boolean
   width?: string
 }
@@ -223,10 +224,13 @@ export function DataTable({
                         >
                           {formatValue(row[col.field], col.type)}
                         </Link>
-                      ) : col.type === 'reference' && row[col.field] ? (
-                        <span className="text-sn-link">
+                      ) : col.type === 'reference' && col.reference && row[col.field] ? (
+                        <Link
+                          to={`/${col.reference}/${row[col.field]}`}
+                          className="text-sn-link hover:text-sn-link-hover hover:underline"
+                        >
                           {formatValue(row[col.field], col.type)}
-                        </span>
+                        </Link>
                       ) : (
                         formatValue(row[col.field], col.type)
                       )}

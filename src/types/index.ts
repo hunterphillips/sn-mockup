@@ -2,6 +2,7 @@
 export type FieldType =
   | 'string'
   | 'text'
+  | 'richtext'
   | 'integer'
   | 'boolean'
   | 'choice'
@@ -51,6 +52,18 @@ export interface FormConfig {
   sections: FormSection[]
 }
 
+/** Related list definition for form views */
+export interface RelatedListDefinition {
+  /** Table containing the related records */
+  table: string
+  /** Display title for the related list tab */
+  title: string
+  /** Field in the related table that references this record */
+  parentField: string
+  /** Columns to display in the related list (defaults to table's list.columns) */
+  columns?: string[]
+}
+
 /** A single record from any table */
 export interface SNRecord {
   sys_id: string
@@ -65,6 +78,7 @@ export interface TableDefinition {
   fields: FieldDefinition[]
   list: ListConfig
   form: FormConfig
+  relatedLists?: RelatedListDefinition[]
   data: SNRecord[]
 }
 
