@@ -14,6 +14,7 @@ import {
   SNTextarea,
   SNCheckbox,
   SNTabs,
+  SNRichTextEditor,
 } from '../components/sn/common';
 import type { SNRecord, FieldDefinition } from '../types';
 import {
@@ -114,6 +115,17 @@ export function FormPage() {
             onChange={(e) => handleFieldChange(field.name, e.target.value)}
             disabled={isReadonly}
             rows={4}
+            fullWidth
+          />
+        );
+
+      case 'richtext':
+        return (
+          <SNRichTextEditor
+            value={String(value)}
+            onChange={(html) => handleFieldChange(field.name, html)}
+            disabled={isReadonly}
+            rows={6}
             fullWidth
           />
         );

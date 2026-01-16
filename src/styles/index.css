@@ -54,4 +54,30 @@
     @apply hover:border-sn-neutral-5 focus:border-sn-primary focus:ring-1 focus:ring-sn-primary focus:outline-none;
     @apply disabled:bg-sn-neutral-1 disabled:text-sn-neutral-6 disabled:cursor-not-allowed;
   }
+
+  /* Rich text editor content styles */
+  .sn-rich-text-content .tiptap {
+    @apply px-3 py-2 text-sm outline-none;
+  }
+
+  .sn-rich-text-content .tiptap p {
+    @apply my-2 first:mt-0 last:mb-0;
+  }
+
+  .sn-rich-text-content .tiptap ul {
+    @apply list-disc ml-6 my-2;
+  }
+
+  .sn-rich-text-content .tiptap ol {
+    @apply list-decimal ml-6 my-2;
+  }
+
+  .sn-rich-text-content .tiptap li {
+    @apply my-1;
+  }
+
+  .sn-rich-text-content .tiptap p.is-editor-empty:first-child::before {
+    @apply text-sn-neutral-5 float-left h-0 pointer-events-none;
+    content: attr(data-placeholder);
+  }
 }

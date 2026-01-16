@@ -3,27 +3,127 @@
   "label": "Story",
   "labelPlural": "Stories",
   "fields": [
-    { "name": "number", "type": "string", "label": "Number", "readonly": true },
-    { "name": "short_description", "type": "string", "label": "Short description", "required": true, "maxLength": 160 },
-    { "name": "description", "type": "text", "label": "Description" },
-    { "name": "acceptance_criteria", "type": "text", "label": "Acceptance criteria" },
-    { "name": "state", "type": "choice", "label": "State", "choices": ["Draft", "Ready", "In Progress", "Complete", "Cancelled"], "required": true },
-    { "name": "story_points", "type": "integer", "label": "Points" },
-    { "name": "blocked", "type": "boolean", "label": "Blocked" },
-    { "name": "priority", "type": "choice", "label": "Priority", "choices": ["1 - Critical", "2 - High", "3 - Moderate", "4 - Low"] },
-    { "name": "product", "type": "string", "label": "Product" },
-    { "name": "sprint", "type": "string", "label": "Sprint" },
-    { "name": "theme", "type": "string", "label": "Theme" },
-    { "name": "epic", "type": "string", "label": "Epic" },
-    { "name": "release", "type": "string", "label": "Release" },
-    { "name": "assignment_group", "type": "string", "label": "Assignment group" },
-    { "name": "assigned_to", "type": "reference", "label": "Assigned to", "reference": "sys_user" },
-    { "name": "opened_at", "type": "datetime", "label": "Opened", "readonly": true },
-    { "name": "sys_updated_on", "type": "datetime", "label": "Updated", "readonly": true }
+    {
+      "name": "number",
+      "type": "string",
+      "label": "Number",
+      "readonly": true
+    },
+    {
+      "name": "short_description",
+      "type": "string",
+      "label": "Short description",
+      "required": true,
+      "maxLength": 160
+    },
+    {
+      "name": "description",
+      "type": "text",
+      "label": "Description"
+    },
+    {
+      "name": "acceptance_criteria",
+      "type": "richtext",
+      "label": "Acceptance criteria"
+    },
+    {
+      "name": "state",
+      "type": "choice",
+      "label": "State",
+      "choices": [
+        "Draft",
+        "Ready",
+        "In Progress",
+        "Complete",
+        "Cancelled"
+      ],
+      "required": true
+    },
+    {
+      "name": "story_points",
+      "type": "integer",
+      "label": "Points"
+    },
+    {
+      "name": "blocked",
+      "type": "boolean",
+      "label": "Blocked"
+    },
+    {
+      "name": "priority",
+      "type": "choice",
+      "label": "Priority",
+      "choices": [
+        "1 - Critical",
+        "2 - High",
+        "3 - Moderate",
+        "4 - Low"
+      ]
+    },
+    {
+      "name": "product",
+      "type": "string",
+      "label": "Product"
+    },
+    {
+      "name": "sprint",
+      "type": "string",
+      "label": "Sprint"
+    },
+    {
+      "name": "theme",
+      "type": "string",
+      "label": "Theme"
+    },
+    {
+      "name": "epic",
+      "type": "string",
+      "label": "Epic"
+    },
+    {
+      "name": "release",
+      "type": "string",
+      "label": "Release"
+    },
+    {
+      "name": "assignment_group",
+      "type": "string",
+      "label": "Assignment group"
+    },
+    {
+      "name": "assigned_to",
+      "type": "reference",
+      "label": "Assigned to",
+      "reference": "sys_user"
+    },
+    {
+      "name": "opened_at",
+      "type": "datetime",
+      "label": "Opened",
+      "readonly": true
+    },
+    {
+      "name": "sys_updated_on",
+      "type": "datetime",
+      "label": "Updated",
+      "readonly": true
+    }
   ],
   "list": {
-    "columns": ["number", "short_description", "state", "story_points", "assigned_to", "sprint", "priority", "sys_updated_on"],
-    "defaultSort": { "field": "number", "direction": "desc" },
+    "columns": [
+      "number",
+      "short_description",
+      "state",
+      "story_points",
+      "assigned_to",
+      "sprint",
+      "priority",
+      "sys_updated_on"
+    ],
+    "defaultSort": {
+      "field": "number",
+      "direction": "desc"
+    },
     "pageSize": 20
   },
   "form": {
@@ -31,20 +131,38 @@
       {
         "name": "main",
         "columns": 2,
-        "fields": ["number", "product", "theme", "release", "epic", "assignment_group", "state", "assigned_to", "story_points", "sprint", "blocked", "priority"]
+        "fields": [
+          "number",
+          "product",
+          "theme",
+          "release",
+          "epic",
+          "assignment_group",
+          "state",
+          "assigned_to",
+          "story_points",
+          "sprint",
+          "blocked",
+          "priority"
+        ]
       },
       {
         "name": "description",
         "label": "Description",
         "columns": 1,
-        "fields": ["short_description", "description"]
+        "fields": [
+          "short_description",
+          "description"
+        ]
       },
       {
         "name": "acceptance",
         "label": "Acceptance Criteria",
         "columns": 1,
         "collapsible": true,
-        "fields": ["acceptance_criteria"]
+        "fields": [
+          "acceptance_criteria"
+        ]
       }
     ]
   },
@@ -114,7 +232,7 @@
       "number": "STRY0010443",
       "short_description": "Create reporting dashboard for initiatives",
       "description": "As a program manager, I want a dashboard showing initiative participation metrics so that I can track engagement across the organization.",
-      "acceptance_criteria": "AC1: Dashboard displays total submissions by category.\nAC2: Dashboard shows approval status breakdown.\nAC3: Data can be exported to Excel.",
+      "acceptance_criteria": "<p><strong>AC1</strong>: Dashboard displays total submissions by category. AC2: Dashboard shows approval status breakdown. AC3: Data can be exported to Excel.</p>",
       "state": "Draft",
       "story_points": 13,
       "blocked": true,
@@ -127,7 +245,7 @@
       "assignment_group": "FI Enhancements Team",
       "assigned_to": "",
       "opened_at": "2025-11-01T08:00:00",
-      "sys_updated_on": "2026-01-08T16:45:00"
+      "sys_updated_on": "2026-01-16T17:08:21.512Z"
     }
   ]
 }

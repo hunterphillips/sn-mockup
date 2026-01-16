@@ -46,6 +46,7 @@ export function SNList({ tableName, className }: SNListProps) {
       field: fieldName,
       label: field?.label || fieldName,
       type: field?.type || 'string',
+      reference: field?.reference,
       sortable: true,
     }
   }) || []
