@@ -1,0 +1,133 @@
+{
+  "name": "rm_story",
+  "label": "Story",
+  "labelPlural": "Stories",
+  "fields": [
+    { "name": "number", "type": "string", "label": "Number", "readonly": true },
+    { "name": "short_description", "type": "string", "label": "Short description", "required": true, "maxLength": 160 },
+    { "name": "description", "type": "text", "label": "Description" },
+    { "name": "acceptance_criteria", "type": "text", "label": "Acceptance criteria" },
+    { "name": "state", "type": "choice", "label": "State", "choices": ["Draft", "Ready", "In Progress", "Complete", "Cancelled"], "required": true },
+    { "name": "story_points", "type": "integer", "label": "Points" },
+    { "name": "blocked", "type": "boolean", "label": "Blocked" },
+    { "name": "priority", "type": "choice", "label": "Priority", "choices": ["1 - Critical", "2 - High", "3 - Moderate", "4 - Low"] },
+    { "name": "product", "type": "string", "label": "Product" },
+    { "name": "sprint", "type": "string", "label": "Sprint" },
+    { "name": "theme", "type": "string", "label": "Theme" },
+    { "name": "epic", "type": "string", "label": "Epic" },
+    { "name": "release", "type": "string", "label": "Release" },
+    { "name": "assignment_group", "type": "string", "label": "Assignment group" },
+    { "name": "assigned_to", "type": "reference", "label": "Assigned to", "reference": "sys_user" },
+    { "name": "opened_at", "type": "datetime", "label": "Opened", "readonly": true },
+    { "name": "sys_updated_on", "type": "datetime", "label": "Updated", "readonly": true }
+  ],
+  "list": {
+    "columns": ["number", "short_description", "state", "story_points", "assigned_to", "sprint", "priority", "sys_updated_on"],
+    "defaultSort": { "field": "number", "direction": "desc" },
+    "pageSize": 20
+  },
+  "form": {
+    "sections": [
+      {
+        "name": "main",
+        "columns": 2,
+        "fields": ["number", "product", "theme", "release", "epic", "assignment_group", "state", "assigned_to", "story_points", "sprint", "blocked", "priority"]
+      },
+      {
+        "name": "description",
+        "label": "Description",
+        "columns": 1,
+        "fields": ["short_description", "description"]
+      },
+      {
+        "name": "acceptance",
+        "label": "Acceptance Criteria",
+        "columns": 1,
+        "collapsible": true,
+        "fields": ["acceptance_criteria"]
+      }
+    ]
+  },
+  "data": [
+    {
+      "sys_id": "story001",
+      "number": "STRY0010440",
+      "short_description": "Create Firm Initiative Catalog Item",
+      "description": "As an IPC employee, I want to access a service catalog item for Firm Initiatives so that each year I can see the available categories and make my selections.",
+      "acceptance_criteria": "AC1: I know this story is complete when, as a logged in IPC employee, I see a service catalog item available for submission with the following properties:\n- Name: Firm Initiatives\n- Description: Select your Firm Initiatives for the year.\n\nAC2: Additionally, I see the following fields (mandatory, single-select) with their respective choices.",
+      "state": "Complete",
+      "story_points": 2,
+      "blocked": false,
+      "priority": "4 - Low",
+      "product": "Firm Initiative Selection Catalog",
+      "sprint": "FI Enhancements Sprint 1",
+      "theme": "",
+      "epic": "",
+      "release": "",
+      "assignment_group": "FI Enhancements Team",
+      "assigned_to": "user002",
+      "opened_at": "2025-09-23T18:10:38",
+      "sys_updated_on": "2026-01-11T18:38:53"
+    },
+    {
+      "sys_id": "story002",
+      "number": "STRY0010441",
+      "short_description": "Add approval workflow to catalog item",
+      "description": "As a manager, I want submitted firm initiative selections to require approval so that I can review and approve team member choices.",
+      "acceptance_criteria": "AC1: When an employee submits a firm initiative selection, an approval request is generated.\nAC2: The manager can approve or reject the request.",
+      "state": "In Progress",
+      "story_points": 5,
+      "blocked": false,
+      "priority": "3 - Moderate",
+      "product": "Firm Initiative Selection Catalog",
+      "sprint": "FI Enhancements Sprint 2",
+      "theme": "",
+      "epic": "",
+      "release": "",
+      "assignment_group": "FI Enhancements Team",
+      "assigned_to": "user003",
+      "opened_at": "2025-10-01T09:00:00",
+      "sys_updated_on": "2026-01-15T14:22:00"
+    },
+    {
+      "sys_id": "story003",
+      "number": "STRY0010442",
+      "short_description": "Implement slot availability tracking",
+      "description": "As an administrator, I want to set maximum slots per initiative category so that selections are limited based on availability.",
+      "acceptance_criteria": "AC1: Admin can configure max slots per category.\nAC2: Users see remaining slots when making selections.\nAC3: Selections are rejected when slots are full.",
+      "state": "Ready",
+      "story_points": 8,
+      "blocked": false,
+      "priority": "2 - High",
+      "product": "Firm Initiative Selection Catalog",
+      "sprint": "",
+      "theme": "",
+      "epic": "",
+      "release": "",
+      "assignment_group": "FI Enhancements Team",
+      "assigned_to": "",
+      "opened_at": "2025-10-15T11:30:00",
+      "sys_updated_on": "2026-01-10T09:15:00"
+    },
+    {
+      "sys_id": "story004",
+      "number": "STRY0010443",
+      "short_description": "Create reporting dashboard for initiatives",
+      "description": "As a program manager, I want a dashboard showing initiative participation metrics so that I can track engagement across the organization.",
+      "acceptance_criteria": "AC1: Dashboard displays total submissions by category.\nAC2: Dashboard shows approval status breakdown.\nAC3: Data can be exported to Excel.",
+      "state": "Draft",
+      "story_points": 13,
+      "blocked": true,
+      "priority": "3 - Moderate",
+      "product": "Firm Initiative Selection Catalog",
+      "sprint": "",
+      "theme": "Reporting",
+      "epic": "",
+      "release": "2026 Q1",
+      "assignment_group": "FI Enhancements Team",
+      "assigned_to": "",
+      "opened_at": "2025-11-01T08:00:00",
+      "sys_updated_on": "2026-01-08T16:45:00"
+    }
+  ]
+}

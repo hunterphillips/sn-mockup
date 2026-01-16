@@ -1,0 +1,301 @@
+{
+  "name": "incident",
+  "label": "Incident",
+  "labelPlural": "Incidents",
+  "fields": [
+    {
+      "name": "number",
+      "type": "string",
+      "label": "Number",
+      "readonly": true
+    },
+    {
+      "name": "opened_at",
+      "type": "datetime",
+      "label": "Opened",
+      "readonly": true
+    },
+    {
+      "name": "short_description",
+      "type": "string",
+      "label": "Short description",
+      "required": true,
+      "maxLength": 160
+    },
+    {
+      "name": "description",
+      "type": "text",
+      "label": "Description"
+    },
+    {
+      "name": "caller_id",
+      "type": "reference",
+      "label": "Caller",
+      "reference": "sys_user",
+      "required": true
+    },
+    {
+      "name": "state",
+      "type": "choice",
+      "label": "State",
+      "choices": [
+        "New",
+        "In Progress",
+        "On Hold",
+        "Resolved",
+        "Closed",
+        "Canceled"
+      ],
+      "required": true
+    },
+    {
+      "name": "priority",
+      "type": "integer",
+      "label": "Priority",
+      "readonly": true
+    },
+    {
+      "name": "impact",
+      "type": "choice",
+      "label": "Impact",
+      "choices": [
+        "1 - High",
+        "2 - Medium",
+        "3 - Low"
+      ],
+      "required": true
+    },
+    {
+      "name": "urgency",
+      "type": "choice",
+      "label": "Urgency",
+      "choices": [
+        "1 - High",
+        "2 - Medium",
+        "3 - Low"
+      ],
+      "required": true
+    },
+    {
+      "name": "category",
+      "type": "choice",
+      "label": "Category",
+      "choices": [
+        "Inquiry / Help",
+        "Software",
+        "Hardware",
+        "Network",
+        "Database"
+      ]
+    },
+    {
+      "name": "subcategory",
+      "type": "choice",
+      "label": "Subcategory",
+      "choices": [
+        "-- None --",
+        "Internal Application",
+        "Email",
+        "Operating System"
+      ]
+    },
+    {
+      "name": "assignment_group",
+      "type": "reference",
+      "label": "Assignment group",
+      "reference": "sys_user_group"
+    },
+    {
+      "name": "assigned_to",
+      "type": "reference",
+      "label": "Assigned to",
+      "reference": "sys_user"
+    },
+    {
+      "name": "channel",
+      "type": "choice",
+      "label": "Channel",
+      "choices": [
+        "Self-service",
+        "Phone",
+        "Email",
+        "Walk-in",
+        "Chat"
+      ]
+    },
+    {
+      "name": "closed_at",
+      "type": "datetime",
+      "label": "Closed"
+    },
+    {
+      "name": "sys_updated_on",
+      "type": "datetime",
+      "label": "Updated",
+      "readonly": true
+    },
+    {
+      "name": "sys_updated_by",
+      "type": "string",
+      "label": "Updated by",
+      "readonly": true
+    }
+  ],
+  "list": {
+    "columns": [
+      "number",
+      "opened_at",
+      "short_description",
+      "caller_id",
+      "priority",
+      "state",
+      "category",
+      "assignment_group",
+      "assigned_to",
+      "sys_updated_on",
+      "sys_updated_by"
+    ],
+    "defaultSort": {
+      "field": "opened_at",
+      "direction": "desc"
+    },
+    "pageSize": 20
+  },
+  "form": {
+    "sections": [
+      {
+        "name": "main",
+        "columns": 2,
+        "fields": [
+          "number",
+          "channel",
+          "caller_id",
+          "state",
+          "category",
+          "impact",
+          "subcategory",
+          "urgency",
+          "assignment_group",
+          "priority",
+          "assigned_to"
+        ]
+      },
+      {
+        "name": "description",
+        "label": "Description",
+        "columns": 1,
+        "fields": [
+          "short_description",
+          "description"
+        ]
+      },
+      {
+        "name": "resolution",
+        "label": "Resolution Information",
+        "columns": 2,
+        "collapsible": true,
+        "collapsed": true,
+        "fields": [
+          "closed_at"
+        ]
+      }
+    ]
+  },
+  "data": [
+    {
+      "sys_id": "inc001",
+      "number": "INC0010257",
+      "opened_at": "2025-09-09T14:13:31",
+      "short_description": "update me",
+      "description": "123456789",
+      "caller_id": "user002",
+      "state": "New",
+      "priority": 3,
+      "impact": "1 - High",
+      "urgency": "1 - High",
+      "category": "Inquiry / Help",
+      "subcategory": "-- None --",
+      "assignment_group": "IPC Technology",
+      "assigned_to": "",
+      "channel": "Self-service",
+      "sys_updated_on": "2026-01-16T16:30:17.622Z",
+      "sys_updated_by": "joseph.vannieuwenhuyse"
+    },
+    {
+      "sys_id": "inc002",
+      "number": "INC0010254",
+      "opened_at": "2025-09-03T14:47:34",
+      "short_description": "test priority 1",
+      "description": "",
+      "caller_id": "user002",
+      "state": "New",
+      "priority": 3,
+      "impact": "2 - Medium",
+      "urgency": "2 - Medium",
+      "category": "Inquiry / Help",
+      "subcategory": "-- None --",
+      "assignment_group": "",
+      "assigned_to": "",
+      "channel": "Self-service",
+      "sys_updated_on": "2025-09-03T14:47:34",
+      "sys_updated_by": "joseph.vannieuwenhuyse"
+    },
+    {
+      "sys_id": "inc003",
+      "number": "INC0010253",
+      "opened_at": "2025-07-29T08:45:03",
+      "short_description": "test",
+      "description": "Testing incident creation",
+      "caller_id": "user003",
+      "state": "In Progress",
+      "priority": 5,
+      "impact": "3 - Low",
+      "urgency": "3 - Low",
+      "category": "Inquiry / Help",
+      "subcategory": "-- None --",
+      "assignment_group": "",
+      "assigned_to": "user003",
+      "channel": "Phone",
+      "sys_updated_on": "2025-07-29T08:45:03",
+      "sys_updated_by": "robert.reed"
+    },
+    {
+      "sys_id": "inc004",
+      "number": "INC0010220",
+      "opened_at": "2023-02-02T13:10:44",
+      "short_description": "Email not syncing on mobile device",
+      "description": "User reports that email is not syncing on their mobile device since this morning.",
+      "caller_id": "user004",
+      "state": "In Progress",
+      "priority": 4,
+      "impact": "3 - Low",
+      "urgency": "2 - Medium",
+      "category": "Inquiry / Help",
+      "subcategory": "Email",
+      "assignment_group": "Capacity Mgmt",
+      "assigned_to": "user004",
+      "channel": "Self-service",
+      "sys_updated_on": "2025-03-14T13:50:47",
+      "sys_updated_by": "robert.reed"
+    },
+    {
+      "sys_id": "inc005",
+      "number": "INC0010193",
+      "opened_at": "2022-12-07T13:51:14",
+      "short_description": "Re: Employment Agreement",
+      "description": "Follow-up on employment agreement questions",
+      "caller_id": "user005",
+      "state": "In Progress",
+      "priority": 3,
+      "impact": "2 - Medium",
+      "urgency": "2 - Medium",
+      "category": "Inquiry / Help",
+      "subcategory": "-- None --",
+      "assignment_group": "Incident Management",
+      "assigned_to": "user001",
+      "channel": "Email",
+      "sys_updated_on": "2025-03-31T13:25:05",
+      "sys_updated_by": "hunter.phillips"
+    }
+  ]
+}

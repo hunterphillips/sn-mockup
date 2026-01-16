@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Cabin:wght@400;500;600;700&family=Lato:wght@300;400;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ServiceNow Design Tokens as CSS Variables */
+:root {
+  /* Colors */
+  --sn-color-chrome: #293e40;
+  --sn-color-chrome-light: #3d5a5e;
+  --sn-color-primary: #1a73e8;
+  --sn-color-primary-hover: #1557b0;
+  --sn-color-link: #1a73e8;
+  --sn-color-link-hover: #1557b0;
+
+  /* Backgrounds */
+  --sn-bg-page: #f7f7f7;
+  --sn-bg-surface: #ffffff;
+  --sn-bg-surface-raised: #ffffff;
+
+  /* Borders */
+  --sn-border-color: #e1e1e1;
+  --sn-border-color-strong: #cfcfcf;
+
+  /* Text */
+  --sn-text-primary: #292929;
+  --sn-text-secondary: #6b6b6b;
+  --sn-text-tertiary: #8c8c8c;
+  --sn-text-inverse: #ffffff;
+}
+
+@layer base {
+  body {
+    @apply font-body text-sn-neutral-9 bg-sn-neutral-1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-header font-semibold;
+  }
+}
+
+@layer components {
+  /* ServiceNow-style focus ring */
+  .sn-focus-ring {
+    @apply focus:outline-none focus:ring-2 focus:ring-sn-primary focus:ring-offset-1;
+  }
+
+  /* ServiceNow-style input base */
+  .sn-input-base {
+    @apply h-8 px-3 text-sm border border-sn-neutral-4 rounded-sn bg-white;
+    @apply hover:border-sn-neutral-5 focus:border-sn-primary focus:ring-1 focus:ring-sn-primary focus:outline-none;
+    @apply disabled:bg-sn-neutral-1 disabled:text-sn-neutral-6 disabled:cursor-not-allowed;
+  }
+}

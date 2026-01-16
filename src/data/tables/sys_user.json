@@ -1,0 +1,225 @@
+{
+  "name": "sys_user",
+  "label": "User",
+  "labelPlural": "Users",
+  "fields": [
+    {
+      "name": "user_name",
+      "type": "string",
+      "label": "User ID",
+      "required": true
+    },
+    {
+      "name": "first_name",
+      "type": "string",
+      "label": "First name"
+    },
+    {
+      "name": "last_name",
+      "type": "string",
+      "label": "Last name"
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "label": "Name",
+      "readonly": true
+    },
+    {
+      "name": "email",
+      "type": "email",
+      "label": "Email",
+      "required": true
+    },
+    {
+      "name": "phone",
+      "type": "phone",
+      "label": "Business phone"
+    },
+    {
+      "name": "mobile_phone",
+      "type": "phone",
+      "label": "Mobile phone"
+    },
+    {
+      "name": "title",
+      "type": "string",
+      "label": "Title"
+    },
+    {
+      "name": "department",
+      "type": "reference",
+      "label": "Department",
+      "reference": "cmn_department"
+    },
+    {
+      "name": "company",
+      "type": "reference",
+      "label": "Company",
+      "reference": "core_company"
+    },
+    {
+      "name": "manager",
+      "type": "reference",
+      "label": "Manager",
+      "reference": "sys_user"
+    },
+    {
+      "name": "active",
+      "type": "boolean",
+      "label": "Active"
+    },
+    {
+      "name": "locked_out",
+      "type": "boolean",
+      "label": "Locked out"
+    },
+    {
+      "name": "vip",
+      "type": "boolean",
+      "label": "VIP"
+    }
+  ],
+  "list": {
+    "columns": [
+      "user_name",
+      "name",
+      "email",
+      "title",
+      "department",
+      "active"
+    ],
+    "defaultSort": {
+      "field": "name",
+      "direction": "asc"
+    },
+    "pageSize": 20
+  },
+  "form": {
+    "sections": [
+      {
+        "name": "main",
+        "columns": 2,
+        "fields": [
+          "user_name",
+          "active",
+          "first_name",
+          "vip",
+          "last_name",
+          "locked_out",
+          "name",
+          "title"
+        ]
+      },
+      {
+        "name": "contact",
+        "label": "Contact Information",
+        "columns": 2,
+        "fields": [
+          "email",
+          "phone",
+          "mobile_phone"
+        ]
+      },
+      {
+        "name": "organization",
+        "label": "Organization",
+        "columns": 2,
+        "collapsible": true,
+        "fields": [
+          "department",
+          "company",
+          "manager"
+        ]
+      }
+    ]
+  },
+  "data": [
+    {
+      "sys_id": "user001",
+      "user_name": "hunter.phillips",
+      "first_name": "Hunter",
+      "last_name": "Phillips",
+      "name": "Hunter Phillips",
+      "email": "hunter.phillips@example.com",
+      "phone": "+1 555-0101",
+      "mobile_phone": "+1 555-0102",
+      "title": "System Administrator",
+      "department": "IT",
+      "company": "ServiceNow",
+      "active": true,
+      "locked_out": false,
+      "vip": false
+    },
+    {
+      "sys_id": "user002",
+      "user_name": "joseph.vannieuwenhuyse",
+      "first_name": "Joseph",
+      "last_name": "Van Nieuwenhuyse",
+      "name": "Joseph Van Nieuwenhuyse",
+      "email": "joseph.vannieuwenhuyse@example.com",
+      "phone": "+1 555-0201",
+      "title": "IT Support Analyst",
+      "department": "IT",
+      "company": "ServiceNow",
+      "active": true,
+      "locked_out": false,
+      "vip": false
+    },
+    {
+      "sys_id": "user003",
+      "user_name": "robert.reed",
+      "first_name": "Robert",
+      "last_name": "Reed",
+      "name": "Robert Reed",
+      "email": "robert.reed@example.com",
+      "phone": "+1 555-0301",
+      "title": "Senior Developer",
+      "department": "Engineering",
+      "company": "ServiceNow",
+      "active": true,
+      "locked_out": false,
+      "vip": false
+    },
+    {
+      "sys_id": "user004",
+      "user_name": "david.loo",
+      "first_name": "David",
+      "last_name": "Loo",
+      "name": "David Loo",
+      "email": "david.loo@example.com",
+      "phone": "+1 555-0401",
+      "title": "Product Manager",
+      "department": "Product",
+      "company": "ServiceNow",
+      "active": true,
+      "locked_out": false,
+      "vip": true
+    },
+    {
+      "sys_id": "user005",
+      "user_name": "abel.tuter",
+      "first_name": "Abel",
+      "last_name": "Tuter",
+      "name": "Abel Tuter",
+      "email": "abel.tuter@example.com",
+      "phone": "+1 555-0501",
+      "title": "HR Manager",
+      "department": "Human Resources",
+      "company": "ServiceNow",
+      "active": true,
+      "locked_out": false,
+      "vip": false
+    },
+    {
+      "user_name": "big.memphis",
+      "first_name": "Memphis",
+      "last_name": "Phillips",
+      "email": "im.a.dog@test.com",
+      "sys_id": "qi9lq3u4ksut9n5czbxc",
+      "sys_created_on": "2026-01-16T16:36:41.592Z",
+      "sys_updated_on": "2026-01-16T16:36:58.314Z",
+      "title": "CFO"
+    }
+  ]
+}
