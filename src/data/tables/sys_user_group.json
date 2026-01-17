@@ -1,0 +1,303 @@
+{
+  "name": "sys_user_group",
+  "label": "Group",
+  "labelPlural": "Groups",
+  "fields": [
+    {
+      "name": "name",
+      "type": "string",
+      "label": "Name",
+      "required": true,
+      "maxLength": 100
+    },
+    {
+      "name": "description",
+      "type": "text",
+      "label": "Description"
+    },
+    {
+      "name": "type",
+      "type": "string",
+      "label": "Type"
+    },
+    {
+      "name": "email",
+      "type": "email",
+      "label": "Email"
+    },
+    {
+      "name": "manager",
+      "type": "reference",
+      "label": "Manager",
+      "reference": "sys_user"
+    },
+    {
+      "name": "parent",
+      "type": "reference",
+      "label": "Parent",
+      "reference": "sys_user_group"
+    },
+    {
+      "name": "active",
+      "type": "boolean",
+      "label": "Active"
+    },
+    {
+      "name": "include_members",
+      "type": "boolean",
+      "label": "Include members"
+    },
+    {
+      "name": "exclude_manager",
+      "type": "boolean",
+      "label": "Exclude manager"
+    },
+    {
+      "name": "default_assignee",
+      "type": "reference",
+      "label": "Default assignee",
+      "reference": "sys_user"
+    },
+    {
+      "name": "cost_center",
+      "type": "reference",
+      "label": "Cost center",
+      "reference": "cmn_cost_center"
+    },
+    {
+      "name": "hourly_rate",
+      "type": "currency",
+      "label": "Hourly rate"
+    },
+    {
+      "name": "points",
+      "type": "integer",
+      "label": "Points"
+    },
+    {
+      "name": "average_daily_fte",
+      "type": "integer",
+      "label": "Average daily FTE"
+    },
+    {
+      "name": "source",
+      "type": "string",
+      "label": "Source"
+    },
+    {
+      "name": "roles",
+      "type": "string",
+      "label": "Roles"
+    },
+    {
+      "name": "vendors",
+      "type": "string",
+      "label": "Vendors"
+    },
+    {
+      "name": "sys_created_on",
+      "type": "datetime",
+      "label": "Created",
+      "readonly": true
+    },
+    {
+      "name": "sys_created_by",
+      "type": "string",
+      "label": "Created by",
+      "readonly": true
+    },
+    {
+      "name": "sys_updated_on",
+      "type": "datetime",
+      "label": "Updated",
+      "readonly": true
+    },
+    {
+      "name": "sys_updated_by",
+      "type": "string",
+      "label": "Updated by",
+      "readonly": true
+    },
+    {
+      "name": "sys_mod_count",
+      "type": "integer",
+      "label": "Updates",
+      "readonly": true
+    }
+  ],
+  "list": {
+    "columns": [
+      "name",
+      "description",
+      "type",
+      "manager",
+      "parent",
+      "active",
+      "sys_updated_on"
+    ],
+    "defaultSort": {
+      "field": "name",
+      "direction": "asc"
+    },
+    "pageSize": 20
+  },
+  "form": {
+    "sections": [
+      {
+        "name": "main",
+        "columns": 2,
+        "fields": [
+          "name",
+          "manager",
+          "description",
+          "parent",
+          "type",
+          "default_assignee",
+          "email",
+          "cost_center"
+        ]
+      },
+      {
+        "name": "membership",
+        "label": "Membership",
+        "columns": 2,
+        "fields": [
+          "include_members",
+          "exclude_manager"
+        ]
+      },
+      {
+        "name": "capacity",
+        "label": "Capacity Planning",
+        "columns": 2,
+        "collapsible": true,
+        "collapsed": true,
+        "fields": [
+          "hourly_rate",
+          "points",
+          "average_daily_fte"
+        ]
+      },
+      {
+        "name": "system",
+        "label": "System Information",
+        "columns": 2,
+        "collapsible": true,
+        "collapsed": true,
+        "fields": [
+          "active",
+          "source",
+          "roles",
+          "vendors",
+          "sys_created_on",
+          "sys_created_by",
+          "sys_updated_on",
+          "sys_updated_by",
+          "sys_mod_count"
+        ]
+      }
+    ]
+  },
+  "data": [
+    {
+      "sys_id": "1aaea498c3227210982710977d013105",
+      "name": "Newsletter Admins",
+      "description": "",
+      "type": "",
+      "email": "",
+      "manager": "",
+      "parent": "",
+      "active": true,
+      "include_members": false,
+      "exclude_manager": false,
+      "default_assignee": "",
+      "cost_center": "",
+      "hourly_rate": 0,
+      "points": 0,
+      "average_daily_fte": 0,
+      "source": "",
+      "roles": "",
+      "vendors": "",
+      "sys_created_on": "2026-01-15T21:40:35",
+      "sys_created_by": "james.bowden",
+      "sys_updated_on": "2026-01-15T21:40:35",
+      "sys_updated_by": "james.bowden",
+      "sys_mod_count": 0
+    },
+    {
+      "sys_id": "grp001",
+      "name": "IPC Technology",
+      "description": "Technology support group",
+      "type": "Support",
+      "email": "ipc-tech@example.com",
+      "manager": "user001",
+      "parent": "",
+      "active": true,
+      "include_members": true,
+      "exclude_manager": false,
+      "default_assignee": "user001",
+      "cost_center": "",
+      "hourly_rate": 75,
+      "points": 100,
+      "average_daily_fte": 8,
+      "source": "",
+      "roles": "",
+      "vendors": "",
+      "sys_created_on": "2025-01-10T09:00:00",
+      "sys_created_by": "admin",
+      "sys_updated_on": "2025-12-15T14:30:00",
+      "sys_updated_by": "admin",
+      "sys_mod_count": 5
+    },
+    {
+      "sys_id": "grp002",
+      "name": "Capacity Mgmt",
+      "description": "Capacity management team",
+      "type": "Support",
+      "email": "capacity@example.com",
+      "manager": "user004",
+      "parent": "",
+      "active": true,
+      "include_members": true,
+      "exclude_manager": false,
+      "default_assignee": "user004",
+      "cost_center": "",
+      "hourly_rate": 85,
+      "points": 120,
+      "average_daily_fte": 8,
+      "source": "",
+      "roles": "",
+      "vendors": "",
+      "sys_created_on": "2025-02-20T10:15:00",
+      "sys_created_by": "admin",
+      "sys_updated_on": "2025-11-05T16:20:00",
+      "sys_updated_by": "admin",
+      "sys_mod_count": 3
+    },
+    {
+      "sys_id": "grp003",
+      "name": "Incident Management",
+      "description": "Incident management team",
+      "type": "Support",
+      "email": "incident-mgmt@example.com",
+      "manager": "user001",
+      "parent": "",
+      "active": true,
+      "include_members": true,
+      "exclude_manager": false,
+      "default_assignee": "user001",
+      "cost_center": "",
+      "hourly_rate": 80,
+      "points": 110,
+      "average_daily_fte": 8,
+      "source": "",
+      "roles": "",
+      "vendors": "",
+      "sys_created_on": "2025-01-05T08:30:00",
+      "sys_created_by": "admin",
+      "sys_updated_on": "2025-12-01T11:45:00",
+      "sys_updated_by": "admin",
+      "sys_mod_count": 7
+    }
+  ]
+}
