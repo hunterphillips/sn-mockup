@@ -5,6 +5,7 @@ import type {
   ListResponse,
   FilterCondition,
 } from '../types';
+import { getDisplayValue as getFieldDisplayValue, getValue as getFieldValue } from '../utils/fieldValue';
 
 // In-memory data store
 const tables: Map<string, TableDefinition> = new Map();
@@ -78,7 +79,7 @@ function matchesFilters(record: SNRecord, filters: FilterCondition[]): boolean {
   let currentConjunction: 'AND' | 'OR' = 'AND';
 
   for (const filter of filters) {
-    const value = String(record[filter.field] ?? '');
+    const value = getFieldDisplayValue(record[filter.field]);
     const filterValue = filter.value.toLowerCase();
     const recordValue = value.toLowerCase();
 
@@ -144,10 +145,8 @@ export async function getRecords(
 
     records = records.filter((record) =>
       stringFields.some((field) => {
-        const value = record[field];
-        return (
-          typeof value === 'string' && value.toLowerCase().includes(searchLower)
-        );
+        const displayVal = getFieldDisplayValue(record[field]);
+        return displayVal.toLowerCase().includes(searchLower);
       })
     );
   }
@@ -159,12 +158,12 @@ export async function getRecords(
     );
   }
 
-  // Sort
+  // Sort by display_value
   if (query.sortField) {
     const direction = query.sortDirection === 'desc' ? -1 : 1;
     records.sort((a, b) => {
-      const aVal = a[query.sortField!] ?? '';
-      const bVal = b[query.sortField!] ?? '';
+      const aVal = getFieldDisplayValue(a[query.sortField!]);
+      const bVal = getFieldDisplayValue(b[query.sortField!]);
       if (aVal < bVal) return -1 * direction;
       if (aVal > bVal) return 1 * direction;
       return 0;
@@ -275,18 +274,18 @@ export async function deleteRecord(
   await persistToServer(tableName);
 }
 
-/** Get display value for a reference field */
-export async function getDisplayValue(
+/** Get display value for a reference field by looking up the referenced record */
+export async function getRecordDisplayValue(
   tableName: string,
   sysId: string,
   displayField: string = 'name'
 ): Promise<string> {
   const record = await getRecord(tableName, sysId);
   if (!record) return '';
-  return String(record[displayField] ?? record.sys_id);
+  return getFieldDisplayValue(record[displayField]) || record.sys_id;
 }
 
-/** Get related records where a field equals a specific value */
+/** Get related records where a field's value equals a specific sys_id */
 export async function getRelatedRecords(
   tableName: string,
   parentField: string,
@@ -299,8 +298,9 @@ export async function getRelatedRecords(
     return { data: [], total: 0, page: 1, pageSize: 20 };
   }
 
+  // Compare against .value (sys_id) for reference fields
   const records = tableData.filter(
-    (record) => record[parentField] === parentSysId
+    (record) => getFieldValue(record[parentField]) === parentSysId
   );
 
   return {

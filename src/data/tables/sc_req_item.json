@@ -676,894 +676,3474 @@
   },
   "data": [
     {
-      "parent": "",
-      "made_sla": "true",
-      "watch_list": "",
-      "sc_catalog": "",
-      "upon_reject": "cancel",
-      "requested_for": "75c35fee33292650a47be3570e5c7b82",
-      "sys_updated_on": "2025-10-09 22:21:55",
-      "task_effective_number": "RITM0010381",
-      "approval_history": "",
-      "skills": "",
-      "number": "RITM0010381",
-      "sys_updated_by": "system",
-      "opened_by": "75c35fee33292650a47be3570e5c7b82",
-      "user_input": "",
-      "price": "0",
-      "sys_created_on": "2025-10-09 22:20:58",
-      "recurring_frequency": "",
-      "sys_domain": "global",
-      "context": "",
-      "state": "3",
-      "route_reason": "",
-      "sys_created_by": "spencer.bone",
-      "knowledge": "false",
-      "order": "",
-      "closed_at": "2025-10-09 22:21:55",
-      "cmdb_ci": "",
-      "delivery_plan": "",
-      "backordered": "false",
-      "contract": "",
-      "impact": "3",
-      "active": "false",
-      "work_notes_list": "",
-      "business_service": "",
-      "priority": "4",
-      "sys_domain_path": "/",
-      "time_worked": "",
-      "expected_start": "",
-      "flow_context": "942c80f0ec60fa10871cd3efec744027",
-      "opened_at": "2025-10-09 22:20:58",
-      "x_880628_project_0_resolution_notes": "",
-      "business_duration": "",
-      "group_list": "",
-      "configuration_item": "",
-      "work_end": "",
-      "approval_set": "",
-      "work_notes": "",
-      "order_guide": "",
-      "universal_request": "",
-      "request": "882c40f0c360fa10982710977d0131f5",
-      "short_description": "Select your Firm Initiatives for the year. Selections are subject to approval and slot availability.",
-      "correlation_display": "",
-      "delivery_task": "",
-      "work_start": "",
-      "assignment_group": "",
-      "additional_assignee_list": "",
-      "description": "",
-      "calendar_duration": "",
-      "close_notes": "",
-      "service_offering": "",
-      "sys_class_name": "sc_req_item",
-      "closed_by": "",
-      "follow_up": "",
+      "parent": {
+        "value": "",
+        "display_value": ""
+      },
+      "made_sla": {
+        "value": "true",
+        "display_value": "true"
+      },
+      "watch_list": {
+        "value": "",
+        "display_value": ""
+      },
+      "sc_catalog": {
+        "value": "",
+        "display_value": ""
+      },
+      "upon_reject": {
+        "value": "cancel",
+        "display_value": "Cancel all future Tasks"
+      },
+      "requested_for": {
+        "value": "75c35fee33292650a47be3570e5c7b82",
+        "display_value": "Spencer Bone"
+      },
+      "sys_updated_on": {
+        "value": "2025-10-09 22:21:55",
+        "display_value": "10-09-2025 17:21:55"
+      },
+      "task_effective_number": {
+        "value": "RITM0010381",
+        "display_value": "RITM0010381"
+      },
+      "approval_history": {
+        "value": "",
+        "display_value": ""
+      },
+      "skills": {
+        "value": "",
+        "display_value": ""
+      },
+      "number": {
+        "value": "RITM0010381",
+        "display_value": "RITM0010381"
+      },
+      "sys_updated_by": {
+        "value": "system",
+        "display_value": "system"
+      },
+      "opened_by": {
+        "value": "75c35fee33292650a47be3570e5c7b82",
+        "display_value": "Spencer Bone"
+      },
+      "user_input": {
+        "value": "",
+        "display_value": ""
+      },
+      "price": {
+        "value": "0",
+        "display_value": "$0.00"
+      },
+      "sys_created_on": {
+        "value": "2025-10-09 22:20:58",
+        "display_value": "10-09-2025 17:20:58"
+      },
+      "recurring_frequency": {
+        "value": "",
+        "display_value": ""
+      },
+      "sys_domain": {
+        "value": "global",
+        "display_value": "global"
+      },
+      "context": {
+        "value": "",
+        "display_value": ""
+      },
+      "state": {
+        "value": "3",
+        "display_value": "Closed Complete"
+      },
+      "route_reason": {
+        "value": "",
+        "display_value": ""
+      },
+      "sys_created_by": {
+        "value": "spencer.bone",
+        "display_value": "spencer.bone"
+      },
+      "knowledge": {
+        "value": "false",
+        "display_value": "false"
+      },
+      "order": {
+        "value": "",
+        "display_value": ""
+      },
+      "closed_at": {
+        "value": "2025-10-09 22:21:55",
+        "display_value": "10-09-2025 17:21:55"
+      },
+      "cmdb_ci": {
+        "value": "",
+        "display_value": ""
+      },
+      "delivery_plan": {
+        "value": "",
+        "display_value": ""
+      },
+      "backordered": {
+        "value": "false",
+        "display_value": "false"
+      },
+      "contract": {
+        "value": "",
+        "display_value": ""
+      },
+      "impact": {
+        "value": "3",
+        "display_value": "3 - Low"
+      },
+      "active": {
+        "value": "false",
+        "display_value": "false"
+      },
+      "work_notes_list": {
+        "value": "",
+        "display_value": ""
+      },
+      "business_service": {
+        "value": "",
+        "display_value": ""
+      },
+      "priority": {
+        "value": "4",
+        "display_value": "4 - Low"
+      },
+      "sys_domain_path": {
+        "value": "/",
+        "display_value": "/"
+      },
+      "time_worked": {
+        "value": "",
+        "display_value": ""
+      },
+      "expected_start": {
+        "value": "",
+        "display_value": ""
+      },
+      "flow_context": {
+        "value": "942c80f0ec60fa10871cd3efec744027",
+        "display_value": ""
+      },
+      "opened_at": {
+        "value": "2025-10-09 22:20:58",
+        "display_value": "10-09-2025 17:20:58"
+      },
+      "x_880628_project_0_resolution_notes": {
+        "value": "",
+        "display_value": ""
+      },
+      "business_duration": {
+        "value": "",
+        "display_value": ""
+      },
+      "group_list": {
+        "value": "",
+        "display_value": ""
+      },
+      "configuration_item": {
+        "value": "",
+        "display_value": ""
+      },
+      "work_end": {
+        "value": "",
+        "display_value": ""
+      },
+      "approval_set": {
+        "value": "",
+        "display_value": ""
+      },
+      "work_notes": {
+        "value": "",
+        "display_value": ""
+      },
+      "order_guide": {
+        "value": "",
+        "display_value": ""
+      },
+      "universal_request": {
+        "value": "",
+        "display_value": ""
+      },
+      "request": {
+        "value": "882c40f0c360fa10982710977d0131f5",
+        "display_value": "REQ0010454"
+      },
+      "short_description": {
+        "value": "Select your Firm Initiatives for the year. Selections are subject to approval and slot availability.",
+        "display_value": "Select your Firm Initiatives for the year. Selections are subject to approval and slot availability."
+      },
+      "correlation_display": {
+        "value": "",
+        "display_value": ""
+      },
+      "delivery_task": {
+        "value": "",
+        "display_value": ""
+      },
+      "work_start": {
+        "value": "",
+        "display_value": ""
+      },
+      "assignment_group": {
+        "value": "",
+        "display_value": ""
+      },
+      "additional_assignee_list": {
+        "value": "",
+        "display_value": ""
+      },
+      "description": {
+        "value": "",
+        "display_value": ""
+      },
+      "calendar_duration": {
+        "value": "",
+        "display_value": ""
+      },
+      "close_notes": {
+        "value": "",
+        "display_value": ""
+      },
+      "service_offering": {
+        "value": "",
+        "display_value": ""
+      },
+      "sys_class_name": {
+        "value": "sc_req_item",
+        "display_value": "Requested Item"
+      },
+      "closed_by": {
+        "value": "",
+        "display_value": ""
+      },
+      "follow_up": {
+        "value": "",
+        "display_value": ""
+      },
       "sys_id": "002c40f0c360fa10982710977d0131f6",
-      "contact_type": "",
-      "urgency": "3",
-      "company": "",
-      "reassignment_count": "0",
-      "activity_due": "",
-      "assigned_to": "",
-      "comments": "",
-      "quantity": "1",
-      "approval": "requested",
-      "sla_due": "",
-      "comments_and_work_notes": "",
-      "due_date": "2025-10-16 22:20:58",
-      "sys_mod_count": "6",
-      "recurring_price": "0",
-      "sys_tags": "",
-      "billable": "false",
-      "cat_item": "c944e4adc354b21031667433e4013104",
-      "stage": "complete",
-      "x_ipnll_office_adm_inventory_item": "",
-      "escalation": "0",
-      "upon_approval": "proceed",
-      "correlation_id": "",
-      "location": "",
-      "estimated_delivery": ""
+      "contact_type": {
+        "value": "",
+        "display_value": ""
+      },
+      "urgency": {
+        "value": "3",
+        "display_value": "3 - Low"
+      },
+      "company": {
+        "value": "",
+        "display_value": ""
+      },
+      "reassignment_count": {
+        "value": "0",
+        "display_value": "0"
+      },
+      "activity_due": {
+        "value": "",
+        "display_value": "UNKNOWN"
+      },
+      "assigned_to": {
+        "value": "",
+        "display_value": ""
+      },
+      "comments": {
+        "value": "",
+        "display_value": ""
+      },
+      "quantity": {
+        "value": "1",
+        "display_value": "1"
+      },
+      "approval": {
+        "value": "requested",
+        "display_value": "Requested"
+      },
+      "sla_due": {
+        "value": "",
+        "display_value": "UNKNOWN"
+      },
+      "comments_and_work_notes": {
+        "value": "",
+        "display_value": ""
+      },
+      "due_date": {
+        "value": "2025-10-16 22:20:58",
+        "display_value": "10-16-2025 17:20:58"
+      },
+      "sys_mod_count": {
+        "value": "6",
+        "display_value": "6"
+      },
+      "recurring_price": {
+        "value": "0",
+        "display_value": "$0.00"
+      },
+      "sys_tags": {
+        "value": "",
+        "display_value": ""
+      },
+      "billable": {
+        "value": "false",
+        "display_value": "false"
+      },
+      "cat_item": {
+        "value": "c944e4adc354b21031667433e4013104",
+        "display_value": "Firm Initiatives"
+      },
+      "stage": {
+        "value": "complete",
+        "display_value": "Completed"
+      },
+      "x_ipnll_office_adm_inventory_item": {
+        "value": "",
+        "display_value": ""
+      },
+      "escalation": {
+        "value": "0",
+        "display_value": "Normal"
+      },
+      "upon_approval": {
+        "value": "proceed",
+        "display_value": "Proceed to Next Task"
+      },
+      "correlation_id": {
+        "value": "",
+        "display_value": ""
+      },
+      "location": {
+        "value": "",
+        "display_value": ""
+      },
+      "estimated_delivery": {
+        "value": "",
+        "display_value": ""
+      }
     },
     {
-      "parent": "",
-      "made_sla": "true",
-      "watch_list": "",
-      "sc_catalog": "",
-      "upon_reject": "cancel",
-      "requested_for": "d285b61e87d855109ec1b845dabb3579",
-      "sys_updated_on": "2025-11-27 16:22:35",
-      "task_effective_number": "RITM0010600",
-      "approval_history": "",
-      "skills": "",
-      "number": "RITM0010600",
-      "sys_updated_by": "chad.robertson",
-      "opened_by": "d285b61e87d855109ec1b845dabb3579",
-      "user_input": "",
-      "price": "0",
-      "sys_created_on": "2025-11-13 16:16:57",
-      "recurring_frequency": "",
-      "sys_domain": "global",
-      "context": "",
-      "state": "3",
-      "route_reason": "",
-      "sys_created_by": "chad.robertson",
-      "knowledge": "false",
-      "order": "",
-      "closed_at": "2025-11-27 16:22:35",
-      "cmdb_ci": "",
-      "delivery_plan": "",
-      "backordered": "false",
-      "contract": "",
-      "impact": "3",
-      "active": "false",
-      "work_notes_list": "",
-      "business_service": "",
-      "priority": "4",
-      "sys_domain_path": "/",
-      "time_worked": "",
-      "expected_start": "",
-      "flow_context": "5d7883b3ec49be10b3d13cc73fcebbfa",
-      "opened_at": "2025-11-13 16:16:57",
-      "x_880628_project_0_resolution_notes": "closing out",
-      "business_duration": "",
-      "group_list": "",
-      "configuration_item": "",
-      "work_end": "",
-      "approval_set": "",
-      "work_notes": "",
-      "order_guide": "",
-      "universal_request": "",
-      "request": "4d780b73c349be1031667433e4013141",
-      "short_description": "HR Personnel Request",
-      "correlation_display": "",
-      "delivery_task": "",
-      "work_start": "",
-      "assignment_group": "62a2e205c3732a50982710977d013138",
-      "additional_assignee_list": "",
-      "description": "This record tracks an HR Personnel request. Review all variables below to understand the details of the request, take the necessary actions to update employee records or complete other personnel-related actions, and resolve the record once fulfillment is complete.",
-      "calendar_duration": "",
-      "close_notes": "",
-      "service_offering": "",
-      "sys_class_name": "sc_req_item",
-      "closed_by": "d285b61e87d855109ec1b845dabb3579",
-      "follow_up": "",
+      "parent": {
+        "value": "",
+        "display_value": ""
+      },
+      "made_sla": {
+        "value": "true",
+        "display_value": "true"
+      },
+      "watch_list": {
+        "value": "",
+        "display_value": ""
+      },
+      "sc_catalog": {
+        "value": "",
+        "display_value": ""
+      },
+      "upon_reject": {
+        "value": "cancel",
+        "display_value": "Cancel all future Tasks"
+      },
+      "requested_for": {
+        "value": "d285b61e87d855109ec1b845dabb3579",
+        "display_value": "Chad Robertson"
+      },
+      "sys_updated_on": {
+        "value": "2025-11-27 16:22:35",
+        "display_value": "11-27-2025 10:22:35"
+      },
+      "task_effective_number": {
+        "value": "RITM0010600",
+        "display_value": "RITM0010600"
+      },
+      "approval_history": {
+        "value": "",
+        "display_value": ""
+      },
+      "skills": {
+        "value": "",
+        "display_value": ""
+      },
+      "number": {
+        "value": "RITM0010600",
+        "display_value": "RITM0010600"
+      },
+      "sys_updated_by": {
+        "value": "chad.robertson",
+        "display_value": "chad.robertson"
+      },
+      "opened_by": {
+        "value": "d285b61e87d855109ec1b845dabb3579",
+        "display_value": "Chad Robertson"
+      },
+      "user_input": {
+        "value": "",
+        "display_value": ""
+      },
+      "price": {
+        "value": "0",
+        "display_value": "$0.00"
+      },
+      "sys_created_on": {
+        "value": "2025-11-13 16:16:57",
+        "display_value": "11-13-2025 10:16:57"
+      },
+      "recurring_frequency": {
+        "value": "",
+        "display_value": ""
+      },
+      "sys_domain": {
+        "value": "global",
+        "display_value": "global"
+      },
+      "context": {
+        "value": "",
+        "display_value": ""
+      },
+      "state": {
+        "value": "3",
+        "display_value": "Closed Complete"
+      },
+      "route_reason": {
+        "value": "",
+        "display_value": ""
+      },
+      "sys_created_by": {
+        "value": "chad.robertson",
+        "display_value": "chad.robertson"
+      },
+      "knowledge": {
+        "value": "false",
+        "display_value": "false"
+      },
+      "order": {
+        "value": "",
+        "display_value": ""
+      },
+      "closed_at": {
+        "value": "2025-11-27 16:22:35",
+        "display_value": "11-27-2025 10:22:35"
+      },
+      "cmdb_ci": {
+        "value": "",
+        "display_value": ""
+      },
+      "delivery_plan": {
+        "value": "",
+        "display_value": ""
+      },
+      "backordered": {
+        "value": "false",
+        "display_value": "false"
+      },
+      "contract": {
+        "value": "",
+        "display_value": ""
+      },
+      "impact": {
+        "value": "3",
+        "display_value": "3 - Low"
+      },
+      "active": {
+        "value": "false",
+        "display_value": "false"
+      },
+      "work_notes_list": {
+        "value": "",
+        "display_value": ""
+      },
+      "business_service": {
+        "value": "",
+        "display_value": ""
+      },
+      "priority": {
+        "value": "4",
+        "display_value": "4 - Low"
+      },
+      "sys_domain_path": {
+        "value": "/",
+        "display_value": "/"
+      },
+      "time_worked": {
+        "value": "",
+        "display_value": ""
+      },
+      "expected_start": {
+        "value": "",
+        "display_value": ""
+      },
+      "flow_context": {
+        "value": "5d7883b3ec49be10b3d13cc73fcebbfa",
+        "display_value": ""
+      },
+      "opened_at": {
+        "value": "2025-11-13 16:16:57",
+        "display_value": "11-13-2025 10:16:57"
+      },
+      "x_880628_project_0_resolution_notes": {
+        "value": "closing out",
+        "display_value": "closing out"
+      },
+      "business_duration": {
+        "value": "",
+        "display_value": ""
+      },
+      "group_list": {
+        "value": "",
+        "display_value": ""
+      },
+      "configuration_item": {
+        "value": "",
+        "display_value": ""
+      },
+      "work_end": {
+        "value": "",
+        "display_value": ""
+      },
+      "approval_set": {
+        "value": "",
+        "display_value": ""
+      },
+      "work_notes": {
+        "value": "",
+        "display_value": ""
+      },
+      "order_guide": {
+        "value": "",
+        "display_value": ""
+      },
+      "universal_request": {
+        "value": "",
+        "display_value": ""
+      },
+      "request": {
+        "value": "4d780b73c349be1031667433e4013141",
+        "display_value": "REQ0010667"
+      },
+      "short_description": {
+        "value": "HR Personnel Request",
+        "display_value": "HR Personnel Request"
+      },
+      "correlation_display": {
+        "value": "",
+        "display_value": ""
+      },
+      "delivery_task": {
+        "value": "",
+        "display_value": ""
+      },
+      "work_start": {
+        "value": "",
+        "display_value": ""
+      },
+      "assignment_group": {
+        "value": "62a2e205c3732a50982710977d013138",
+        "display_value": "IPC HR Admins"
+      },
+      "additional_assignee_list": {
+        "value": "",
+        "display_value": ""
+      },
+      "description": {
+        "value": "This record tracks an HR Personnel request. Review all variables below to understand the details of the request, take the necessary actions to update employee records or complete other personnel-related actions, and resolve the record once fulfillment is complete.",
+        "display_value": "This record tracks an HR Personnel request. Review all variables below to understand the details of the request, take the necessary actions to update employee records or complete other personnel-related actions, and resolve the record once fulfillment is complete."
+      },
+      "calendar_duration": {
+        "value": "",
+        "display_value": ""
+      },
+      "close_notes": {
+        "value": "",
+        "display_value": ""
+      },
+      "service_offering": {
+        "value": "",
+        "display_value": ""
+      },
+      "sys_class_name": {
+        "value": "sc_req_item",
+        "display_value": "Requested Item"
+      },
+      "closed_by": {
+        "value": "d285b61e87d855109ec1b845dabb3579",
+        "display_value": "Chad Robertson"
+      },
+      "follow_up": {
+        "value": "",
+        "display_value": ""
+      },
       "sys_id": "017883b3c349be1031667433e40131e6",
-      "contact_type": "",
-      "urgency": "3",
-      "company": "",
-      "reassignment_count": "1",
-      "activity_due": "",
-      "assigned_to": "",
-      "comments": "",
-      "quantity": "1",
-      "approval": "requested",
-      "sla_due": "",
-      "comments_and_work_notes": "",
-      "due_date": "2025-11-13 16:16:57",
-      "sys_mod_count": "7",
-      "recurring_price": "0",
-      "sys_tags": "",
-      "billable": "false",
-      "cat_item": "a3604634c3d8fa50982710977d0131f5",
-      "stage": "request_approved",
-      "x_ipnll_office_adm_inventory_item": "",
-      "escalation": "0",
-      "upon_approval": "proceed",
-      "correlation_id": "",
-      "location": "",
-      "estimated_delivery": ""
+      "contact_type": {
+        "value": "",
+        "display_value": ""
+      },
+      "urgency": {
+        "value": "3",
+        "display_value": "3 - Low"
+      },
+      "company": {
+        "value": "",
+        "display_value": ""
+      },
+      "reassignment_count": {
+        "value": "1",
+        "display_value": "1"
+      },
+      "activity_due": {
+        "value": "",
+        "display_value": "UNKNOWN"
+      },
+      "assigned_to": {
+        "value": "",
+        "display_value": ""
+      },
+      "comments": {
+        "value": "",
+        "display_value": "11-13-2025 10:22:12 - Chad Robertson (Additional comments)\nop\n\n"
+      },
+      "quantity": {
+        "value": "1",
+        "display_value": "1"
+      },
+      "approval": {
+        "value": "requested",
+        "display_value": "Requested"
+      },
+      "sla_due": {
+        "value": "",
+        "display_value": "UNKNOWN"
+      },
+      "comments_and_work_notes": {
+        "value": "",
+        "display_value": "11-13-2025 10:22:12 - Chad Robertson (Additional comments)\nop\n\n"
+      },
+      "due_date": {
+        "value": "2025-11-13 16:16:57",
+        "display_value": "11-13-2025 10:16:57"
+      },
+      "sys_mod_count": {
+        "value": "7",
+        "display_value": "7"
+      },
+      "recurring_price": {
+        "value": "0",
+        "display_value": "$0.00"
+      },
+      "sys_tags": {
+        "value": "",
+        "display_value": ""
+      },
+      "billable": {
+        "value": "false",
+        "display_value": "false"
+      },
+      "cat_item": {
+        "value": "a3604634c3d8fa50982710977d0131f5",
+        "display_value": "HR Administration"
+      },
+      "stage": {
+        "value": "request_approved",
+        "display_value": "Request Approved"
+      },
+      "x_ipnll_office_adm_inventory_item": {
+        "value": "",
+        "display_value": ""
+      },
+      "escalation": {
+        "value": "0",
+        "display_value": "Normal"
+      },
+      "upon_approval": {
+        "value": "proceed",
+        "display_value": "Proceed to Next Task"
+      },
+      "correlation_id": {
+        "value": "",
+        "display_value": ""
+      },
+      "location": {
+        "value": "",
+        "display_value": ""
+      },
+      "estimated_delivery": {
+        "value": "",
+        "display_value": ""
+      }
     },
     {
-      "parent": "",
-      "made_sla": "true",
-      "watch_list": "",
-      "sc_catalog": "",
-      "upon_reject": "cancel",
-      "requested_for": "a8f98bb0eb32010045e1a5115206fe3a",
-      "sys_updated_on": "2025-11-28 23:00:05",
-      "task_effective_number": "RITM0010621",
-      "approval_history": "",
-      "skills": "",
-      "number": "RITM0010621",
-      "sys_updated_by": "abraham.lincoln",
-      "opened_by": "a8f98bb0eb32010045e1a5115206fe3a",
-      "user_input": "",
-      "price": "0",
-      "sys_created_on": "2025-11-17 06:43:34",
-      "recurring_frequency": "",
-      "sys_domain": "global",
-      "context": "",
-      "state": "3",
-      "route_reason": "",
-      "sys_created_by": "abraham.lincoln",
-      "knowledge": "false",
-      "order": "",
-      "closed_at": "2025-11-28 23:00:05",
-      "cmdb_ci": "",
-      "delivery_plan": "",
-      "backordered": "false",
-      "contract": "",
-      "impact": "3",
-      "active": "false",
-      "work_notes_list": "",
-      "business_service": "",
-      "priority": "4",
-      "sys_domain_path": "/",
-      "time_worked": "",
-      "expected_start": "",
-      "flow_context": "519be5c18a99b210cd4a1a82ce91cfc8",
-      "opened_at": "2025-11-17 06:43:34",
-      "x_880628_project_0_resolution_notes": "IT IS!!",
-      "business_duration": "",
-      "group_list": "",
-      "configuration_item": "",
-      "work_end": "",
-      "approval_set": "",
-      "work_notes": "",
-      "order_guide": "",
-      "universal_request": "",
-      "request": "899be5c1c399b21031667433e401310f",
-      "short_description": "Software Request",
-      "correlation_display": "",
-      "delivery_task": "",
-      "work_start": "",
-      "assignment_group": "7fc26605c3732a50982710977d0131e9",
-      "additional_assignee_list": "",
-      "description": "This record tracks a request for software. Review all variables below to understand the details of the request, take the necessary actions to procure the software, and resolve the record once fulfillment is complete.",
-      "calendar_duration": "",
-      "close_notes": "",
-      "service_offering": "",
-      "sys_class_name": "sc_req_item",
-      "closed_by": "65c98175fb8fa210eec7fd8c7befdc29",
-      "follow_up": "",
+      "parent": {
+        "value": "",
+        "display_value": ""
+      },
+      "made_sla": {
+        "value": "true",
+        "display_value": "true"
+      },
+      "watch_list": {
+        "value": "",
+        "display_value": ""
+      },
+      "sc_catalog": {
+        "value": "",
+        "display_value": ""
+      },
+      "upon_reject": {
+        "value": "cancel",
+        "display_value": "Cancel all future Tasks"
+      },
+      "requested_for": {
+        "value": "a8f98bb0eb32010045e1a5115206fe3a",
+        "display_value": "Abraham Lincoln"
+      },
+      "sys_updated_on": {
+        "value": "2025-11-28 23:00:05",
+        "display_value": "11-28-2025 17:00:05"
+      },
+      "task_effective_number": {
+        "value": "RITM0010621",
+        "display_value": "RITM0010621"
+      },
+      "approval_history": {
+        "value": "",
+        "display_value": ""
+      },
+      "skills": {
+        "value": "",
+        "display_value": ""
+      },
+      "number": {
+        "value": "RITM0010621",
+        "display_value": "RITM0010621"
+      },
+      "sys_updated_by": {
+        "value": "abraham.lincoln",
+        "display_value": "abraham.lincoln"
+      },
+      "opened_by": {
+        "value": "a8f98bb0eb32010045e1a5115206fe3a",
+        "display_value": "Abraham Lincoln"
+      },
+      "user_input": {
+        "value": "",
+        "display_value": ""
+      },
+      "price": {
+        "value": "0",
+        "display_value": "$0.00"
+      },
+      "sys_created_on": {
+        "value": "2025-11-17 06:43:34",
+        "display_value": "11-17-2025 00:43:34"
+      },
+      "recurring_frequency": {
+        "value": "",
+        "display_value": ""
+      },
+      "sys_domain": {
+        "value": "global",
+        "display_value": "global"
+      },
+      "context": {
+        "value": "",
+        "display_value": ""
+      },
+      "state": {
+        "value": "3",
+        "display_value": "Closed Complete"
+      },
+      "route_reason": {
+        "value": "",
+        "display_value": ""
+      },
+      "sys_created_by": {
+        "value": "abraham.lincoln",
+        "display_value": "abraham.lincoln"
+      },
+      "knowledge": {
+        "value": "false",
+        "display_value": "false"
+      },
+      "order": {
+        "value": "",
+        "display_value": ""
+      },
+      "closed_at": {
+        "value": "2025-11-28 23:00:05",
+        "display_value": "11-28-2025 17:00:05"
+      },
+      "cmdb_ci": {
+        "value": "",
+        "display_value": ""
+      },
+      "delivery_plan": {
+        "value": "",
+        "display_value": ""
+      },
+      "backordered": {
+        "value": "false",
+        "display_value": "false"
+      },
+      "contract": {
+        "value": "",
+        "display_value": ""
+      },
+      "impact": {
+        "value": "3",
+        "display_value": "3 - Low"
+      },
+      "active": {
+        "value": "false",
+        "display_value": "false"
+      },
+      "work_notes_list": {
+        "value": "",
+        "display_value": ""
+      },
+      "business_service": {
+        "value": "",
+        "display_value": ""
+      },
+      "priority": {
+        "value": "4",
+        "display_value": "4 - Low"
+      },
+      "sys_domain_path": {
+        "value": "/",
+        "display_value": "/"
+      },
+      "time_worked": {
+        "value": "",
+        "display_value": ""
+      },
+      "expected_start": {
+        "value": "",
+        "display_value": ""
+      },
+      "flow_context": {
+        "value": "519be5c18a99b210cd4a1a82ce91cfc8",
+        "display_value": ""
+      },
+      "opened_at": {
+        "value": "2025-11-17 06:43:34",
+        "display_value": "11-17-2025 00:43:34"
+      },
+      "x_880628_project_0_resolution_notes": {
+        "value": "IT IS!!",
+        "display_value": "IT IS!!"
+      },
+      "business_duration": {
+        "value": "",
+        "display_value": ""
+      },
+      "group_list": {
+        "value": "",
+        "display_value": ""
+      },
+      "configuration_item": {
+        "value": "",
+        "display_value": ""
+      },
+      "work_end": {
+        "value": "",
+        "display_value": ""
+      },
+      "approval_set": {
+        "value": "",
+        "display_value": ""
+      },
+      "work_notes": {
+        "value": "",
+        "display_value": ""
+      },
+      "order_guide": {
+        "value": "",
+        "display_value": ""
+      },
+      "universal_request": {
+        "value": "",
+        "display_value": ""
+      },
+      "request": {
+        "value": "899be5c1c399b21031667433e401310f",
+        "display_value": "REQ0010688"
+      },
+      "short_description": {
+        "value": "Software Request",
+        "display_value": "Software Request"
+      },
+      "correlation_display": {
+        "value": "",
+        "display_value": ""
+      },
+      "delivery_task": {
+        "value": "",
+        "display_value": ""
+      },
+      "work_start": {
+        "value": "",
+        "display_value": ""
+      },
+      "assignment_group": {
+        "value": "7fc26605c3732a50982710977d0131e9",
+        "display_value": "IPC Technology"
+      },
+      "additional_assignee_list": {
+        "value": "",
+        "display_value": ""
+      },
+      "description": {
+        "value": "This record tracks a request for software. Review all variables below to understand the details of the request, take the necessary actions to procure the software, and resolve the record once fulfillment is complete.",
+        "display_value": "This record tracks a request for software. Review all variables below to understand the details of the request, take the necessary actions to procure the software, and resolve the record once fulfillment is complete."
+      },
+      "calendar_duration": {
+        "value": "",
+        "display_value": ""
+      },
+      "close_notes": {
+        "value": "",
+        "display_value": ""
+      },
+      "service_offering": {
+        "value": "",
+        "display_value": ""
+      },
+      "sys_class_name": {
+        "value": "sc_req_item",
+        "display_value": "Requested Item"
+      },
+      "closed_by": {
+        "value": "65c98175fb8fa210eec7fd8c7befdc29",
+        "display_value": "Matthew McBride"
+      },
+      "follow_up": {
+        "value": "",
+        "display_value": ""
+      },
       "sys_id": "019be5c1c399b21031667433e4013110",
-      "contact_type": "",
-      "urgency": "3",
-      "company": "",
-      "reassignment_count": "1",
-      "activity_due": "",
-      "assigned_to": "",
-      "comments": "",
-      "quantity": "1",
-      "approval": "requested",
-      "sla_due": "",
-      "comments_and_work_notes": "",
-      "due_date": "2025-11-17 06:43:34",
-      "sys_mod_count": "8",
-      "recurring_price": "0",
-      "sys_tags": "",
-      "billable": "false",
-      "cat_item": "74e17534c398fa50982710977d0131c8",
-      "stage": "complete",
-      "x_ipnll_office_adm_inventory_item": "",
-      "escalation": "0",
-      "upon_approval": "proceed",
-      "correlation_id": "",
-      "location": "",
-      "estimated_delivery": ""
+      "contact_type": {
+        "value": "",
+        "display_value": ""
+      },
+      "urgency": {
+        "value": "3",
+        "display_value": "3 - Low"
+      },
+      "company": {
+        "value": "",
+        "display_value": ""
+      },
+      "reassignment_count": {
+        "value": "1",
+        "display_value": "1"
+      },
+      "activity_due": {
+        "value": "",
+        "display_value": "UNKNOWN"
+      },
+      "assigned_to": {
+        "value": "",
+        "display_value": ""
+      },
+      "comments": {
+        "value": "",
+        "display_value": "11-17-2025 00:45:12 - Abraham Lincoln (Additional comments)\nits not resolved\n\n"
+      },
+      "quantity": {
+        "value": "1",
+        "display_value": "1"
+      },
+      "approval": {
+        "value": "requested",
+        "display_value": "Requested"
+      },
+      "sla_due": {
+        "value": "",
+        "display_value": "UNKNOWN"
+      },
+      "comments_and_work_notes": {
+        "value": "",
+        "display_value": "11-17-2025 00:45:12 - Abraham Lincoln (Additional comments)\nits not resolved\n\n"
+      },
+      "due_date": {
+        "value": "2025-11-17 06:43:34",
+        "display_value": "11-17-2025 00:43:34"
+      },
+      "sys_mod_count": {
+        "value": "8",
+        "display_value": "8"
+      },
+      "recurring_price": {
+        "value": "0",
+        "display_value": "$0.00"
+      },
+      "sys_tags": {
+        "value": "",
+        "display_value": ""
+      },
+      "billable": {
+        "value": "false",
+        "display_value": "false"
+      },
+      "cat_item": {
+        "value": "74e17534c398fa50982710977d0131c8",
+        "display_value": "Software Request"
+      },
+      "stage": {
+        "value": "complete",
+        "display_value": "complete"
+      },
+      "x_ipnll_office_adm_inventory_item": {
+        "value": "",
+        "display_value": ""
+      },
+      "escalation": {
+        "value": "0",
+        "display_value": "Normal"
+      },
+      "upon_approval": {
+        "value": "proceed",
+        "display_value": "Proceed to Next Task"
+      },
+      "correlation_id": {
+        "value": "",
+        "display_value": ""
+      },
+      "location": {
+        "value": "",
+        "display_value": ""
+      },
+      "estimated_delivery": {
+        "value": "",
+        "display_value": ""
+      }
     },
     {
-      "parent": "",
-      "made_sla": "true",
-      "watch_list": "",
-      "sc_catalog": "",
-      "upon_reject": "cancel",
-      "requested_for": "65c98175fb8fa210eec7fd8c7befdc29",
-      "sys_updated_on": "2025-09-17 19:08:15",
-      "task_effective_number": "RITM0010219",
-      "approval_history": "",
-      "skills": "",
-      "number": "RITM0010219",
-      "sys_updated_by": "matthew.mcbride",
-      "opened_by": "65c98175fb8fa210eec7fd8c7befdc29",
-      "user_input": "",
-      "price": "0",
-      "sys_created_on": "2025-09-17 19:07:56",
-      "recurring_frequency": "",
-      "sys_domain": "global",
-      "context": "",
-      "state": "3",
-      "route_reason": "",
-      "sys_created_by": "matthew.mcbride",
-      "knowledge": "false",
-      "order": "",
-      "closed_at": "2025-09-17 19:08:15",
-      "cmdb_ci": "",
-      "delivery_plan": "",
-      "backordered": "false",
-      "contract": "",
-      "impact": "3",
-      "active": "false",
-      "work_notes_list": "",
-      "business_service": "",
-      "priority": "4",
-      "sys_domain_path": "/",
-      "time_worked": "",
-      "expected_start": "",
-      "flow_context": "12fc8a69980cbe10cb3a59234a2b4e00",
-      "opened_at": "2025-09-17 19:07:56",
-      "x_880628_project_0_resolution_notes": "",
-      "business_duration": "",
-      "group_list": "",
-      "configuration_item": "",
-      "work_end": "",
-      "approval_set": "2025-09-17 19:08:15",
-      "work_notes": "",
-      "order_guide": "",
-      "universal_request": "",
-      "request": "8afc8669c30cbe10982710977d013149",
-      "short_description": "Request new software or changes to existing software access.",
-      "correlation_display": "",
-      "delivery_task": "",
-      "work_start": "",
-      "assignment_group": "7fc26605c3732a50982710977d0131e9",
-      "additional_assignee_list": "",
-      "description": "This record tracks a software request submitted through the catalog. Use this item to review the application details, validate approval and licensing requirements as needed. The request should remain open until the software has been provisioned, installed, or access granted and confirmed with the end user.",
-      "calendar_duration": "",
-      "close_notes": "",
-      "service_offering": "",
-      "sys_class_name": "sc_req_item",
-      "closed_by": "65c98175fb8fa210eec7fd8c7befdc29",
-      "follow_up": "",
+      "parent": {
+        "value": "",
+        "display_value": ""
+      },
+      "made_sla": {
+        "value": "true",
+        "display_value": "true"
+      },
+      "watch_list": {
+        "value": "",
+        "display_value": ""
+      },
+      "sc_catalog": {
+        "value": "",
+        "display_value": ""
+      },
+      "upon_reject": {
+        "value": "cancel",
+        "display_value": "Cancel all future Tasks"
+      },
+      "requested_for": {
+        "value": "65c98175fb8fa210eec7fd8c7befdc29",
+        "display_value": "Matthew McBride"
+      },
+      "sys_updated_on": {
+        "value": "2025-09-17 19:08:15",
+        "display_value": "09-17-2025 14:08:15"
+      },
+      "task_effective_number": {
+        "value": "RITM0010219",
+        "display_value": "RITM0010219"
+      },
+      "approval_history": {
+        "value": "",
+        "display_value": "09-17-2025 14:08:15 - Matthew McBride (Approval history)\nGroup approval for IPC Technology rejected by user Matthew McBride.\n\n09-17-2025 14:08:14 - Matthew McBride (Approval history)\nMatthew McBride rejected the task.\n\n09-17-2025 14:07:57 - Matthew McBride (Approval history)\nJoseph Van Nieuwenhuyse requested to approve task\n\n09-17-2025 14:07:57 - Matthew McBride (Approval history)\nMatthew McBride requested to approve task\n\n09-17-2025 14:07:57 - Matthew McBride (Approval history)\nGroup approval for IPC Technology is requested.\n\n"
+      },
+      "skills": {
+        "value": "",
+        "display_value": ""
+      },
+      "number": {
+        "value": "RITM0010219",
+        "display_value": "RITM0010219"
+      },
+      "sys_updated_by": {
+        "value": "matthew.mcbride",
+        "display_value": "matthew.mcbride"
+      },
+      "opened_by": {
+        "value": "65c98175fb8fa210eec7fd8c7befdc29",
+        "display_value": "Matthew McBride"
+      },
+      "user_input": {
+        "value": "",
+        "display_value": ""
+      },
+      "price": {
+        "value": "0",
+        "display_value": "$0.00"
+      },
+      "sys_created_on": {
+        "value": "2025-09-17 19:07:56",
+        "display_value": "09-17-2025 14:07:56"
+      },
+      "recurring_frequency": {
+        "value": "",
+        "display_value": ""
+      },
+      "sys_domain": {
+        "value": "global",
+        "display_value": "global"
+      },
+      "context": {
+        "value": "",
+        "display_value": ""
+      },
+      "state": {
+        "value": "3",
+        "display_value": "Closed Complete"
+      },
+      "route_reason": {
+        "value": "",
+        "display_value": ""
+      },
+      "sys_created_by": {
+        "value": "matthew.mcbride",
+        "display_value": "matthew.mcbride"
+      },
+      "knowledge": {
+        "value": "false",
+        "display_value": "false"
+      },
+      "order": {
+        "value": "",
+        "display_value": ""
+      },
+      "closed_at": {
+        "value": "2025-09-17 19:08:15",
+        "display_value": "09-17-2025 14:08:15"
+      },
+      "cmdb_ci": {
+        "value": "",
+        "display_value": ""
+      },
+      "delivery_plan": {
+        "value": "",
+        "display_value": ""
+      },
+      "backordered": {
+        "value": "false",
+        "display_value": "false"
+      },
+      "contract": {
+        "value": "",
+        "display_value": ""
+      },
+      "impact": {
+        "value": "3",
+        "display_value": "3 - Low"
+      },
+      "active": {
+        "value": "false",
+        "display_value": "false"
+      },
+      "work_notes_list": {
+        "value": "",
+        "display_value": ""
+      },
+      "business_service": {
+        "value": "",
+        "display_value": ""
+      },
+      "priority": {
+        "value": "4",
+        "display_value": "4 - Low"
+      },
+      "sys_domain_path": {
+        "value": "/",
+        "display_value": "/"
+      },
+      "time_worked": {
+        "value": "",
+        "display_value": ""
+      },
+      "expected_start": {
+        "value": "",
+        "display_value": ""
+      },
+      "flow_context": {
+        "value": "12fc8a69980cbe10cb3a59234a2b4e00",
+        "display_value": ""
+      },
+      "opened_at": {
+        "value": "2025-09-17 19:07:56",
+        "display_value": "09-17-2025 14:07:56"
+      },
+      "x_880628_project_0_resolution_notes": {
+        "value": "",
+        "display_value": ""
+      },
+      "business_duration": {
+        "value": "",
+        "display_value": ""
+      },
+      "group_list": {
+        "value": "",
+        "display_value": ""
+      },
+      "configuration_item": {
+        "value": "",
+        "display_value": ""
+      },
+      "work_end": {
+        "value": "",
+        "display_value": ""
+      },
+      "approval_set": {
+        "value": "2025-09-17 19:08:15",
+        "display_value": "09-17-2025 14:08:15"
+      },
+      "work_notes": {
+        "value": "",
+        "display_value": ""
+      },
+      "order_guide": {
+        "value": "",
+        "display_value": ""
+      },
+      "universal_request": {
+        "value": "",
+        "display_value": ""
+      },
+      "request": {
+        "value": "8afc8669c30cbe10982710977d013149",
+        "display_value": "REQ0010296"
+      },
+      "short_description": {
+        "value": "Request new software or changes to existing software access.",
+        "display_value": "Request new software or changes to existing software access."
+      },
+      "correlation_display": {
+        "value": "",
+        "display_value": ""
+      },
+      "delivery_task": {
+        "value": "",
+        "display_value": ""
+      },
+      "work_start": {
+        "value": "",
+        "display_value": ""
+      },
+      "assignment_group": {
+        "value": "7fc26605c3732a50982710977d0131e9",
+        "display_value": "IPC Technology"
+      },
+      "additional_assignee_list": {
+        "value": "",
+        "display_value": ""
+      },
+      "description": {
+        "value": "This record tracks a software request submitted through the catalog. Use this item to review the application details, validate approval and licensing requirements as needed. The request should remain open until the software has been provisioned, installed, or access granted and confirmed with the end user.",
+        "display_value": "This record tracks a software request submitted through the catalog. Use this item to review the application details, validate approval and licensing requirements as needed. The request should remain open until the software has been provisioned, installed, or access granted and confirmed with the end user."
+      },
+      "calendar_duration": {
+        "value": "",
+        "display_value": ""
+      },
+      "close_notes": {
+        "value": "",
+        "display_value": ""
+      },
+      "service_offering": {
+        "value": "",
+        "display_value": ""
+      },
+      "sys_class_name": {
+        "value": "sc_req_item",
+        "display_value": "Requested Item"
+      },
+      "closed_by": {
+        "value": "65c98175fb8fa210eec7fd8c7befdc29",
+        "display_value": "Matthew McBride"
+      },
+      "follow_up": {
+        "value": "",
+        "display_value": ""
+      },
       "sys_id": "02fc8669c30cbe10982710977d01314a",
-      "contact_type": "",
-      "urgency": "3",
-      "company": "",
-      "reassignment_count": "1",
-      "activity_due": "",
-      "assigned_to": "",
-      "comments": "",
-      "quantity": "1",
-      "approval": "rejected",
-      "sla_due": "",
-      "comments_and_work_notes": "",
-      "due_date": "2025-09-17 19:07:56",
-      "sys_mod_count": "8",
-      "recurring_price": "0",
-      "sys_tags": "",
-      "billable": "false",
-      "cat_item": "",
-      "stage": "Request Cancelled",
-      "x_ipnll_office_adm_inventory_item": "",
-      "escalation": "0",
-      "upon_approval": "proceed",
-      "correlation_id": "",
-      "location": "",
-      "estimated_delivery": ""
+      "contact_type": {
+        "value": "",
+        "display_value": ""
+      },
+      "urgency": {
+        "value": "3",
+        "display_value": "3 - Low"
+      },
+      "company": {
+        "value": "",
+        "display_value": ""
+      },
+      "reassignment_count": {
+        "value": "1",
+        "display_value": "1"
+      },
+      "activity_due": {
+        "value": "",
+        "display_value": "UNKNOWN"
+      },
+      "assigned_to": {
+        "value": "",
+        "display_value": ""
+      },
+      "comments": {
+        "value": "",
+        "display_value": ""
+      },
+      "quantity": {
+        "value": "1",
+        "display_value": "1"
+      },
+      "approval": {
+        "value": "rejected",
+        "display_value": "Rejected"
+      },
+      "sla_due": {
+        "value": "",
+        "display_value": "UNKNOWN"
+      },
+      "comments_and_work_notes": {
+        "value": "",
+        "display_value": ""
+      },
+      "due_date": {
+        "value": "2025-09-17 19:07:56",
+        "display_value": "09-17-2025 14:07:56"
+      },
+      "sys_mod_count": {
+        "value": "8",
+        "display_value": "8"
+      },
+      "recurring_price": {
+        "value": "0",
+        "display_value": "$0.00"
+      },
+      "sys_tags": {
+        "value": "",
+        "display_value": ""
+      },
+      "billable": {
+        "value": "false",
+        "display_value": "false"
+      },
+      "cat_item": {
+        "value": "",
+        "display_value": ""
+      },
+      "stage": {
+        "value": "Request Cancelled",
+        "display_value": "Request Cancelled"
+      },
+      "x_ipnll_office_adm_inventory_item": {
+        "value": "",
+        "display_value": ""
+      },
+      "escalation": {
+        "value": "0",
+        "display_value": "Normal"
+      },
+      "upon_approval": {
+        "value": "proceed",
+        "display_value": "Proceed to Next Task"
+      },
+      "correlation_id": {
+        "value": "",
+        "display_value": ""
+      },
+      "location": {
+        "value": "",
+        "display_value": ""
+      },
+      "estimated_delivery": {
+        "value": "",
+        "display_value": ""
+      }
     },
     {
-      "parent": "",
-      "made_sla": "true",
-      "watch_list": "",
-      "sc_catalog": "",
-      "upon_reject": "cancel",
-      "requested_for": "75c35fee33292650a47be3570e5c7b82",
-      "sys_updated_on": "2025-10-09 15:59:39",
-      "task_effective_number": "RITM0010339",
-      "approval_history": "",
-      "skills": "",
-      "number": "RITM0010339",
-      "sys_updated_by": "system",
-      "opened_by": "75c35fee33292650a47be3570e5c7b82",
-      "user_input": "",
-      "price": "0",
-      "sys_created_on": "2025-10-09 15:51:34",
-      "recurring_frequency": "",
-      "sys_domain": "global",
-      "context": "",
-      "state": "2",
-      "route_reason": "",
-      "sys_created_by": "spencer.bone",
-      "knowledge": "false",
-      "order": "",
-      "closed_at": "2025-10-09 15:55:28",
-      "cmdb_ci": "",
-      "delivery_plan": "",
-      "backordered": "false",
-      "contract": "",
-      "impact": "3",
-      "active": "false",
-      "work_notes_list": "",
-      "business_service": "",
-      "priority": "4",
-      "sys_domain_path": "/",
-      "time_worked": "",
-      "expected_start": "",
-      "flow_context": "10033aec3cac72500faf519cde01e873",
-      "opened_at": "2025-10-09 15:51:34",
-      "x_880628_project_0_resolution_notes": "",
-      "business_duration": "",
-      "group_list": "",
-      "configuration_item": "",
-      "work_end": "",
-      "approval_set": "",
-      "work_notes": "",
-      "order_guide": "",
-      "universal_request": "",
-      "request": "8c0332ecc3ac725031667433e40131e1",
-      "short_description": "Select your Firm Initiatives for the year. Selections are subject to approval and slot availability.",
-      "correlation_display": "",
-      "delivery_task": "",
-      "work_start": "",
-      "assignment_group": "",
-      "additional_assignee_list": "",
-      "description": "",
-      "calendar_duration": "",
-      "close_notes": "",
-      "service_offering": "",
-      "sys_class_name": "sc_req_item",
-      "closed_by": "",
-      "follow_up": "",
+      "parent": {
+        "value": "",
+        "display_value": ""
+      },
+      "made_sla": {
+        "value": "true",
+        "display_value": "true"
+      },
+      "watch_list": {
+        "value": "",
+        "display_value": ""
+      },
+      "sc_catalog": {
+        "value": "",
+        "display_value": ""
+      },
+      "upon_reject": {
+        "value": "cancel",
+        "display_value": "Cancel all future Tasks"
+      },
+      "requested_for": {
+        "value": "75c35fee33292650a47be3570e5c7b82",
+        "display_value": "Spencer Bone"
+      },
+      "sys_updated_on": {
+        "value": "2025-10-09 15:59:39",
+        "display_value": "10-09-2025 10:59:39"
+      },
+      "task_effective_number": {
+        "value": "RITM0010339",
+        "display_value": "RITM0010339"
+      },
+      "approval_history": {
+        "value": "",
+        "display_value": ""
+      },
+      "skills": {
+        "value": "",
+        "display_value": ""
+      },
+      "number": {
+        "value": "RITM0010339",
+        "display_value": "RITM0010339"
+      },
+      "sys_updated_by": {
+        "value": "system",
+        "display_value": "system"
+      },
+      "opened_by": {
+        "value": "75c35fee33292650a47be3570e5c7b82",
+        "display_value": "Spencer Bone"
+      },
+      "user_input": {
+        "value": "",
+        "display_value": ""
+      },
+      "price": {
+        "value": "0",
+        "display_value": "$0.00"
+      },
+      "sys_created_on": {
+        "value": "2025-10-09 15:51:34",
+        "display_value": "10-09-2025 10:51:34"
+      },
+      "recurring_frequency": {
+        "value": "",
+        "display_value": ""
+      },
+      "sys_domain": {
+        "value": "global",
+        "display_value": "global"
+      },
+      "context": {
+        "value": "",
+        "display_value": ""
+      },
+      "state": {
+        "value": "2",
+        "display_value": "Work in Progress"
+      },
+      "route_reason": {
+        "value": "",
+        "display_value": ""
+      },
+      "sys_created_by": {
+        "value": "spencer.bone",
+        "display_value": "spencer.bone"
+      },
+      "knowledge": {
+        "value": "false",
+        "display_value": "false"
+      },
+      "order": {
+        "value": "",
+        "display_value": ""
+      },
+      "closed_at": {
+        "value": "2025-10-09 15:55:28",
+        "display_value": "10-09-2025 10:55:28"
+      },
+      "cmdb_ci": {
+        "value": "",
+        "display_value": ""
+      },
+      "delivery_plan": {
+        "value": "",
+        "display_value": ""
+      },
+      "backordered": {
+        "value": "false",
+        "display_value": "false"
+      },
+      "contract": {
+        "value": "",
+        "display_value": ""
+      },
+      "impact": {
+        "value": "3",
+        "display_value": "3 - Low"
+      },
+      "active": {
+        "value": "false",
+        "display_value": "false"
+      },
+      "work_notes_list": {
+        "value": "",
+        "display_value": ""
+      },
+      "business_service": {
+        "value": "",
+        "display_value": ""
+      },
+      "priority": {
+        "value": "4",
+        "display_value": "4 - Low"
+      },
+      "sys_domain_path": {
+        "value": "/",
+        "display_value": "/"
+      },
+      "time_worked": {
+        "value": "",
+        "display_value": ""
+      },
+      "expected_start": {
+        "value": "",
+        "display_value": ""
+      },
+      "flow_context": {
+        "value": "10033aec3cac72500faf519cde01e873",
+        "display_value": ""
+      },
+      "opened_at": {
+        "value": "2025-10-09 15:51:34",
+        "display_value": "10-09-2025 10:51:34"
+      },
+      "x_880628_project_0_resolution_notes": {
+        "value": "",
+        "display_value": ""
+      },
+      "business_duration": {
+        "value": "",
+        "display_value": ""
+      },
+      "group_list": {
+        "value": "",
+        "display_value": ""
+      },
+      "configuration_item": {
+        "value": "",
+        "display_value": ""
+      },
+      "work_end": {
+        "value": "",
+        "display_value": ""
+      },
+      "approval_set": {
+        "value": "",
+        "display_value": ""
+      },
+      "work_notes": {
+        "value": "",
+        "display_value": ""
+      },
+      "order_guide": {
+        "value": "",
+        "display_value": ""
+      },
+      "universal_request": {
+        "value": "",
+        "display_value": ""
+      },
+      "request": {
+        "value": "8c0332ecc3ac725031667433e40131e1",
+        "display_value": "REQ0010412"
+      },
+      "short_description": {
+        "value": "Select your Firm Initiatives for the year. Selections are subject to approval and slot availability.",
+        "display_value": "Select your Firm Initiatives for the year. Selections are subject to approval and slot availability."
+      },
+      "correlation_display": {
+        "value": "",
+        "display_value": ""
+      },
+      "delivery_task": {
+        "value": "",
+        "display_value": ""
+      },
+      "work_start": {
+        "value": "",
+        "display_value": ""
+      },
+      "assignment_group": {
+        "value": "",
+        "display_value": ""
+      },
+      "additional_assignee_list": {
+        "value": "",
+        "display_value": ""
+      },
+      "description": {
+        "value": "",
+        "display_value": ""
+      },
+      "calendar_duration": {
+        "value": "",
+        "display_value": ""
+      },
+      "close_notes": {
+        "value": "",
+        "display_value": ""
+      },
+      "service_offering": {
+        "value": "",
+        "display_value": ""
+      },
+      "sys_class_name": {
+        "value": "sc_req_item",
+        "display_value": "Requested Item"
+      },
+      "closed_by": {
+        "value": "",
+        "display_value": ""
+      },
+      "follow_up": {
+        "value": "",
+        "display_value": ""
+      },
       "sys_id": "040332ecc3ac725031667433e40131e2",
-      "contact_type": "",
-      "urgency": "3",
-      "company": "",
-      "reassignment_count": "0",
-      "activity_due": "",
-      "assigned_to": "",
-      "comments": "",
-      "quantity": "1",
-      "approval": "requested",
-      "sla_due": "",
-      "comments_and_work_notes": "",
-      "due_date": "2025-10-16 15:51:34",
-      "sys_mod_count": "11",
-      "recurring_price": "0",
-      "sys_tags": "",
-      "billable": "false",
-      "cat_item": "c944e4adc354b21031667433e4013104",
-      "stage": "waiting_for_approval",
-      "x_ipnll_office_adm_inventory_item": "",
-      "escalation": "0",
-      "upon_approval": "proceed",
-      "correlation_id": "",
-      "location": "",
-      "estimated_delivery": ""
+      "contact_type": {
+        "value": "",
+        "display_value": ""
+      },
+      "urgency": {
+        "value": "3",
+        "display_value": "3 - Low"
+      },
+      "company": {
+        "value": "",
+        "display_value": ""
+      },
+      "reassignment_count": {
+        "value": "0",
+        "display_value": "0"
+      },
+      "activity_due": {
+        "value": "",
+        "display_value": "UNKNOWN"
+      },
+      "assigned_to": {
+        "value": "",
+        "display_value": ""
+      },
+      "comments": {
+        "value": "",
+        "display_value": ""
+      },
+      "quantity": {
+        "value": "1",
+        "display_value": "1"
+      },
+      "approval": {
+        "value": "requested",
+        "display_value": "Requested"
+      },
+      "sla_due": {
+        "value": "",
+        "display_value": "UNKNOWN"
+      },
+      "comments_and_work_notes": {
+        "value": "",
+        "display_value": ""
+      },
+      "due_date": {
+        "value": "2025-10-16 15:51:34",
+        "display_value": "10-16-2025 10:51:34"
+      },
+      "sys_mod_count": {
+        "value": "11",
+        "display_value": "11"
+      },
+      "recurring_price": {
+        "value": "0",
+        "display_value": "$0.00"
+      },
+      "sys_tags": {
+        "value": "",
+        "display_value": ""
+      },
+      "billable": {
+        "value": "false",
+        "display_value": "false"
+      },
+      "cat_item": {
+        "value": "c944e4adc354b21031667433e4013104",
+        "display_value": "Firm Initiatives"
+      },
+      "stage": {
+        "value": "waiting_for_approval",
+        "display_value": "Waiting for Approval"
+      },
+      "x_ipnll_office_adm_inventory_item": {
+        "value": "",
+        "display_value": ""
+      },
+      "escalation": {
+        "value": "0",
+        "display_value": "Normal"
+      },
+      "upon_approval": {
+        "value": "proceed",
+        "display_value": "Proceed to Next Task"
+      },
+      "correlation_id": {
+        "value": "",
+        "display_value": ""
+      },
+      "location": {
+        "value": "",
+        "display_value": ""
+      },
+      "estimated_delivery": {
+        "value": "",
+        "display_value": ""
+      }
     },
     {
-      "parent": "",
-      "made_sla": "true",
-      "watch_list": "",
-      "sc_catalog": "",
-      "upon_reject": "cancel",
-      "requested_for": "75c35fee33292650a47be3570e5c7b82",
-      "sys_updated_on": "2025-10-09 20:45:52",
-      "task_effective_number": "RITM0010374",
-      "approval_history": "",
-      "skills": "",
-      "number": "RITM0010374",
-      "sys_updated_by": "system",
-      "opened_by": "75c35fee33292650a47be3570e5c7b82",
-      "user_input": "",
-      "price": "0",
-      "sys_created_on": "2025-10-09 20:45:43",
-      "recurring_frequency": "",
-      "sys_domain": "global",
-      "context": "",
-      "state": "3",
-      "route_reason": "",
-      "sys_created_by": "spencer.bone",
-      "knowledge": "false",
-      "order": "",
-      "closed_at": "2025-10-09 20:45:52",
-      "cmdb_ci": "",
-      "delivery_plan": "",
-      "backordered": "false",
-      "contract": "",
-      "impact": "3",
-      "active": "false",
-      "work_notes_list": "",
-      "business_service": "",
-      "priority": "4",
-      "sys_domain_path": "/",
-      "time_worked": "",
-      "expected_start": "",
-      "flow_context": "9d56bbe89b24b2502d51d64aa6fe3adb",
-      "opened_at": "2025-10-09 20:45:43",
-      "x_880628_project_0_resolution_notes": "",
-      "business_duration": "",
-      "group_list": "",
-      "configuration_item": "",
-      "work_end": "",
-      "approval_set": "",
-      "work_notes": "",
-      "order_guide": "",
-      "universal_request": "",
-      "request": "8d5633e8c324b25031667433e4013128",
-      "short_description": "Select your Firm Initiatives for the year. Selections are subject to approval and slot availability.",
-      "correlation_display": "",
-      "delivery_task": "",
-      "work_start": "",
-      "assignment_group": "",
-      "additional_assignee_list": "",
-      "description": "",
-      "calendar_duration": "",
-      "close_notes": "",
-      "service_offering": "",
-      "sys_class_name": "sc_req_item",
-      "closed_by": "",
-      "follow_up": "",
+      "parent": {
+        "value": "",
+        "display_value": ""
+      },
+      "made_sla": {
+        "value": "true",
+        "display_value": "true"
+      },
+      "watch_list": {
+        "value": "",
+        "display_value": ""
+      },
+      "sc_catalog": {
+        "value": "",
+        "display_value": ""
+      },
+      "upon_reject": {
+        "value": "cancel",
+        "display_value": "Cancel all future Tasks"
+      },
+      "requested_for": {
+        "value": "75c35fee33292650a47be3570e5c7b82",
+        "display_value": "Spencer Bone"
+      },
+      "sys_updated_on": {
+        "value": "2025-10-09 20:45:52",
+        "display_value": "10-09-2025 15:45:52"
+      },
+      "task_effective_number": {
+        "value": "RITM0010374",
+        "display_value": "RITM0010374"
+      },
+      "approval_history": {
+        "value": "",
+        "display_value": ""
+      },
+      "skills": {
+        "value": "",
+        "display_value": ""
+      },
+      "number": {
+        "value": "RITM0010374",
+        "display_value": "RITM0010374"
+      },
+      "sys_updated_by": {
+        "value": "system",
+        "display_value": "system"
+      },
+      "opened_by": {
+        "value": "75c35fee33292650a47be3570e5c7b82",
+        "display_value": "Spencer Bone"
+      },
+      "user_input": {
+        "value": "",
+        "display_value": ""
+      },
+      "price": {
+        "value": "0",
+        "display_value": "$0.00"
+      },
+      "sys_created_on": {
+        "value": "2025-10-09 20:45:43",
+        "display_value": "10-09-2025 15:45:43"
+      },
+      "recurring_frequency": {
+        "value": "",
+        "display_value": ""
+      },
+      "sys_domain": {
+        "value": "global",
+        "display_value": "global"
+      },
+      "context": {
+        "value": "",
+        "display_value": ""
+      },
+      "state": {
+        "value": "3",
+        "display_value": "Closed Complete"
+      },
+      "route_reason": {
+        "value": "",
+        "display_value": ""
+      },
+      "sys_created_by": {
+        "value": "spencer.bone",
+        "display_value": "spencer.bone"
+      },
+      "knowledge": {
+        "value": "false",
+        "display_value": "false"
+      },
+      "order": {
+        "value": "",
+        "display_value": ""
+      },
+      "closed_at": {
+        "value": "2025-10-09 20:45:52",
+        "display_value": "10-09-2025 15:45:52"
+      },
+      "cmdb_ci": {
+        "value": "",
+        "display_value": ""
+      },
+      "delivery_plan": {
+        "value": "",
+        "display_value": ""
+      },
+      "backordered": {
+        "value": "false",
+        "display_value": "false"
+      },
+      "contract": {
+        "value": "",
+        "display_value": ""
+      },
+      "impact": {
+        "value": "3",
+        "display_value": "3 - Low"
+      },
+      "active": {
+        "value": "false",
+        "display_value": "false"
+      },
+      "work_notes_list": {
+        "value": "",
+        "display_value": ""
+      },
+      "business_service": {
+        "value": "",
+        "display_value": ""
+      },
+      "priority": {
+        "value": "4",
+        "display_value": "4 - Low"
+      },
+      "sys_domain_path": {
+        "value": "/",
+        "display_value": "/"
+      },
+      "time_worked": {
+        "value": "",
+        "display_value": ""
+      },
+      "expected_start": {
+        "value": "",
+        "display_value": ""
+      },
+      "flow_context": {
+        "value": "9d56bbe89b24b2502d51d64aa6fe3adb",
+        "display_value": ""
+      },
+      "opened_at": {
+        "value": "2025-10-09 20:45:43",
+        "display_value": "10-09-2025 15:45:43"
+      },
+      "x_880628_project_0_resolution_notes": {
+        "value": "",
+        "display_value": ""
+      },
+      "business_duration": {
+        "value": "",
+        "display_value": ""
+      },
+      "group_list": {
+        "value": "",
+        "display_value": ""
+      },
+      "configuration_item": {
+        "value": "",
+        "display_value": ""
+      },
+      "work_end": {
+        "value": "",
+        "display_value": ""
+      },
+      "approval_set": {
+        "value": "",
+        "display_value": ""
+      },
+      "work_notes": {
+        "value": "",
+        "display_value": ""
+      },
+      "order_guide": {
+        "value": "",
+        "display_value": ""
+      },
+      "universal_request": {
+        "value": "",
+        "display_value": ""
+      },
+      "request": {
+        "value": "8d5633e8c324b25031667433e4013128",
+        "display_value": "REQ0010447"
+      },
+      "short_description": {
+        "value": "Select your Firm Initiatives for the year. Selections are subject to approval and slot availability.",
+        "display_value": "Select your Firm Initiatives for the year. Selections are subject to approval and slot availability."
+      },
+      "correlation_display": {
+        "value": "",
+        "display_value": ""
+      },
+      "delivery_task": {
+        "value": "",
+        "display_value": ""
+      },
+      "work_start": {
+        "value": "",
+        "display_value": ""
+      },
+      "assignment_group": {
+        "value": "",
+        "display_value": ""
+      },
+      "additional_assignee_list": {
+        "value": "",
+        "display_value": ""
+      },
+      "description": {
+        "value": "",
+        "display_value": ""
+      },
+      "calendar_duration": {
+        "value": "",
+        "display_value": ""
+      },
+      "close_notes": {
+        "value": "",
+        "display_value": ""
+      },
+      "service_offering": {
+        "value": "",
+        "display_value": ""
+      },
+      "sys_class_name": {
+        "value": "sc_req_item",
+        "display_value": "Requested Item"
+      },
+      "closed_by": {
+        "value": "",
+        "display_value": ""
+      },
+      "follow_up": {
+        "value": "",
+        "display_value": ""
+      },
       "sys_id": "055633e8c324b25031667433e4013129",
-      "contact_type": "",
-      "urgency": "3",
-      "company": "",
-      "reassignment_count": "0",
-      "activity_due": "",
-      "assigned_to": "",
-      "comments": "",
-      "quantity": "1",
-      "approval": "requested",
-      "sla_due": "",
-      "comments_and_work_notes": "",
-      "due_date": "2025-10-16 20:45:43",
-      "sys_mod_count": "6",
-      "recurring_price": "0",
-      "sys_tags": "",
-      "billable": "false",
-      "cat_item": "c944e4adc354b21031667433e4013104",
-      "stage": "complete",
-      "x_ipnll_office_adm_inventory_item": "",
-      "escalation": "0",
-      "upon_approval": "proceed",
-      "correlation_id": "",
-      "location": "",
-      "estimated_delivery": ""
+      "contact_type": {
+        "value": "",
+        "display_value": ""
+      },
+      "urgency": {
+        "value": "3",
+        "display_value": "3 - Low"
+      },
+      "company": {
+        "value": "",
+        "display_value": ""
+      },
+      "reassignment_count": {
+        "value": "0",
+        "display_value": "0"
+      },
+      "activity_due": {
+        "value": "",
+        "display_value": "UNKNOWN"
+      },
+      "assigned_to": {
+        "value": "",
+        "display_value": ""
+      },
+      "comments": {
+        "value": "",
+        "display_value": ""
+      },
+      "quantity": {
+        "value": "1",
+        "display_value": "1"
+      },
+      "approval": {
+        "value": "requested",
+        "display_value": "Requested"
+      },
+      "sla_due": {
+        "value": "",
+        "display_value": "UNKNOWN"
+      },
+      "comments_and_work_notes": {
+        "value": "",
+        "display_value": ""
+      },
+      "due_date": {
+        "value": "2025-10-16 20:45:43",
+        "display_value": "10-16-2025 15:45:43"
+      },
+      "sys_mod_count": {
+        "value": "6",
+        "display_value": "6"
+      },
+      "recurring_price": {
+        "value": "0",
+        "display_value": "$0.00"
+      },
+      "sys_tags": {
+        "value": "",
+        "display_value": ""
+      },
+      "billable": {
+        "value": "false",
+        "display_value": "false"
+      },
+      "cat_item": {
+        "value": "c944e4adc354b21031667433e4013104",
+        "display_value": "Firm Initiatives"
+      },
+      "stage": {
+        "value": "complete",
+        "display_value": "Completed"
+      },
+      "x_ipnll_office_adm_inventory_item": {
+        "value": "",
+        "display_value": ""
+      },
+      "escalation": {
+        "value": "0",
+        "display_value": "Normal"
+      },
+      "upon_approval": {
+        "value": "proceed",
+        "display_value": "Proceed to Next Task"
+      },
+      "correlation_id": {
+        "value": "",
+        "display_value": ""
+      },
+      "location": {
+        "value": "",
+        "display_value": ""
+      },
+      "estimated_delivery": {
+        "value": "",
+        "display_value": ""
+      }
     },
     {
-      "parent": "",
-      "made_sla": "true",
-      "watch_list": "",
-      "sc_catalog": "",
-      "upon_reject": "cancel",
-      "requested_for": "75c35fee33292650a47be3570e5c7b82",
-      "sys_updated_on": "2025-09-30 17:47:30",
-      "task_effective_number": "RITM0010267",
-      "approval_history": "",
-      "skills": "",
-      "number": "RITM0010267",
-      "sys_updated_by": "system",
-      "opened_by": "75c35fee33292650a47be3570e5c7b82",
-      "user_input": "",
-      "price": "0",
-      "sys_created_on": "2025-09-30 17:46:30",
-      "recurring_frequency": "",
-      "sys_domain": "global",
-      "context": "",
-      "state": "3",
-      "route_reason": "",
-      "sys_created_by": "spencer.bone",
-      "knowledge": "false",
-      "order": "",
-      "closed_at": "2025-09-30 17:47:30",
-      "cmdb_ci": "",
-      "delivery_plan": "",
-      "backordered": "false",
-      "contract": "",
-      "impact": "3",
-      "active": "false",
-      "work_notes_list": "",
-      "business_service": "",
-      "priority": "4",
-      "sys_domain_path": "/",
-      "time_worked": "",
-      "expected_start": "",
-      "flow_context": "48077c393758f2109903b41b244ff911",
-      "opened_at": "2025-09-30 17:46:30",
-      "x_880628_project_0_resolution_notes": "",
-      "business_duration": "",
-      "group_list": "",
-      "configuration_item": "",
-      "work_end": "",
-      "approval_set": "",
-      "work_notes": "",
-      "order_guide": "",
-      "universal_request": "",
-      "request": "8007f839c358f21031667433e4013192",
-      "short_description": "Select your Firm Initiatives for the year. Selections are subject to approval and slot availability.",
-      "correlation_display": "",
-      "delivery_task": "",
-      "work_start": "",
-      "assignment_group": "",
-      "additional_assignee_list": "",
-      "description": "",
-      "calendar_duration": "",
-      "close_notes": "Request not approved.",
-      "service_offering": "",
-      "sys_class_name": "sc_req_item",
-      "closed_by": "",
-      "follow_up": "",
+      "parent": {
+        "value": "",
+        "display_value": ""
+      },
+      "made_sla": {
+        "value": "true",
+        "display_value": "true"
+      },
+      "watch_list": {
+        "value": "",
+        "display_value": ""
+      },
+      "sc_catalog": {
+        "value": "",
+        "display_value": ""
+      },
+      "upon_reject": {
+        "value": "cancel",
+        "display_value": "Cancel all future Tasks"
+      },
+      "requested_for": {
+        "value": "75c35fee33292650a47be3570e5c7b82",
+        "display_value": "Spencer Bone"
+      },
+      "sys_updated_on": {
+        "value": "2025-09-30 17:47:30",
+        "display_value": "09-30-2025 12:47:30"
+      },
+      "task_effective_number": {
+        "value": "RITM0010267",
+        "display_value": "RITM0010267"
+      },
+      "approval_history": {
+        "value": "",
+        "display_value": ""
+      },
+      "skills": {
+        "value": "",
+        "display_value": ""
+      },
+      "number": {
+        "value": "RITM0010267",
+        "display_value": "RITM0010267"
+      },
+      "sys_updated_by": {
+        "value": "system",
+        "display_value": "system"
+      },
+      "opened_by": {
+        "value": "75c35fee33292650a47be3570e5c7b82",
+        "display_value": "Spencer Bone"
+      },
+      "user_input": {
+        "value": "",
+        "display_value": ""
+      },
+      "price": {
+        "value": "0",
+        "display_value": "$0.00"
+      },
+      "sys_created_on": {
+        "value": "2025-09-30 17:46:30",
+        "display_value": "09-30-2025 12:46:30"
+      },
+      "recurring_frequency": {
+        "value": "",
+        "display_value": ""
+      },
+      "sys_domain": {
+        "value": "global",
+        "display_value": "global"
+      },
+      "context": {
+        "value": "",
+        "display_value": ""
+      },
+      "state": {
+        "value": "3",
+        "display_value": "Closed Complete"
+      },
+      "route_reason": {
+        "value": "",
+        "display_value": ""
+      },
+      "sys_created_by": {
+        "value": "spencer.bone",
+        "display_value": "spencer.bone"
+      },
+      "knowledge": {
+        "value": "false",
+        "display_value": "false"
+      },
+      "order": {
+        "value": "",
+        "display_value": ""
+      },
+      "closed_at": {
+        "value": "2025-09-30 17:47:30",
+        "display_value": "09-30-2025 12:47:30"
+      },
+      "cmdb_ci": {
+        "value": "",
+        "display_value": ""
+      },
+      "delivery_plan": {
+        "value": "",
+        "display_value": ""
+      },
+      "backordered": {
+        "value": "false",
+        "display_value": "false"
+      },
+      "contract": {
+        "value": "",
+        "display_value": ""
+      },
+      "impact": {
+        "value": "3",
+        "display_value": "3 - Low"
+      },
+      "active": {
+        "value": "false",
+        "display_value": "false"
+      },
+      "work_notes_list": {
+        "value": "",
+        "display_value": ""
+      },
+      "business_service": {
+        "value": "",
+        "display_value": ""
+      },
+      "priority": {
+        "value": "4",
+        "display_value": "4 - Low"
+      },
+      "sys_domain_path": {
+        "value": "/",
+        "display_value": "/"
+      },
+      "time_worked": {
+        "value": "",
+        "display_value": ""
+      },
+      "expected_start": {
+        "value": "",
+        "display_value": ""
+      },
+      "flow_context": {
+        "value": "48077c393758f2109903b41b244ff911",
+        "display_value": ""
+      },
+      "opened_at": {
+        "value": "2025-09-30 17:46:30",
+        "display_value": "09-30-2025 12:46:30"
+      },
+      "x_880628_project_0_resolution_notes": {
+        "value": "",
+        "display_value": ""
+      },
+      "business_duration": {
+        "value": "",
+        "display_value": ""
+      },
+      "group_list": {
+        "value": "",
+        "display_value": ""
+      },
+      "configuration_item": {
+        "value": "",
+        "display_value": ""
+      },
+      "work_end": {
+        "value": "",
+        "display_value": ""
+      },
+      "approval_set": {
+        "value": "",
+        "display_value": ""
+      },
+      "work_notes": {
+        "value": "",
+        "display_value": ""
+      },
+      "order_guide": {
+        "value": "",
+        "display_value": ""
+      },
+      "universal_request": {
+        "value": "",
+        "display_value": ""
+      },
+      "request": {
+        "value": "8007f839c358f21031667433e4013192",
+        "display_value": "REQ0010340"
+      },
+      "short_description": {
+        "value": "Select your Firm Initiatives for the year. Selections are subject to approval and slot availability.",
+        "display_value": "Select your Firm Initiatives for the year. Selections are subject to approval and slot availability."
+      },
+      "correlation_display": {
+        "value": "",
+        "display_value": ""
+      },
+      "delivery_task": {
+        "value": "",
+        "display_value": ""
+      },
+      "work_start": {
+        "value": "",
+        "display_value": ""
+      },
+      "assignment_group": {
+        "value": "",
+        "display_value": ""
+      },
+      "additional_assignee_list": {
+        "value": "",
+        "display_value": ""
+      },
+      "description": {
+        "value": "",
+        "display_value": ""
+      },
+      "calendar_duration": {
+        "value": "",
+        "display_value": ""
+      },
+      "close_notes": {
+        "value": "Request not approved.",
+        "display_value": "Request not approved."
+      },
+      "service_offering": {
+        "value": "",
+        "display_value": ""
+      },
+      "sys_class_name": {
+        "value": "sc_req_item",
+        "display_value": "Requested Item"
+      },
+      "closed_by": {
+        "value": "",
+        "display_value": ""
+      },
+      "follow_up": {
+        "value": "",
+        "display_value": ""
+      },
       "sys_id": "0807f839c358f21031667433e4013192",
-      "contact_type": "",
-      "urgency": "3",
-      "company": "",
-      "reassignment_count": "0",
-      "activity_due": "",
-      "assigned_to": "",
-      "comments": "",
-      "quantity": "1",
-      "approval": "requested",
-      "sla_due": "",
-      "comments_and_work_notes": "",
-      "due_date": "2025-09-30 17:46:30",
-      "sys_mod_count": "4",
-      "recurring_price": "0",
-      "sys_tags": "",
-      "billable": "false",
-      "cat_item": "c944e4adc354b21031667433e4013104",
-      "stage": "Request Cancelled",
-      "x_ipnll_office_adm_inventory_item": "",
-      "escalation": "0",
-      "upon_approval": "proceed",
-      "correlation_id": "",
-      "location": "",
-      "estimated_delivery": ""
+      "contact_type": {
+        "value": "",
+        "display_value": ""
+      },
+      "urgency": {
+        "value": "3",
+        "display_value": "3 - Low"
+      },
+      "company": {
+        "value": "",
+        "display_value": ""
+      },
+      "reassignment_count": {
+        "value": "0",
+        "display_value": "0"
+      },
+      "activity_due": {
+        "value": "",
+        "display_value": "UNKNOWN"
+      },
+      "assigned_to": {
+        "value": "",
+        "display_value": ""
+      },
+      "comments": {
+        "value": "",
+        "display_value": ""
+      },
+      "quantity": {
+        "value": "1",
+        "display_value": "1"
+      },
+      "approval": {
+        "value": "requested",
+        "display_value": "Requested"
+      },
+      "sla_due": {
+        "value": "",
+        "display_value": "UNKNOWN"
+      },
+      "comments_and_work_notes": {
+        "value": "",
+        "display_value": ""
+      },
+      "due_date": {
+        "value": "2025-09-30 17:46:30",
+        "display_value": "09-30-2025 12:46:30"
+      },
+      "sys_mod_count": {
+        "value": "4",
+        "display_value": "4"
+      },
+      "recurring_price": {
+        "value": "0",
+        "display_value": "$0.00"
+      },
+      "sys_tags": {
+        "value": "",
+        "display_value": ""
+      },
+      "billable": {
+        "value": "false",
+        "display_value": "false"
+      },
+      "cat_item": {
+        "value": "c944e4adc354b21031667433e4013104",
+        "display_value": "Firm Initiatives"
+      },
+      "stage": {
+        "value": "Request Cancelled",
+        "display_value": "Request Cancelled"
+      },
+      "x_ipnll_office_adm_inventory_item": {
+        "value": "",
+        "display_value": ""
+      },
+      "escalation": {
+        "value": "0",
+        "display_value": "Normal"
+      },
+      "upon_approval": {
+        "value": "proceed",
+        "display_value": "Proceed to Next Task"
+      },
+      "correlation_id": {
+        "value": "",
+        "display_value": ""
+      },
+      "location": {
+        "value": "",
+        "display_value": ""
+      },
+      "estimated_delivery": {
+        "value": "",
+        "display_value": ""
+      }
     },
     {
-      "parent": "",
-      "made_sla": "true",
-      "watch_list": "",
-      "sc_catalog": "",
-      "upon_reject": "cancel",
-      "requested_for": "65c98175fb8fa210eec7fd8c7befdc29",
-      "sys_updated_on": "2025-10-14 20:23:36",
-      "task_effective_number": "RITM0010400",
-      "approval_history": "",
-      "skills": "",
-      "number": "RITM0010400",
-      "sys_updated_by": "matthew.mcbride",
-      "opened_by": "65c98175fb8fa210eec7fd8c7befdc29",
-      "user_input": "",
-      "price": "0",
-      "sys_created_on": "2025-10-14 20:20:28",
-      "recurring_frequency": "",
-      "sys_domain": "global",
-      "context": "",
-      "state": "3",
-      "route_reason": "",
-      "sys_created_by": "matthew.mcbride",
-      "knowledge": "false",
-      "order": "",
-      "closed_at": "2025-10-14 20:23:36",
-      "cmdb_ci": "",
-      "delivery_plan": "",
-      "backordered": "false",
-      "contract": "",
-      "impact": "3",
-      "active": "false",
-      "work_notes_list": "",
-      "business_service": "",
-      "priority": "4",
-      "sys_domain_path": "/",
-      "time_worked": "",
-      "expected_start": "",
-      "flow_context": "0080ad1eaa6c761084bab48f1ca5dbfa",
-      "opened_at": "2025-10-14 20:20:28",
-      "x_880628_project_0_resolution_notes": "res",
-      "business_duration": "",
-      "group_list": "",
-      "configuration_item": "",
-      "work_end": "",
-      "approval_set": "",
-      "work_notes": "",
-      "order_guide": "",
-      "universal_request": "",
-      "request": "80806d1ec36c761031667433e401313f",
-      "short_description": "Benefits Inquiry",
-      "correlation_display": "",
-      "delivery_task": "",
-      "work_start": "",
-      "assignment_group": "62a2e205c3732a50982710977d013138",
-      "additional_assignee_list": "",
-      "description": "This record tracks a benefits inquiry request. Review all variables below to understand the details of the request, take the necessary actions to research or provide the requested benefits information, and resolve the record once fulfillment is complete.",
-      "calendar_duration": "",
-      "close_notes": "",
-      "service_offering": "",
-      "sys_class_name": "sc_req_item",
-      "closed_by": "65c98175fb8fa210eec7fd8c7befdc29",
-      "follow_up": "",
+      "parent": {
+        "value": "",
+        "display_value": ""
+      },
+      "made_sla": {
+        "value": "true",
+        "display_value": "true"
+      },
+      "watch_list": {
+        "value": "",
+        "display_value": ""
+      },
+      "sc_catalog": {
+        "value": "",
+        "display_value": ""
+      },
+      "upon_reject": {
+        "value": "cancel",
+        "display_value": "Cancel all future Tasks"
+      },
+      "requested_for": {
+        "value": "65c98175fb8fa210eec7fd8c7befdc29",
+        "display_value": "Matthew McBride"
+      },
+      "sys_updated_on": {
+        "value": "2025-10-14 20:23:36",
+        "display_value": "10-14-2025 15:23:36"
+      },
+      "task_effective_number": {
+        "value": "RITM0010400",
+        "display_value": "RITM0010400"
+      },
+      "approval_history": {
+        "value": "",
+        "display_value": ""
+      },
+      "skills": {
+        "value": "",
+        "display_value": ""
+      },
+      "number": {
+        "value": "RITM0010400",
+        "display_value": "RITM0010400"
+      },
+      "sys_updated_by": {
+        "value": "matthew.mcbride",
+        "display_value": "matthew.mcbride"
+      },
+      "opened_by": {
+        "value": "65c98175fb8fa210eec7fd8c7befdc29",
+        "display_value": "Matthew McBride"
+      },
+      "user_input": {
+        "value": "",
+        "display_value": ""
+      },
+      "price": {
+        "value": "0",
+        "display_value": "$0.00"
+      },
+      "sys_created_on": {
+        "value": "2025-10-14 20:20:28",
+        "display_value": "10-14-2025 15:20:28"
+      },
+      "recurring_frequency": {
+        "value": "",
+        "display_value": ""
+      },
+      "sys_domain": {
+        "value": "global",
+        "display_value": "global"
+      },
+      "context": {
+        "value": "",
+        "display_value": ""
+      },
+      "state": {
+        "value": "3",
+        "display_value": "Closed Complete"
+      },
+      "route_reason": {
+        "value": "",
+        "display_value": ""
+      },
+      "sys_created_by": {
+        "value": "matthew.mcbride",
+        "display_value": "matthew.mcbride"
+      },
+      "knowledge": {
+        "value": "false",
+        "display_value": "false"
+      },
+      "order": {
+        "value": "",
+        "display_value": ""
+      },
+      "closed_at": {
+        "value": "2025-10-14 20:23:36",
+        "display_value": "10-14-2025 15:23:36"
+      },
+      "cmdb_ci": {
+        "value": "",
+        "display_value": ""
+      },
+      "delivery_plan": {
+        "value": "",
+        "display_value": ""
+      },
+      "backordered": {
+        "value": "false",
+        "display_value": "false"
+      },
+      "contract": {
+        "value": "",
+        "display_value": ""
+      },
+      "impact": {
+        "value": "3",
+        "display_value": "3 - Low"
+      },
+      "active": {
+        "value": "false",
+        "display_value": "false"
+      },
+      "work_notes_list": {
+        "value": "",
+        "display_value": ""
+      },
+      "business_service": {
+        "value": "",
+        "display_value": ""
+      },
+      "priority": {
+        "value": "4",
+        "display_value": "4 - Low"
+      },
+      "sys_domain_path": {
+        "value": "/",
+        "display_value": "/"
+      },
+      "time_worked": {
+        "value": "",
+        "display_value": ""
+      },
+      "expected_start": {
+        "value": "",
+        "display_value": ""
+      },
+      "flow_context": {
+        "value": "0080ad1eaa6c761084bab48f1ca5dbfa",
+        "display_value": ""
+      },
+      "opened_at": {
+        "value": "2025-10-14 20:20:28",
+        "display_value": "10-14-2025 15:20:28"
+      },
+      "x_880628_project_0_resolution_notes": {
+        "value": "res",
+        "display_value": "res"
+      },
+      "business_duration": {
+        "value": "",
+        "display_value": ""
+      },
+      "group_list": {
+        "value": "",
+        "display_value": ""
+      },
+      "configuration_item": {
+        "value": "",
+        "display_value": ""
+      },
+      "work_end": {
+        "value": "",
+        "display_value": ""
+      },
+      "approval_set": {
+        "value": "",
+        "display_value": ""
+      },
+      "work_notes": {
+        "value": "",
+        "display_value": ""
+      },
+      "order_guide": {
+        "value": "",
+        "display_value": ""
+      },
+      "universal_request": {
+        "value": "",
+        "display_value": ""
+      },
+      "request": {
+        "value": "80806d1ec36c761031667433e401313f",
+        "display_value": "REQ0010471"
+      },
+      "short_description": {
+        "value": "Benefits Inquiry",
+        "display_value": "Benefits Inquiry"
+      },
+      "correlation_display": {
+        "value": "",
+        "display_value": ""
+      },
+      "delivery_task": {
+        "value": "",
+        "display_value": ""
+      },
+      "work_start": {
+        "value": "",
+        "display_value": ""
+      },
+      "assignment_group": {
+        "value": "62a2e205c3732a50982710977d013138",
+        "display_value": "IPC HR Admins"
+      },
+      "additional_assignee_list": {
+        "value": "",
+        "display_value": ""
+      },
+      "description": {
+        "value": "This record tracks a benefits inquiry request. Review all variables below to understand the details of the request, take the necessary actions to research or provide the requested benefits information, and resolve the record once fulfillment is complete.",
+        "display_value": "This record tracks a benefits inquiry request. Review all variables below to understand the details of the request, take the necessary actions to research or provide the requested benefits information, and resolve the record once fulfillment is complete."
+      },
+      "calendar_duration": {
+        "value": "",
+        "display_value": ""
+      },
+      "close_notes": {
+        "value": "",
+        "display_value": ""
+      },
+      "service_offering": {
+        "value": "",
+        "display_value": ""
+      },
+      "sys_class_name": {
+        "value": "sc_req_item",
+        "display_value": "Requested Item"
+      },
+      "closed_by": {
+        "value": "65c98175fb8fa210eec7fd8c7befdc29",
+        "display_value": "Matthew McBride"
+      },
+      "follow_up": {
+        "value": "",
+        "display_value": ""
+      },
       "sys_id": "08806d1ec36c761031667433e401313f",
-      "contact_type": "",
-      "urgency": "3",
-      "company": "",
-      "reassignment_count": "1",
-      "activity_due": "",
-      "assigned_to": "",
-      "comments": "",
-      "quantity": "1",
-      "approval": "requested",
-      "sla_due": "",
-      "comments_and_work_notes": "",
-      "due_date": "2025-10-14 20:20:28",
-      "sys_mod_count": "7",
-      "recurring_price": "0",
-      "sys_tags": "",
-      "billable": "false",
-      "cat_item": "545579f4c398fa50982710977d013181",
-      "stage": "request_approved",
-      "x_ipnll_office_adm_inventory_item": "",
-      "escalation": "0",
-      "upon_approval": "proceed",
-      "correlation_id": "",
-      "location": "",
-      "estimated_delivery": ""
+      "contact_type": {
+        "value": "",
+        "display_value": ""
+      },
+      "urgency": {
+        "value": "3",
+        "display_value": "3 - Low"
+      },
+      "company": {
+        "value": "",
+        "display_value": ""
+      },
+      "reassignment_count": {
+        "value": "1",
+        "display_value": "1"
+      },
+      "activity_due": {
+        "value": "",
+        "display_value": "UNKNOWN"
+      },
+      "assigned_to": {
+        "value": "",
+        "display_value": ""
+      },
+      "comments": {
+        "value": "",
+        "display_value": "10-14-2025 15:21:26 - Matthew McBride (Additional comments)\nh\n\n"
+      },
+      "quantity": {
+        "value": "1",
+        "display_value": "1"
+      },
+      "approval": {
+        "value": "requested",
+        "display_value": "Requested"
+      },
+      "sla_due": {
+        "value": "",
+        "display_value": "UNKNOWN"
+      },
+      "comments_and_work_notes": {
+        "value": "",
+        "display_value": "10-14-2025 15:21:26 - Matthew McBride (Additional comments)\nh\n\n"
+      },
+      "due_date": {
+        "value": "2025-10-14 20:20:28",
+        "display_value": "10-14-2025 15:20:28"
+      },
+      "sys_mod_count": {
+        "value": "7",
+        "display_value": "7"
+      },
+      "recurring_price": {
+        "value": "0",
+        "display_value": "$0.00"
+      },
+      "sys_tags": {
+        "value": "",
+        "display_value": ""
+      },
+      "billable": {
+        "value": "false",
+        "display_value": "false"
+      },
+      "cat_item": {
+        "value": "545579f4c398fa50982710977d013181",
+        "display_value": "Benefits Inquiry"
+      },
+      "stage": {
+        "value": "request_approved",
+        "display_value": "Request Approved"
+      },
+      "x_ipnll_office_adm_inventory_item": {
+        "value": "",
+        "display_value": ""
+      },
+      "escalation": {
+        "value": "0",
+        "display_value": "Normal"
+      },
+      "upon_approval": {
+        "value": "proceed",
+        "display_value": "Proceed to Next Task"
+      },
+      "correlation_id": {
+        "value": "",
+        "display_value": ""
+      },
+      "location": {
+        "value": "",
+        "display_value": ""
+      },
+      "estimated_delivery": {
+        "value": "",
+        "display_value": ""
+      }
     },
     {
-      "parent": "",
-      "made_sla": "true",
-      "watch_list": "",
-      "sc_catalog": "",
-      "upon_reject": "cancel",
-      "requested_for": "65c98175fb8fa210eec7fd8c7befdc29",
-      "sys_updated_on": "2025-11-07 02:31:49",
-      "task_effective_number": "RITM0010510",
-      "approval_history": "",
-      "skills": "",
-      "number": "RITM0010510",
-      "sys_updated_by": "matthew.mcbride",
-      "opened_by": "65c98175fb8fa210eec7fd8c7befdc29",
-      "user_input": "",
-      "price": "0",
-      "sys_created_on": "2025-11-07 02:31:14",
-      "recurring_frequency": "",
-      "sys_domain": "global",
-      "context": "",
-      "state": "3",
-      "route_reason": "",
-      "sys_created_by": "matthew.mcbride",
-      "knowledge": "false",
-      "order": "",
-      "closed_at": "2025-11-07 02:31:49",
-      "cmdb_ci": "",
-      "delivery_plan": "",
-      "backordered": "false",
-      "contract": "",
-      "impact": "3",
-      "active": "false",
-      "work_notes_list": "",
-      "business_service": "",
-      "priority": "4",
-      "sys_domain_path": "/",
-      "time_worked": "",
-      "expected_start": "",
-      "flow_context": "1be15175c3497a101f4cfa4a1227e623",
-      "opened_at": "2025-11-07 02:31:14",
-      "x_880628_project_0_resolution_notes": "",
-      "business_duration": "",
-      "group_list": "",
-      "configuration_item": "",
-      "work_end": "",
-      "approval_set": "",
-      "work_notes": "",
-      "order_guide": "",
-      "universal_request": "",
-      "request": "83e11175c3497a10982710977d0131de",
-      "short_description": "Equipment Request",
-      "correlation_display": "",
-      "delivery_task": "",
-      "work_start": "",
-      "assignment_group": "d0b3b79dc3b07250982710977d013127",
-      "additional_assignee_list": "",
-      "description": "This record tracks an Equipment Request. Review all variables below to confirm the requested equipment type, and delivery method. Close the record once fulfillment is complete and equipment delivery or setup has been completed.",
-      "calendar_duration": "",
-      "close_notes": "",
-      "service_offering": "",
-      "sys_class_name": "sc_req_item",
-      "closed_by": "65c98175fb8fa210eec7fd8c7befdc29",
-      "follow_up": "",
+      "parent": {
+        "value": "",
+        "display_value": ""
+      },
+      "made_sla": {
+        "value": "true",
+        "display_value": "true"
+      },
+      "watch_list": {
+        "value": "",
+        "display_value": ""
+      },
+      "sc_catalog": {
+        "value": "",
+        "display_value": ""
+      },
+      "upon_reject": {
+        "value": "cancel",
+        "display_value": "Cancel all future Tasks"
+      },
+      "requested_for": {
+        "value": "65c98175fb8fa210eec7fd8c7befdc29",
+        "display_value": "Matthew McBride"
+      },
+      "sys_updated_on": {
+        "value": "2025-11-07 02:31:49",
+        "display_value": "11-06-2025 20:31:49"
+      },
+      "task_effective_number": {
+        "value": "RITM0010510",
+        "display_value": "RITM0010510"
+      },
+      "approval_history": {
+        "value": "",
+        "display_value": ""
+      },
+      "skills": {
+        "value": "",
+        "display_value": ""
+      },
+      "number": {
+        "value": "RITM0010510",
+        "display_value": "RITM0010510"
+      },
+      "sys_updated_by": {
+        "value": "matthew.mcbride",
+        "display_value": "matthew.mcbride"
+      },
+      "opened_by": {
+        "value": "65c98175fb8fa210eec7fd8c7befdc29",
+        "display_value": "Matthew McBride"
+      },
+      "user_input": {
+        "value": "",
+        "display_value": ""
+      },
+      "price": {
+        "value": "0",
+        "display_value": "$0.00"
+      },
+      "sys_created_on": {
+        "value": "2025-11-07 02:31:14",
+        "display_value": "11-06-2025 20:31:14"
+      },
+      "recurring_frequency": {
+        "value": "",
+        "display_value": ""
+      },
+      "sys_domain": {
+        "value": "global",
+        "display_value": "global"
+      },
+      "context": {
+        "value": "",
+        "display_value": ""
+      },
+      "state": {
+        "value": "3",
+        "display_value": "Closed Complete"
+      },
+      "route_reason": {
+        "value": "",
+        "display_value": ""
+      },
+      "sys_created_by": {
+        "value": "matthew.mcbride",
+        "display_value": "matthew.mcbride"
+      },
+      "knowledge": {
+        "value": "false",
+        "display_value": "false"
+      },
+      "order": {
+        "value": "",
+        "display_value": ""
+      },
+      "closed_at": {
+        "value": "2025-11-07 02:31:49",
+        "display_value": "11-06-2025 20:31:49"
+      },
+      "cmdb_ci": {
+        "value": "",
+        "display_value": ""
+      },
+      "delivery_plan": {
+        "value": "",
+        "display_value": ""
+      },
+      "backordered": {
+        "value": "false",
+        "display_value": "false"
+      },
+      "contract": {
+        "value": "",
+        "display_value": ""
+      },
+      "impact": {
+        "value": "3",
+        "display_value": "3 - Low"
+      },
+      "active": {
+        "value": "false",
+        "display_value": "false"
+      },
+      "work_notes_list": {
+        "value": "",
+        "display_value": ""
+      },
+      "business_service": {
+        "value": "",
+        "display_value": ""
+      },
+      "priority": {
+        "value": "4",
+        "display_value": "4 - Low"
+      },
+      "sys_domain_path": {
+        "value": "/",
+        "display_value": "/"
+      },
+      "time_worked": {
+        "value": "",
+        "display_value": ""
+      },
+      "expected_start": {
+        "value": "",
+        "display_value": ""
+      },
+      "flow_context": {
+        "value": "1be15175c3497a101f4cfa4a1227e623",
+        "display_value": ""
+      },
+      "opened_at": {
+        "value": "2025-11-07 02:31:14",
+        "display_value": "11-06-2025 20:31:14"
+      },
+      "x_880628_project_0_resolution_notes": {
+        "value": "",
+        "display_value": ""
+      },
+      "business_duration": {
+        "value": "",
+        "display_value": ""
+      },
+      "group_list": {
+        "value": "",
+        "display_value": ""
+      },
+      "configuration_item": {
+        "value": "",
+        "display_value": ""
+      },
+      "work_end": {
+        "value": "",
+        "display_value": ""
+      },
+      "approval_set": {
+        "value": "",
+        "display_value": ""
+      },
+      "work_notes": {
+        "value": "",
+        "display_value": ""
+      },
+      "order_guide": {
+        "value": "",
+        "display_value": ""
+      },
+      "universal_request": {
+        "value": "",
+        "display_value": ""
+      },
+      "request": {
+        "value": "83e11175c3497a10982710977d0131de",
+        "display_value": "REQ0010578"
+      },
+      "short_description": {
+        "value": "Equipment Request",
+        "display_value": "Equipment Request"
+      },
+      "correlation_display": {
+        "value": "",
+        "display_value": ""
+      },
+      "delivery_task": {
+        "value": "",
+        "display_value": ""
+      },
+      "work_start": {
+        "value": "",
+        "display_value": ""
+      },
+      "assignment_group": {
+        "value": "d0b3b79dc3b07250982710977d013127",
+        "display_value": "IPC Service Desk"
+      },
+      "additional_assignee_list": {
+        "value": "",
+        "display_value": ""
+      },
+      "description": {
+        "value": "This record tracks an Equipment Request. Review all variables below to confirm the requested equipment type, and delivery method. Close the record once fulfillment is complete and equipment delivery or setup has been completed.",
+        "display_value": "This record tracks an Equipment Request. Review all variables below to confirm the requested equipment type, and delivery method. Close the record once fulfillment is complete and equipment delivery or setup has been completed."
+      },
+      "calendar_duration": {
+        "value": "",
+        "display_value": ""
+      },
+      "close_notes": {
+        "value": "",
+        "display_value": ""
+      },
+      "service_offering": {
+        "value": "",
+        "display_value": ""
+      },
+      "sys_class_name": {
+        "value": "sc_req_item",
+        "display_value": "Requested Item"
+      },
+      "closed_by": {
+        "value": "65c98175fb8fa210eec7fd8c7befdc29",
+        "display_value": "Matthew McBride"
+      },
+      "follow_up": {
+        "value": "",
+        "display_value": ""
+      },
       "sys_id": "0be11175c3497a10982710977d0131de",
-      "contact_type": "",
-      "urgency": "3",
-      "company": "",
-      "reassignment_count": "1",
-      "activity_due": "",
-      "assigned_to": "",
-      "comments": "",
-      "quantity": "1",
-      "approval": "requested",
-      "sla_due": "",
-      "comments_and_work_notes": "",
-      "due_date": "2025-11-07 02:31:14",
-      "sys_mod_count": "4",
-      "recurring_price": "0",
-      "sys_tags": "",
-      "billable": "false",
-      "cat_item": "a4c8793cc398fa50982710977d0131cb",
-      "stage": "request_approved",
-      "x_ipnll_office_adm_inventory_item": "",
-      "escalation": "0",
-      "upon_approval": "proceed",
-      "correlation_id": "",
-      "location": "",
-      "estimated_delivery": ""
+      "contact_type": {
+        "value": "",
+        "display_value": ""
+      },
+      "urgency": {
+        "value": "3",
+        "display_value": "3 - Low"
+      },
+      "company": {
+        "value": "",
+        "display_value": ""
+      },
+      "reassignment_count": {
+        "value": "1",
+        "display_value": "1"
+      },
+      "activity_due": {
+        "value": "",
+        "display_value": "UNKNOWN"
+      },
+      "assigned_to": {
+        "value": "",
+        "display_value": ""
+      },
+      "comments": {
+        "value": "",
+        "display_value": ""
+      },
+      "quantity": {
+        "value": "1",
+        "display_value": "1"
+      },
+      "approval": {
+        "value": "requested",
+        "display_value": "Requested"
+      },
+      "sla_due": {
+        "value": "",
+        "display_value": "UNKNOWN"
+      },
+      "comments_and_work_notes": {
+        "value": "",
+        "display_value": ""
+      },
+      "due_date": {
+        "value": "2025-11-07 02:31:14",
+        "display_value": "11-06-2025 20:31:14"
+      },
+      "sys_mod_count": {
+        "value": "4",
+        "display_value": "4"
+      },
+      "recurring_price": {
+        "value": "0",
+        "display_value": "$0.00"
+      },
+      "sys_tags": {
+        "value": "",
+        "display_value": ""
+      },
+      "billable": {
+        "value": "false",
+        "display_value": "false"
+      },
+      "cat_item": {
+        "value": "a4c8793cc398fa50982710977d0131cb",
+        "display_value": "Equipment Request"
+      },
+      "stage": {
+        "value": "request_approved",
+        "display_value": "Request Approved"
+      },
+      "x_ipnll_office_adm_inventory_item": {
+        "value": "",
+        "display_value": ""
+      },
+      "escalation": {
+        "value": "0",
+        "display_value": "Normal"
+      },
+      "upon_approval": {
+        "value": "proceed",
+        "display_value": "Proceed to Next Task"
+      },
+      "correlation_id": {
+        "value": "",
+        "display_value": ""
+      },
+      "location": {
+        "value": "",
+        "display_value": ""
+      },
+      "estimated_delivery": {
+        "value": "",
+        "display_value": ""
+      }
     },
     {
-      "parent": "",
-      "made_sla": "true",
-      "watch_list": "",
-      "sc_catalog": "",
-      "upon_reject": "cancel",
-      "requested_for": "75c35fee33292650a47be3570e5c7b82",
-      "sys_updated_on": "2025-10-09 20:32:40",
-      "task_effective_number": "RITM0010370",
-      "approval_history": "",
-      "skills": "",
-      "number": "RITM0010370",
-      "sys_updated_by": "system",
-      "opened_by": "75c35fee33292650a47be3570e5c7b82",
-      "user_input": "",
-      "price": "0",
-      "sys_created_on": "2025-10-09 20:32:33",
-      "recurring_frequency": "",
-      "sys_domain": "global",
-      "context": "",
-      "state": "3",
-      "route_reason": "",
-      "sys_created_by": "spencer.bone",
-      "knowledge": "false",
-      "order": "",
-      "closed_at": "2025-10-09 20:32:40",
-      "cmdb_ci": "",
-      "delivery_plan": "",
-      "backordered": "false",
-      "contract": "",
-      "impact": "3",
-      "active": "false",
-      "work_notes_list": "",
-      "business_service": "",
-      "priority": "4",
-      "sys_domain_path": "/",
-      "time_worked": "",
-      "expected_start": "",
-      "flow_context": "9c5337e4c824b25044be687219d644fd",
-      "opened_at": "2025-10-09 20:32:33",
-      "x_880628_project_0_resolution_notes": "",
-      "business_duration": "",
-      "group_list": "",
-      "configuration_item": "",
-      "work_end": "",
-      "approval_set": "",
-      "work_notes": "",
-      "order_guide": "",
-      "universal_request": "",
-      "request": "8453bfa4c324b25031667433e4013153",
-      "short_description": "Select your Firm Initiatives for the year. Selections are subject to approval and slot availability.",
-      "correlation_display": "",
-      "delivery_task": "",
-      "work_start": "",
-      "assignment_group": "",
-      "additional_assignee_list": "",
-      "description": "",
-      "calendar_duration": "",
-      "close_notes": "",
-      "service_offering": "",
-      "sys_class_name": "sc_req_item",
-      "closed_by": "",
-      "follow_up": "",
+      "parent": {
+        "value": "",
+        "display_value": ""
+      },
+      "made_sla": {
+        "value": "true",
+        "display_value": "true"
+      },
+      "watch_list": {
+        "value": "",
+        "display_value": ""
+      },
+      "sc_catalog": {
+        "value": "",
+        "display_value": ""
+      },
+      "upon_reject": {
+        "value": "cancel",
+        "display_value": "Cancel all future Tasks"
+      },
+      "requested_for": {
+        "value": "75c35fee33292650a47be3570e5c7b82",
+        "display_value": "Spencer Bone"
+      },
+      "sys_updated_on": {
+        "value": "2025-10-09 20:32:40",
+        "display_value": "10-09-2025 15:32:40"
+      },
+      "task_effective_number": {
+        "value": "RITM0010370",
+        "display_value": "RITM0010370"
+      },
+      "approval_history": {
+        "value": "",
+        "display_value": ""
+      },
+      "skills": {
+        "value": "",
+        "display_value": ""
+      },
+      "number": {
+        "value": "RITM0010370",
+        "display_value": "RITM0010370"
+      },
+      "sys_updated_by": {
+        "value": "system",
+        "display_value": "system"
+      },
+      "opened_by": {
+        "value": "75c35fee33292650a47be3570e5c7b82",
+        "display_value": "Spencer Bone"
+      },
+      "user_input": {
+        "value": "",
+        "display_value": ""
+      },
+      "price": {
+        "value": "0",
+        "display_value": "$0.00"
+      },
+      "sys_created_on": {
+        "value": "2025-10-09 20:32:33",
+        "display_value": "10-09-2025 15:32:33"
+      },
+      "recurring_frequency": {
+        "value": "",
+        "display_value": ""
+      },
+      "sys_domain": {
+        "value": "global",
+        "display_value": "global"
+      },
+      "context": {
+        "value": "",
+        "display_value": ""
+      },
+      "state": {
+        "value": "3",
+        "display_value": "Closed Complete"
+      },
+      "route_reason": {
+        "value": "",
+        "display_value": ""
+      },
+      "sys_created_by": {
+        "value": "spencer.bone",
+        "display_value": "spencer.bone"
+      },
+      "knowledge": {
+        "value": "false",
+        "display_value": "false"
+      },
+      "order": {
+        "value": "",
+        "display_value": ""
+      },
+      "closed_at": {
+        "value": "2025-10-09 20:32:40",
+        "display_value": "10-09-2025 15:32:40"
+      },
+      "cmdb_ci": {
+        "value": "",
+        "display_value": ""
+      },
+      "delivery_plan": {
+        "value": "",
+        "display_value": ""
+      },
+      "backordered": {
+        "value": "false",
+        "display_value": "false"
+      },
+      "contract": {
+        "value": "",
+        "display_value": ""
+      },
+      "impact": {
+        "value": "3",
+        "display_value": "3 - Low"
+      },
+      "active": {
+        "value": "false",
+        "display_value": "false"
+      },
+      "work_notes_list": {
+        "value": "",
+        "display_value": ""
+      },
+      "business_service": {
+        "value": "",
+        "display_value": ""
+      },
+      "priority": {
+        "value": "4",
+        "display_value": "4 - Low"
+      },
+      "sys_domain_path": {
+        "value": "/",
+        "display_value": "/"
+      },
+      "time_worked": {
+        "value": "",
+        "display_value": ""
+      },
+      "expected_start": {
+        "value": "",
+        "display_value": ""
+      },
+      "flow_context": {
+        "value": "9c5337e4c824b25044be687219d644fd",
+        "display_value": ""
+      },
+      "opened_at": {
+        "value": "2025-10-09 20:32:33",
+        "display_value": "10-09-2025 15:32:33"
+      },
+      "x_880628_project_0_resolution_notes": {
+        "value": "",
+        "display_value": ""
+      },
+      "business_duration": {
+        "value": "",
+        "display_value": ""
+      },
+      "group_list": {
+        "value": "",
+        "display_value": ""
+      },
+      "configuration_item": {
+        "value": "",
+        "display_value": ""
+      },
+      "work_end": {
+        "value": "",
+        "display_value": ""
+      },
+      "approval_set": {
+        "value": "",
+        "display_value": ""
+      },
+      "work_notes": {
+        "value": "",
+        "display_value": ""
+      },
+      "order_guide": {
+        "value": "",
+        "display_value": ""
+      },
+      "universal_request": {
+        "value": "",
+        "display_value": ""
+      },
+      "request": {
+        "value": "8453bfa4c324b25031667433e4013153",
+        "display_value": "REQ0010443"
+      },
+      "short_description": {
+        "value": "Select your Firm Initiatives for the year. Selections are subject to approval and slot availability.",
+        "display_value": "Select your Firm Initiatives for the year. Selections are subject to approval and slot availability."
+      },
+      "correlation_display": {
+        "value": "",
+        "display_value": ""
+      },
+      "delivery_task": {
+        "value": "",
+        "display_value": ""
+      },
+      "work_start": {
+        "value": "",
+        "display_value": ""
+      },
+      "assignment_group": {
+        "value": "",
+        "display_value": ""
+      },
+      "additional_assignee_list": {
+        "value": "",
+        "display_value": ""
+      },
+      "description": {
+        "value": "",
+        "display_value": ""
+      },
+      "calendar_duration": {
+        "value": "",
+        "display_value": ""
+      },
+      "close_notes": {
+        "value": "",
+        "display_value": ""
+      },
+      "service_offering": {
+        "value": "",
+        "display_value": ""
+      },
+      "sys_class_name": {
+        "value": "sc_req_item",
+        "display_value": "Requested Item"
+      },
+      "closed_by": {
+        "value": "",
+        "display_value": ""
+      },
+      "follow_up": {
+        "value": "",
+        "display_value": ""
+      },
       "sys_id": "0c53bfa4c324b25031667433e4013153",
-      "contact_type": "",
-      "urgency": "3",
-      "company": "",
-      "reassignment_count": "0",
-      "activity_due": "",
-      "assigned_to": "",
-      "comments": "",
-      "quantity": "1",
-      "approval": "requested",
-      "sla_due": "",
-      "comments_and_work_notes": "",
-      "due_date": "2025-10-16 20:32:33",
-      "sys_mod_count": "6",
-      "recurring_price": "0",
-      "sys_tags": "",
-      "billable": "false",
-      "cat_item": "c944e4adc354b21031667433e4013104",
-      "stage": "complete",
-      "x_ipnll_office_adm_inventory_item": "",
-      "escalation": "0",
-      "upon_approval": "proceed",
-      "correlation_id": "",
-      "location": "",
-      "estimated_delivery": ""
+      "contact_type": {
+        "value": "",
+        "display_value": ""
+      },
+      "urgency": {
+        "value": "3",
+        "display_value": "3 - Low"
+      },
+      "company": {
+        "value": "",
+        "display_value": ""
+      },
+      "reassignment_count": {
+        "value": "0",
+        "display_value": "0"
+      },
+      "activity_due": {
+        "value": "",
+        "display_value": "UNKNOWN"
+      },
+      "assigned_to": {
+        "value": "",
+        "display_value": ""
+      },
+      "comments": {
+        "value": "",
+        "display_value": ""
+      },
+      "quantity": {
+        "value": "1",
+        "display_value": "1"
+      },
+      "approval": {
+        "value": "requested",
+        "display_value": "Requested"
+      },
+      "sla_due": {
+        "value": "",
+        "display_value": "UNKNOWN"
+      },
+      "comments_and_work_notes": {
+        "value": "",
+        "display_value": ""
+      },
+      "due_date": {
+        "value": "2025-10-16 20:32:33",
+        "display_value": "10-16-2025 15:32:33"
+      },
+      "sys_mod_count": {
+        "value": "6",
+        "display_value": "6"
+      },
+      "recurring_price": {
+        "value": "0",
+        "display_value": "$0.00"
+      },
+      "sys_tags": {
+        "value": "",
+        "display_value": ""
+      },
+      "billable": {
+        "value": "false",
+        "display_value": "false"
+      },
+      "cat_item": {
+        "value": "c944e4adc354b21031667433e4013104",
+        "display_value": "Firm Initiatives"
+      },
+      "stage": {
+        "value": "complete",
+        "display_value": "Completed"
+      },
+      "x_ipnll_office_adm_inventory_item": {
+        "value": "",
+        "display_value": ""
+      },
+      "escalation": {
+        "value": "0",
+        "display_value": "Normal"
+      },
+      "upon_approval": {
+        "value": "proceed",
+        "display_value": "Proceed to Next Task"
+      },
+      "correlation_id": {
+        "value": "",
+        "display_value": ""
+      },
+      "location": {
+        "value": "",
+        "display_value": ""
+      },
+      "estimated_delivery": {
+        "value": "",
+        "display_value": ""
+      }
     }
   ]
 }

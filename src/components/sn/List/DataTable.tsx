@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { cn } from '../../../utils/cn'
+import { getDisplayValue, getValue } from '../../../utils/fieldValue'
 import { SNInput } from '../common/SNInput'
 import { SNCheckbox } from '../common/SNCheckbox'
 import type { FieldDefinition, SNRecord } from '../../../types'
@@ -95,19 +96,20 @@ export function DataTable({
   }
 
   const formatValue = (value: unknown, type: FieldDefinition['type']): React.ReactNode => {
-    if (value === null || value === undefined || value === '') {
+    const displayVal = getDisplayValue(value)
+    if (!displayVal) {
       return <span className="text-sn-neutral-5">(empty)</span>
     }
 
     switch (type) {
       case 'datetime':
-        return new Date(value as string).toLocaleString()
+        return new Date(displayVal).toLocaleString()
       case 'date':
-        return new Date(value as string).toLocaleDateString()
+        return new Date(displayVal).toLocaleDateString()
       case 'boolean':
-        return value ? 'Yes' : 'No'
+        return displayVal === 'true' || displayVal === '1' ? 'Yes' : 'No'
       default:
-        return String(value)
+        return displayVal
     }
   }
 
@@ -215,27 +217,31 @@ export function DataTable({
                     />
                   </td>
                   <td className="px-2 py-2" />
-                  {columns.map((col, colIndex) => (
-                    <td key={col.field} className="px-3 py-2 text-sm">
-                      {colIndex === 0 ? (
-                        <Link
-                          to={`/${tableName}/${row.sys_id}`}
-                          className="text-sn-link hover:text-sn-link-hover hover:underline"
-                        >
-                          {formatValue(row[col.field], col.type)}
-                        </Link>
-                      ) : col.type === 'reference' && col.reference && row[col.field] ? (
-                        <Link
-                          to={`/${col.reference}/${row[col.field]}`}
-                          className="text-sn-link hover:text-sn-link-hover hover:underline"
-                        >
-                          {formatValue(row[col.field], col.type)}
-                        </Link>
-                      ) : (
-                        formatValue(row[col.field], col.type)
-                      )}
-                    </td>
-                  ))}
+                  {columns.map((col, colIndex) => {
+                    const fieldValue = row[col.field]
+                    const refSysId = getValue(fieldValue)
+                    return (
+                      <td key={col.field} className="px-3 py-2 text-sm">
+                        {colIndex === 0 ? (
+                          <Link
+                            to={`/${tableName}/${row.sys_id}`}
+                            className="text-sn-link hover:text-sn-link-hover hover:underline"
+                          >
+                            {formatValue(fieldValue, col.type)}
+                          </Link>
+                        ) : col.type === 'reference' && col.reference && refSysId ? (
+                          <Link
+                            to={`/${col.reference}/${refSysId}`}
+                            className="text-sn-link hover:text-sn-link-hover hover:underline"
+                          >
+                            {formatValue(fieldValue, col.type)}
+                          </Link>
+                        ) : (
+                          formatValue(fieldValue, col.type)
+                        )}
+                      </td>
+                    )
+                  })}
                 </tr>
               ))
             )}

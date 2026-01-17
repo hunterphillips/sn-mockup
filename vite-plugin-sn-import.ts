@@ -165,15 +165,29 @@ function transformMetaToTableDefinition(
         .filter((f) => !f.startsWith('sys_') || f === 'sys_updated_on')
         .slice(0, 8);
 
-  // Transform records - extract display values
+  // Transform records - preserve {value, display_value} structure for all fields
   const data: SNRecord[] = records.result.map((record) => {
     const transformed: Record<string, unknown> = {};
     for (const [key, value] of Object.entries(record)) {
-      if (typeof value === 'object' && value !== null && 'value' in value) {
-        // ServiceNow returns { value, display_value } for reference/choice fields
-        transformed[key] = (value as { value: string }).value;
+      if (key === 'sys_id') {
+        // sys_id stays as plain string
+        transformed[key] = typeof value === 'object' && value !== null && 'value' in value
+          ? (value as { value: string }).value
+          : String(value);
+      } else if (typeof value === 'object' && value !== null && 'value' in value) {
+        // ServiceNow returns { value, display_value } - preserve both
+        const snValue = value as { value: string; display_value?: string };
+        transformed[key] = {
+          value: snValue.value ?? '',
+          display_value: snValue.display_value ?? snValue.value ?? ''
+        };
       } else {
-        transformed[key] = value;
+        // Simple fields: value and display_value are the same
+        const strValue = value === null || value === undefined ? '' : String(value);
+        transformed[key] = {
+          value: strValue,
+          display_value: strValue
+        };
       }
     }
     // ServiceNow records always have sys_id

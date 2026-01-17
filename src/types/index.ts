@@ -1,3 +1,9 @@
+/** Field value wrapper - all record fields use this shape */
+export interface FieldValue {
+  value: string
+  display_value: string
+}
+
 /** Field types supported in ServiceNow forms */
 export type FieldType =
   | 'string'
