@@ -1,8 +1,14 @@
-// import type { Plugin } from 'vite';
-import { loadEnv, type Plugin } from 'vite'; // Fixed import
+import { loadEnv, type Plugin } from 'vite';
 import fs from 'node:fs';
 import path from 'node:path';
+import type {
+  FieldType,
+  FieldDefinition,
+  TableDefinition,
+  SNRecord,
+} from './src/types';
 
+// ServiceNow API response types
 interface SNFieldMeta {
   type: string;
   label: string;
@@ -23,51 +29,55 @@ interface SNTableResponse {
   result: Array<Record<string, unknown>>;
 }
 
-type FieldType =
-  | 'string'
-  | 'text'
-  | 'richtext'
-  | 'integer'
-  | 'boolean'
-  | 'choice'
-  | 'reference'
-  | 'datetime'
-  | 'date'
-  | 'email'
-  | 'url'
-  | 'phone'
-  | 'currency';
-
-interface FieldDefinition {
-  name: string;
-  type: FieldType;
-  label: string;
-  required?: boolean;
-  readonly?: boolean;
-  choices?: string[];
-  reference?: string;
-  maxLength?: number;
+interface SNDbObjectResponse {
+  result: Array<{
+    label: string;
+  }>;
 }
 
-interface TableDefinition {
+interface SNListResponse {
+  result: Array<{
+    sys_id: string;
+    name: string;
+  }>;
+}
+
+interface SNListElementResponse {
+  result: Array<{
+    element: string;
+    position: string;
+  }>;
+}
+
+interface SNSectionResponse {
+  result: Array<{
+    sys_id: string;
+    caption: string;
+    position: string;
+  }>;
+}
+
+interface SNElementResponse {
+  result: Array<{
+    element: string;
+    position: string;
+    type: string;
+  }>;
+}
+
+// Intermediate types for parsing SN layout responses
+interface ParsedListLayout {
+  columns: string[];
+}
+
+interface ParsedFormSection {
   name: string;
-  label: string;
-  labelPlural: string;
-  fields: FieldDefinition[];
-  list: {
-    columns: string[];
-    defaultSort?: { field: string; direction: 'asc' | 'desc' };
-    pageSize: number;
-  };
-  form: {
-    sections: Array<{
-      name: string;
-      label?: string;
-      columns: 1 | 2;
-      fields: string[];
-    }>;
-  };
-  data: Array<Record<string, unknown>>;
+  label?: string;
+  fields: string[];
+}
+
+interface ParsedFormLayout {
+  sections: ParsedFormSection[];
 }
 
 /** Map ServiceNow field types to our internal types */
@@ -103,8 +113,11 @@ const snTypeMap: Record<string, FieldType> = {
 /** Transform ServiceNow meta response to our TableDefinition format */
 function transformMetaToTableDefinition(
   tableName: string,
+  tableLabel: string,
   meta: SNMetaResponse,
-  records: SNTableResponse
+  records: SNTableResponse,
+  listLayout?: ParsedListLayout,
+  formLayout?: ParsedFormLayout,
 ): TableDefinition {
   const columns = meta.result.columns;
   const fields: FieldDefinition[] = [];
@@ -145,13 +158,15 @@ function transformMetaToTableDefinition(
     fieldNames.push(name);
   }
 
-  // Generate list columns: first 8 non-sys fields (keep sys_id, sys_updated_on)
-  const listColumns = fieldNames
-    .filter((f) => !f.startsWith('sys_') || f === 'sys_updated_on')
-    .slice(0, 8);
+  // Use fetched list columns or fall back to first 8 non-sys fields
+  const listColumns = listLayout?.columns.length
+    ? listLayout.columns.filter((col) => fieldNames.includes(col))
+    : fieldNames
+        .filter((f) => !f.startsWith('sys_') || f === 'sys_updated_on')
+        .slice(0, 8);
 
   // Transform records - extract display values
-  const data = records.result.map((record) => {
+  const data: SNRecord[] = records.result.map((record) => {
     const transformed: Record<string, unknown> = {};
     for (const [key, value] of Object.entries(record)) {
       if (typeof value === 'object' && value !== null && 'value' in value) {
@@ -161,14 +176,27 @@ function transformMetaToTableDefinition(
         transformed[key] = value;
       }
     }
-    return transformed;
+    // ServiceNow records always have sys_id
+    return transformed as SNRecord;
   });
 
-  // Generate a readable label from table name
-  const label = tableName
-    .split('_')
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(' ');
+  const label = tableLabel;
+
+  // Use fetched form sections or fall back to single section with first 12 fields
+  const formSections = formLayout?.sections.length
+    ? formLayout.sections.map((section, idx) => ({
+        name: section.name || `section_${idx}`,
+        label: section.label,
+        columns: 2 as const,
+        fields: section.fields.filter((f) => fieldNames.includes(f)),
+      }))
+    : [
+        {
+          name: 'main',
+          columns: 2 as const,
+          fields: fieldNames.filter((f) => !f.startsWith('sys_')).slice(0, 12),
+        },
+      ];
 
   return {
     name: tableName,
@@ -181,16 +209,103 @@ function transformMetaToTableDefinition(
       pageSize: 20,
     },
     form: {
-      sections: [
-        {
-          name: 'main',
-          columns: 2,
-          fields: fieldNames.filter((f) => !f.startsWith('sys_')).slice(0, 12),
-        },
-      ],
+      sections: formSections,
     },
     data,
   };
+}
+
+/** Fetch list layout from sys_ui_list and sys_ui_list_element */
+async function fetchListLayout(
+  instance: string,
+  tableName: string,
+  authHeader: string,
+): Promise<ParsedListLayout | undefined> {
+  try {
+    // Get default list configuration (not user-personalized)
+    const listUrl = `${instance}/api/now/table/sys_ui_list?sysparm_query=name=${tableName}^view=Default view^userISEMPTY^parent=NULL&sysparm_fields=sys_id&sysparm_limit=1`;
+    const listResponse = await fetch(listUrl, {
+      headers: { Authorization: authHeader, Accept: 'application/json' },
+    });
+
+    if (!listResponse.ok) return undefined;
+
+    const listData = (await listResponse.json()) as SNListResponse;
+    if (!listData.result?.[0]?.sys_id) return undefined;
+
+    const listId = listData.result[0].sys_id;
+
+    // Get columns in order
+    const elementsUrl = `${instance}/api/now/table/sys_ui_list_element?sysparm_query=list_id=${listId}^ORDERBYposition&sysparm_fields=element,position`;
+    const elementsResponse = await fetch(elementsUrl, {
+      headers: { Authorization: authHeader, Accept: 'application/json' },
+    });
+
+    if (!elementsResponse.ok) return undefined;
+
+    const elementsData =
+      (await elementsResponse.json()) as SNListElementResponse;
+    const columns = elementsData.result
+      .sort((a, b) => parseInt(a.position) - parseInt(b.position))
+      .map((el) => el.element);
+
+    return columns.length ? { columns } : undefined;
+  } catch {
+    return undefined;
+  }
+}
+
+/** Fetch form layout from sys_ui_section and sys_ui_element */
+async function fetchFormLayout(
+  instance: string,
+  tableName: string,
+  authHeader: string,
+): Promise<ParsedFormLayout | undefined> {
+  try {
+    // Get form sections for default view //name=sc_req_item^view=Default view
+    const sectionsUrl = `${instance}/api/now/table/sys_ui_section?sysparm_query=name=${tableName}^view=Default view^ORDERBYposition&sysparm_fields=sys_id,caption,position`;
+    const sectionsResponse = await fetch(sectionsUrl, {
+      headers: { Authorization: authHeader, Accept: 'application/json' },
+    });
+
+    if (!sectionsResponse.ok) return undefined;
+
+    const sectionsData = (await sectionsResponse.json()) as SNSectionResponse;
+    if (!sectionsData.result?.length) return undefined;
+
+    const sections: ParsedFormSection[] = [];
+
+    // Fetch elements for each section
+    for (const section of sectionsData.result) {
+      const elementsUrl = `${instance}/api/now/table/sys_ui_element?sysparm_query=sys_ui_section=${section.sys_id}^ORDERBYposition&sysparm_fields=element,position,type`;
+      const elementsResponse = await fetch(elementsUrl, {
+        headers: { Authorization: authHeader, Accept: 'application/json' },
+      });
+
+      if (elementsResponse.ok) {
+        const elementsData =
+          (await elementsResponse.json()) as SNElementResponse;
+        const fields = elementsData.result
+          .filter((el) => el.type !== 'formatter' && el.type !== 'annotation')
+          .sort((a, b) => parseInt(a.position) - parseInt(b.position))
+          .map((el) => el.element);
+
+        if (fields.length) {
+          sections.push({
+            name:
+              section.caption?.toLowerCase().replace(/\s+/g, '_') ||
+              `section_${section.position}`,
+            label: section.caption || undefined,
+            fields,
+          });
+        }
+      }
+    }
+
+    return sections.length ? { sections } : undefined;
+  } catch {
+    return undefined;
+  }
 }
 
 /**
@@ -233,7 +348,7 @@ export function snImportPlugin(): Plugin {
               JSON.stringify({
                 error:
                   'Missing ServiceNow credentials. Set VITE_SN_INSTANCE, VITE_SN_USERNAME, VITE_SN_PASSWORD in .env',
-              })
+              }),
             );
             return;
           }
@@ -241,6 +356,28 @@ export function snImportPlugin(): Plugin {
           const authHeader =
             'Basic ' +
             Buffer.from(`${username}:${password}`).toString('base64');
+
+          // Fetch table label from sys_db_object
+          const dbObjectUrl = `${instance}/api/now/table/sys_db_object?sysparm_query=name=${tableName}&sysparm_fields=label&sysparm_limit=1`;
+          const dbObjectResponse = await fetch(dbObjectUrl, {
+            headers: {
+              Authorization: authHeader,
+              Accept: 'application/json',
+            },
+          });
+
+          let tableLabel = tableName
+            .split('_')
+            .map((word: string) => word.charAt(0).toUpperCase() + word.slice(1))
+            .join(' '); // Fallback to title case
+
+          if (dbObjectResponse.ok) {
+            const dbObject =
+              (await dbObjectResponse.json()) as SNDbObjectResponse;
+            if (dbObject.result?.[0]?.label) {
+              tableLabel = dbObject.result[0].label;
+            }
+          }
 
           // Fetch metadata
           const metaUrl = `${instance}/api/now/ui/meta/${tableName}`;
@@ -257,7 +394,7 @@ export function snImportPlugin(): Plugin {
             res.end(
               JSON.stringify({
                 error: `Failed to fetch table metadata: ${metaResponse.status} ${errorText}`,
-              })
+              }),
             );
             return;
           }
@@ -279,18 +416,27 @@ export function snImportPlugin(): Plugin {
             res.end(
               JSON.stringify({
                 error: `Failed to fetch table records: ${recordsResponse.status} ${errorText}`,
-              })
+              }),
             );
             return;
           }
 
           const records = (await recordsResponse.json()) as SNTableResponse;
 
+          // Fetch list and form layouts (these may fail without admin role, so we handle gracefully)
+          const [listLayout, formLayout] = await Promise.all([
+            fetchListLayout(instance, tableName, authHeader),
+            fetchFormLayout(instance, tableName, authHeader),
+          ]);
+
           // Transform to our format
           const tableDef = transformMetaToTableDefinition(
             tableName,
+            tableLabel,
             meta,
-            records
+            records,
+            listLayout,
+            formLayout,
           );
 
           // Write to file
@@ -306,7 +452,7 @@ export function snImportPlugin(): Plugin {
               fieldCount: tableDef.fields.length,
               recordCount: tableDef.data.length,
               tableDef,
-            })
+            }),
           );
         } catch (error) {
           console.error('Import failed:', error);
@@ -316,7 +462,7 @@ export function snImportPlugin(): Plugin {
               error: `Import failed: ${
                 error instanceof Error ? error.message : String(error)
               }`,
-            })
+            }),
           );
         }
       });

@@ -2,11 +2,8 @@ import { createContext, useContext, useEffect, useState, useCallback, type React
 import type { TableDefinition, UserProfile } from '../types'
 import { initializeApi, getTableDefinitions, registerTableDefinition } from '../api/mockApi'
 
-// Import table definitions
-import incidentTable from '../data/tables/incident.json'
-import sysUserTable from '../data/tables/sys_user.json'
-import sysUserGroupTable from '../data/tables/sys_user_group.json'
-import storyTable from '../data/tables/rm_story.json'
+// Dynamically import all table definitions from src/data/tables/
+const tableModules = import.meta.glob<{ default: TableDefinition }>('../data/tables/*.json', { eager: true })
 
 interface DataContextValue {
   tables: TableDefinition[]
@@ -30,8 +27,8 @@ export function DataProvider({ children }: { children: ReactNode }) {
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    // Initialize the mock API with table definitions
-    const tableDefs = [incidentTable, sysUserTable, sysUserGroupTable, storyTable] as TableDefinition[]
+    // Initialize the mock API with all discovered table definitions
+    const tableDefs = Object.values(tableModules).map(m => m.default)
     initializeApi(tableDefs)
     setTables(getTableDefinitions())
     setIsLoading(false)

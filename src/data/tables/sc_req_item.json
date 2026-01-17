@@ -1,7 +1,7 @@
 {
   "name": "sc_req_item",
-  "label": "Sc Req Item",
-  "labelPlural": "Sc Req Items",
+  "label": "Requested Item",
+  "labelPlural": "Requested Items",
   "fields": [
     {
       "name": "parent",
@@ -631,14 +631,15 @@
   ],
   "list": {
     "columns": [
-      "parent",
-      "made_sla",
-      "watch_list",
-      "sc_catalog",
-      "upon_reject",
+      "number",
+      "cat_item",
+      "stage",
+      "request",
       "requested_for",
+      "due_date",
+      "quantity",
       "sys_updated_on",
-      "task_effective_number"
+      "assigned_to"
     ],
     "defaultSort": {
       "field": "sys_updated_on",
@@ -649,21 +650,26 @@
   "form": {
     "sections": [
       {
-        "name": "main",
+        "name": "section_undefined",
         "columns": 2,
         "fields": [
-          "parent",
-          "made_sla",
-          "watch_list",
-          "sc_catalog",
-          "upon_reject",
-          "requested_for",
-          "task_effective_number",
-          "approval_history",
-          "skills",
           "number",
+          "cat_item",
+          "request",
+          "requested_for",
+          "due_date",
+          "watch_list",
+          "opened_at",
           "opened_by",
-          "user_input"
+          "stage",
+          "state",
+          "assignment_group",
+          "assigned_to",
+          "short_description",
+          "description",
+          "x_880628_project_0_resolution_notes",
+          "comments",
+          "work_notes"
         ]
       }
     ]

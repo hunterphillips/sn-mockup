@@ -229,9 +229,6 @@ export function FormPage() {
 
             <div className="flex gap-2 ml-2">
               <SNButton variant="secondary" size="sm">
-                Discuss
-              </SNButton>
-              <SNButton variant="secondary" size="sm">
                 Follow
               </SNButton>
               <SNButton
@@ -258,7 +255,7 @@ export function FormPage() {
           {tableDef.form.sections.map((section) => {
             const sectionFields = section.fields
               .map((fieldName) =>
-                tableDef.fields.find((f) => f.name === fieldName)
+                tableDef.fields.find((f) => f.name === fieldName),
               )
               .filter(Boolean) as FieldDefinition[];
 
@@ -273,7 +270,7 @@ export function FormPage() {
                 <div
                   className={cn(
                     'grid gap-4',
-                    section.columns === 2 ? 'grid-cols-2' : 'grid-cols-1'
+                    section.columns === 2 ? 'grid-cols-2' : 'grid-cols-1',
                   )}
                 >
                   {sectionFields.map((field) => (
@@ -294,13 +291,15 @@ export function FormPage() {
         </div>
 
         {/* Related Lists */}
-        {!isNew && tableDef.relatedLists && tableDef.relatedLists.length > 0 && (
-          <SNRelatedLists
-            relatedLists={tableDef.relatedLists}
-            parentSysId={sysId!}
-            className="max-w-5xl mx-auto mt-6"
-          />
-        )}
+        {!isNew &&
+          tableDef.relatedLists &&
+          tableDef.relatedLists.length > 0 && (
+            <SNRelatedLists
+              relatedLists={tableDef.relatedLists}
+              parentSysId={sysId!}
+              className="max-w-5xl mx-auto mt-6"
+            />
+          )}
       </div>
 
       {/* Form Footer */}

@@ -109,10 +109,10 @@ export function SNList({ tableName, className }: SNListProps) {
     )
   }
 
-  // Build filter breadcrumb
+  // Build filter breadcrumb from actual conditions
   const filterBreadcrumb = conditions.length > 0
     ? `All > ${conditions.map(c => `${c.field} ${c.operator} "${c.value}"`).join(` ${conditions[1]?.conjunction || 'AND'} `)}`
-    : 'All > Active = true'
+    : 'All'
 
   return (
     <div className={cn('flex flex-col h-full', className)}>
