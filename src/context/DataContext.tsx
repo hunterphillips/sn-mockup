@@ -1,16 +1,18 @@
-import { createContext, useContext, useEffect, useState, type ReactNode } from 'react'
+import { createContext, useContext, useEffect, useState, useCallback, type ReactNode } from 'react'
 import type { TableDefinition, UserProfile } from '../types'
-import { initializeApi, getTableDefinitions } from '../api/mockApi'
+import { initializeApi, getTableDefinitions, registerTableDefinition } from '../api/mockApi'
 
 // Import table definitions
 import incidentTable from '../data/tables/incident.json'
 import sysUserTable from '../data/tables/sys_user.json'
+import sysUserGroupTable from '../data/tables/sys_user_group.json'
 import storyTable from '../data/tables/rm_story.json'
 
 interface DataContextValue {
   tables: TableDefinition[]
   currentUser: UserProfile
   isLoading: boolean
+  registerTable: (tableDef: TableDefinition) => void
 }
 
 const DataContext = createContext<DataContextValue | null>(null)
@@ -29,14 +31,19 @@ export function DataProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     // Initialize the mock API with table definitions
-    const tableDefs = [incidentTable, sysUserTable, storyTable] as TableDefinition[]
+    const tableDefs = [incidentTable, sysUserTable, sysUserGroupTable, storyTable] as TableDefinition[]
     initializeApi(tableDefs)
     setTables(getTableDefinitions())
     setIsLoading(false)
   }, [])
 
+  const registerTable = useCallback((tableDef: TableDefinition) => {
+    registerTableDefinition(tableDef)
+    setTables(getTableDefinitions())
+  }, [])
+
   return (
-    <DataContext.Provider value={{ tables, currentUser: defaultUser, isLoading }}>
+    <DataContext.Provider value={{ tables, currentUser: defaultUser, isLoading, registerTable }}>
       {children}
     </DataContext.Provider>
   )

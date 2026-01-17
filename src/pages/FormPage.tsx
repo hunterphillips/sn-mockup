@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams, useNavigate, Link } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useTable } from '../context/DataContext';
 import {
   getRecord,
@@ -199,11 +199,12 @@ export function FormPage() {
       <div className="bg-white border-b border-sn-neutral-3 px-4 py-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <Link to={`/${table}/list`}>
-              <button className="p-1.5 hover:bg-sn-neutral-1 rounded transition-colors">
-                <ChevronLeft className="w-5 h-5 text-sn-neutral-7" />
-              </button>
-            </Link>
+            <button
+              onClick={() => navigate(-1)}
+              className="p-1.5 hover:bg-sn-neutral-1 rounded transition-colors"
+            >
+              <ChevronLeft className="w-5 h-5 text-sn-neutral-7" />
+            </button>
             <div className="border-l border-sn-neutral-3 pl-3">
               <div className="text-sm font-medium text-sn-neutral-9">
                 {tableDef.label}

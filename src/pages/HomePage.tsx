@@ -1,13 +1,14 @@
 import { Link } from 'react-router-dom';
 import { useData } from '../context/DataContext';
 import { SNButton } from '../components/sn/common';
+import { TableImporter } from '../components/sn/TableImporter';
 import { List, FileText } from 'lucide-react';
 
 /**
  * Landing page showing available tables
  */
 export function HomePage() {
-  const { tables, isLoading } = useData();
+  const { tables, isLoading, registerTable } = useData();
 
   if (isLoading) {
     return (
@@ -20,8 +21,11 @@ export function HomePage() {
   return (
     <div className="max-w-4xl mx-auto p-8">
       <h1 className="text-2xl font-header font-bold text-sn-neutral-9 mb-2">
-        Now Mockup
+        {/* Up Now */}
       </h1>
+
+      <TableImporter onImportSuccess={registerTable} />
+
       <p className="text-sn-neutral-7 mb-8">
         Select a table to view its list or create a new record.
       </p>

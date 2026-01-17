@@ -39,6 +39,12 @@ export function initializeApi(tableDefs: TableDefinition[]): void {
   }
 }
 
+/** Register a new table definition dynamically */
+export function registerTableDefinition(tableDef: TableDefinition): void {
+  tables.set(tableDef.name, tableDef);
+  data.set(tableDef.name, [...tableDef.data] as SNRecord[]);
+}
+
 /** Get all loaded table definitions */
 export function getTableDefinitions(): TableDefinition[] {
   return Array.from(tables.values());
