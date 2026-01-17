@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from 'react'
 import { Link } from 'react-router-dom'
 import { useData } from '../../../context/DataContext'
 import { getRelatedRecords } from '../../../api/mockApi'
+import { getDisplayValue } from '../../../utils/fieldValue'
 import { SNTabs } from '../common'
 import type { SNRecord, RelatedListDefinition, TableDefinition, FieldDefinition } from '../../../types'
 
@@ -78,19 +79,20 @@ export function SNRelatedLists({
   }, [fetchRelatedLists])
 
   const formatValue = (value: unknown, field?: FieldDefinition): string => {
-    if (value === null || value === undefined || value === '') {
+    const displayVal = getDisplayValue(value)
+    if (!displayVal) {
       return ''
     }
     if (field?.type === 'datetime') {
-      return new Date(value as string).toLocaleString()
+      return new Date(displayVal).toLocaleString()
     }
     if (field?.type === 'date') {
-      return new Date(value as string).toLocaleDateString()
+      return new Date(displayVal).toLocaleDateString()
     }
     if (field?.type === 'boolean') {
-      return value ? 'Yes' : 'No'
+      return displayVal === 'true' || displayVal === '1' ? 'Yes' : 'No'
     }
-    return String(value)
+    return displayVal
   }
 
   if (listsData.length === 0) {

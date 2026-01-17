@@ -7,6 +7,7 @@ import {
   updateRecord,
   deleteRecord,
 } from '../api/mockApi';
+import { getDisplayValue, getValue, createFieldValue } from '../utils/fieldValue';
 import {
   SNButton,
   SNInput,
@@ -63,9 +64,26 @@ export function FormPage() {
     fetchRecord();
   }, [table, sysId, isNew]);
 
-  // Handle field change
-  const handleFieldChange = (fieldName: string, value: unknown) => {
-    setFormData((prev) => ({ ...prev, [fieldName]: value }));
+  // Handle field change - update display_value, preserve raw value
+  const handleFieldChange = (fieldName: string, newDisplayValue: string) => {
+    setFormData((prev) => {
+      const currentField = prev[fieldName];
+      const currentValue = getValue(currentField);
+      // For edits, update display_value; for simple fields, value = display_value
+      return {
+        ...prev,
+        [fieldName]: createFieldValue(currentValue || newDisplayValue, newDisplayValue),
+      };
+    });
+  };
+
+  // Handle boolean field change
+  const handleBooleanChange = (fieldName: string, checked: boolean) => {
+    const strValue = checked ? 'true' : 'false';
+    setFormData((prev) => ({
+      ...prev,
+      [fieldName]: createFieldValue(strValue, strValue),
+    }));
   };
 
   // Handle save
@@ -104,14 +122,15 @@ export function FormPage() {
 
   // Render a form field based on type
   const renderField = (field: FieldDefinition) => {
-    const value = formData[field.name] ?? '';
+    const fieldData = formData[field.name];
+    const displayVal = getDisplayValue(fieldData);
     const isReadonly = field.readonly;
 
     switch (field.type) {
       case 'text':
         return (
           <SNTextarea
-            value={String(value)}
+            value={displayVal}
             onChange={(e) => handleFieldChange(field.name, e.target.value)}
             disabled={isReadonly}
             rows={4}
@@ -122,7 +141,7 @@ export function FormPage() {
       case 'richtext':
         return (
           <SNRichTextEditor
-            value={String(value)}
+            value={displayVal}
             onChange={(html) => handleFieldChange(field.name, html)}
             disabled={isReadonly}
             rows={6}
@@ -133,7 +152,7 @@ export function FormPage() {
       case 'choice':
         return (
           <SNSelect
-            value={String(value)}
+            value={displayVal}
             onChange={(e) => handleFieldChange(field.name, e.target.value)}
             options={field.choices?.map((c) => ({ value: c, label: c })) || []}
             disabled={isReadonly}
@@ -144,8 +163,8 @@ export function FormPage() {
       case 'boolean':
         return (
           <SNCheckbox
-            checked={Boolean(value)}
-            onChange={(e) => handleFieldChange(field.name, e.target.checked)}
+            checked={displayVal === 'true' || displayVal === '1'}
+            onChange={(e) => handleBooleanChange(field.name, e.target.checked)}
             disabled={isReadonly}
           />
         );
@@ -154,7 +173,7 @@ export function FormPage() {
         return (
           <div className="flex gap-2">
             <SNInput
-              value={String(value)}
+              value={displayVal}
               onChange={(e) => handleFieldChange(field.name, e.target.value)}
               disabled={isReadonly}
               lookup
@@ -167,7 +186,7 @@ export function FormPage() {
         return (
           <SNInput
             type={field.type === 'integer' ? 'number' : 'text'}
-            value={String(value)}
+            value={displayVal}
             onChange={(e) => handleFieldChange(field.name, e.target.value)}
             disabled={isReadonly}
             fullWidth
@@ -191,7 +210,7 @@ export function FormPage() {
     );
   }
 
-  const recordNumber = String(formData['number'] || (isNew ? 'New' : sysId));
+  const recordNumber = getDisplayValue(formData['number']) || (isNew ? 'New' : sysId);
 
   return (
     <div className="h-[calc(100vh-48px)] flex flex-col">

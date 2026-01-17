@@ -4,16 +4,201 @@
   "labelPlural": "Incidents",
   "fields": [
     {
+      "name": "parent",
+      "type": "reference",
+      "label": "Parent",
+      "maxLength": 32,
+      "reference": "task"
+    },
+    {
+      "name": "caused_by",
+      "type": "reference",
+      "label": "Caused by Change",
+      "maxLength": 32,
+      "reference": "change_request"
+    },
+    {
+      "name": "watch_list",
+      "type": "string",
+      "label": "Watch list",
+      "maxLength": 4000,
+      "reference": "sys_user"
+    },
+    {
+      "name": "upon_reject",
+      "type": "choice",
+      "label": "Upon reject",
+      "maxLength": 40,
+      "choices": [
+        "-- None --",
+        "Cancel all future Tasks",
+        "Go to a previous Task"
+      ]
+    },
+    {
+      "name": "sys_updated_on",
+      "type": "datetime",
+      "label": "Updated",
+      "maxLength": 40
+    },
+    {
+      "name": "origin_table",
+      "type": "string",
+      "label": "Origin table",
+      "maxLength": 80
+    },
+    {
+      "name": "approval_history",
+      "type": "text",
+      "label": "Approval history",
+      "maxLength": 4000
+    },
+    {
+      "name": "skills",
+      "type": "string",
+      "label": "Skills",
+      "maxLength": 4000,
+      "reference": "cmn_skill"
+    },
+    {
       "name": "number",
       "type": "string",
       "label": "Number",
-      "readonly": true
+      "readonly": true,
+      "maxLength": 40
     },
     {
-      "name": "opened_at",
+      "name": "u_inc_type",
+      "type": "choice",
+      "label": "Type of issue",
+      "required": true,
+      "maxLength": 40,
+      "choices": [
+        "-- None --",
+        "Tier 1",
+        "Tier 2",
+        "Tier 3"
+      ]
+    },
+    {
+      "name": "state",
+      "type": "choice",
+      "label": "State",
+      "required": true,
+      "maxLength": 40,
+      "choices": [
+        "New",
+        "In Progress",
+        "On Hold",
+        "Resolved",
+        "Closed",
+        "Canceled"
+      ]
+    },
+    {
+      "name": "knowledge",
+      "type": "boolean",
+      "label": "Knowledge",
+      "maxLength": 40
+    },
+    {
+      "name": "order",
+      "type": "integer",
+      "label": "Order",
+      "maxLength": 40
+    },
+    {
+      "name": "u_caller_email",
+      "type": "string",
+      "label": "Caller Email",
+      "maxLength": 80
+    },
+    {
+      "name": "cmdb_ci",
+      "type": "reference",
+      "label": "Configuration item",
+      "maxLength": 32,
+      "reference": "cmdb_ci"
+    },
+    {
+      "name": "delivery_plan",
+      "type": "reference",
+      "label": "Delivery plan",
+      "maxLength": 32,
+      "reference": "sc_cat_item_delivery_plan"
+    },
+    {
+      "name": "contract",
+      "type": "reference",
+      "label": "Contract",
+      "maxLength": 32,
+      "reference": "ast_contract"
+    },
+    {
+      "name": "impact",
+      "type": "choice",
+      "label": "Impact",
+      "required": true,
+      "maxLength": 40,
+      "choices": [
+        "1 - High",
+        "2 - Medium",
+        "3 - Low"
+      ]
+    },
+    {
+      "name": "active",
+      "type": "boolean",
+      "label": "Active",
+      "maxLength": 40
+    },
+    {
+      "name": "work_notes_list",
+      "type": "string",
+      "label": "Work notes list",
+      "maxLength": 4000,
+      "reference": "sys_user"
+    },
+    {
+      "name": "priority",
+      "type": "choice",
+      "label": "Priority",
+      "maxLength": 40,
+      "choices": [
+        "-- None --",
+        "1 - Critical",
+        "2 - High",
+        "3 - Moderate",
+        "4 - Low",
+        "5 - Planning"
+      ]
+    },
+    {
+      "name": "business_duration",
+      "type": "string",
+      "label": "Business duration",
+      "readonly": true,
+      "maxLength": 40
+    },
+    {
+      "name": "group_list",
+      "type": "string",
+      "label": "Group list",
+      "maxLength": 4000,
+      "reference": "sys_user_group"
+    },
+    {
+      "name": "approval_set",
       "type": "datetime",
-      "label": "Opened",
-      "readonly": true
+      "label": "Approval set",
+      "maxLength": 40
+    },
+    {
+      "name": "universal_request",
+      "type": "reference",
+      "label": "Universal Request",
+      "maxLength": 32,
+      "reference": "task"
     },
     {
       "name": "short_description",
@@ -23,21 +208,409 @@
       "maxLength": 160
     },
     {
-      "name": "description",
-      "type": "text",
-      "label": "Description"
+      "name": "correlation_display",
+      "type": "string",
+      "label": "Correlation display",
+      "maxLength": 100
+    },
+    {
+      "name": "delivery_task",
+      "type": "reference",
+      "label": "Delivery task",
+      "maxLength": 32,
+      "reference": "sc_cat_item_delivery_task"
+    },
+    {
+      "name": "work_start",
+      "type": "datetime",
+      "label": "Actual start",
+      "maxLength": 40
+    },
+    {
+      "name": "additional_assignee_list",
+      "type": "string",
+      "label": "Additional assignee list",
+      "maxLength": 4000,
+      "reference": "sys_user"
+    },
+    {
+      "name": "notify",
+      "type": "choice",
+      "label": "Notify",
+      "maxLength": 40,
+      "choices": [
+        "Do Not Notify",
+        "Send Email",
+        "Telephone"
+      ]
+    },
+    {
+      "name": "service_offering",
+      "type": "reference",
+      "label": "Service offering",
+      "maxLength": 32,
+      "reference": "service_offering"
+    },
+    {
+      "name": "closed_by",
+      "type": "reference",
+      "label": "Closed by",
+      "maxLength": 32,
+      "reference": "sys_user"
+    },
+    {
+      "name": "follow_up",
+      "type": "datetime",
+      "label": "Follow up",
+      "maxLength": 40
+    },
+    {
+      "name": "parent_incident",
+      "type": "reference",
+      "label": "Parent Incident",
+      "maxLength": 32,
+      "reference": "incident"
+    },
+    {
+      "name": "reopened_by",
+      "type": "reference",
+      "label": "Last reopened by",
+      "readonly": true,
+      "maxLength": 32,
+      "reference": "sys_user"
+    },
+    {
+      "name": "reassignment_count",
+      "type": "integer",
+      "label": "Reassignment count",
+      "maxLength": 40
+    },
+    {
+      "name": "assigned_to",
+      "type": "reference",
+      "label": "Assigned to",
+      "maxLength": 32,
+      "reference": "sys_user"
+    },
+    {
+      "name": "sla_due",
+      "type": "string",
+      "label": "SLA due",
+      "maxLength": 40
+    },
+    {
+      "name": "comments_and_work_notes",
+      "type": "string",
+      "label": "Comments and Work notes",
+      "maxLength": 4000
+    },
+    {
+      "name": "u_caller_phone_number",
+      "type": "phone",
+      "label": "Caller Phone Number",
+      "maxLength": 40
+    },
+    {
+      "name": "escalation",
+      "type": "choice",
+      "label": "Escalation",
+      "readonly": true,
+      "maxLength": 40,
+      "choices": [
+        "Normal",
+        "Moderate",
+        "High",
+        "Overdue"
+      ]
+    },
+    {
+      "name": "upon_approval",
+      "type": "choice",
+      "label": "Upon approval",
+      "maxLength": 40,
+      "choices": [
+        "-- None --",
+        "Proceed to Next Task",
+        "Wait for a User to Close this task"
+      ]
+    },
+    {
+      "name": "correlation_id",
+      "type": "string",
+      "label": "Correlation ID",
+      "maxLength": 100
+    },
+    {
+      "name": "made_sla",
+      "type": "boolean",
+      "label": "Made SLA",
+      "maxLength": 40
+    },
+    {
+      "name": "child_incidents",
+      "type": "integer",
+      "label": "Child Incidents",
+      "maxLength": 40
+    },
+    {
+      "name": "hold_reason",
+      "type": "choice",
+      "label": "On hold reason",
+      "maxLength": 40,
+      "choices": [
+        "-- None --",
+        "Awaiting Caller",
+        "Awaiting Change",
+        "Awaiting Problem"
+      ]
+    },
+    {
+      "name": "task_effective_number",
+      "type": "string",
+      "label": "Effective number",
+      "readonly": true,
+      "maxLength": 40
+    },
+    {
+      "name": "resolved_by",
+      "type": "reference",
+      "label": "Resolved by",
+      "maxLength": 32,
+      "reference": "sys_user"
+    },
+    {
+      "name": "sys_updated_by",
+      "type": "string",
+      "label": "Updated by",
+      "maxLength": 40
+    },
+    {
+      "name": "u_phone",
+      "type": "string",
+      "label": "Phone number",
+      "maxLength": 40
+    },
+    {
+      "name": "opened_by",
+      "type": "reference",
+      "label": "Opened by",
+      "maxLength": 32,
+      "reference": "sys_user"
+    },
+    {
+      "name": "user_input",
+      "type": "string",
+      "label": "User input",
+      "maxLength": 4000
+    },
+    {
+      "name": "route_reason",
+      "type": "choice",
+      "label": "Route reason",
+      "readonly": true,
+      "maxLength": 40,
+      "choices": [
+        "-- None --",
+        "Transfer with Resolution",
+        "Transfer without Resolution"
+      ]
+    },
+    {
+      "name": "calendar_stc",
+      "type": "integer",
+      "label": "Resolve time",
+      "readonly": true,
+      "maxLength": 40
+    },
+    {
+      "name": "closed_at",
+      "type": "datetime",
+      "label": "Closed",
+      "maxLength": 40
+    },
+    {
+      "name": "business_service",
+      "type": "reference",
+      "label": "Service",
+      "maxLength": 32,
+      "reference": "cmdb_ci_service"
+    },
+    {
+      "name": "business_impact",
+      "type": "string",
+      "label": "Business impact",
+      "maxLength": 4000
+    },
+    {
+      "name": "rfc",
+      "type": "reference",
+      "label": "Change Request",
+      "maxLength": 32,
+      "reference": "change_request"
+    },
+    {
+      "name": "time_worked",
+      "type": "string",
+      "label": "Time worked",
+      "maxLength": 40
+    },
+    {
+      "name": "expected_start",
+      "type": "datetime",
+      "label": "Expected start",
+      "maxLength": 40
+    },
+    {
+      "name": "opened_at",
+      "type": "datetime",
+      "label": "Opened",
+      "maxLength": 40
+    },
+    {
+      "name": "work_end",
+      "type": "datetime",
+      "label": "Actual end",
+      "maxLength": 40
     },
     {
       "name": "caller_id",
       "type": "reference",
       "label": "Caller",
-      "reference": "sys_user",
-      "required": true
+      "maxLength": 32,
+      "reference": "sys_user"
     },
     {
-      "name": "state",
+      "name": "reopened_time",
+      "type": "datetime",
+      "label": "Last reopened at",
+      "readonly": true,
+      "maxLength": 40
+    },
+    {
+      "name": "resolved_at",
+      "type": "datetime",
+      "label": "Resolved",
+      "maxLength": 40
+    },
+    {
+      "name": "subcategory",
       "type": "choice",
-      "label": "State",
+      "label": "Subcategory",
+      "maxLength": 40,
+      "choices": [
+        "-- None --",
+        "Antivirus",
+        "CPU",
+        "DB2",
+        "DHCP",
+        "Disk",
+        "DNS",
+        "Email",
+        "Internal Application",
+        "IP Address",
+        "Keyboard",
+        "Memory",
+        "Monitor",
+        "Mouse",
+        "MS SQL Server",
+        "Operating System",
+        "Oracle",
+        "VPN",
+        "Wireless"
+      ]
+    },
+    {
+      "name": "work_notes",
+      "type": "text",
+      "label": "Work notes",
+      "maxLength": 4000
+    },
+    {
+      "name": "close_code",
+      "type": "choice",
+      "label": "Resolution code",
+      "maxLength": 40,
+      "choices": [
+        "-- None --",
+        "Resolved – Workaround Applied",
+        "Resolved – Permanent Fix Applied",
+        "Resolved – Fixed by Caller",
+        "Resolved – Fixed Without Action",
+        "Not Resolved – Not Reproducible",
+        "Not Resolved – Problem Raised"
+      ]
+    },
+    {
+      "name": "assignment_group",
+      "type": "reference",
+      "label": "Assignment group",
+      "required": true,
+      "maxLength": 32,
+      "reference": "sys_user_group"
+    },
+    {
+      "name": "business_stc",
+      "type": "integer",
+      "label": "Business resolve time",
+      "readonly": true,
+      "maxLength": 40
+    },
+    {
+      "name": "cause",
+      "type": "string",
+      "label": "Probable cause",
+      "maxLength": 4000
+    },
+    {
+      "name": "description",
+      "type": "string",
+      "label": "Description",
+      "required": true,
+      "maxLength": 4000
+    },
+    {
+      "name": "origin_id",
+      "type": "string",
+      "label": "Origin",
+      "maxLength": 32
+    },
+    {
+      "name": "calendar_duration",
+      "type": "string",
+      "label": "Duration",
+      "readonly": true,
+      "maxLength": 40
+    },
+    {
+      "name": "close_notes",
+      "type": "string",
+      "label": "Resolution notes",
+      "maxLength": 4000
+    },
+    {
+      "name": "sys_id",
+      "type": "string",
+      "label": "Sys ID",
+      "required": true,
+      "maxLength": 32
+    },
+    {
+      "name": "contact_type",
+      "type": "choice",
+      "label": "Channel",
+      "required": true,
+      "maxLength": 40,
+      "choices": [
+        "-- None --",
+        "Phone",
+        "Self-service"
+      ]
+    },
+    {
+      "name": "incident_state",
+      "type": "choice",
+      "label": "Incident state",
+      "maxLength": 40,
       "choices": [
         "New",
         "In Progress",
@@ -45,116 +618,137 @@
         "Resolved",
         "Closed",
         "Canceled"
-      ],
-      "required": true
-    },
-    {
-      "name": "priority",
-      "type": "integer",
-      "label": "Priority",
-      "readonly": true
-    },
-    {
-      "name": "impact",
-      "type": "choice",
-      "label": "Impact",
-      "choices": [
-        "1 - High",
-        "2 - Medium",
-        "3 - Low"
-      ],
-      "required": true
+      ]
     },
     {
       "name": "urgency",
       "type": "choice",
       "label": "Urgency",
+      "required": true,
+      "maxLength": 40,
       "choices": [
         "1 - High",
         "2 - Medium",
         "3 - Low"
-      ],
-      "required": true
+      ]
+    },
+    {
+      "name": "problem_id",
+      "type": "reference",
+      "label": "Problem",
+      "maxLength": 32,
+      "reference": "problem"
+    },
+    {
+      "name": "company",
+      "type": "reference",
+      "label": "Company",
+      "maxLength": 32,
+      "reference": "core_company"
+    },
+    {
+      "name": "activity_due",
+      "type": "string",
+      "label": "Activity due",
+      "maxLength": 40
+    },
+    {
+      "name": "severity",
+      "type": "choice",
+      "label": "Severity",
+      "maxLength": 40,
+      "choices": [
+        "1 - High",
+        "2 - Medium",
+        "3 - Low"
+      ]
+    },
+    {
+      "name": "comments",
+      "type": "text",
+      "label": "Additional comments",
+      "maxLength": 4000
+    },
+    {
+      "name": "approval",
+      "type": "choice",
+      "label": "Approval",
+      "maxLength": 40,
+      "choices": [
+        "Not Yet Requested",
+        "Requested",
+        "Approved",
+        "Rejected"
+      ]
+    },
+    {
+      "name": "due_date",
+      "type": "datetime",
+      "label": "Due date",
+      "maxLength": 40
+    },
+    {
+      "name": "u_affected_user",
+      "type": "reference",
+      "label": "Affected user",
+      "maxLength": 32,
+      "reference": "sys_user"
+    },
+    {
+      "name": "reopen_count",
+      "type": "integer",
+      "label": "Reopen count",
+      "maxLength": 40
+    },
+    {
+      "name": "location",
+      "type": "reference",
+      "label": "Location",
+      "maxLength": 32,
+      "reference": "cmn_location"
     },
     {
       "name": "category",
       "type": "choice",
       "label": "Category",
+      "maxLength": 40,
       "choices": [
+        "-- None --",
         "Inquiry / Help",
         "Software",
         "Hardware",
         "Network",
-        "Database"
+        "Database",
+        "Password Reset"
       ]
     },
     {
-      "name": "subcategory",
-      "type": "choice",
-      "label": "Subcategory",
-      "choices": [
-        "-- None --",
-        "Internal Application",
-        "Email",
-        "Operating System"
-      ]
-    },
-    {
-      "name": "assignment_group",
-      "type": "reference",
-      "label": "Assignment group",
-      "reference": "sys_user_group"
-    },
-    {
-      "name": "assigned_to",
-      "type": "reference",
-      "label": "Assigned to",
-      "reference": "sys_user"
-    },
-    {
-      "name": "channel",
-      "type": "choice",
-      "label": "Channel",
-      "choices": [
-        "Self-service",
-        "Phone",
-        "Email",
-        "Walk-in",
-        "Chat"
-      ]
-    },
-    {
-      "name": "closed_at",
-      "type": "datetime",
-      "label": "Closed"
-    },
-    {
-      "name": "sys_updated_on",
-      "type": "datetime",
-      "label": "Updated",
-      "readonly": true
-    },
-    {
-      "name": "sys_updated_by",
+      "name": "u_string_3",
       "type": "string",
-      "label": "Updated by",
-      "readonly": true
+      "label": "New String",
+      "maxLength": 40
     },
     {
-      "name": "parent",
-      "type": "reference",
-      "label": "Parent Incident",
-      "reference": "incident"
+      "name": "u_string_2",
+      "type": "string",
+      "label": "Example",
+      "readonly": true,
+      "maxLength": 40
     }
   ],
   "list": {
     "columns": [
       "number",
+      "active",
       "opened_at",
+      "state",
+      "calendar_stc",
+      "business_stc",
+      "business_duration",
       "short_description",
+      "cmdb_ci",
       "caller_id",
       "priority",
-      "state",
       "category",
       "assignment_group",
       "assigned_to",
@@ -162,7 +756,7 @@
       "sys_updated_by"
     ],
     "defaultSort": {
-      "field": "opened_at",
+      "field": "sys_updated_on",
       "direction": "desc"
     },
     "pageSize": 20
@@ -170,149 +764,4055 @@
   "form": {
     "sections": [
       {
-        "name": "main",
+        "name": "notes",
+        "label": "Notes",
+        "columns": 2,
+        "fields": [
+          "watch_list",
+          "work_notes_list",
+          "comments",
+          "work_notes"
+        ]
+      },
+      {
+        "name": "related_records",
+        "label": "Related Records",
+        "columns": 2,
+        "fields": [
+          "parent_incident",
+          "problem_id",
+          "rfc",
+          "caused_by"
+        ]
+      },
+      {
+        "name": "resolution_information",
+        "label": "Resolution Information",
+        "columns": 2,
+        "fields": [
+          "knowledge",
+          "close_code",
+          "resolved_by",
+          "resolved_at",
+          "close_notes"
+        ]
+      },
+      {
+        "name": "section_undefined",
         "columns": 2,
         "fields": [
           "number",
-          "channel",
           "caller_id",
-          "state",
+          "u_caller_email",
           "category",
-          "impact",
           "subcategory",
+          "business_service",
+          "cmdb_ci",
+          "contact_type",
+          "state",
+          "hold_reason",
+          "impact",
           "urgency",
-          "assignment_group",
           "priority",
+          "assignment_group",
           "assigned_to",
-          "parent"
-        ]
-      },
-      {
-        "name": "description",
-        "label": "Description",
-        "columns": 1,
-        "fields": [
           "short_description",
-          "description"
-        ]
-      },
-      {
-        "name": "resolution",
-        "label": "Resolution Information",
-        "columns": 2,
-        "collapsible": true,
-        "collapsed": true,
-        "fields": [
-          "closed_at"
+          "description",
+          "u_caller_phone_number"
         ]
       }
     ]
   },
-  "relatedLists": [
-    {
-      "table": "incident",
-      "title": "Child Incidents",
-      "parentField": "parent",
-      "columns": ["number", "short_description", "state", "priority", "assigned_to"]
-    }
-  ],
   "data": [
     {
-      "sys_id": "inc001",
-      "number": "INC0010257",
-      "opened_at": "2025-09-09T14:13:31",
-      "short_description": "update me",
-      "description": "123456789",
-      "caller_id": "user002",
-      "state": "New",
-      "priority": 3,
-      "impact": "1 - High",
-      "urgency": "1 - High",
-      "category": "Inquiry / Help",
-      "subcategory": "-- None --",
-      "assignment_group": "grp001",
-      "assigned_to": "",
-      "channel": "Self-service",
-      "sys_updated_on": "2026-01-16T16:30:17.622Z",
-      "sys_updated_by": "joseph.vannieuwenhuyse"
+      "parent": {
+        "value": "",
+        "display_value": ""
+      },
+      "caused_by": {
+        "value": "aa0ad55147810200e90d87e8dee490e1",
+        "display_value": "CHG0000021"
+      },
+      "watch_list": {
+        "value": "46d59205a9fe198101d603f5de37bfa3",
+        "display_value": "John Bohnhamn"
+      },
+      "upon_reject": {
+        "value": "cancel",
+        "display_value": "Cancel all future Tasks"
+      },
+      "sys_updated_on": {
+        "value": "2025-04-15 02:24:08",
+        "display_value": "04-14-2025 21:24:08"
+      },
+      "origin_table": {
+        "value": "change_request",
+        "display_value": "change_request"
+      },
+      "approval_history": {
+        "value": "",
+        "display_value": ""
+      },
+      "skills": {
+        "value": "",
+        "display_value": ""
+      },
+      "number": {
+        "value": "INC0078800",
+        "display_value": "INC0078800"
+      },
+      "u_inc_type": {
+        "value": "",
+        "display_value": ""
+      },
+      "state": {
+        "value": "7",
+        "display_value": "Closed"
+      },
+      "sys_created_by": {
+        "value": "jakob.wiant",
+        "display_value": "jakob.wiant"
+      },
+      "knowledge": {
+        "value": "false",
+        "display_value": "false"
+      },
+      "order": {
+        "value": "",
+        "display_value": ""
+      },
+      "u_caller_email": {
+        "value": "",
+        "display_value": ""
+      },
+      "cmdb_ci": {
+        "value": "04a9280d3790200044e0bfc8bcbe5dd0",
+        "display_value": "MacBook Air 13\""
+      },
+      "delivery_plan": {
+        "value": "",
+        "display_value": ""
+      },
+      "contract": {
+        "value": "",
+        "display_value": ""
+      },
+      "impact": {
+        "value": "2",
+        "display_value": "2 - Medium"
+      },
+      "active": {
+        "value": "false",
+        "display_value": "false"
+      },
+      "work_notes_list": {
+        "value": "",
+        "display_value": ""
+      },
+      "priority": {
+        "value": "3",
+        "display_value": "3 - Moderate"
+      },
+      "sys_domain_path": {
+        "value": "/",
+        "display_value": "/"
+      },
+      "business_duration": {
+        "value": "1970-01-01 00:00:00",
+        "display_value": "0 Seconds"
+      },
+      "group_list": {
+        "value": "",
+        "display_value": ""
+      },
+      "approval_set": {
+        "value": "",
+        "display_value": ""
+      },
+      "universal_request": {
+        "value": "",
+        "display_value": ""
+      },
+      "short_description": {
+        "value": "Needed this week: Can't launch 64-bit Windows 7 VM",
+        "display_value": "Needed this week: Can't launch 64-bit Windows 7 VM"
+      },
+      "correlation_display": {
+        "value": "",
+        "display_value": ""
+      },
+      "delivery_task": {
+        "value": "",
+        "display_value": ""
+      },
+      "work_start": {
+        "value": "",
+        "display_value": ""
+      },
+      "additional_assignee_list": {
+        "value": "",
+        "display_value": ""
+      },
+      "notify": {
+        "value": "1",
+        "display_value": "Do Not Notify"
+      },
+      "service_offering": {
+        "value": "",
+        "display_value": ""
+      },
+      "sys_class_name": {
+        "value": "incident",
+        "display_value": "Incident"
+      },
+      "closed_by": {
+        "value": "6816f79cc0a8016401c5a33be04be441",
+        "display_value": "System Administrator"
+      },
+      "follow_up": {
+        "value": "",
+        "display_value": ""
+      },
+      "parent_incident": {
+        "value": "728fc314db21cb005323ffb41d961950",
+        "display_value": ""
+      },
+      "reopened_by": {
+        "value": "",
+        "display_value": ""
+      },
+      "reassignment_count": {
+        "value": "1",
+        "display_value": "1"
+      },
+      "assigned_to": {
+        "value": "",
+        "display_value": ""
+      },
+      "sla_due": {
+        "value": "",
+        "display_value": "UNKNOWN"
+      },
+      "comments_and_work_notes": {
+        "value": "",
+        "display_value": ""
+      },
+      "u_caller_phone_number": {
+        "value": "",
+        "display_value": ""
+      },
+      "escalation": {
+        "value": "0",
+        "display_value": "Normal"
+      },
+      "upon_approval": {
+        "value": "proceed",
+        "display_value": "Proceed to Next Task"
+      },
+      "correlation_id": {
+        "value": "",
+        "display_value": ""
+      },
+      "made_sla": {
+        "value": "true",
+        "display_value": "true"
+      },
+      "child_incidents": {
+        "value": "0",
+        "display_value": "0"
+      },
+      "hold_reason": {
+        "value": "",
+        "display_value": ""
+      },
+      "task_effective_number": {
+        "value": "INC0078800",
+        "display_value": "INC0078800"
+      },
+      "resolved_by": {
+        "value": "12826bf03710200044e0bfc8bcbe5dcc",
+        "display_value": "Mildred Gallegas"
+      },
+      "sys_updated_by": {
+        "value": "system",
+        "display_value": "system"
+      },
+      "u_phone": {
+        "value": "",
+        "display_value": ""
+      },
+      "opened_by": {
+        "value": "7b5fdabddb439550a4b793c3e296191f",
+        "display_value": "Jakob Wiant"
+      },
+      "user_input": {
+        "value": "",
+        "display_value": ""
+      },
+      "sys_created_on": {
+        "value": "2024-11-18 15:56:34",
+        "display_value": "11-18-2024 09:56:34"
+      },
+      "sys_domain": {
+        "value": "global",
+        "display_value": "global"
+      },
+      "route_reason": {
+        "value": "",
+        "display_value": ""
+      },
+      "calendar_stc": {
+        "value": "-68352638",
+        "display_value": "-68,352,638"
+      },
+      "closed_at": {
+        "value": "2019-06-24 21:10:10",
+        "display_value": "06-24-2019 16:10:10"
+      },
+      "business_service": {
+        "value": "6a78f28f933a31003b4bb095e57ffb8a",
+        "display_value": "Workday Enterprise Services"
+      },
+      "business_impact": {
+        "value": "",
+        "display_value": ""
+      },
+      "rfc": {
+        "value": "55cdf152db252200a6a2b31be0b8f540",
+        "display_value": "CHG0000051"
+      },
+      "time_worked": {
+        "value": "",
+        "display_value": ""
+      },
+      "expected_start": {
+        "value": "",
+        "display_value": ""
+      },
+      "opened_at": {
+        "value": "2021-08-24 00:00:48",
+        "display_value": "08-23-2021 19:00:48"
+      },
+      "work_end": {
+        "value": "",
+        "display_value": ""
+      },
+      "caller_id": {
+        "value": "fa82abf03710200044e0bfc8bcbe5d28",
+        "display_value": "Savannah Loffier"
+      },
+      "reopened_time": {
+        "value": "",
+        "display_value": ""
+      },
+      "resolved_at": {
+        "value": "2019-06-24 21:10:10",
+        "display_value": "06-24-2019 16:10:10"
+      },
+      "subcategory": {
+        "value": "os",
+        "display_value": "Operating System"
+      },
+      "work_notes": {
+        "value": "",
+        "display_value": ""
+      },
+      "close_code": {
+        "value": "Solved (Work Around)",
+        "display_value": "Solved (Work Around)"
+      },
+      "assignment_group": {
+        "value": "8a4dde73c6112278017a6a4baf547aa7",
+        "display_value": "Software"
+      },
+      "business_stc": {
+        "value": "0",
+        "display_value": "0"
+      },
+      "cause": {
+        "value": "",
+        "display_value": ""
+      },
+      "description": {
+        "value": "I downloaded and installed 64-bit Windows 7 virtual machine and I can't get it to launch. I'm not sure if I need 64-bit or 32-bit.",
+        "display_value": "I downloaded and installed 64-bit Windows 7 virtual machine and I can't get it to launch. I'm not sure if I need 64-bit or 32-bit."
+      },
+      "origin_id": {
+        "value": "aa0ad55147810200e90d87e8dee490e1",
+        "display_value": "Change Request: CHG0000021"
+      },
+      "calendar_duration": {
+        "value": "1967-11-02 21:09:22",
+        "display_value": "21 Hours 9 Minutes"
+      },
+      "close_notes": {
+        "value": "\nIncident 'INC0078800' closed based on closure of task 'INC0055675'\n\n\nIncident 'INC0055675' closed based on closure of task 'INC0044357'\n\n\nIncident 'INC0078800' closed based on closure of task 'INC0055675'\n\n\nIncident 'INC0055675' closed based on closure of task 'INC0044357'\n\n\nIncident 'INC0055675' closed based on closure of task 'INC0044357'\n\n",
+        "display_value": "\nIncident 'INC0078800' closed based on closure of task 'INC0055675'\n\n\nIncident 'INC0055675' closed based on closure of task 'INC0044357'\n\n\nIncident 'INC0078800' closed based on closure of task 'INC0055675'\n\n\nIncident 'INC0055675' closed based on closure of task 'INC0044357'\n\n\nIncident 'INC0055675' closed based on closure of task 'INC0044357'\n\n"
+      },
+      "sys_id": "0040ccb0db6dcb00dcdfd4f3ce961956",
+      "contact_type": {
+        "value": "",
+        "display_value": ""
+      },
+      "incident_state": {
+        "value": "7",
+        "display_value": "Closed"
+      },
+      "urgency": {
+        "value": "2",
+        "display_value": "2 - Medium"
+      },
+      "problem_id": {
+        "value": "4719b33ea9fe19810036eb762096188b",
+        "display_value": ""
+      },
+      "company": {
+        "value": "31bea3d53790200044e0bfc8bcbe5dec",
+        "display_value": "ACME North America"
+      },
+      "activity_due": {
+        "value": "",
+        "display_value": "UNKNOWN"
+      },
+      "severity": {
+        "value": "3",
+        "display_value": "3 - Low"
+      },
+      "comments": {
+        "value": "",
+        "display_value": ""
+      },
+      "approval": {
+        "value": "not requested",
+        "display_value": "Not Yet Requested"
+      },
+      "due_date": {
+        "value": "",
+        "display_value": ""
+      },
+      "sys_mod_count": {
+        "value": "1",
+        "display_value": "1"
+      },
+      "u_affected_user": {
+        "value": "",
+        "display_value": ""
+      },
+      "reopen_count": {
+        "value": "-2147483648",
+        "display_value": "-2,147,483,648"
+      },
+      "sys_tags": {
+        "value": "",
+        "display_value": ""
+      },
+      "location": {
+        "value": "",
+        "display_value": ""
+      },
+      "category": {
+        "value": "software",
+        "display_value": "Software"
+      },
+      "u_string_3": {
+        "value": "",
+        "display_value": ""
+      },
+      "u_string_2": {
+        "value": "Default",
+        "display_value": "Default"
+      }
     },
     {
-      "sys_id": "inc002",
-      "number": "INC0010254",
-      "opened_at": "2025-09-03T14:47:34",
-      "short_description": "test priority 1",
-      "description": "",
-      "caller_id": "user002",
-      "state": "New",
-      "priority": 3,
-      "impact": "2 - Medium",
-      "urgency": "2 - Medium",
-      "category": "Inquiry / Help",
-      "subcategory": "-- None --",
-      "assignment_group": "",
-      "assigned_to": "",
-      "channel": "Self-service",
-      "parent": "inc001",
-      "sys_updated_on": "2025-09-03T14:47:34",
-      "sys_updated_by": "joseph.vannieuwenhuyse"
+      "parent": {
+        "value": "",
+        "display_value": ""
+      },
+      "caused_by": {
+        "value": "12ffff7137310200f212cc028e41f175",
+        "display_value": "CHG0000034"
+      },
+      "watch_list": {
+        "value": "b9826bf03710200044e0bfc8bcbe5d32",
+        "display_value": "Lashonda Enote"
+      },
+      "upon_reject": {
+        "value": "cancel",
+        "display_value": "Cancel all future Tasks"
+      },
+      "sys_updated_on": {
+        "value": "2024-11-18 15:56:40",
+        "display_value": "11-18-2024 09:56:40"
+      },
+      "origin_table": {
+        "value": "change_request",
+        "display_value": "change_request"
+      },
+      "approval_history": {
+        "value": "",
+        "display_value": ""
+      },
+      "skills": {
+        "value": "",
+        "display_value": ""
+      },
+      "number": {
+        "value": "INC0086017",
+        "display_value": "INC0086017"
+      },
+      "u_inc_type": {
+        "value": "",
+        "display_value": ""
+      },
+      "state": {
+        "value": "7",
+        "display_value": "Closed"
+      },
+      "sys_created_by": {
+        "value": "jakob.wiant",
+        "display_value": "jakob.wiant"
+      },
+      "knowledge": {
+        "value": "false",
+        "display_value": "false"
+      },
+      "order": {
+        "value": "",
+        "display_value": ""
+      },
+      "u_caller_email": {
+        "value": "",
+        "display_value": ""
+      },
+      "cmdb_ci": {
+        "value": "0aa9604d3790200044e0bfc8bcbe5d36",
+        "display_value": "Precision T5500 Workstation"
+      },
+      "delivery_plan": {
+        "value": "",
+        "display_value": ""
+      },
+      "contract": {
+        "value": "",
+        "display_value": ""
+      },
+      "impact": {
+        "value": "2",
+        "display_value": "2 - Medium"
+      },
+      "active": {
+        "value": "false",
+        "display_value": "false"
+      },
+      "work_notes_list": {
+        "value": "",
+        "display_value": ""
+      },
+      "priority": {
+        "value": "3",
+        "display_value": "3 - Moderate"
+      },
+      "sys_domain_path": {
+        "value": "/",
+        "display_value": "/"
+      },
+      "business_duration": {
+        "value": "1970-01-01 00:00:00",
+        "display_value": "0 Seconds"
+      },
+      "group_list": {
+        "value": "",
+        "display_value": ""
+      },
+      "approval_set": {
+        "value": "",
+        "display_value": ""
+      },
+      "universal_request": {
+        "value": "",
+        "display_value": ""
+      },
+      "short_description": {
+        "value": "Needed this week: Error message when Upgrade",
+        "display_value": "Needed this week: Error message when Upgrade"
+      },
+      "correlation_display": {
+        "value": "",
+        "display_value": ""
+      },
+      "delivery_task": {
+        "value": "",
+        "display_value": ""
+      },
+      "work_start": {
+        "value": "",
+        "display_value": ""
+      },
+      "additional_assignee_list": {
+        "value": "",
+        "display_value": ""
+      },
+      "notify": {
+        "value": "1",
+        "display_value": "Do Not Notify"
+      },
+      "service_offering": {
+        "value": "",
+        "display_value": ""
+      },
+      "sys_class_name": {
+        "value": "incident",
+        "display_value": "Incident"
+      },
+      "closed_by": {
+        "value": "86826bf03710200044e0bfc8bcbe5d67",
+        "display_value": "Felipe Mahone"
+      },
+      "follow_up": {
+        "value": "",
+        "display_value": ""
+      },
+      "parent_incident": {
+        "value": "5109d394db658b00dcdfd4f3ce9619ce",
+        "display_value": ""
+      },
+      "reopened_by": {
+        "value": "",
+        "display_value": ""
+      },
+      "reassignment_count": {
+        "value": "1",
+        "display_value": "1"
+      },
+      "assigned_to": {
+        "value": "",
+        "display_value": ""
+      },
+      "sla_due": {
+        "value": "",
+        "display_value": "UNKNOWN"
+      },
+      "comments_and_work_notes": {
+        "value": "",
+        "display_value": ""
+      },
+      "u_caller_phone_number": {
+        "value": "",
+        "display_value": ""
+      },
+      "escalation": {
+        "value": "0",
+        "display_value": "Normal"
+      },
+      "upon_approval": {
+        "value": "proceed",
+        "display_value": "Proceed to Next Task"
+      },
+      "correlation_id": {
+        "value": "",
+        "display_value": ""
+      },
+      "made_sla": {
+        "value": "true",
+        "display_value": "true"
+      },
+      "child_incidents": {
+        "value": "0",
+        "display_value": "0"
+      },
+      "hold_reason": {
+        "value": "",
+        "display_value": ""
+      },
+      "task_effective_number": {
+        "value": "INC0086017",
+        "display_value": "INC0086017"
+      },
+      "resolved_by": {
+        "value": "86826bf03710200044e0bfc8bcbe5d67",
+        "display_value": "Felipe Mahone"
+      },
+      "sys_updated_by": {
+        "value": "jakob.wiant",
+        "display_value": "jakob.wiant"
+      },
+      "u_phone": {
+        "value": "",
+        "display_value": ""
+      },
+      "opened_by": {
+        "value": "7b5fdabddb439550a4b793c3e296191f",
+        "display_value": "Jakob Wiant"
+      },
+      "user_input": {
+        "value": "",
+        "display_value": ""
+      },
+      "sys_created_on": {
+        "value": "2024-11-18 15:56:40",
+        "display_value": "11-18-2024 09:56:40"
+      },
+      "sys_domain": {
+        "value": "global",
+        "display_value": "global"
+      },
+      "route_reason": {
+        "value": "",
+        "display_value": ""
+      },
+      "calendar_stc": {
+        "value": "-67715396",
+        "display_value": "-67,715,396"
+      },
+      "closed_at": {
+        "value": "2019-06-25 06:10:10",
+        "display_value": "06-25-2019 01:10:10"
+      },
+      "business_service": {
+        "value": "2fcc36510a0a0bb4006d2cb951ac2a82",
+        "display_value": "PeopleSoft Asset Lifecycle Management"
+      },
+      "business_impact": {
+        "value": "",
+        "display_value": ""
+      },
+      "rfc": {
+        "value": "",
+        "display_value": ""
+      },
+      "time_worked": {
+        "value": "",
+        "display_value": ""
+      },
+      "expected_start": {
+        "value": "",
+        "display_value": ""
+      },
+      "opened_at": {
+        "value": "2021-08-17 00:00:06",
+        "display_value": "08-16-2021 19:00:06"
+      },
+      "work_end": {
+        "value": "",
+        "display_value": ""
+      },
+      "caller_id": {
+        "value": "b5826bf03710200044e0bfc8bcbe5d39",
+        "display_value": "Joey Bolick"
+      },
+      "reopened_time": {
+        "value": "",
+        "display_value": ""
+      },
+      "resolved_at": {
+        "value": "2019-06-25 06:10:10",
+        "display_value": "06-25-2019 01:10:10"
+      },
+      "subcategory": {
+        "value": "sql server",
+        "display_value": "MS SQL Server"
+      },
+      "work_notes": {
+        "value": "",
+        "display_value": ""
+      },
+      "close_code": {
+        "value": "Solved Remotely (Permanently)",
+        "display_value": "Solved Remotely (Permanently)"
+      },
+      "assignment_group": {
+        "value": "287ee6fea9fe198100ada7950d0b1b73",
+        "display_value": "Database"
+      },
+      "business_stc": {
+        "value": "0",
+        "display_value": "0"
+      },
+      "cause": {
+        "value": "",
+        "display_value": ""
+      },
+      "description": {
+        "value": "We are getting the following error message when upgrading from sql 2008 r2 sp2 to sql 2012 sp1: \"Product: SQL Server 2012 BI Development Studio – Update ‘Service Pack 1 for SQL Server Business Intelligence Development Studio 2008 (64-bit) (KB2674319)’ could not be installed. Error code 1603\"",
+        "display_value": "We are getting the following error message when upgrading from sql 2008 r2 sp2 to sql 2012 sp1: \"Product: SQL Server 2012 BI Development Studio – Update ‘Service Pack 1 for SQL Server Business Intelligence Development Studio 2008 (64-bit) (KB2674319)’ could not be installed. Error code 1603\""
+      },
+      "origin_id": {
+        "value": "12ffff7137310200f212cc028e41f175",
+        "display_value": "Change Request: CHG0000034"
+      },
+      "calendar_duration": {
+        "value": "1967-11-10 06:10:04",
+        "display_value": "6 Hours 10 Minutes"
+      },
+      "close_notes": {
+        "value": "\nIncident 'INC0086017' closed based on closure of task 'INC0058602'\n\n\nIncident 'INC0058602' closed based on closure of task 'INC0042496'\n\n",
+        "display_value": "\nIncident 'INC0086017' closed based on closure of task 'INC0058602'\n\n\nIncident 'INC0058602' closed based on closure of task 'INC0042496'\n\n"
+      },
+      "sys_id": "0051d87cdba50f00dcdfd4f3ce9619c0",
+      "contact_type": {
+        "value": "",
+        "display_value": ""
+      },
+      "incident_state": {
+        "value": "7",
+        "display_value": "Closed"
+      },
+      "urgency": {
+        "value": "2",
+        "display_value": "2 - Medium"
+      },
+      "problem_id": {
+        "value": "46eaa7c9a9fe198100bbe282da0d4b7d",
+        "display_value": "PRB0000001"
+      },
+      "company": {
+        "value": "31bea3d53790200044e0bfc8bcbe5dec",
+        "display_value": "ACME North America"
+      },
+      "activity_due": {
+        "value": "",
+        "display_value": "UNKNOWN"
+      },
+      "severity": {
+        "value": "3",
+        "display_value": "3 - Low"
+      },
+      "comments": {
+        "value": "",
+        "display_value": ""
+      },
+      "approval": {
+        "value": "not requested",
+        "display_value": "Not Yet Requested"
+      },
+      "due_date": {
+        "value": "",
+        "display_value": ""
+      },
+      "sys_mod_count": {
+        "value": "0",
+        "display_value": "0"
+      },
+      "u_affected_user": {
+        "value": "",
+        "display_value": ""
+      },
+      "reopen_count": {
+        "value": "2147483647",
+        "display_value": "2,147,483,647"
+      },
+      "sys_tags": {
+        "value": "",
+        "display_value": ""
+      },
+      "location": {
+        "value": "",
+        "display_value": ""
+      },
+      "category": {
+        "value": "database",
+        "display_value": "Database"
+      },
+      "u_string_3": {
+        "value": "",
+        "display_value": ""
+      },
+      "u_string_2": {
+        "value": "Default",
+        "display_value": "Default"
+      }
     },
     {
-      "sys_id": "inc003",
-      "number": "INC0010253",
-      "opened_at": "2025-07-29T08:45:03",
-      "short_description": "test",
-      "description": "Testing incident creation",
-      "caller_id": "user003",
-      "state": "In Progress",
-      "priority": 5,
-      "impact": "3 - Low",
-      "urgency": "3 - Low",
-      "category": "Inquiry / Help",
-      "subcategory": "-- None --",
-      "assignment_group": "",
-      "assigned_to": "user003",
-      "channel": "Phone",
-      "parent": "inc001",
-      "sys_updated_on": "2025-07-29T08:45:03",
-      "sys_updated_by": "robert.reed"
+      "parent": {
+        "value": "",
+        "display_value": ""
+      },
+      "caused_by": {
+        "value": "baa1088237310200f212cc028e41f15c",
+        "display_value": "CHG0000035"
+      },
+      "watch_list": {
+        "value": "5e826bf03710200044e0bfc8bcbe5dc5",
+        "display_value": "Helene Iberg"
+      },
+      "upon_reject": {
+        "value": "cancel",
+        "display_value": "Cancel all future Tasks"
+      },
+      "sys_updated_on": {
+        "value": "2024-11-18 15:56:43",
+        "display_value": "11-18-2024 09:56:43"
+      },
+      "origin_table": {
+        "value": "change_request",
+        "display_value": "change_request"
+      },
+      "approval_history": {
+        "value": "",
+        "display_value": ""
+      },
+      "skills": {
+        "value": "",
+        "display_value": ""
+      },
+      "number": {
+        "value": "INC0076683",
+        "display_value": "INC0076683"
+      },
+      "u_inc_type": {
+        "value": "",
+        "display_value": ""
+      },
+      "state": {
+        "value": "7",
+        "display_value": "Closed"
+      },
+      "sys_created_by": {
+        "value": "jakob.wiant",
+        "display_value": "jakob.wiant"
+      },
+      "knowledge": {
+        "value": "false",
+        "display_value": "false"
+      },
+      "order": {
+        "value": "",
+        "display_value": ""
+      },
+      "u_caller_email": {
+        "value": "",
+        "display_value": ""
+      },
+      "cmdb_ci": {
+        "value": "281190e3c0a8000b003f593aa3f20ca6",
+        "display_value": "EXCH-SD-05"
+      },
+      "delivery_plan": {
+        "value": "",
+        "display_value": ""
+      },
+      "contract": {
+        "value": "",
+        "display_value": ""
+      },
+      "impact": {
+        "value": "2",
+        "display_value": "2 - Medium"
+      },
+      "active": {
+        "value": "false",
+        "display_value": "false"
+      },
+      "work_notes_list": {
+        "value": "",
+        "display_value": ""
+      },
+      "priority": {
+        "value": "4",
+        "display_value": "4 - Low"
+      },
+      "sys_domain_path": {
+        "value": "/",
+        "display_value": "/"
+      },
+      "business_duration": {
+        "value": "1970-01-01 00:00:00",
+        "display_value": "0 Seconds"
+      },
+      "group_list": {
+        "value": "",
+        "display_value": ""
+      },
+      "approval_set": {
+        "value": "",
+        "display_value": ""
+      },
+      "universal_request": {
+        "value": "",
+        "display_value": ""
+      },
+      "short_description": {
+        "value": "Urgent issue: i am running our of available space on my hard drive",
+        "display_value": "Urgent issue: i am running our of available space on my hard drive"
+      },
+      "correlation_display": {
+        "value": "",
+        "display_value": ""
+      },
+      "delivery_task": {
+        "value": "",
+        "display_value": ""
+      },
+      "work_start": {
+        "value": "",
+        "display_value": ""
+      },
+      "additional_assignee_list": {
+        "value": "",
+        "display_value": ""
+      },
+      "notify": {
+        "value": "2",
+        "display_value": "Send Email"
+      },
+      "service_offering": {
+        "value": "",
+        "display_value": ""
+      },
+      "sys_class_name": {
+        "value": "incident",
+        "display_value": "Incident"
+      },
+      "closed_by": {
+        "value": "56826bf03710200044e0bfc8bcbe5dc1",
+        "display_value": "Maryanne Whyman"
+      },
+      "follow_up": {
+        "value": "",
+        "display_value": ""
+      },
+      "parent_incident": {
+        "value": "d49aaad0dbe58b005323ffb41d961920",
+        "display_value": ""
+      },
+      "reopened_by": {
+        "value": "",
+        "display_value": ""
+      },
+      "reassignment_count": {
+        "value": "1",
+        "display_value": "1"
+      },
+      "assigned_to": {
+        "value": "",
+        "display_value": ""
+      },
+      "sla_due": {
+        "value": "",
+        "display_value": "UNKNOWN"
+      },
+      "comments_and_work_notes": {
+        "value": "",
+        "display_value": ""
+      },
+      "u_caller_phone_number": {
+        "value": "",
+        "display_value": ""
+      },
+      "escalation": {
+        "value": "0",
+        "display_value": "Normal"
+      },
+      "upon_approval": {
+        "value": "proceed",
+        "display_value": "Proceed to Next Task"
+      },
+      "correlation_id": {
+        "value": "",
+        "display_value": ""
+      },
+      "made_sla": {
+        "value": "true",
+        "display_value": "true"
+      },
+      "child_incidents": {
+        "value": "0",
+        "display_value": "0"
+      },
+      "hold_reason": {
+        "value": "",
+        "display_value": ""
+      },
+      "task_effective_number": {
+        "value": "INC0076683",
+        "display_value": "INC0076683"
+      },
+      "resolved_by": {
+        "value": "56826bf03710200044e0bfc8bcbe5dc1",
+        "display_value": "Maryanne Whyman"
+      },
+      "sys_updated_by": {
+        "value": "jakob.wiant",
+        "display_value": "jakob.wiant"
+      },
+      "u_phone": {
+        "value": "",
+        "display_value": ""
+      },
+      "opened_by": {
+        "value": "7b5fdabddb439550a4b793c3e296191f",
+        "display_value": "Jakob Wiant"
+      },
+      "user_input": {
+        "value": "",
+        "display_value": ""
+      },
+      "sys_created_on": {
+        "value": "2024-11-18 15:56:43",
+        "display_value": "11-18-2024 09:56:43"
+      },
+      "sys_domain": {
+        "value": "global",
+        "display_value": "global"
+      },
+      "route_reason": {
+        "value": "",
+        "display_value": ""
+      },
+      "calendar_stc": {
+        "value": "-68079168",
+        "display_value": "-68,079,168"
+      },
+      "closed_at": {
+        "value": "2019-06-25 01:10:10",
+        "display_value": "06-24-2019 20:10:10"
+      },
+      "business_service": {
+        "value": "2fcbe4120a0a0bb400195dc310cd2fb0",
+        "display_value": "PeopleSoft Supply Chain Management"
+      },
+      "business_impact": {
+        "value": "",
+        "display_value": ""
+      },
+      "rfc": {
+        "value": "8ecd7552db252200a6a2b31be0b8f581",
+        "display_value": "CHG0000073"
+      },
+      "time_worked": {
+        "value": "",
+        "display_value": ""
+      },
+      "expected_start": {
+        "value": "",
+        "display_value": ""
+      },
+      "opened_at": {
+        "value": "2021-08-21 00:02:58",
+        "display_value": "08-20-2021 19:02:58"
+      },
+      "work_end": {
+        "value": "",
+        "display_value": ""
+      },
+      "caller_id": {
+        "value": "f682abf03710200044e0bfc8bcbe5d2f",
+        "display_value": "Lucius Winchester"
+      },
+      "reopened_time": {
+        "value": "",
+        "display_value": ""
+      },
+      "resolved_at": {
+        "value": "2019-06-25 01:10:10",
+        "display_value": "06-24-2019 20:10:10"
+      },
+      "subcategory": {
+        "value": "disk",
+        "display_value": "Disk"
+      },
+      "work_notes": {
+        "value": "",
+        "display_value": ""
+      },
+      "close_code": {
+        "value": "Not Solved (Not Reproducible)",
+        "display_value": "Not Solved (Not Reproducible)"
+      },
+      "assignment_group": {
+        "value": "8a5055c9c61122780043563ef53438e3",
+        "display_value": "Hardware"
+      },
+      "business_stc": {
+        "value": "0",
+        "display_value": "0"
+      },
+      "cause": {
+        "value": "",
+        "display_value": ""
+      },
+      "description": {
+        "value": "I'm running out of storage on my computer. Can I get a bigger hard drive or help freeing up more space?",
+        "display_value": "I'm running out of storage on my computer. Can I get a bigger hard drive or help freeing up more space?"
+      },
+      "origin_id": {
+        "value": "baa1088237310200f212cc028e41f15c",
+        "display_value": "Change Request: CHG0000035"
+      },
+      "calendar_duration": {
+        "value": "1967-11-06 01:07:12",
+        "display_value": "1 Hour 7 Minutes"
+      },
+      "close_notes": {
+        "value": "\nIncident 'INC0076683' closed based on closure of task 'INC0046001'\n\n",
+        "display_value": "\nIncident 'INC0076683' closed based on closure of task 'INC0046001'\n\n"
+      },
+      "sys_id": "008a7324dba9cb00dcdfd4f3ce96193c",
+      "contact_type": {
+        "value": "",
+        "display_value": ""
+      },
+      "incident_state": {
+        "value": "7",
+        "display_value": "Closed"
+      },
+      "urgency": {
+        "value": "3",
+        "display_value": "3 - Low"
+      },
+      "problem_id": {
+        "value": "04ce72c9c0a8016600b5b7f75ac67b5b",
+        "display_value": "PRB0000050"
+      },
+      "company": {
+        "value": "31bea3d53790200044e0bfc8bcbe5dec",
+        "display_value": "ACME North America"
+      },
+      "activity_due": {
+        "value": "",
+        "display_value": "UNKNOWN"
+      },
+      "severity": {
+        "value": "1",
+        "display_value": "1 - High"
+      },
+      "comments": {
+        "value": "",
+        "display_value": ""
+      },
+      "approval": {
+        "value": "not requested",
+        "display_value": "Not Yet Requested"
+      },
+      "due_date": {
+        "value": "",
+        "display_value": ""
+      },
+      "sys_mod_count": {
+        "value": "0",
+        "display_value": "0"
+      },
+      "u_affected_user": {
+        "value": "",
+        "display_value": ""
+      },
+      "reopen_count": {
+        "value": "-2147483648",
+        "display_value": "-2,147,483,648"
+      },
+      "sys_tags": {
+        "value": "",
+        "display_value": ""
+      },
+      "location": {
+        "value": "",
+        "display_value": ""
+      },
+      "category": {
+        "value": "hardware",
+        "display_value": "Hardware"
+      },
+      "u_string_3": {
+        "value": "",
+        "display_value": ""
+      },
+      "u_string_2": {
+        "value": "Default",
+        "display_value": "Default"
+      }
     },
     {
-      "sys_id": "inc004",
-      "number": "INC0010220",
-      "opened_at": "2023-02-02T13:10:44",
-      "short_description": "Email not syncing on mobile device",
-      "description": "User reports that email is not syncing on their mobile device since this morning.",
-      "caller_id": "user004",
-      "state": "In Progress",
-      "priority": 4,
-      "impact": "3 - Low",
-      "urgency": "2 - Medium",
-      "category": "Inquiry / Help",
-      "subcategory": "Email",
-      "assignment_group": "grp002",
-      "assigned_to": "user004",
-      "channel": "Self-service",
-      "sys_updated_on": "2025-03-14T13:50:47",
-      "sys_updated_by": "robert.reed"
+      "parent": {
+        "value": "",
+        "display_value": ""
+      },
+      "caused_by": {
+        "value": "31cd7552db252200a6a2b31be0b8f55c",
+        "display_value": "CHG0000071"
+      },
+      "watch_list": {
+        "value": "1a826bf03710200044e0bfc8bcbe5da3",
+        "display_value": "Stephen Seiters"
+      },
+      "upon_reject": {
+        "value": "cancel",
+        "display_value": "Cancel all future Tasks"
+      },
+      "sys_updated_on": {
+        "value": "2024-11-18 15:56:45",
+        "display_value": "11-18-2024 09:56:45"
+      },
+      "origin_table": {
+        "value": "change_request",
+        "display_value": "change_request"
+      },
+      "approval_history": {
+        "value": "",
+        "display_value": ""
+      },
+      "skills": {
+        "value": "",
+        "display_value": ""
+      },
+      "number": {
+        "value": "INC0077275",
+        "display_value": "INC0077275"
+      },
+      "u_inc_type": {
+        "value": "",
+        "display_value": ""
+      },
+      "state": {
+        "value": "7",
+        "display_value": "Closed"
+      },
+      "sys_created_by": {
+        "value": "jakob.wiant",
+        "display_value": "jakob.wiant"
+      },
+      "knowledge": {
+        "value": "false",
+        "display_value": "false"
+      },
+      "order": {
+        "value": "",
+        "display_value": ""
+      },
+      "u_caller_email": {
+        "value": "",
+        "display_value": ""
+      },
+      "cmdb_ci": {
+        "value": "4014a3010a0a0b9b007e8c84ff4d4abe",
+        "display_value": "SAP-SD-02"
+      },
+      "delivery_plan": {
+        "value": "",
+        "display_value": ""
+      },
+      "contract": {
+        "value": "",
+        "display_value": ""
+      },
+      "impact": {
+        "value": "2",
+        "display_value": "2 - Medium"
+      },
+      "active": {
+        "value": "false",
+        "display_value": "false"
+      },
+      "work_notes_list": {
+        "value": "",
+        "display_value": ""
+      },
+      "priority": {
+        "value": "3",
+        "display_value": "3 - Moderate"
+      },
+      "sys_domain_path": {
+        "value": "/",
+        "display_value": "/"
+      },
+      "business_duration": {
+        "value": "1970-01-01 00:00:00",
+        "display_value": "0 Seconds"
+      },
+      "group_list": {
+        "value": "",
+        "display_value": ""
+      },
+      "approval_set": {
+        "value": "",
+        "display_value": ""
+      },
+      "universal_request": {
+        "value": "",
+        "display_value": ""
+      },
+      "short_description": {
+        "value": "Blocking issue: DB2 database hanges on DB2 connect",
+        "display_value": "Blocking issue: DB2 database hanges on DB2 connect"
+      },
+      "correlation_display": {
+        "value": "",
+        "display_value": ""
+      },
+      "delivery_task": {
+        "value": "",
+        "display_value": ""
+      },
+      "work_start": {
+        "value": "",
+        "display_value": ""
+      },
+      "additional_assignee_list": {
+        "value": "",
+        "display_value": ""
+      },
+      "notify": {
+        "value": "1",
+        "display_value": "Do Not Notify"
+      },
+      "service_offering": {
+        "value": "",
+        "display_value": ""
+      },
+      "sys_class_name": {
+        "value": "incident",
+        "display_value": "Incident"
+      },
+      "closed_by": {
+        "value": "6816f79cc0a8016401c5a33be04be441",
+        "display_value": "System Administrator"
+      },
+      "follow_up": {
+        "value": "",
+        "display_value": ""
+      },
+      "parent_incident": {
+        "value": "11c393d4db61cb005323ffb41d961916",
+        "display_value": ""
+      },
+      "reopened_by": {
+        "value": "",
+        "display_value": ""
+      },
+      "reassignment_count": {
+        "value": "1",
+        "display_value": "1"
+      },
+      "assigned_to": {
+        "value": "",
+        "display_value": ""
+      },
+      "sla_due": {
+        "value": "",
+        "display_value": "UNKNOWN"
+      },
+      "comments_and_work_notes": {
+        "value": "",
+        "display_value": ""
+      },
+      "u_caller_phone_number": {
+        "value": "",
+        "display_value": ""
+      },
+      "escalation": {
+        "value": "0",
+        "display_value": "Normal"
+      },
+      "upon_approval": {
+        "value": "proceed",
+        "display_value": "Proceed to Next Task"
+      },
+      "correlation_id": {
+        "value": "",
+        "display_value": ""
+      },
+      "made_sla": {
+        "value": "true",
+        "display_value": "true"
+      },
+      "child_incidents": {
+        "value": "0",
+        "display_value": "0"
+      },
+      "hold_reason": {
+        "value": "",
+        "display_value": ""
+      },
+      "task_effective_number": {
+        "value": "INC0077275",
+        "display_value": "INC0077275"
+      },
+      "resolved_by": {
+        "value": "96826bf03710200044e0bfc8bcbe5dab",
+        "display_value": "Dionne Borycz"
+      },
+      "sys_updated_by": {
+        "value": "jakob.wiant",
+        "display_value": "jakob.wiant"
+      },
+      "u_phone": {
+        "value": "",
+        "display_value": ""
+      },
+      "opened_by": {
+        "value": "7b5fdabddb439550a4b793c3e296191f",
+        "display_value": "Jakob Wiant"
+      },
+      "user_input": {
+        "value": "",
+        "display_value": ""
+      },
+      "sys_created_on": {
+        "value": "2024-11-18 15:56:45",
+        "display_value": "11-18-2024 09:56:45"
+      },
+      "sys_domain": {
+        "value": "global",
+        "display_value": "global"
+      },
+      "route_reason": {
+        "value": "",
+        "display_value": ""
+      },
+      "calendar_stc": {
+        "value": "-67798220",
+        "display_value": "-67,798,220"
+      },
+      "closed_at": {
+        "value": "2019-06-25 07:10:10",
+        "display_value": "06-25-2019 02:10:10"
+      },
+      "business_service": {
+        "value": "28c249adc0a8000b00548b3182245a80",
+        "display_value": "Retail Client Lookup"
+      },
+      "business_impact": {
+        "value": "",
+        "display_value": ""
+      },
+      "rfc": {
+        "value": "2de5121347c12200e0ef563dbb9a71eb",
+        "display_value": "CHG0040001"
+      },
+      "time_worked": {
+        "value": "",
+        "display_value": ""
+      },
+      "expected_start": {
+        "value": "",
+        "display_value": ""
+      },
+      "opened_at": {
+        "value": "2021-08-18 00:00:30",
+        "display_value": "08-17-2021 19:00:30"
+      },
+      "work_end": {
+        "value": "",
+        "display_value": ""
+      },
+      "caller_id": {
+        "value": "4e826bf03710200044e0bfc8bcbe5d6f",
+        "display_value": "Naomi Caetano"
+      },
+      "reopened_time": {
+        "value": "",
+        "display_value": ""
+      },
+      "resolved_at": {
+        "value": "2019-06-25 07:10:10",
+        "display_value": "06-25-2019 02:10:10"
+      },
+      "subcategory": {
+        "value": "db2",
+        "display_value": "DB2"
+      },
+      "work_notes": {
+        "value": "",
+        "display_value": ""
+      },
+      "close_code": {
+        "value": "Not Solved (Not Reproducible)",
+        "display_value": "Not Solved (Not Reproducible)"
+      },
+      "assignment_group": {
+        "value": "287ee6fea9fe198100ada7950d0b1b73",
+        "display_value": "Database"
+      },
+      "business_stc": {
+        "value": "0",
+        "display_value": "0"
+      },
+      "cause": {
+        "value": "",
+        "display_value": ""
+      },
+      "description": {
+        "value": "During a DB2 database P2V migration, the systems administrator did not request for the application be shut down which resulted in a potential corruption. When I restarted the DB2 server instance and attempted a db2 connect – the DB2 database wouldn’t progress with a successful connection.",
+        "display_value": "During a DB2 database P2V migration, the systems administrator did not request for the application be shut down which resulted in a potential corruption. When I restarted the DB2 server instance and attempted a db2 connect – the DB2 database wouldn’t progress with a successful connection."
+      },
+      "origin_id": {
+        "value": "31cd7552db252200a6a2b31be0b8f55c",
+        "display_value": "Change Request: CHG0000071"
+      },
+      "calendar_duration": {
+        "value": "1967-11-09 07:09:40",
+        "display_value": "7 Hours 9 Minutes"
+      },
+      "close_notes": {
+        "value": "\nIncident 'INC0077275' closed based on closure of task 'INC0056790'\n\n\nIncident 'INC0056790' closed based on closure of task 'INC0053287'\n\n\nIncident 'INC0053287' closed based on closure of task 'INC0045735'\n\n\nIncident 'INC0077275' closed based on closure of task 'INC0056790'\n\n\nIncident 'INC0056790' closed based on closure of task 'INC0053287'\n\n\nIncident 'INC0053287' closed based on closure of task 'INC0045735'\n\n\nIncident 'INC0056790' closed based on closure of task 'INC0053287'\n\n\nIncident 'INC0053287' closed based on closure of task 'INC0045735'\n\n\nIncident 'INC0053287' closed based on closure of task 'INC0045735'\n\n",
+        "display_value": "\nIncident 'INC0077275' closed based on closure of task 'INC0056790'\n\n\nIncident 'INC0056790' closed based on closure of task 'INC0053287'\n\n\nIncident 'INC0053287' closed based on closure of task 'INC0045735'\n\n\nIncident 'INC0077275' closed based on closure of task 'INC0056790'\n\n\nIncident 'INC0056790' closed based on closure of task 'INC0053287'\n\n\nIncident 'INC0053287' closed based on closure of task 'INC0045735'\n\n\nIncident 'INC0056790' closed based on closure of task 'INC0053287'\n\n\nIncident 'INC0053287' closed based on closure of task 'INC0045735'\n\n\nIncident 'INC0053287' closed based on closure of task 'INC0045735'\n\n"
+      },
+      "sys_id": "008c3360dbe9cb00dcdfd4f3ce9619f8",
+      "contact_type": {
+        "value": "",
+        "display_value": ""
+      },
+      "incident_state": {
+        "value": "7",
+        "display_value": "Closed"
+      },
+      "urgency": {
+        "value": "2",
+        "display_value": "2 - Medium"
+      },
+      "problem_id": {
+        "value": "46eaa7c9a9fe198100bbe282da0d4b7d",
+        "display_value": "PRB0000001"
+      },
+      "company": {
+        "value": "31bea3d53790200044e0bfc8bcbe5dec",
+        "display_value": "ACME North America"
+      },
+      "activity_due": {
+        "value": "",
+        "display_value": "UNKNOWN"
+      },
+      "severity": {
+        "value": "1",
+        "display_value": "1 - High"
+      },
+      "comments": {
+        "value": "",
+        "display_value": ""
+      },
+      "approval": {
+        "value": "not requested",
+        "display_value": "Not Yet Requested"
+      },
+      "due_date": {
+        "value": "",
+        "display_value": ""
+      },
+      "sys_mod_count": {
+        "value": "0",
+        "display_value": "0"
+      },
+      "u_affected_user": {
+        "value": "",
+        "display_value": ""
+      },
+      "reopen_count": {
+        "value": "2147483647",
+        "display_value": "2,147,483,647"
+      },
+      "sys_tags": {
+        "value": "",
+        "display_value": ""
+      },
+      "location": {
+        "value": "",
+        "display_value": ""
+      },
+      "category": {
+        "value": "database",
+        "display_value": "Database"
+      },
+      "u_string_3": {
+        "value": "",
+        "display_value": ""
+      },
+      "u_string_2": {
+        "value": "Default",
+        "display_value": "Default"
+      }
     },
     {
-      "sys_id": "inc005",
-      "number": "INC0010193",
-      "opened_at": "2022-12-07T13:51:14",
-      "short_description": "Re: Employment Agreement",
-      "description": "Follow-up on employment agreement questions",
-      "caller_id": "user005",
-      "state": "In Progress",
-      "priority": 3,
-      "impact": "2 - Medium",
-      "urgency": "2 - Medium",
-      "category": "Inquiry / Help",
-      "subcategory": "-- None --",
-      "assignment_group": "grp003",
-      "assigned_to": "user001",
-      "channel": "Email",
-      "sys_updated_on": "2025-03-31T13:25:05",
-      "sys_updated_by": "hunter.phillips"
+      "parent": {
+        "value": "",
+        "display_value": ""
+      },
+      "caused_by": {
+        "value": "b1cd3552db252200a6a2b31be0b8f580",
+        "display_value": "CHG0000062"
+      },
+      "watch_list": {
+        "value": "3d826bf03710200044e0bfc8bcbe5d2a",
+        "display_value": "Jarrett Kenzie"
+      },
+      "upon_reject": {
+        "value": "cancel",
+        "display_value": "Cancel all future Tasks"
+      },
+      "sys_updated_on": {
+        "value": "2024-11-18 15:56:47",
+        "display_value": "11-18-2024 09:56:47"
+      },
+      "origin_table": {
+        "value": "change_request",
+        "display_value": "change_request"
+      },
+      "approval_history": {
+        "value": "",
+        "display_value": ""
+      },
+      "skills": {
+        "value": "",
+        "display_value": ""
+      },
+      "number": {
+        "value": "INC0072323",
+        "display_value": "INC0072323"
+      },
+      "u_inc_type": {
+        "value": "",
+        "display_value": ""
+      },
+      "state": {
+        "value": "7",
+        "display_value": "Closed"
+      },
+      "sys_created_by": {
+        "value": "jakob.wiant",
+        "display_value": "jakob.wiant"
+      },
+      "knowledge": {
+        "value": "false",
+        "display_value": "false"
+      },
+      "order": {
+        "value": "",
+        "display_value": ""
+      },
+      "u_caller_email": {
+        "value": "",
+        "display_value": ""
+      },
+      "cmdb_ci": {
+        "value": "821b759ec0a8018b5c696eadc1f0732d",
+        "display_value": "Brother HL-2170W Personal Standard Mono Laser Printer"
+      },
+      "delivery_plan": {
+        "value": "",
+        "display_value": ""
+      },
+      "contract": {
+        "value": "",
+        "display_value": ""
+      },
+      "impact": {
+        "value": "2",
+        "display_value": "2 - Medium"
+      },
+      "active": {
+        "value": "false",
+        "display_value": "false"
+      },
+      "work_notes_list": {
+        "value": "",
+        "display_value": ""
+      },
+      "priority": {
+        "value": "3",
+        "display_value": "3 - Moderate"
+      },
+      "sys_domain_path": {
+        "value": "/",
+        "display_value": "/"
+      },
+      "business_duration": {
+        "value": "1970-01-01 00:00:00",
+        "display_value": "0 Seconds"
+      },
+      "group_list": {
+        "value": "",
+        "display_value": ""
+      },
+      "approval_set": {
+        "value": "",
+        "display_value": ""
+      },
+      "universal_request": {
+        "value": "",
+        "display_value": ""
+      },
+      "short_description": {
+        "value": "Urgent: Monitor does not work",
+        "display_value": "Urgent: Monitor does not work"
+      },
+      "correlation_display": {
+        "value": "",
+        "display_value": ""
+      },
+      "delivery_task": {
+        "value": "",
+        "display_value": ""
+      },
+      "work_start": {
+        "value": "",
+        "display_value": ""
+      },
+      "additional_assignee_list": {
+        "value": "",
+        "display_value": ""
+      },
+      "notify": {
+        "value": "3",
+        "display_value": "Telephone"
+      },
+      "service_offering": {
+        "value": "",
+        "display_value": ""
+      },
+      "sys_class_name": {
+        "value": "incident",
+        "display_value": "Incident"
+      },
+      "closed_by": {
+        "value": "6816f79cc0a8016401c5a33be04be441",
+        "display_value": "System Administrator"
+      },
+      "follow_up": {
+        "value": "",
+        "display_value": ""
+      },
+      "parent_incident": {
+        "value": "a54d3a18dbe98b005323ffb41d9619a0",
+        "display_value": ""
+      },
+      "reopened_by": {
+        "value": "",
+        "display_value": ""
+      },
+      "reassignment_count": {
+        "value": "1",
+        "display_value": "1"
+      },
+      "assigned_to": {
+        "value": "",
+        "display_value": ""
+      },
+      "sla_due": {
+        "value": "",
+        "display_value": "UNKNOWN"
+      },
+      "comments_and_work_notes": {
+        "value": "",
+        "display_value": ""
+      },
+      "u_caller_phone_number": {
+        "value": "",
+        "display_value": ""
+      },
+      "escalation": {
+        "value": "0",
+        "display_value": "Normal"
+      },
+      "upon_approval": {
+        "value": "proceed",
+        "display_value": "Proceed to Next Task"
+      },
+      "correlation_id": {
+        "value": "",
+        "display_value": ""
+      },
+      "made_sla": {
+        "value": "true",
+        "display_value": "true"
+      },
+      "child_incidents": {
+        "value": "0",
+        "display_value": "0"
+      },
+      "hold_reason": {
+        "value": "",
+        "display_value": ""
+      },
+      "task_effective_number": {
+        "value": "INC0072323",
+        "display_value": "INC0072323"
+      },
+      "resolved_by": {
+        "value": "c6826bf03710200044e0bfc8bcbe5d6c",
+        "display_value": "Shelley Groden"
+      },
+      "sys_updated_by": {
+        "value": "jakob.wiant",
+        "display_value": "jakob.wiant"
+      },
+      "u_phone": {
+        "value": "",
+        "display_value": ""
+      },
+      "opened_by": {
+        "value": "7b5fdabddb439550a4b793c3e296191f",
+        "display_value": "Jakob Wiant"
+      },
+      "user_input": {
+        "value": "",
+        "display_value": ""
+      },
+      "sys_created_on": {
+        "value": "2024-11-18 15:56:47",
+        "display_value": "11-18-2024 09:56:47"
+      },
+      "sys_domain": {
+        "value": "global",
+        "display_value": "global"
+      },
+      "route_reason": {
+        "value": "",
+        "display_value": ""
+      },
+      "calendar_stc": {
+        "value": "-67971064",
+        "display_value": "-67,971,064"
+      },
+      "closed_at": {
+        "value": "2019-06-25 07:10:10",
+        "display_value": "06-25-2019 02:10:10"
+      },
+      "business_service": {
+        "value": "2fce42d80a0a0bb4004af34d7e3984c8",
+        "display_value": "PeopleSoft Portals"
+      },
+      "business_impact": {
+        "value": "",
+        "display_value": ""
+      },
+      "rfc": {
+        "value": "f5cd3552db252200a6a2b31be0b8f5b2",
+        "display_value": "CHG0000064"
+      },
+      "time_worked": {
+        "value": "",
+        "display_value": ""
+      },
+      "expected_start": {
+        "value": "",
+        "display_value": ""
+      },
+      "opened_at": {
+        "value": "2021-08-20 00:01:14",
+        "display_value": "08-19-2021 19:01:14"
+      },
+      "work_end": {
+        "value": "",
+        "display_value": ""
+      },
+      "caller_id": {
+        "value": "86826bf03710200044e0bfc8bcbe5d70",
+        "display_value": "Mitzi Ihenyen"
+      },
+      "reopened_time": {
+        "value": "",
+        "display_value": ""
+      },
+      "resolved_at": {
+        "value": "2019-06-25 07:10:10",
+        "display_value": "06-25-2019 02:10:10"
+      },
+      "subcategory": {
+        "value": "monitor",
+        "display_value": "Monitor"
+      },
+      "work_notes": {
+        "value": "",
+        "display_value": ""
+      },
+      "close_code": {
+        "value": "Solved (Permanently)",
+        "display_value": "Solved (Permanently)"
+      },
+      "assignment_group": {
+        "value": "d625dccec0a8016700a222a0f7900d06",
+        "display_value": "Service Desk"
+      },
+      "business_stc": {
+        "value": "0",
+        "display_value": "0"
+      },
+      "cause": {
+        "value": "",
+        "display_value": ""
+      },
+      "description": {
+        "value": "Computer screen works when laptop is starting up but then goes blank right after.",
+        "display_value": "Computer screen works when laptop is starting up but then goes blank right after."
+      },
+      "origin_id": {
+        "value": "b1cd3552db252200a6a2b31be0b8f580",
+        "display_value": "Change Request: CHG0000062"
+      },
+      "calendar_duration": {
+        "value": "1967-11-07 07:08:56",
+        "display_value": "7 Hours 8 Minutes"
+      },
+      "close_notes": {
+        "value": "\nIncident 'INC0072323' closed based on closure of task 'INC0049723'\n\n\nIncident 'INC0049723' closed based on closure of task 'INC0044139'\n\n\nIncident 'INC0072323' closed based on closure of task 'INC0049723'\n\n\nIncident 'INC0049723' closed based on closure of task 'INC0044139'\n\n\nIncident 'INC0049723' closed based on closure of task 'INC0044139'\n\n",
+        "display_value": "\nIncident 'INC0072323' closed based on closure of task 'INC0049723'\n\n\nIncident 'INC0049723' closed based on closure of task 'INC0044139'\n\n\nIncident 'INC0072323' closed based on closure of task 'INC0049723'\n\n\nIncident 'INC0049723' closed based on closure of task 'INC0044139'\n\n\nIncident 'INC0049723' closed based on closure of task 'INC0044139'\n\n"
+      },
+      "sys_id": "00b0ffe4db25cb00dcdfd4f3ce96195a",
+      "contact_type": {
+        "value": "phone",
+        "display_value": "Phone"
+      },
+      "incident_state": {
+        "value": "7",
+        "display_value": "Closed"
+      },
+      "urgency": {
+        "value": "2",
+        "display_value": "2 - Medium"
+      },
+      "problem_id": {
+        "value": "a9e4890bc6112276003d7a5a5c774a74",
+        "display_value": "PRB0000006"
+      },
+      "company": {
+        "value": "31bea3d53790200044e0bfc8bcbe5dec",
+        "display_value": "ACME North America"
+      },
+      "activity_due": {
+        "value": "",
+        "display_value": "UNKNOWN"
+      },
+      "severity": {
+        "value": "2",
+        "display_value": "2 - Medium"
+      },
+      "comments": {
+        "value": "",
+        "display_value": ""
+      },
+      "approval": {
+        "value": "not requested",
+        "display_value": "Not Yet Requested"
+      },
+      "due_date": {
+        "value": "",
+        "display_value": ""
+      },
+      "sys_mod_count": {
+        "value": "0",
+        "display_value": "0"
+      },
+      "u_affected_user": {
+        "value": "",
+        "display_value": ""
+      },
+      "reopen_count": {
+        "value": "-2147483648",
+        "display_value": "-2,147,483,648"
+      },
+      "sys_tags": {
+        "value": "",
+        "display_value": ""
+      },
+      "location": {
+        "value": "",
+        "display_value": ""
+      },
+      "category": {
+        "value": "hardware",
+        "display_value": "Hardware"
+      },
+      "u_string_3": {
+        "value": "",
+        "display_value": ""
+      },
+      "u_string_2": {
+        "value": "Default",
+        "display_value": "Default"
+      }
+    },
+    {
+      "parent": {
+        "value": "",
+        "display_value": ""
+      },
+      "caused_by": {
+        "value": "46cc713aa9fe1981008a95d213681c65",
+        "display_value": "CHG0000005"
+      },
+      "watch_list": {
+        "value": "7d826bf03710200044e0bfc8bcbe5d38",
+        "display_value": "Lynette Setlock"
+      },
+      "upon_reject": {
+        "value": "cancel",
+        "display_value": "Cancel all future Tasks"
+      },
+      "sys_updated_on": {
+        "value": "2024-11-18 15:56:50",
+        "display_value": "11-18-2024 09:56:50"
+      },
+      "origin_table": {
+        "value": "change_request",
+        "display_value": "change_request"
+      },
+      "approval_history": {
+        "value": "",
+        "display_value": ""
+      },
+      "skills": {
+        "value": "",
+        "display_value": ""
+      },
+      "number": {
+        "value": "INC0085484",
+        "display_value": "INC0085484"
+      },
+      "u_inc_type": {
+        "value": "",
+        "display_value": ""
+      },
+      "state": {
+        "value": "7",
+        "display_value": "Closed"
+      },
+      "sys_created_by": {
+        "value": "jakob.wiant",
+        "display_value": "jakob.wiant"
+      },
+      "knowledge": {
+        "value": "false",
+        "display_value": "false"
+      },
+      "order": {
+        "value": "",
+        "display_value": ""
+      },
+      "u_caller_email": {
+        "value": "",
+        "display_value": ""
+      },
+      "cmdb_ci": {
+        "value": "821b9e9fc0a8018b279e89a952f243e8",
+        "display_value": "Brother HL-2170W Personal Standard Mono Laser Printer"
+      },
+      "delivery_plan": {
+        "value": "",
+        "display_value": ""
+      },
+      "contract": {
+        "value": "",
+        "display_value": ""
+      },
+      "impact": {
+        "value": "2",
+        "display_value": "2 - Medium"
+      },
+      "active": {
+        "value": "false",
+        "display_value": "false"
+      },
+      "work_notes_list": {
+        "value": "",
+        "display_value": ""
+      },
+      "priority": {
+        "value": "4",
+        "display_value": "4 - Low"
+      },
+      "sys_domain_path": {
+        "value": "/",
+        "display_value": "/"
+      },
+      "business_duration": {
+        "value": "1970-01-01 00:00:00",
+        "display_value": "0 Seconds"
+      },
+      "group_list": {
+        "value": "",
+        "display_value": ""
+      },
+      "approval_set": {
+        "value": "",
+        "display_value": ""
+      },
+      "universal_request": {
+        "value": "",
+        "display_value": ""
+      },
+      "short_description": {
+        "value": "Needed this week: Defrag hard drive",
+        "display_value": "Needed this week: Defrag hard drive"
+      },
+      "correlation_display": {
+        "value": "",
+        "display_value": ""
+      },
+      "delivery_task": {
+        "value": "",
+        "display_value": ""
+      },
+      "work_start": {
+        "value": "",
+        "display_value": ""
+      },
+      "additional_assignee_list": {
+        "value": "",
+        "display_value": ""
+      },
+      "notify": {
+        "value": "2",
+        "display_value": "Send Email"
+      },
+      "service_offering": {
+        "value": "",
+        "display_value": ""
+      },
+      "sys_class_name": {
+        "value": "incident",
+        "display_value": "Incident"
+      },
+      "closed_by": {
+        "value": "3682abf03710200044e0bfc8bcbe5d29",
+        "display_value": "Martin Carley"
+      },
+      "follow_up": {
+        "value": "",
+        "display_value": ""
+      },
+      "parent_incident": {
+        "value": "",
+        "display_value": ""
+      },
+      "reopened_by": {
+        "value": "",
+        "display_value": ""
+      },
+      "reassignment_count": {
+        "value": "1",
+        "display_value": "1"
+      },
+      "assigned_to": {
+        "value": "",
+        "display_value": ""
+      },
+      "sla_due": {
+        "value": "",
+        "display_value": "UNKNOWN"
+      },
+      "comments_and_work_notes": {
+        "value": "",
+        "display_value": ""
+      },
+      "u_caller_phone_number": {
+        "value": "",
+        "display_value": ""
+      },
+      "escalation": {
+        "value": "0",
+        "display_value": "Normal"
+      },
+      "upon_approval": {
+        "value": "proceed",
+        "display_value": "Proceed to Next Task"
+      },
+      "correlation_id": {
+        "value": "",
+        "display_value": ""
+      },
+      "made_sla": {
+        "value": "true",
+        "display_value": "true"
+      },
+      "child_incidents": {
+        "value": "0",
+        "display_value": "0"
+      },
+      "hold_reason": {
+        "value": "",
+        "display_value": ""
+      },
+      "task_effective_number": {
+        "value": "INC0085484",
+        "display_value": "INC0085484"
+      },
+      "resolved_by": {
+        "value": "3682abf03710200044e0bfc8bcbe5d29",
+        "display_value": "Martin Carley"
+      },
+      "sys_updated_by": {
+        "value": "jakob.wiant",
+        "display_value": "jakob.wiant"
+      },
+      "u_phone": {
+        "value": "",
+        "display_value": ""
+      },
+      "opened_by": {
+        "value": "7b5fdabddb439550a4b793c3e296191f",
+        "display_value": "Jakob Wiant"
+      },
+      "user_input": {
+        "value": "",
+        "display_value": ""
+      },
+      "sys_created_on": {
+        "value": "2024-11-18 15:56:50",
+        "display_value": "11-18-2024 09:56:50"
+      },
+      "sys_domain": {
+        "value": "global",
+        "display_value": "global"
+      },
+      "route_reason": {
+        "value": "",
+        "display_value": ""
+      },
+      "calendar_stc": {
+        "value": "-67222418",
+        "display_value": "-67,222,418"
+      },
+      "closed_at": {
+        "value": "2019-06-24 23:10:10",
+        "display_value": "06-24-2019 18:10:10"
+      },
+      "business_service": {
+        "value": "26ee44500a0a0bb4005561915af6d450",
+        "display_value": "SAP Plant Maintenance"
+      },
+      "business_impact": {
+        "value": "",
+        "display_value": ""
+      },
+      "rfc": {
+        "value": "a9cd3552db252200a6a2b31be0b8f579",
+        "display_value": "CHG0000061"
+      },
+      "time_worked": {
+        "value": "",
+        "display_value": ""
+      },
+      "expected_start": {
+        "value": "",
+        "display_value": ""
+      },
+      "opened_at": {
+        "value": "2021-08-11 00:03:48",
+        "display_value": "08-10-2021 19:03:48"
+      },
+      "work_end": {
+        "value": "",
+        "display_value": ""
+      },
+      "caller_id": {
+        "value": "c6826bf03710200044e0bfc8bcbe5d87",
+        "display_value": "Candice Bruckman"
+      },
+      "reopened_time": {
+        "value": "",
+        "display_value": ""
+      },
+      "resolved_at": {
+        "value": "2019-06-24 23:10:10",
+        "display_value": "06-24-2019 18:10:10"
+      },
+      "subcategory": {
+        "value": "disk",
+        "display_value": "Disk"
+      },
+      "work_notes": {
+        "value": "",
+        "display_value": ""
+      },
+      "close_code": {
+        "value": "Solved Remotely (Permanently)",
+        "display_value": "Solved Remotely (Permanently)"
+      },
+      "assignment_group": {
+        "value": "8a5055c9c61122780043563ef53438e3",
+        "display_value": "Hardware"
+      },
+      "business_stc": {
+        "value": "0",
+        "display_value": "0"
+      },
+      "cause": {
+        "value": "",
+        "display_value": ""
+      },
+      "description": {
+        "value": "System keeps popping up with a message saying I need to defrag the hard drive",
+        "display_value": "System keeps popping up with a message saying I need to defrag the hard drive"
+      },
+      "origin_id": {
+        "value": "46cc713aa9fe1981008a95d213681c65",
+        "display_value": "Change Request: CHG0000005"
+      },
+      "calendar_duration": {
+        "value": "1967-11-15 23:06:22",
+        "display_value": "23 Hours 6 Minutes"
+      },
+      "close_notes": {
+        "value": "\nIncident 'INC0085484' closed based on closure of task 'INC0067495'\n\n\nIncident 'INC0067495' closed based on closure of task 'INC0064215'\n\n\nIncident 'INC0064215' closed based on closure of task 'INC0053557'\n\n\nIncident 'INC0053557' closed based on closure of task 'INC0043497'\n\n",
+        "display_value": "\nIncident 'INC0085484' closed based on closure of task 'INC0067495'\n\n\nIncident 'INC0067495' closed based on closure of task 'INC0064215'\n\n\nIncident 'INC0064215' closed based on closure of task 'INC0053557'\n\n\nIncident 'INC0053557' closed based on closure of task 'INC0043497'\n\n"
+      },
+      "sys_id": "00bf4c70dba50f00dcdfd4f3ce96199d",
+      "contact_type": {
+        "value": "",
+        "display_value": ""
+      },
+      "incident_state": {
+        "value": "7",
+        "display_value": "Closed"
+      },
+      "urgency": {
+        "value": "3",
+        "display_value": "3 - Low"
+      },
+      "problem_id": {
+        "value": "46fb0230a9fe198101a23f6712475e11",
+        "display_value": "PRB0000008"
+      },
+      "company": {
+        "value": "31bea3d53790200044e0bfc8bcbe5dec",
+        "display_value": "ACME North America"
+      },
+      "activity_due": {
+        "value": "",
+        "display_value": "UNKNOWN"
+      },
+      "severity": {
+        "value": "3",
+        "display_value": "3 - Low"
+      },
+      "comments": {
+        "value": "",
+        "display_value": ""
+      },
+      "approval": {
+        "value": "not requested",
+        "display_value": "Not Yet Requested"
+      },
+      "due_date": {
+        "value": "",
+        "display_value": ""
+      },
+      "sys_mod_count": {
+        "value": "0",
+        "display_value": "0"
+      },
+      "u_affected_user": {
+        "value": "",
+        "display_value": ""
+      },
+      "reopen_count": {
+        "value": "-2147483648",
+        "display_value": "-2,147,483,648"
+      },
+      "sys_tags": {
+        "value": "",
+        "display_value": ""
+      },
+      "location": {
+        "value": "",
+        "display_value": ""
+      },
+      "category": {
+        "value": "hardware",
+        "display_value": "Hardware"
+      },
+      "u_string_3": {
+        "value": "",
+        "display_value": ""
+      },
+      "u_string_2": {
+        "value": "Default",
+        "display_value": "Default"
+      }
+    },
+    {
+      "parent": {
+        "value": "",
+        "display_value": ""
+      },
+      "caused_by": {
+        "value": "87b1682a0a0a2c3e75af785bd9073d70",
+        "display_value": "CHG0000014"
+      },
+      "watch_list": {
+        "value": "7282abf03710200044e0bfc8bcbe5d0c",
+        "display_value": "Antione Mccleary"
+      },
+      "upon_reject": {
+        "value": "cancel",
+        "display_value": "Cancel all future Tasks"
+      },
+      "sys_updated_on": {
+        "value": "2024-11-18 15:56:55",
+        "display_value": "11-18-2024 09:56:55"
+      },
+      "origin_table": {
+        "value": "change_request",
+        "display_value": "change_request"
+      },
+      "approval_history": {
+        "value": "",
+        "display_value": ""
+      },
+      "skills": {
+        "value": "",
+        "display_value": ""
+      },
+      "number": {
+        "value": "INC0084119",
+        "display_value": "INC0084119"
+      },
+      "u_inc_type": {
+        "value": "",
+        "display_value": ""
+      },
+      "state": {
+        "value": "7",
+        "display_value": "Closed"
+      },
+      "sys_created_by": {
+        "value": "jakob.wiant",
+        "display_value": "jakob.wiant"
+      },
+      "knowledge": {
+        "value": "false",
+        "display_value": "false"
+      },
+      "order": {
+        "value": "",
+        "display_value": ""
+      },
+      "u_caller_email": {
+        "value": "",
+        "display_value": ""
+      },
+      "cmdb_ci": {
+        "value": "3a2810c20a0a0bb400268337d6e942ca",
+        "display_value": "PS Apache03"
+      },
+      "delivery_plan": {
+        "value": "",
+        "display_value": ""
+      },
+      "contract": {
+        "value": "",
+        "display_value": ""
+      },
+      "impact": {
+        "value": "2",
+        "display_value": "2 - Medium"
+      },
+      "active": {
+        "value": "false",
+        "display_value": "false"
+      },
+      "work_notes_list": {
+        "value": "",
+        "display_value": ""
+      },
+      "priority": {
+        "value": "4",
+        "display_value": "4 - Low"
+      },
+      "sys_domain_path": {
+        "value": "/",
+        "display_value": "/"
+      },
+      "business_duration": {
+        "value": "1970-01-01 00:00:00",
+        "display_value": "0 Seconds"
+      },
+      "group_list": {
+        "value": "",
+        "display_value": ""
+      },
+      "approval_set": {
+        "value": "",
+        "display_value": ""
+      },
+      "universal_request": {
+        "value": "",
+        "display_value": ""
+      },
+      "short_description": {
+        "value": "Needed this week: Mail not syncing on phone",
+        "display_value": "Needed this week: Mail not syncing on phone"
+      },
+      "correlation_display": {
+        "value": "",
+        "display_value": ""
+      },
+      "delivery_task": {
+        "value": "",
+        "display_value": ""
+      },
+      "work_start": {
+        "value": "",
+        "display_value": ""
+      },
+      "additional_assignee_list": {
+        "value": "",
+        "display_value": ""
+      },
+      "notify": {
+        "value": "1",
+        "display_value": "Do Not Notify"
+      },
+      "service_offering": {
+        "value": "",
+        "display_value": ""
+      },
+      "sys_class_name": {
+        "value": "incident",
+        "display_value": "Incident"
+      },
+      "closed_by": {
+        "value": "7282abf03710200044e0bfc8bcbe5d2c",
+        "display_value": "Waldo Edberg"
+      },
+      "follow_up": {
+        "value": "",
+        "display_value": ""
+      },
+      "parent_incident": {
+        "value": "304ff290db2d8b005323ffb41d9619e7",
+        "display_value": ""
+      },
+      "reopened_by": {
+        "value": "",
+        "display_value": ""
+      },
+      "reassignment_count": {
+        "value": "1",
+        "display_value": "1"
+      },
+      "assigned_to": {
+        "value": "",
+        "display_value": ""
+      },
+      "sla_due": {
+        "value": "",
+        "display_value": "UNKNOWN"
+      },
+      "comments_and_work_notes": {
+        "value": "",
+        "display_value": ""
+      },
+      "u_caller_phone_number": {
+        "value": "",
+        "display_value": ""
+      },
+      "escalation": {
+        "value": "0",
+        "display_value": "Normal"
+      },
+      "upon_approval": {
+        "value": "proceed",
+        "display_value": "Proceed to Next Task"
+      },
+      "correlation_id": {
+        "value": "",
+        "display_value": ""
+      },
+      "made_sla": {
+        "value": "true",
+        "display_value": "true"
+      },
+      "child_incidents": {
+        "value": "0",
+        "display_value": "0"
+      },
+      "hold_reason": {
+        "value": "",
+        "display_value": ""
+      },
+      "task_effective_number": {
+        "value": "INC0084119",
+        "display_value": "INC0084119"
+      },
+      "resolved_by": {
+        "value": "7282abf03710200044e0bfc8bcbe5d2c",
+        "display_value": "Waldo Edberg"
+      },
+      "sys_updated_by": {
+        "value": "jakob.wiant",
+        "display_value": "jakob.wiant"
+      },
+      "u_phone": {
+        "value": "",
+        "display_value": ""
+      },
+      "opened_by": {
+        "value": "7b5fdabddb439550a4b793c3e296191f",
+        "display_value": "Jakob Wiant"
+      },
+      "user_input": {
+        "value": "",
+        "display_value": ""
+      },
+      "sys_created_on": {
+        "value": "2024-11-18 15:56:55",
+        "display_value": "11-18-2024 09:56:55"
+      },
+      "sys_domain": {
+        "value": "global",
+        "display_value": "global"
+      },
+      "route_reason": {
+        "value": "",
+        "display_value": ""
+      },
+      "calendar_stc": {
+        "value": "-68313079",
+        "display_value": "-68,313,079"
+      },
+      "closed_at": {
+        "value": "2019-06-25 08:10:10",
+        "display_value": "06-25-2019 03:10:10"
+      },
+      "business_service": {
+        "value": "28c15c94c0a8000b003c7f9cdbd4b5f0",
+        "display_value": "Retail"
+      },
+      "business_impact": {
+        "value": "",
+        "display_value": ""
+      },
+      "rfc": {
+        "value": "eaf5d21347c12200e0ef563dbb9a7109",
+        "display_value": "CHG0040002"
+      },
+      "time_worked": {
+        "value": "",
+        "display_value": ""
+      },
+      "expected_start": {
+        "value": "",
+        "display_value": ""
+      },
+      "opened_at": {
+        "value": "2021-08-24 00:01:29",
+        "display_value": "08-23-2021 19:01:29"
+      },
+      "work_end": {
+        "value": "",
+        "display_value": ""
+      },
+      "caller_id": {
+        "value": "5137153cc611227c000bbd1bd8cd2007",
+        "display_value": "David Loo"
+      },
+      "reopened_time": {
+        "value": "",
+        "display_value": ""
+      },
+      "resolved_at": {
+        "value": "2019-06-25 08:10:10",
+        "display_value": "06-25-2019 03:10:10"
+      },
+      "subcategory": {
+        "value": "",
+        "display_value": ""
+      },
+      "work_notes": {
+        "value": "",
+        "display_value": ""
+      },
+      "close_code": {
+        "value": "Solved (Permanently)",
+        "display_value": "Solved (Permanently)"
+      },
+      "assignment_group": {
+        "value": "8a4dde73c6112278017a6a4baf547aa7",
+        "display_value": "Software"
+      },
+      "business_stc": {
+        "value": "0",
+        "display_value": "0"
+      },
+      "cause": {
+        "value": "",
+        "display_value": ""
+      },
+      "description": {
+        "value": "I can't get mail to sync on my phone",
+        "display_value": "I can't get mail to sync on my phone"
+      },
+      "origin_id": {
+        "value": "87b1682a0a0a2c3e75af785bd9073d70",
+        "display_value": "Change Request: CHG0000014"
+      },
+      "calendar_duration": {
+        "value": "1967-11-03 08:08:41",
+        "display_value": "8 Hours 8 Minutes"
+      },
+      "close_notes": {
+        "value": "\nIncident 'INC0084119' closed based on closure of task 'INC0050446'\n\n\nIncident 'INC0050446' closed based on closure of task 'INC0043223'\n\n",
+        "display_value": "\nIncident 'INC0084119' closed based on closure of task 'INC0050446'\n\n\nIncident 'INC0050446' closed based on closure of task 'INC0043223'\n\n"
+      },
+      "sys_id": "00ec4434db250f00dcdfd4f3ce9619b1",
+      "contact_type": {
+        "value": "phone",
+        "display_value": "Phone"
+      },
+      "incident_state": {
+        "value": "7",
+        "display_value": "Closed"
+      },
+      "urgency": {
+        "value": "3",
+        "display_value": "3 - Low"
+      },
+      "problem_id": {
+        "value": "a9e4890bc6112276003d7a5a5c774a74",
+        "display_value": "PRB0000006"
+      },
+      "company": {
+        "value": "31bea3d53790200044e0bfc8bcbe5dec",
+        "display_value": "ACME North America"
+      },
+      "activity_due": {
+        "value": "",
+        "display_value": "UNKNOWN"
+      },
+      "severity": {
+        "value": "2",
+        "display_value": "2 - Medium"
+      },
+      "comments": {
+        "value": "",
+        "display_value": ""
+      },
+      "approval": {
+        "value": "not requested",
+        "display_value": "Not Yet Requested"
+      },
+      "due_date": {
+        "value": "",
+        "display_value": ""
+      },
+      "sys_mod_count": {
+        "value": "0",
+        "display_value": "0"
+      },
+      "u_affected_user": {
+        "value": "",
+        "display_value": ""
+      },
+      "reopen_count": {
+        "value": "2147483647",
+        "display_value": "2,147,483,647"
+      },
+      "sys_tags": {
+        "value": "",
+        "display_value": ""
+      },
+      "location": {
+        "value": "",
+        "display_value": ""
+      },
+      "category": {
+        "value": "network",
+        "display_value": "Network"
+      },
+      "u_string_3": {
+        "value": "",
+        "display_value": ""
+      },
+      "u_string_2": {
+        "value": "Default",
+        "display_value": "Default"
+      }
+    },
+    {
+      "parent": {
+        "value": "",
+        "display_value": ""
+      },
+      "caused_by": {
+        "value": "1766f1de47410200e90d87e8dee490f6",
+        "display_value": "CHG0000024"
+      },
+      "watch_list": {
+        "value": "3e826bf03710200044e0bfc8bcbe5df2",
+        "display_value": "Athena Fontanilla"
+      },
+      "upon_reject": {
+        "value": "cancel",
+        "display_value": "Cancel all future Tasks"
+      },
+      "sys_updated_on": {
+        "value": "2024-11-18 15:56:57",
+        "display_value": "11-18-2024 09:56:57"
+      },
+      "origin_table": {
+        "value": "change_request",
+        "display_value": "change_request"
+      },
+      "approval_history": {
+        "value": "",
+        "display_value": ""
+      },
+      "skills": {
+        "value": "",
+        "display_value": ""
+      },
+      "number": {
+        "value": "INC0091044",
+        "display_value": "INC0091044"
+      },
+      "u_inc_type": {
+        "value": "",
+        "display_value": ""
+      },
+      "state": {
+        "value": "7",
+        "display_value": "Closed"
+      },
+      "sys_created_by": {
+        "value": "jakob.wiant",
+        "display_value": "jakob.wiant"
+      },
+      "knowledge": {
+        "value": "false",
+        "display_value": "false"
+      },
+      "order": {
+        "value": "",
+        "display_value": ""
+      },
+      "u_caller_email": {
+        "value": "",
+        "display_value": ""
+      },
+      "cmdb_ci": {
+        "value": "0c43b7bcc6112275019abd2bace2e017",
+        "display_value": "TONIVWXP"
+      },
+      "delivery_plan": {
+        "value": "",
+        "display_value": ""
+      },
+      "contract": {
+        "value": "",
+        "display_value": ""
+      },
+      "impact": {
+        "value": "2",
+        "display_value": "2 - Medium"
+      },
+      "active": {
+        "value": "false",
+        "display_value": "false"
+      },
+      "work_notes_list": {
+        "value": "",
+        "display_value": ""
+      },
+      "priority": {
+        "value": "3",
+        "display_value": "3 - Moderate"
+      },
+      "sys_domain_path": {
+        "value": "/",
+        "display_value": "/"
+      },
+      "business_duration": {
+        "value": "1970-01-01 00:00:00",
+        "display_value": "0 Seconds"
+      },
+      "group_list": {
+        "value": "",
+        "display_value": ""
+      },
+      "approval_set": {
+        "value": "",
+        "display_value": ""
+      },
+      "universal_request": {
+        "value": "",
+        "display_value": ""
+      },
+      "short_description": {
+        "value": "Please help: Audit broke logons",
+        "display_value": "Please help: Audit broke logons"
+      },
+      "correlation_display": {
+        "value": "",
+        "display_value": ""
+      },
+      "delivery_task": {
+        "value": "",
+        "display_value": ""
+      },
+      "work_start": {
+        "value": "",
+        "display_value": ""
+      },
+      "additional_assignee_list": {
+        "value": "",
+        "display_value": ""
+      },
+      "notify": {
+        "value": "1",
+        "display_value": "Do Not Notify"
+      },
+      "service_offering": {
+        "value": "",
+        "display_value": ""
+      },
+      "sys_class_name": {
+        "value": "incident",
+        "display_value": "Incident"
+      },
+      "closed_by": {
+        "value": "6816f79cc0a8016401c5a33be04be441",
+        "display_value": "System Administrator"
+      },
+      "follow_up": {
+        "value": "",
+        "display_value": ""
+      },
+      "parent_incident": {
+        "value": "670e1614db258b005323ffb41d9619ee",
+        "display_value": ""
+      },
+      "reopened_by": {
+        "value": "",
+        "display_value": ""
+      },
+      "reassignment_count": {
+        "value": "1",
+        "display_value": "1"
+      },
+      "assigned_to": {
+        "value": "",
+        "display_value": ""
+      },
+      "sla_due": {
+        "value": "",
+        "display_value": "UNKNOWN"
+      },
+      "comments_and_work_notes": {
+        "value": "",
+        "display_value": ""
+      },
+      "u_caller_phone_number": {
+        "value": "",
+        "display_value": ""
+      },
+      "escalation": {
+        "value": "0",
+        "display_value": "Normal"
+      },
+      "upon_approval": {
+        "value": "proceed",
+        "display_value": "Proceed to Next Task"
+      },
+      "correlation_id": {
+        "value": "",
+        "display_value": ""
+      },
+      "made_sla": {
+        "value": "true",
+        "display_value": "true"
+      },
+      "child_incidents": {
+        "value": "0",
+        "display_value": "0"
+      },
+      "hold_reason": {
+        "value": "",
+        "display_value": ""
+      },
+      "task_effective_number": {
+        "value": "INC0091044",
+        "display_value": "INC0091044"
+      },
+      "resolved_by": {
+        "value": "fa826bf03710200044e0bfc8bcbe5df6",
+        "display_value": "Katina Survant"
+      },
+      "sys_updated_by": {
+        "value": "jakob.wiant",
+        "display_value": "jakob.wiant"
+      },
+      "u_phone": {
+        "value": "",
+        "display_value": ""
+      },
+      "opened_by": {
+        "value": "7b5fdabddb439550a4b793c3e296191f",
+        "display_value": "Jakob Wiant"
+      },
+      "user_input": {
+        "value": "",
+        "display_value": ""
+      },
+      "sys_created_on": {
+        "value": "2024-11-18 15:56:57",
+        "display_value": "11-18-2024 09:56:57"
+      },
+      "sys_domain": {
+        "value": "global",
+        "display_value": "global"
+      },
+      "route_reason": {
+        "value": "",
+        "display_value": ""
+      },
+      "calendar_stc": {
+        "value": "-67917130",
+        "display_value": "-67,917,130"
+      },
+      "closed_at": {
+        "value": "2019-06-24 22:10:10",
+        "display_value": "06-24-2019 17:10:10"
+      },
+      "business_service": {
+        "value": "2fca585e0a0a0bb400a949f8bb843712",
+        "display_value": "PeopleSoft CRM"
+      },
+      "business_impact": {
+        "value": "",
+        "display_value": ""
+      },
+      "rfc": {
+        "value": "99cdb152db252200a6a2b31be0b8f5e7",
+        "display_value": "CHG0000045"
+      },
+      "time_worked": {
+        "value": "",
+        "display_value": ""
+      },
+      "expected_start": {
+        "value": "",
+        "display_value": ""
+      },
+      "opened_at": {
+        "value": "2021-08-19 00:02:20",
+        "display_value": "08-18-2021 19:02:20"
+      },
+      "work_end": {
+        "value": "",
+        "display_value": ""
+      },
+      "caller_id": {
+        "value": "ca826bf03710200044e0bfc8bcbe5d80",
+        "display_value": "Karla Ken"
+      },
+      "reopened_time": {
+        "value": "",
+        "display_value": ""
+      },
+      "resolved_at": {
+        "value": "2019-06-24 22:10:10",
+        "display_value": "06-24-2019 17:10:10"
+      },
+      "subcategory": {
+        "value": "db2",
+        "display_value": "DB2"
+      },
+      "work_notes": {
+        "value": "",
+        "display_value": ""
+      },
+      "close_code": {
+        "value": "Solved (Permanently)",
+        "display_value": "Solved (Permanently)"
+      },
+      "assignment_group": {
+        "value": "287ee6fea9fe198100ada7950d0b1b73",
+        "display_value": "Database"
+      },
+      "business_stc": {
+        "value": "0",
+        "display_value": "0"
+      },
+      "cause": {
+        "value": "",
+        "display_value": ""
+      },
+      "description": {
+        "value": "Seeing multiple DB2 failed logon attempts",
+        "display_value": "Seeing multiple DB2 failed logon attempts"
+      },
+      "origin_id": {
+        "value": "1766f1de47410200e90d87e8dee490f6",
+        "display_value": "Change Request: CHG0000024"
+      },
+      "calendar_duration": {
+        "value": "1967-11-07 22:07:50",
+        "display_value": "22 Hours 7 Minutes"
+      },
+      "close_notes": {
+        "value": "\nIncident 'INC0091044' closed based on closure of task 'INC0043934'\n\n\nIncident 'INC0091044' closed based on closure of task 'INC0043934'\n\n",
+        "display_value": "\nIncident 'INC0091044' closed based on closure of task 'INC0043934'\n\n\nIncident 'INC0091044' closed based on closure of task 'INC0043934'\n\n"
+      },
+      "sys_id": "00fc1478dbad0f00dcdfd4f3ce9619d8",
+      "contact_type": {
+        "value": "",
+        "display_value": ""
+      },
+      "incident_state": {
+        "value": "7",
+        "display_value": "Closed"
+      },
+      "urgency": {
+        "value": "2",
+        "display_value": "2 - Medium"
+      },
+      "problem_id": {
+        "value": "46fb0230a9fe198101a23f6712475e11",
+        "display_value": "PRB0000008"
+      },
+      "company": {
+        "value": "31bea3d53790200044e0bfc8bcbe5dec",
+        "display_value": "ACME North America"
+      },
+      "activity_due": {
+        "value": "",
+        "display_value": "UNKNOWN"
+      },
+      "severity": {
+        "value": "3",
+        "display_value": "3 - Low"
+      },
+      "comments": {
+        "value": "",
+        "display_value": ""
+      },
+      "approval": {
+        "value": "not requested",
+        "display_value": "Not Yet Requested"
+      },
+      "due_date": {
+        "value": "",
+        "display_value": ""
+      },
+      "sys_mod_count": {
+        "value": "0",
+        "display_value": "0"
+      },
+      "u_affected_user": {
+        "value": "",
+        "display_value": ""
+      },
+      "reopen_count": {
+        "value": "-2147483648",
+        "display_value": "-2,147,483,648"
+      },
+      "sys_tags": {
+        "value": "",
+        "display_value": ""
+      },
+      "location": {
+        "value": "",
+        "display_value": ""
+      },
+      "category": {
+        "value": "database",
+        "display_value": "Database"
+      },
+      "u_string_3": {
+        "value": "",
+        "display_value": ""
+      },
+      "u_string_2": {
+        "value": "Default",
+        "display_value": "Default"
+      }
+    },
+    {
+      "parent": {
+        "value": "",
+        "display_value": ""
+      },
+      "caused_by": {
+        "value": "46cc713aa9fe1981008a95d213681c65",
+        "display_value": "CHG0000005"
+      },
+      "watch_list": {
+        "value": "71826bf03710200044e0bfc8bcbe5d20",
+        "display_value": "Mara Rineheart"
+      },
+      "upon_reject": {
+        "value": "cancel",
+        "display_value": "Cancel all future Tasks"
+      },
+      "sys_updated_on": {
+        "value": "2024-11-18 15:56:59",
+        "display_value": "11-18-2024 09:56:59"
+      },
+      "origin_table": {
+        "value": "change_request",
+        "display_value": "change_request"
+      },
+      "approval_history": {
+        "value": "",
+        "display_value": ""
+      },
+      "skills": {
+        "value": "",
+        "display_value": ""
+      },
+      "number": {
+        "value": "INC0085573",
+        "display_value": "INC0085573"
+      },
+      "u_inc_type": {
+        "value": "",
+        "display_value": ""
+      },
+      "state": {
+        "value": "7",
+        "display_value": "Closed"
+      },
+      "sys_created_by": {
+        "value": "jakob.wiant",
+        "display_value": "jakob.wiant"
+      },
+      "knowledge": {
+        "value": "false",
+        "display_value": "false"
+      },
+      "order": {
+        "value": "",
+        "display_value": ""
+      },
+      "u_caller_email": {
+        "value": "",
+        "display_value": ""
+      },
+      "cmdb_ci": {
+        "value": "82150555c0a8018b4750c75c49f19054",
+        "display_value": "Canon i960 Inkjet Photo"
+      },
+      "delivery_plan": {
+        "value": "",
+        "display_value": ""
+      },
+      "contract": {
+        "value": "",
+        "display_value": ""
+      },
+      "impact": {
+        "value": "1",
+        "display_value": "1 - High"
+      },
+      "active": {
+        "value": "false",
+        "display_value": "false"
+      },
+      "work_notes_list": {
+        "value": "",
+        "display_value": ""
+      },
+      "priority": {
+        "value": "2",
+        "display_value": "2 - High"
+      },
+      "sys_domain_path": {
+        "value": "/",
+        "display_value": "/"
+      },
+      "business_duration": {
+        "value": "1970-01-01 00:00:00",
+        "display_value": "0 Seconds"
+      },
+      "group_list": {
+        "value": "",
+        "display_value": ""
+      },
+      "approval_set": {
+        "value": "",
+        "display_value": ""
+      },
+      "universal_request": {
+        "value": "",
+        "display_value": ""
+      },
+      "short_description": {
+        "value": "DNS server is not responding Too DNS queries",
+        "display_value": "DNS server is not responding Too DNS queries"
+      },
+      "correlation_display": {
+        "value": "",
+        "display_value": ""
+      },
+      "delivery_task": {
+        "value": "",
+        "display_value": ""
+      },
+      "work_start": {
+        "value": "",
+        "display_value": ""
+      },
+      "additional_assignee_list": {
+        "value": "",
+        "display_value": ""
+      },
+      "notify": {
+        "value": "2",
+        "display_value": "Send Email"
+      },
+      "service_offering": {
+        "value": "",
+        "display_value": ""
+      },
+      "sys_class_name": {
+        "value": "incident",
+        "display_value": "Incident"
+      },
+      "closed_by": {
+        "value": "46826bf03710200044e0bfc8bcbe5d62",
+        "display_value": "Laurie Bigg"
+      },
+      "follow_up": {
+        "value": "",
+        "display_value": ""
+      },
+      "parent_incident": {
+        "value": "9fd9db50dbe1cb005323ffb41d961950",
+        "display_value": ""
+      },
+      "reopened_by": {
+        "value": "",
+        "display_value": ""
+      },
+      "reassignment_count": {
+        "value": "1",
+        "display_value": "1"
+      },
+      "assigned_to": {
+        "value": "",
+        "display_value": ""
+      },
+      "sla_due": {
+        "value": "",
+        "display_value": "UNKNOWN"
+      },
+      "comments_and_work_notes": {
+        "value": "",
+        "display_value": ""
+      },
+      "u_caller_phone_number": {
+        "value": "",
+        "display_value": ""
+      },
+      "escalation": {
+        "value": "0",
+        "display_value": "Normal"
+      },
+      "upon_approval": {
+        "value": "proceed",
+        "display_value": "Proceed to Next Task"
+      },
+      "correlation_id": {
+        "value": "",
+        "display_value": ""
+      },
+      "made_sla": {
+        "value": "true",
+        "display_value": "true"
+      },
+      "child_incidents": {
+        "value": "0",
+        "display_value": "0"
+      },
+      "hold_reason": {
+        "value": "",
+        "display_value": ""
+      },
+      "task_effective_number": {
+        "value": "INC0085573",
+        "display_value": "INC0085573"
+      },
+      "resolved_by": {
+        "value": "46826bf03710200044e0bfc8bcbe5d62",
+        "display_value": "Laurie Bigg"
+      },
+      "sys_updated_by": {
+        "value": "jakob.wiant",
+        "display_value": "jakob.wiant"
+      },
+      "u_phone": {
+        "value": "",
+        "display_value": ""
+      },
+      "opened_by": {
+        "value": "7b5fdabddb439550a4b793c3e296191f",
+        "display_value": "Jakob Wiant"
+      },
+      "user_input": {
+        "value": "",
+        "display_value": ""
+      },
+      "sys_created_on": {
+        "value": "2024-11-18 15:56:59",
+        "display_value": "11-18-2024 09:56:59"
+      },
+      "sys_domain": {
+        "value": "global",
+        "display_value": "global"
+      },
+      "route_reason": {
+        "value": "",
+        "display_value": ""
+      },
+      "calendar_stc": {
+        "value": "-67204364",
+        "display_value": "-67,204,364"
+      },
+      "closed_at": {
+        "value": "2019-06-25 04:10:10",
+        "display_value": "06-24-2019 23:10:10"
+      },
+      "business_service": {
+        "value": "26e494480a0a0bb400ad175538708ad9",
+        "display_value": "SAP Sales and Distribution"
+      },
+      "business_impact": {
+        "value": "",
+        "display_value": ""
+      },
+      "rfc": {
+        "value": "c83c5e5347c12200e0ef563dbb9a7190",
+        "display_value": "CHG0040007"
+      },
+      "time_worked": {
+        "value": "",
+        "display_value": ""
+      },
+      "expected_start": {
+        "value": "",
+        "display_value": ""
+      },
+      "opened_at": {
+        "value": "2021-08-11 00:02:54",
+        "display_value": "08-10-2021 19:02:54"
+      },
+      "work_end": {
+        "value": "",
+        "display_value": ""
+      },
+      "caller_id": {
+        "value": "fa82abf03710200044e0bfc8bcbe5d08",
+        "display_value": "Isabell Armout"
+      },
+      "reopened_time": {
+        "value": "",
+        "display_value": ""
+      },
+      "resolved_at": {
+        "value": "2019-06-25 04:10:10",
+        "display_value": "06-24-2019 23:10:10"
+      },
+      "subcategory": {
+        "value": "dns",
+        "display_value": "DNS"
+      },
+      "work_notes": {
+        "value": "",
+        "display_value": ""
+      },
+      "close_code": {
+        "value": "Solved (Permanently)",
+        "display_value": "Solved (Permanently)"
+      },
+      "assignment_group": {
+        "value": "287ebd7da9fe198100f92cc8d1d2154e",
+        "display_value": "Network"
+      },
+      "business_stc": {
+        "value": "0",
+        "display_value": "0"
+      },
+      "cause": {
+        "value": "",
+        "display_value": ""
+      },
+      "description": {
+        "value": "DNS server is not responding to DNS queries from clients but is reachable through basic network testing",
+        "display_value": "DNS server is not responding to DNS queries from clients but is reachable through basic network testing"
+      },
+      "origin_id": {
+        "value": "46cc713aa9fe1981008a95d213681c65",
+        "display_value": "Change Request: CHG0000005"
+      },
+      "calendar_duration": {
+        "value": "1967-11-16 04:07:16",
+        "display_value": "4 Hours 7 Minutes"
+      },
+      "close_notes": {
+        "value": "\nIncident 'INC0085573' closed based on closure of task 'INC0058813'\n\n\nIncident 'INC0058813' closed based on closure of task 'INC0053663'\n\n\nIncident 'INC0053663' closed based on closure of task 'INC0047013'\n\n\nIncident 'INC0058813' closed based on closure of task 'INC0053663'\n\n\nIncident 'INC0053663' closed based on closure of task 'INC0047013'\n\n\nIncident 'INC0053663' closed based on closure of task 'INC0047013'\n\n",
+        "display_value": "\nIncident 'INC0085573' closed based on closure of task 'INC0058813'\n\n\nIncident 'INC0058813' closed based on closure of task 'INC0053663'\n\n\nIncident 'INC0053663' closed based on closure of task 'INC0047013'\n\n\nIncident 'INC0058813' closed based on closure of task 'INC0053663'\n\n\nIncident 'INC0053663' closed based on closure of task 'INC0047013'\n\n\nIncident 'INC0053663' closed based on closure of task 'INC0047013'\n\n"
+      },
+      "sys_id": "00ff4cf0dba50f00dcdfd4f3ce96191d",
+      "contact_type": {
+        "value": "",
+        "display_value": ""
+      },
+      "incident_state": {
+        "value": "7",
+        "display_value": "Closed"
+      },
+      "urgency": {
+        "value": "2",
+        "display_value": "2 - Medium"
+      },
+      "problem_id": {
+        "value": "173669d567b032004792adab9485ef11",
+        "display_value": ""
+      },
+      "company": {
+        "value": "31bea3d53790200044e0bfc8bcbe5dec",
+        "display_value": "ACME North America"
+      },
+      "activity_due": {
+        "value": "",
+        "display_value": "UNKNOWN"
+      },
+      "severity": {
+        "value": "2",
+        "display_value": "2 - Medium"
+      },
+      "comments": {
+        "value": "",
+        "display_value": ""
+      },
+      "approval": {
+        "value": "not requested",
+        "display_value": "Not Yet Requested"
+      },
+      "due_date": {
+        "value": "",
+        "display_value": ""
+      },
+      "sys_mod_count": {
+        "value": "0",
+        "display_value": "0"
+      },
+      "u_affected_user": {
+        "value": "",
+        "display_value": ""
+      },
+      "reopen_count": {
+        "value": "-2147483648",
+        "display_value": "-2,147,483,648"
+      },
+      "sys_tags": {
+        "value": "",
+        "display_value": ""
+      },
+      "location": {
+        "value": "",
+        "display_value": ""
+      },
+      "category": {
+        "value": "network",
+        "display_value": "Network"
+      },
+      "u_string_3": {
+        "value": "",
+        "display_value": ""
+      },
+      "u_string_2": {
+        "value": "Default",
+        "display_value": "Default"
+      }
+    },
+    {
+      "parent": {
+        "value": "",
+        "display_value": ""
+      },
+      "caused_by": {
+        "value": "2dcdf152db252200a6a2b31be0b8f5d0",
+        "display_value": "CHG0000056"
+      },
+      "watch_list": {
+        "value": "ce826bf03710200044e0bfc8bcbe5d67",
+        "display_value": "Darrel Tork"
+      },
+      "upon_reject": {
+        "value": "cancel",
+        "display_value": "Cancel all future Tasks"
+      },
+      "sys_updated_on": {
+        "value": "2024-11-18 15:57:02",
+        "display_value": "11-18-2024 09:57:02"
+      },
+      "origin_table": {
+        "value": "change_request",
+        "display_value": "change_request"
+      },
+      "approval_history": {
+        "value": "",
+        "display_value": ""
+      },
+      "skills": {
+        "value": "",
+        "display_value": ""
+      },
+      "number": {
+        "value": "INC0093222",
+        "display_value": "INC0093222"
+      },
+      "u_inc_type": {
+        "value": "",
+        "display_value": ""
+      },
+      "state": {
+        "value": "7",
+        "display_value": "Closed"
+      },
+      "sys_created_by": {
+        "value": "jakob.wiant",
+        "display_value": "jakob.wiant"
+      },
+      "knowledge": {
+        "value": "false",
+        "display_value": "false"
+      },
+      "order": {
+        "value": "",
+        "display_value": ""
+      },
+      "u_caller_email": {
+        "value": "",
+        "display_value": ""
+      },
+      "cmdb_ci": {
+        "value": "6ccab11cc611222500e1549797d1c1e5",
+        "display_value": "Car-3"
+      },
+      "delivery_plan": {
+        "value": "",
+        "display_value": ""
+      },
+      "contract": {
+        "value": "",
+        "display_value": ""
+      },
+      "impact": {
+        "value": "2",
+        "display_value": "2 - Medium"
+      },
+      "active": {
+        "value": "false",
+        "display_value": "false"
+      },
+      "work_notes_list": {
+        "value": "",
+        "display_value": ""
+      },
+      "priority": {
+        "value": "3",
+        "display_value": "3 - Moderate"
+      },
+      "sys_domain_path": {
+        "value": "/",
+        "display_value": "/"
+      },
+      "business_duration": {
+        "value": "1970-01-01 00:00:00",
+        "display_value": "0 Seconds"
+      },
+      "group_list": {
+        "value": "",
+        "display_value": ""
+      },
+      "approval_set": {
+        "value": "",
+        "display_value": ""
+      },
+      "universal_request": {
+        "value": "",
+        "display_value": ""
+      },
+      "short_description": {
+        "value": "SQL server is unable Too get Too",
+        "display_value": "SQL server is unable Too get Too"
+      },
+      "correlation_display": {
+        "value": "",
+        "display_value": ""
+      },
+      "delivery_task": {
+        "value": "",
+        "display_value": ""
+      },
+      "work_start": {
+        "value": "",
+        "display_value": ""
+      },
+      "additional_assignee_list": {
+        "value": "",
+        "display_value": ""
+      },
+      "notify": {
+        "value": "1",
+        "display_value": "Do Not Notify"
+      },
+      "service_offering": {
+        "value": "",
+        "display_value": ""
+      },
+      "sys_class_name": {
+        "value": "incident",
+        "display_value": "Incident"
+      },
+      "closed_by": {
+        "value": "6816f79cc0a8016401c5a33be04be441",
+        "display_value": "System Administrator"
+      },
+      "follow_up": {
+        "value": "",
+        "display_value": ""
+      },
+      "parent_incident": {
+        "value": "365a1fd0dbe1cb005323ffb41d961910",
+        "display_value": ""
+      },
+      "reopened_by": {
+        "value": "",
+        "display_value": ""
+      },
+      "reassignment_count": {
+        "value": "1",
+        "display_value": "1"
+      },
+      "assigned_to": {
+        "value": "",
+        "display_value": ""
+      },
+      "sla_due": {
+        "value": "",
+        "display_value": "UNKNOWN"
+      },
+      "comments_and_work_notes": {
+        "value": "",
+        "display_value": ""
+      },
+      "u_caller_phone_number": {
+        "value": "",
+        "display_value": ""
+      },
+      "escalation": {
+        "value": "0",
+        "display_value": "Normal"
+      },
+      "upon_approval": {
+        "value": "proceed",
+        "display_value": "Proceed to Next Task"
+      },
+      "correlation_id": {
+        "value": "",
+        "display_value": ""
+      },
+      "made_sla": {
+        "value": "true",
+        "display_value": "true"
+      },
+      "child_incidents": {
+        "value": "0",
+        "display_value": "0"
+      },
+      "hold_reason": {
+        "value": "",
+        "display_value": ""
+      },
+      "task_effective_number": {
+        "value": "INC0093222",
+        "display_value": "INC0093222"
+      },
+      "resolved_by": {
+        "value": "b682abf03710200044e0bfc8bcbe5d2a",
+        "display_value": "Leif Bachta"
+      },
+      "sys_updated_by": {
+        "value": "jakob.wiant",
+        "display_value": "jakob.wiant"
+      },
+      "u_phone": {
+        "value": "",
+        "display_value": ""
+      },
+      "opened_by": {
+        "value": "7b5fdabddb439550a4b793c3e296191f",
+        "display_value": "Jakob Wiant"
+      },
+      "user_input": {
+        "value": "",
+        "display_value": ""
+      },
+      "sys_created_on": {
+        "value": "2024-11-18 15:57:02",
+        "display_value": "11-18-2024 09:57:02"
+      },
+      "sys_domain": {
+        "value": "global",
+        "display_value": "global"
+      },
+      "route_reason": {
+        "value": "",
+        "display_value": ""
+      },
+      "calendar_stc": {
+        "value": "-67658025",
+        "display_value": "-67,658,025"
+      },
+      "closed_at": {
+        "value": "2019-06-24 22:10:10",
+        "display_value": "06-24-2019 17:10:10"
+      },
+      "business_service": {
+        "value": "2fd114e10a0a0bb400f07732a4131e72",
+        "display_value": "PeopleSoft Reporting"
+      },
+      "business_impact": {
+        "value": "",
+        "display_value": ""
+      },
+      "rfc": {
+        "value": "25cdf152db252200a6a2b31be0b8f5ca",
+        "display_value": "CHG0000055"
+      },
+      "time_worked": {
+        "value": "",
+        "display_value": ""
+      },
+      "expected_start": {
+        "value": "",
+        "display_value": ""
+      },
+      "opened_at": {
+        "value": "2021-08-16 00:03:55",
+        "display_value": "08-15-2021 19:03:55"
+      },
+      "work_end": {
+        "value": "",
+        "display_value": ""
+      },
+      "caller_id": {
+        "value": "47de9c73c61122930033f6521d1bb785",
+        "display_value": "Asset Manager"
+      },
+      "reopened_time": {
+        "value": "",
+        "display_value": ""
+      },
+      "resolved_at": {
+        "value": "2019-06-24 22:10:10",
+        "display_value": "06-24-2019 17:10:10"
+      },
+      "subcategory": {
+        "value": "sql server",
+        "display_value": "MS SQL Server"
+      },
+      "work_notes": {
+        "value": "",
+        "display_value": ""
+      },
+      "close_code": {
+        "value": "Closed/Resolved by Caller",
+        "display_value": "Closed/Resolved by Caller"
+      },
+      "assignment_group": {
+        "value": "287ee6fea9fe198100ada7950d0b1b73",
+        "display_value": "Database"
+      },
+      "business_stc": {
+        "value": "0",
+        "display_value": "0"
+      },
+      "cause": {
+        "value": "",
+        "display_value": ""
+      },
+      "description": {
+        "value": "Using SQL server with application that uses database poolilng. It has become unreachable and there haven't been any configuration changes in the application.",
+        "display_value": "Using SQL server with application that uses database poolilng. It has become unreachable and there haven't been any configuration changes in the application."
+      },
+      "origin_id": {
+        "value": "2dcdf152db252200a6a2b31be0b8f5d0",
+        "display_value": "Change Request: CHG0000056"
+      },
+      "calendar_duration": {
+        "value": "1967-11-10 22:06:15",
+        "display_value": "22 Hours 6 Minutes"
+      },
+      "close_notes": {
+        "value": "\nIncident 'INC0093222' closed based on closure of task 'INC0058908'\n\n\nIncident 'INC0058908' closed based on closure of task 'INC0046176'\n\n\nIncident 'INC0093222' closed based on closure of task 'INC0058908'\n\n\nIncident 'INC0058908' closed based on closure of task 'INC0046176'\n\n\nIncident 'INC0058908' closed based on closure of task 'INC0046176'\n\n",
+        "display_value": "\nIncident 'INC0093222' closed based on closure of task 'INC0058908'\n\n\nIncident 'INC0058908' closed based on closure of task 'INC0046176'\n\n\nIncident 'INC0093222' closed based on closure of task 'INC0058908'\n\n\nIncident 'INC0058908' closed based on closure of task 'INC0046176'\n\n\nIncident 'INC0058908' closed based on closure of task 'INC0046176'\n\n"
+      },
+      "sys_id": "01226c7cdb614f00dcdfd4f3ce961953",
+      "contact_type": {
+        "value": "",
+        "display_value": ""
+      },
+      "incident_state": {
+        "value": "7",
+        "display_value": "Closed"
+      },
+      "urgency": {
+        "value": "2",
+        "display_value": "2 - Medium"
+      },
+      "problem_id": {
+        "value": "46fb9e31a9fe198101492060c2a4f8cb",
+        "display_value": "PRB0000003"
+      },
+      "company": {
+        "value": "31bea3d53790200044e0bfc8bcbe5dec",
+        "display_value": "ACME North America"
+      },
+      "activity_due": {
+        "value": "",
+        "display_value": "UNKNOWN"
+      },
+      "severity": {
+        "value": "2",
+        "display_value": "2 - Medium"
+      },
+      "comments": {
+        "value": "",
+        "display_value": ""
+      },
+      "approval": {
+        "value": "not requested",
+        "display_value": "Not Yet Requested"
+      },
+      "due_date": {
+        "value": "",
+        "display_value": ""
+      },
+      "sys_mod_count": {
+        "value": "0",
+        "display_value": "0"
+      },
+      "u_affected_user": {
+        "value": "",
+        "display_value": ""
+      },
+      "reopen_count": {
+        "value": "2147483647",
+        "display_value": "2,147,483,647"
+      },
+      "sys_tags": {
+        "value": "",
+        "display_value": ""
+      },
+      "location": {
+        "value": "",
+        "display_value": ""
+      },
+      "category": {
+        "value": "database",
+        "display_value": "Database"
+      },
+      "u_string_3": {
+        "value": "",
+        "display_value": ""
+      },
+      "u_string_2": {
+        "value": "Default",
+        "display_value": "Default"
+      }
     }
   ]
 }
