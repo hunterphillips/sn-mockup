@@ -49,8 +49,8 @@ export function NowAssistPopup({
   return (
     <div
       className={cn(
-        'fixed bottom-20 right-6 z-50',
-        'max-w-[calc(100vw-48px)]',
+        'fixed bottom-60 left-1/2 transform -translate-x-1/2 z-50',
+        'w-[840px] max-w-[calc(100vw-48px)]',
         'bg-white rounded-sn-lg shadow-sn-5 border border-sn-neutral-3',
         'flex flex-col',
       )}

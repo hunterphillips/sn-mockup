@@ -1,6 +1,10 @@
 import { useState, useRef, useEffect, type ReactNode } from 'react';
 import { createPortal } from 'react-dom';
-import type { FieldDefinition, SNRecord, TableDefinition } from '../../../types';
+import type {
+  FieldDefinition,
+  SNRecord,
+  TableDefinition,
+} from '../../../types';
 import { generateContent } from '../../../api/nowAssist';
 import { NowAssistTrigger } from './NowAssistTrigger';
 import { NowAssistPopup } from './NowAssistPopup';
@@ -83,7 +87,9 @@ export function NowAssistFieldWrapper({
         setContent(response.content);
       }
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to generate content');
+      setError(
+        err instanceof Error ? err.message : 'Failed to generate content',
+      );
     } finally {
       setIsLoading(false);
     }
@@ -124,10 +130,7 @@ export function NowAssistFieldWrapper({
     <div className="relative">
       {/* Trigger button positioned at top-right */}
       <div ref={triggerRef} className="absolute -top-1 -right-1 z-10">
-        <NowAssistTrigger
-          isOpen={isOpen}
-          onClick={handleOpen}
-        />
+        <NowAssistTrigger isOpen={isOpen} onClick={handleOpen} />
       </div>
 
       {/* The wrapped field */}
@@ -146,7 +149,7 @@ export function NowAssistFieldWrapper({
               onClose={() => setIsOpen(false)}
             />
           </div>,
-          document.body
+          document.body,
         )}
     </div>
   );
