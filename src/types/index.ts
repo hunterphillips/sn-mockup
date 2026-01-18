@@ -31,6 +31,7 @@ export interface FieldDefinition {
   reference?: string // Table name for reference fields
   defaultValue?: unknown
   maxLength?: number
+  aiAssist?: boolean // Enable Now Assist AI content generation
 }
 
 /** List view configuration */

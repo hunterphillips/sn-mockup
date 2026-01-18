@@ -716,7 +716,8 @@
       "name": "acceptance_criteria",
       "type": "richtext",
       "label": "Acceptance criteria",
-      "maxLength": 4000
+      "maxLength": 4000,
+      "aiAssist": true
     },
     {
       "name": "global_rank",
@@ -1168,7 +1169,7 @@
         "value": "",
         "display_value": ""
       },
-      "sys_updated_on": "2026-01-18T02:57:10.954Z",
+      "sys_updated_on": "2026-01-18T19:56:47.197Z",
       "type": {
         "value": "",
         "display_value": ""
@@ -1539,7 +1540,7 @@
       },
       "acceptance_criteria": {
         "value": "<p>I know this is complete when I see values displayed for this question based on what I chose for the <br />previous question. For example, if I chose Community as my secondary firm initiative area, I should only see the initiatives related to operations (there are 7) as the possible responses. In addition, this story is complete when I am able to choose multiple of these firm initiatives.</p>",
-        "display_value": "<p>I know this is complete when I see values displayed for this question based on what I chose for the&nbsp;<br>previous question. For example, if I chose Community as my secondary firm initiative area, I should only see the initiatives related to operations (there are 7) as the possible responses. In addition, this story is complete when I am able to choose multiple of these firm initiatives.</p>"
+        "display_value": "<p><strong>Acceptance Criteria:</strong></p><ul><li><p><strong>Real-time Status Display:</strong></p><ul><li><p>Users can view current request status beyond basic states (Open, In Progress, Closed)</p></li><li><p>Status updates reflect changes within 30 seconds of backend updates</p></li><li><p>Visual indicators clearly distinguish between different status types</p></li></ul></li><li><p><strong>Timeline Widget Implementation:</strong></p><ul><li><p>Timeline widget displays chronological progression of request milestones</p></li><li><p>Each milestone shows timestamp, status change, and responsible group</p></li><li><p>Widget loads within 3 seconds on My Requests page</p></li><li><p>Timeline is sortable by date (ascending/descending)</p></li></ul></li><li><p><strong>Milestone Information:</strong></p><ul><li><p>Key milestones include: Request Submitted, Assignment, Work Started, Pending Customer, Resolved, Closed</p></li><li><p>Assigned group/individual is displayed for each applicable milestone</p></li><li><p>Estimated completion date is prominently displayed and updates based on SLA calculations</p></li><li><p>Next steps or pending actions are clearly indicated</p></li></ul></li><li><p><strong>Service Portal Integration:</strong></p><ul><li><p>Timeline widget is accessible from My Requests page for all user requests</p></li><li><p>Individual request detail view includes expanded timeline with full milestone history</p></li><li><p>Widget is responsive and functions properly on desktop and mobile devices</p></li><li><p>Integration maintains existing Service Portal performance standards</p></li></ul></li><li><p><strong>User Experience:</strong></p><ul><li><p>Users can access request progress without contacting service desk</p></li><li><p>Interface is intuitive and requires no additional training</p></li><li><p>Status information is presented in plain language understandable to end users</p></li><li><p>Widget gracefully handles requests with no timeline data</p></li></ul></li><li><p><strong>Technical Requirements:</strong></p><ul><li><p>Widget supports both catalog items and standard service requests</p></li><li><p>Data accuracy maintained across all supported request types</p></li><li><p>Proper error handling for network connectivity issues</p></li><li><p>Widget respects existing ACL and security permissions</p></li></ul></li></ul><p></p>"
       },
       "global_rank": {
         "value": "4034200000",
@@ -1647,7 +1648,7 @@
       },
       "description": {
         "value": "As an App Admin, I want a follow-up to the secondary firm initiative area question in which the values displayed are dependent on what was selected and should be multi-select. \r\n(please refer to the requirements doc for what these values should be).\r\n\r\nPlease add an additional community initiative area titled Intern/Skillbridge Lead per Isabel's request, and make this selection sit above the Intern Coaches choice.",
-        "display_value": "As an App Admin, I want a follow-up to the secondary firm initiative area question in which the values displayed are dependent on what was selected and should be multi-select. \r\n(please refer to the requirements doc for what these values should be).\r\n\r\nPlease add an additional community initiative area titled Intern/Skillbridge Lead per Isabel's request, and make this selection sit above the Intern Coaches choice."
+        "display_value": "As a Service Portal end user, I want to view real-time status updates and milestone details for my submitted service requests directly in the Service Portal, so that I can understand progress, expected completion, and next steps without contacting the service desk.\n\nCurrently, users can only see a high-level request state (e.g., Open, In Progress, Closed) in the Service Portal. This enhancement introduces a request status timeline widget that displays key milestones, timestamps, assigned group, and estimated completion date for catalog items and requests.\n\nThe widget will be accessible from the My Requests page and individual request detail views."
       },
       "effort": {
         "value": "",
@@ -2419,10 +2420,7 @@
         "value": "",
         "display_value": ""
       },
-      "sys_updated_on": {
-        "value": "2023-12-21 17:04:40",
-        "display_value": "12-21-2023 11:04:40"
-      },
+      "sys_updated_on": "2026-01-18T20:05:34.613Z",
       "type": {
         "value": "",
         "display_value": ""
@@ -2793,7 +2791,7 @@
       },
       "acceptance_criteria": {
         "value": "<p>I know this is complete when the question drop-down options include Solutions Delivery Lead and are visible as a user of the system.</p>",
-        "display_value": "<p>I know this is complete when the question drop-down options include Solutions Delivery Lead and are visible as a user of the system.</p>"
+        "display_value": "<p><strong>Acceptance Criteria:</strong></p><ul><li><p>The \"Please select your job title\" survey question contains a new option labeled \"Solutions Delivery Lead\"</p></li><li><p>The new option appears in the correct alphabetical order within the dropdown list</p></li><li><p>Users can successfully select \"Solutions Delivery Lead\" and submit the survey</p></li><li><p>The selected value is properly captured and stored in survey responses</p></li><li><p>All existing job title options remain unchanged and functional</p></li></ul><p></p>"
       },
       "global_rank": {
         "value": "4033200000",
