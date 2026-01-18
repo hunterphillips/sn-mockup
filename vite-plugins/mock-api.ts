@@ -7,7 +7,7 @@ import path from 'node:path'
  * Only active during development.
  */
 export function mockApiPlugin(): Plugin {
-  const tablesDir = path.resolve(__dirname, 'src/data/tables')
+  const tablesDir = path.resolve(__dirname, '../src/data/tables')
 
   return {
     name: 'mock-api',

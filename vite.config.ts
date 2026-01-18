@@ -1,8 +1,7 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { fileURLToPath, URL } from 'node:url'
-import { mockApiPlugin } from './vite-plugin-mock-api'
-import { snImportPlugin } from './vite-plugin-sn-import'
+import { mockApiPlugin, snImportPlugin } from './vite-plugins'
 
 // https://vite.dev/config/
 export default defineConfig({

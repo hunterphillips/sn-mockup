@@ -6,7 +6,8 @@ import type {
   FieldDefinition,
   TableDefinition,
   SNRecord,
-} from './src/types';
+} from '../src/types';
+import { backfillReferences } from './backfill';
 
 // ServiceNow API response types
 interface SNFieldMeta {
@@ -327,7 +328,7 @@ async function fetchFormLayout(
  * Proxies requests to ServiceNow to avoid CORS issues.
  */
 export function snImportPlugin(): Plugin {
-  const tablesDir = path.resolve(__dirname, 'src/data/tables');
+  const tablesDir = path.resolve(__dirname, '../src/data/tables');
 
   return {
     name: 'sn-import',
@@ -457,6 +458,14 @@ export function snImportPlugin(): Plugin {
           const filePath = path.join(tablesDir, `${tableName}.json`);
           fs.writeFileSync(filePath, JSON.stringify(tableDef, null, 2) + '\n');
 
+          // Backfill missing first-level references for local tables
+          const backfilled = await backfillReferences(
+            tableDef,
+            tablesDir,
+            instance,
+            authHeader,
+          );
+
           res.statusCode = 200;
           res.setHeader('Content-Type', 'application/json');
           res.end(
@@ -465,6 +474,7 @@ export function snImportPlugin(): Plugin {
               tableName,
               fieldCount: tableDef.fields.length,
               recordCount: tableDef.data.length,
+              backfilled,
               tableDef,
             }),
           );

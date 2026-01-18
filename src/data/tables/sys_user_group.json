@@ -1114,6 +1114,1051 @@
         "value": "shawn.mcmanus",
         "display_value": "shawn.mcmanus"
       }
+    },
+    {
+      "parent": {
+        "value": "",
+        "display_value": ""
+      },
+      "manager": {
+        "value": "f298d2d2c611227b0106c6be7f154bc8",
+        "display_value": "Bow Ruggeri"
+      },
+      "roles": {
+        "value": "",
+        "display_value": ""
+      },
+      "sys_mod_count": {
+        "value": "0",
+        "display_value": "0"
+      },
+      "active": {
+        "value": "true",
+        "display_value": "true"
+      },
+      "description": {
+        "value": "",
+        "display_value": ""
+      },
+      "average_daily_fte": {
+        "value": "",
+        "display_value": ""
+      },
+      "source": {
+        "value": "",
+        "display_value": ""
+      },
+      "sys_updated_on": {
+        "value": "2017-04-13 02:02:08",
+        "display_value": "04-12-2017 21:02:08"
+      },
+      "sys_tags": {
+        "value": "",
+        "display_value": ""
+      },
+      "type": {
+        "value": "",
+        "display_value": ""
+      },
+      "points": {
+        "value": "0",
+        "display_value": "0"
+      },
+      "sys_id": "287ebd7da9fe198100f92cc8d1d2154e",
+      "sys_updated_by": {
+        "value": "glide.maint",
+        "display_value": "glide.maint"
+      },
+      "cost_center": {
+        "value": "",
+        "display_value": ""
+      },
+      "default_assignee": {
+        "value": "",
+        "display_value": ""
+      },
+      "hourly_rate": {
+        "value": "0",
+        "display_value": "$0.00"
+      },
+      "sys_created_on": {
+        "value": "2017-04-13 02:02:08",
+        "display_value": "04-12-2017 21:02:08"
+      },
+      "name": {
+        "value": "Network",
+        "display_value": "Network"
+      },
+      "exclude_manager": {
+        "value": "false",
+        "display_value": "false"
+      },
+      "vendors": {
+        "value": "",
+        "display_value": ""
+      },
+      "email": {
+        "value": "",
+        "display_value": ""
+      },
+      "include_members": {
+        "value": "false",
+        "display_value": "false"
+      },
+      "sys_created_by": {
+        "value": "glide.maint",
+        "display_value": "glide.maint"
+      }
+    },
+    {
+      "parent": {
+        "value": "",
+        "display_value": ""
+      },
+      "manager": {
+        "value": "9ee1b13dc6112271007f9d0efdb69cd0",
+        "display_value": "Don Goodliffe"
+      },
+      "roles": {
+        "value": "",
+        "display_value": ""
+      },
+      "sys_mod_count": {
+        "value": "0",
+        "display_value": "0"
+      },
+      "active": {
+        "value": "true",
+        "display_value": "true"
+      },
+      "description": {
+        "value": "",
+        "display_value": ""
+      },
+      "average_daily_fte": {
+        "value": "",
+        "display_value": ""
+      },
+      "source": {
+        "value": "",
+        "display_value": ""
+      },
+      "sys_updated_on": {
+        "value": "2017-04-13 02:02:18",
+        "display_value": "04-12-2017 21:02:18"
+      },
+      "sys_tags": {
+        "value": "",
+        "display_value": ""
+      },
+      "type": {
+        "value": "",
+        "display_value": ""
+      },
+      "points": {
+        "value": "0",
+        "display_value": "0"
+      },
+      "sys_id": "287ee6fea9fe198100ada7950d0b1b73",
+      "sys_updated_by": {
+        "value": "glide.maint",
+        "display_value": "glide.maint"
+      },
+      "cost_center": {
+        "value": "",
+        "display_value": ""
+      },
+      "default_assignee": {
+        "value": "",
+        "display_value": ""
+      },
+      "hourly_rate": {
+        "value": "0",
+        "display_value": "$0.00"
+      },
+      "sys_created_on": {
+        "value": "2017-04-13 02:02:18",
+        "display_value": "04-12-2017 21:02:18"
+      },
+      "name": {
+        "value": "Database",
+        "display_value": "Database"
+      },
+      "exclude_manager": {
+        "value": "false",
+        "display_value": "false"
+      },
+      "vendors": {
+        "value": "",
+        "display_value": ""
+      },
+      "email": {
+        "value": "",
+        "display_value": ""
+      },
+      "include_members": {
+        "value": "false",
+        "display_value": "false"
+      },
+      "sys_created_by": {
+        "value": "glide.maint",
+        "display_value": "glide.maint"
+      }
+    },
+    {
+      "parent": {
+        "value": "",
+        "display_value": ""
+      },
+      "manager": {
+        "value": "",
+        "display_value": ""
+      },
+      "roles": {
+        "value": "",
+        "display_value": ""
+      },
+      "sys_mod_count": {
+        "value": "1",
+        "display_value": "1"
+      },
+      "active": {
+        "value": "true",
+        "display_value": "true"
+      },
+      "description": {
+        "value": "IT department responsible for all software requests\n\t\t\tincluding installation and repair",
+        "display_value": "IT department responsible for all software requests\n\t\t\tincluding installation and repair"
+      },
+      "average_daily_fte": {
+        "value": "",
+        "display_value": ""
+      },
+      "source": {
+        "value": "",
+        "display_value": ""
+      },
+      "sys_updated_on": {
+        "value": "2015-07-13 01:53:27",
+        "display_value": "07-12-2015 20:53:27"
+      },
+      "sys_tags": {
+        "value": "",
+        "display_value": ""
+      },
+      "type": {
+        "value": "",
+        "display_value": ""
+      },
+      "points": {
+        "value": "0",
+        "display_value": "0"
+      },
+      "sys_id": "8a4dde73c6112278017a6a4baf547aa7",
+      "sys_updated_by": {
+        "value": "glide.maint",
+        "display_value": "glide.maint"
+      },
+      "cost_center": {
+        "value": "",
+        "display_value": ""
+      },
+      "default_assignee": {
+        "value": "",
+        "display_value": ""
+      },
+      "hourly_rate": {
+        "value": "0",
+        "display_value": "$0.00"
+      },
+      "sys_created_on": {
+        "value": "2015-07-13 01:51:32",
+        "display_value": "07-12-2015 20:51:32"
+      },
+      "name": {
+        "value": "Software",
+        "display_value": "Software"
+      },
+      "exclude_manager": {
+        "value": "false",
+        "display_value": "false"
+      },
+      "vendors": {
+        "value": "",
+        "display_value": ""
+      },
+      "email": {
+        "value": "",
+        "display_value": ""
+      },
+      "include_members": {
+        "value": "false",
+        "display_value": "false"
+      },
+      "sys_created_by": {
+        "value": "glide.maint",
+        "display_value": "glide.maint"
+      }
+    },
+    {
+      "parent": {
+        "value": "",
+        "display_value": ""
+      },
+      "manager": {
+        "value": "",
+        "display_value": ""
+      },
+      "roles": {
+        "value": "",
+        "display_value": ""
+      },
+      "sys_mod_count": {
+        "value": "0",
+        "display_value": "0"
+      },
+      "active": {
+        "value": "true",
+        "display_value": "true"
+      },
+      "description": {
+        "value": "IT department responsible for all hardware requests\n\t\t\tincluding installation and repair",
+        "display_value": "IT department responsible for all hardware requests\n\t\t\tincluding installation and repair"
+      },
+      "average_daily_fte": {
+        "value": "",
+        "display_value": ""
+      },
+      "source": {
+        "value": "",
+        "display_value": ""
+      },
+      "sys_updated_on": {
+        "value": "2015-07-13 01:54:14",
+        "display_value": "07-12-2015 20:54:14"
+      },
+      "sys_tags": {
+        "value": "",
+        "display_value": ""
+      },
+      "type": {
+        "value": "",
+        "display_value": ""
+      },
+      "points": {
+        "value": "0",
+        "display_value": "0"
+      },
+      "sys_id": "8a5055c9c61122780043563ef53438e3",
+      "sys_updated_by": {
+        "value": "glide.maint",
+        "display_value": "glide.maint"
+      },
+      "cost_center": {
+        "value": "",
+        "display_value": ""
+      },
+      "default_assignee": {
+        "value": "",
+        "display_value": ""
+      },
+      "hourly_rate": {
+        "value": "0",
+        "display_value": "$0.00"
+      },
+      "sys_created_on": {
+        "value": "2015-07-13 01:54:14",
+        "display_value": "07-12-2015 20:54:14"
+      },
+      "name": {
+        "value": "Hardware",
+        "display_value": "Hardware"
+      },
+      "exclude_manager": {
+        "value": "false",
+        "display_value": "false"
+      },
+      "vendors": {
+        "value": "",
+        "display_value": ""
+      },
+      "email": {
+        "value": "",
+        "display_value": ""
+      },
+      "include_members": {
+        "value": "false",
+        "display_value": "false"
+      },
+      "sys_created_by": {
+        "value": "glide.maint",
+        "display_value": "glide.maint"
+      }
+    },
+    {
+      "parent": {
+        "value": "",
+        "display_value": ""
+      },
+      "manager": {
+        "value": "46d44a23a9fe19810012d100cca80666",
+        "display_value": "Beth Anglin"
+      },
+      "roles": {
+        "value": "",
+        "display_value": ""
+      },
+      "sys_mod_count": {
+        "value": "0",
+        "display_value": "0"
+      },
+      "active": {
+        "value": "true",
+        "display_value": "true"
+      },
+      "description": {
+        "value": "",
+        "display_value": ""
+      },
+      "average_daily_fte": {
+        "value": "",
+        "display_value": ""
+      },
+      "source": {
+        "value": "",
+        "display_value": ""
+      },
+      "sys_updated_on": {
+        "value": "2020-02-05 00:14:56",
+        "display_value": "02-04-2020 18:14:56"
+      },
+      "sys_tags": {
+        "value": "",
+        "display_value": ""
+      },
+      "type": {
+        "value": "",
+        "display_value": ""
+      },
+      "points": {
+        "value": "0",
+        "display_value": "0"
+      },
+      "sys_id": "d625dccec0a8016700a222a0f7900d06",
+      "sys_updated_by": {
+        "value": "glide.maint",
+        "display_value": "glide.maint"
+      },
+      "cost_center": {
+        "value": "",
+        "display_value": ""
+      },
+      "default_assignee": {
+        "value": "",
+        "display_value": ""
+      },
+      "hourly_rate": {
+        "value": "0",
+        "display_value": "$0.00"
+      },
+      "sys_created_on": {
+        "value": "2020-02-05 00:14:56",
+        "display_value": "02-04-2020 18:14:56"
+      },
+      "name": {
+        "value": "Service Desk",
+        "display_value": "Service Desk"
+      },
+      "exclude_manager": {
+        "value": "false",
+        "display_value": "false"
+      },
+      "vendors": {
+        "value": "",
+        "display_value": ""
+      },
+      "email": {
+        "value": "service.desk@yourcompany.com",
+        "display_value": "service.desk@yourcompany.com"
+      },
+      "include_members": {
+        "value": "false",
+        "display_value": "false"
+      },
+      "sys_created_by": {
+        "value": "glide.maint",
+        "display_value": "glide.maint"
+      }
+    },
+    {
+      "parent": {
+        "value": "",
+        "display_value": ""
+      },
+      "manager": {
+        "value": "",
+        "display_value": ""
+      },
+      "roles": {
+        "value": "",
+        "display_value": ""
+      },
+      "sys_mod_count": {
+        "value": "1",
+        "display_value": "1"
+      },
+      "active": {
+        "value": "true",
+        "display_value": "true"
+      },
+      "description": {
+        "value": "",
+        "display_value": ""
+      },
+      "average_daily_fte": {
+        "value": "",
+        "display_value": ""
+      },
+      "source": {
+        "value": "",
+        "display_value": ""
+      },
+      "sys_updated_on": {
+        "value": "2025-09-29 19:49:46",
+        "display_value": "09-29-2025 14:49:46"
+      },
+      "sys_tags": {
+        "value": "",
+        "display_value": ""
+      },
+      "type": {
+        "value": "",
+        "display_value": ""
+      },
+      "points": {
+        "value": "0",
+        "display_value": "0"
+      },
+      "sys_id": "62a2e205c3732a50982710977d013138",
+      "sys_updated_by": {
+        "value": "matthew.mcbride",
+        "display_value": "matthew.mcbride"
+      },
+      "cost_center": {
+        "value": "",
+        "display_value": ""
+      },
+      "default_assignee": {
+        "value": "",
+        "display_value": ""
+      },
+      "hourly_rate": {
+        "value": "0",
+        "display_value": "$0.00"
+      },
+      "sys_created_on": {
+        "value": "2025-09-03 21:10:39",
+        "display_value": "09-03-2025 16:10:39"
+      },
+      "name": {
+        "value": "IPC HR Admins",
+        "display_value": "IPC HR Admins"
+      },
+      "exclude_manager": {
+        "value": "false",
+        "display_value": "false"
+      },
+      "vendors": {
+        "value": "",
+        "display_value": ""
+      },
+      "email": {
+        "value": "",
+        "display_value": ""
+      },
+      "include_members": {
+        "value": "false",
+        "display_value": "false"
+      },
+      "sys_created_by": {
+        "value": "matthew.mcbride",
+        "display_value": "matthew.mcbride"
+      }
+    },
+    {
+      "parent": {
+        "value": "",
+        "display_value": ""
+      },
+      "manager": {
+        "value": "",
+        "display_value": ""
+      },
+      "roles": {
+        "value": "",
+        "display_value": ""
+      },
+      "sys_mod_count": {
+        "value": "1",
+        "display_value": "1"
+      },
+      "active": {
+        "value": "true",
+        "display_value": "true"
+      },
+      "description": {
+        "value": "",
+        "display_value": ""
+      },
+      "average_daily_fte": {
+        "value": "",
+        "display_value": ""
+      },
+      "source": {
+        "value": "",
+        "display_value": ""
+      },
+      "sys_updated_on": {
+        "value": "2025-09-29 19:49:29",
+        "display_value": "09-29-2025 14:49:29"
+      },
+      "sys_tags": {
+        "value": "",
+        "display_value": ""
+      },
+      "type": {
+        "value": "",
+        "display_value": ""
+      },
+      "points": {
+        "value": "0",
+        "display_value": "0"
+      },
+      "sys_id": "7fc26605c3732a50982710977d0131e9",
+      "sys_updated_by": {
+        "value": "matthew.mcbride",
+        "display_value": "matthew.mcbride"
+      },
+      "cost_center": {
+        "value": "",
+        "display_value": ""
+      },
+      "default_assignee": {
+        "value": "",
+        "display_value": ""
+      },
+      "hourly_rate": {
+        "value": "0",
+        "display_value": "$0.00"
+      },
+      "sys_created_on": {
+        "value": "2025-09-03 21:11:04",
+        "display_value": "09-03-2025 16:11:04"
+      },
+      "name": {
+        "value": "IPC Technology",
+        "display_value": "IPC Technology"
+      },
+      "exclude_manager": {
+        "value": "false",
+        "display_value": "false"
+      },
+      "vendors": {
+        "value": "",
+        "display_value": ""
+      },
+      "email": {
+        "value": "",
+        "display_value": ""
+      },
+      "include_members": {
+        "value": "false",
+        "display_value": "false"
+      },
+      "sys_created_by": {
+        "value": "matthew.mcbride",
+        "display_value": "matthew.mcbride"
+      }
+    },
+    {
+      "parent": {
+        "value": "",
+        "display_value": ""
+      },
+      "manager": {
+        "value": "",
+        "display_value": ""
+      },
+      "roles": {
+        "value": "",
+        "display_value": ""
+      },
+      "sys_mod_count": {
+        "value": "0",
+        "display_value": "0"
+      },
+      "active": {
+        "value": "true",
+        "display_value": "true"
+      },
+      "description": {
+        "value": "",
+        "display_value": ""
+      },
+      "average_daily_fte": {
+        "value": "",
+        "display_value": ""
+      },
+      "source": {
+        "value": "",
+        "display_value": ""
+      },
+      "sys_updated_on": {
+        "value": "2025-10-24 14:45:30",
+        "display_value": "10-24-2025 09:45:30"
+      },
+      "sys_tags": {
+        "value": "",
+        "display_value": ""
+      },
+      "type": {
+        "value": "",
+        "display_value": ""
+      },
+      "points": {
+        "value": "0",
+        "display_value": "0"
+      },
+      "sys_id": "d0b3b79dc3b07250982710977d013127",
+      "sys_updated_by": {
+        "value": "matthew.mcbride",
+        "display_value": "matthew.mcbride"
+      },
+      "cost_center": {
+        "value": "",
+        "display_value": ""
+      },
+      "default_assignee": {
+        "value": "",
+        "display_value": ""
+      },
+      "hourly_rate": {
+        "value": "0",
+        "display_value": "$0.00"
+      },
+      "sys_created_on": {
+        "value": "2025-10-24 14:45:30",
+        "display_value": "10-24-2025 09:45:30"
+      },
+      "name": {
+        "value": "IPC Service Desk",
+        "display_value": "IPC Service Desk"
+      },
+      "exclude_manager": {
+        "value": "false",
+        "display_value": "false"
+      },
+      "vendors": {
+        "value": "",
+        "display_value": ""
+      },
+      "email": {
+        "value": "",
+        "display_value": ""
+      },
+      "include_members": {
+        "value": "false",
+        "display_value": "false"
+      },
+      "sys_created_by": {
+        "value": "matthew.mcbride",
+        "display_value": "matthew.mcbride"
+      }
+    },
+    {
+      "parent": {
+        "value": "",
+        "display_value": ""
+      },
+      "manager": {
+        "value": "a23a791e1b00b110e8d04376bc4bcbed",
+        "display_value": "Dylan Ngo"
+      },
+      "roles": {
+        "value": "",
+        "display_value": ""
+      },
+      "sys_mod_count": {
+        "value": "1",
+        "display_value": "1"
+      },
+      "active": {
+        "value": "true",
+        "display_value": "true"
+      },
+      "description": {
+        "value": "This is the agile group for the Project Management Application.",
+        "display_value": "This is the agile group for the Project Management Application."
+      },
+      "average_daily_fte": {
+        "value": "",
+        "display_value": ""
+      },
+      "source": {
+        "value": "",
+        "display_value": ""
+      },
+      "sys_updated_on": {
+        "value": "2023-11-21 14:51:52",
+        "display_value": "11-21-2023 08:51:52"
+      },
+      "sys_tags": {
+        "value": "",
+        "display_value": ""
+      },
+      "type": {
+        "value": "1bff3b1493030200ea933007f67ffb6d",
+        "display_value": "Agile Team"
+      },
+      "points": {
+        "value": "0",
+        "display_value": "0"
+      },
+      "sys_id": "13a91f8f47e6f91025769ac5536d4393",
+      "sys_updated_by": {
+        "value": "dylan.ngo",
+        "display_value": "dylan.ngo"
+      },
+      "cost_center": {
+        "value": "",
+        "display_value": ""
+      },
+      "default_assignee": {
+        "value": "",
+        "display_value": ""
+      },
+      "hourly_rate": {
+        "value": "0",
+        "display_value": "$0.00"
+      },
+      "sys_created_on": {
+        "value": "2023-11-21 14:51:27",
+        "display_value": "11-21-2023 08:51:27"
+      },
+      "name": {
+        "value": "Project Management Application",
+        "display_value": "Project Management Application"
+      },
+      "exclude_manager": {
+        "value": "false",
+        "display_value": "false"
+      },
+      "vendors": {
+        "value": "",
+        "display_value": ""
+      },
+      "email": {
+        "value": "",
+        "display_value": ""
+      },
+      "include_members": {
+        "value": "false",
+        "display_value": "false"
+      },
+      "sys_created_by": {
+        "value": "dylan.ngo",
+        "display_value": "dylan.ngo"
+      }
+    },
+    {
+      "parent": {
+        "value": "",
+        "display_value": ""
+      },
+      "manager": {
+        "value": "a23a791e1b00b110e8d04376bc4bcbed",
+        "display_value": "Dylan Ngo"
+      },
+      "roles": {
+        "value": "",
+        "display_value": ""
+      },
+      "sys_mod_count": {
+        "value": "3",
+        "display_value": "3"
+      },
+      "active": {
+        "value": "true",
+        "display_value": "true"
+      },
+      "description": {
+        "value": "Group responsible for handling enhancements to firm initiatives to support business needs.",
+        "display_value": "Group responsible for handling enhancements to firm initiatives to support business needs."
+      },
+      "average_daily_fte": {
+        "value": "",
+        "display_value": ""
+      },
+      "source": {
+        "value": "",
+        "display_value": ""
+      },
+      "sys_updated_on": {
+        "value": "2025-09-23 19:55:07",
+        "display_value": "09-23-2025 14:55:07"
+      },
+      "sys_tags": {
+        "value": "",
+        "display_value": ""
+      },
+      "type": {
+        "value": "1bff3b1493030200ea933007f67ffb6d",
+        "display_value": "Agile Team"
+      },
+      "points": {
+        "value": "0",
+        "display_value": "0"
+      },
+      "sys_id": "6f0f2cabc3083a9031667433e40131c1",
+      "sys_updated_by": {
+        "value": "dylan.ngo",
+        "display_value": "dylan.ngo"
+      },
+      "cost_center": {
+        "value": "",
+        "display_value": ""
+      },
+      "default_assignee": {
+        "value": "",
+        "display_value": ""
+      },
+      "hourly_rate": {
+        "value": "0",
+        "display_value": "$0.00"
+      },
+      "sys_created_on": {
+        "value": "2025-09-23 17:27:58",
+        "display_value": "09-23-2025 12:27:58"
+      },
+      "name": {
+        "value": "FI Enhancements Team",
+        "display_value": "FI Enhancements Team"
+      },
+      "exclude_manager": {
+        "value": "false",
+        "display_value": "false"
+      },
+      "vendors": {
+        "value": "",
+        "display_value": ""
+      },
+      "email": {
+        "value": "",
+        "display_value": ""
+      },
+      "include_members": {
+        "value": "false",
+        "display_value": "false"
+      },
+      "sys_created_by": {
+        "value": "dylan.ngo",
+        "display_value": "dylan.ngo"
+      }
+    },
+    {
+      "parent": {
+        "value": "",
+        "display_value": ""
+      },
+      "manager": {
+        "value": "6e828cd81be01290b662ca672a4bcbf4",
+        "display_value": "Noah Pendleton"
+      },
+      "roles": {
+        "value": "",
+        "display_value": ""
+      },
+      "sys_mod_count": {
+        "value": "3",
+        "display_value": "3"
+      },
+      "active": {
+        "value": "true",
+        "display_value": "true"
+      },
+      "description": {
+        "value": "Completing the PM app requirements centered around the PR goals. ",
+        "display_value": "Completing the PM app requirements centered around the PR goals. "
+      },
+      "average_daily_fte": {
+        "value": "",
+        "display_value": ""
+      },
+      "source": {
+        "value": "",
+        "display_value": ""
+      },
+      "sys_updated_on": {
+        "value": "2025-01-06 17:36:27",
+        "display_value": "01-06-2025 11:36:27"
+      },
+      "sys_tags": {
+        "value": "",
+        "display_value": ""
+      },
+      "type": {
+        "value": "1bff3b1493030200ea933007f67ffb6d",
+        "display_value": "Agile Team"
+      },
+      "points": {
+        "value": "0",
+        "display_value": "0"
+      },
+      "sys_id": "eb0a1bf1c33edad0982710977d0131cf",
+      "sys_updated_by": {
+        "value": "noah.pendleton",
+        "display_value": "noah.pendleton"
+      },
+      "cost_center": {
+        "value": "",
+        "display_value": ""
+      },
+      "default_assignee": {
+        "value": "",
+        "display_value": ""
+      },
+      "hourly_rate": {
+        "value": "0",
+        "display_value": "$0.00"
+      },
+      "sys_created_on": {
+        "value": "2024-12-31 19:53:48",
+        "display_value": "12-31-2024 13:53:48"
+      },
+      "name": {
+        "value": "PR Goals",
+        "display_value": "PR Goals"
+      },
+      "exclude_manager": {
+        "value": "false",
+        "display_value": "false"
+      },
+      "vendors": {
+        "value": "",
+        "display_value": ""
+      },
+      "email": {
+        "value": "",
+        "display_value": ""
+      },
+      "include_members": {
+        "value": "false",
+        "display_value": "false"
+      },
+      "sys_created_by": {
+        "value": "noah.pendleton",
+        "display_value": "noah.pendleton"
+      }
     }
   ]
 }
