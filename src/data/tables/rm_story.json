@@ -1117,9 +1117,15 @@
           "type",
           "state",
           "assigned_to",
-          "short_description",
-          "acceptance_criteria",
-          "description"
+          "short_description"
+        ]
+      },
+      {
+        "name": "section_undefined_1",
+        "columns": 1,
+        "fields": [
+          "description",
+          "acceptance_criteria"
         ]
       }
     ]
@@ -1162,10 +1168,7 @@
         "value": "",
         "display_value": ""
       },
-      "sys_updated_on": {
-        "value": "2023-12-20 15:13:07",
-        "display_value": "12-20-2023 09:13:07"
-      },
+      "sys_updated_on": "2026-01-18T02:57:10.954Z",
       "type": {
         "value": "",
         "display_value": ""
@@ -1432,7 +1435,7 @@
       },
       "story_points": {
         "value": "3",
-        "display_value": "3"
+        "display_value": "5"
       },
       "comments_and_work_notes": {
         "value": "",
@@ -1536,7 +1539,7 @@
       },
       "acceptance_criteria": {
         "value": "<p>I know this is complete when I see values displayed for this question based on what I chose for the <br />previous question. For example, if I chose Community as my secondary firm initiative area, I should only see the initiatives related to operations (there are 7) as the possible responses. In addition, this story is complete when I am able to choose multiple of these firm initiatives.</p>",
-        "display_value": "<p>I know this is complete when I see values displayed for this question based on what I chose for the <br />previous question. For example, if I chose Community as my secondary firm initiative area, I should only see the initiatives related to operations (there are 7) as the possible responses. In addition, this story is complete when I am able to choose multiple of these firm initiatives.</p>"
+        "display_value": "<p>I know this is complete when I see values displayed for this question based on what I chose for the&nbsp;<br>previous question. For example, if I chose Community as my secondary firm initiative area, I should only see the initiatives related to operations (there are 7) as the possible responses. In addition, this story is complete when I am able to choose multiple of these firm initiatives.</p>"
       },
       "global_rank": {
         "value": "4034200000",

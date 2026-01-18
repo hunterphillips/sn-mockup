@@ -7,7 +7,11 @@ import {
   updateRecord,
   deleteRecord,
 } from '../api/mockApi';
-import { getDisplayValue, getValue, createFieldValue } from '../utils/fieldValue';
+import {
+  getDisplayValue,
+  getValue,
+  createFieldValue,
+} from '../utils/fieldValue';
 import {
   SNButton,
   SNInput,
@@ -72,7 +76,10 @@ export function FormPage() {
       // For edits, update display_value; for simple fields, value = display_value
       return {
         ...prev,
-        [fieldName]: createFieldValue(currentValue || newDisplayValue, newDisplayValue),
+        [fieldName]: createFieldValue(
+          currentValue || newDisplayValue,
+          newDisplayValue,
+        ),
       };
     });
   };
@@ -125,8 +132,12 @@ export function FormPage() {
     const fieldData = formData[field.name];
     const displayVal = getDisplayValue(fieldData);
     const isReadonly = field.readonly;
+    const fieldType = // consider long 'string' as 'text' (textarea input)
+      field.type === 'string' && (field.maxLength ?? 0) > 255
+        ? 'text'
+        : field.type;
 
-    switch (field.type) {
+    switch (fieldType) {
       case 'text':
         return (
           <SNTextarea
@@ -210,7 +221,8 @@ export function FormPage() {
     );
   }
 
-  const recordNumber = getDisplayValue(formData['number']) || (isNew ? 'New' : sysId);
+  const recordNumber =
+    getDisplayValue(formData['number']) || (isNew ? 'New' : sysId);
 
   return (
     <div className="h-[calc(100vh-48px)] flex flex-col">

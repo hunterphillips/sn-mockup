@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react'
 import { cn } from '../../utils/cn'
-import { SNHeader } from '../sn/Navigation'
+import { SNHeader, SNNavMenu } from '../sn/Navigation'
+import { useNav } from '../../context/NavContext'
 
 export interface AppShellProps {
   /** Page content */
@@ -18,12 +19,22 @@ export interface AppShellProps {
  * </AppShell>
  */
 export function AppShell({ children, className }: AppShellProps) {
+  const { isNavPinned } = useNav()
+
   return (
     <div className="min-h-screen flex flex-col bg-sn-neutral-1">
       <SNHeader />
-      <main className={cn('flex-1', className)}>
-        {children}
-      </main>
+      <div className="flex-1 flex">
+        {/* Pinned Sidebar */}
+        {isNavPinned && (
+          <aside className="shrink-0">
+            <SNNavMenu className="h-[calc(100vh-48px)]" />
+          </aside>
+        )}
+        <main className={cn('flex-1 min-w-0', className)}>
+          {children}
+        </main>
+      </div>
     </div>
   )
 }

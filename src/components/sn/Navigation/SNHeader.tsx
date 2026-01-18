@@ -3,7 +3,9 @@ import { cn } from '../../../utils/cn';
 import { GlobalSearch } from './GlobalSearch';
 import { AppPill } from './AppPill';
 import { UserMenu } from './UserMenu';
+import { SNNavMenu } from './SNNavMenu';
 import { useData } from '../../../context/DataContext';
+import { useNav } from '../../../context/NavContext';
 import {
   LayoutGrid,
   Star,
@@ -25,9 +27,11 @@ interface NavItemProps {
   label: string;
   to?: string;
   active?: boolean;
+  onClick?: () => void;
+  'data-nav-trigger'?: boolean;
 }
 
-function NavItem({ icon, label, to, active }: NavItemProps) {
+function NavItem({ icon, label, to, active, onClick, ...props }: NavItemProps) {
   const baseStyles = cn(
     'flex items-center gap-2 px-3 py-1.5 text-sm font-medium rounded transition-colors',
     'text-white/90 hover:text-white hover:bg-white/10',
@@ -36,7 +40,7 @@ function NavItem({ icon, label, to, active }: NavItemProps) {
 
   if (to) {
     return (
-      <Link to={to} className={baseStyles}>
+      <Link to={to} className={baseStyles} {...props}>
         {icon}
         {label}
       </Link>
@@ -44,7 +48,7 @@ function NavItem({ icon, label, to, active }: NavItemProps) {
   }
 
   return (
-    <button className={baseStyles}>
+    <button className={baseStyles} onClick={onClick} {...props}>
       {icon}
       {label}
     </button>
@@ -76,6 +80,7 @@ function IconButton({
  */
 export function SNHeader({ className }: SNHeaderProps) {
   const { currentUser } = useData();
+  const { isNavOpen, isNavPinned, setNavOpen } = useNav();
   const location = useLocation();
 
   // Determine current app from URL
@@ -84,10 +89,20 @@ export function SNHeader({ className }: SNHeaderProps) {
   const currentRecordId =
     pathParts[1] !== 'list' && pathParts[1] !== 'new' ? pathParts[1] : null;
 
+  const handleAllClick = () => {
+    if (isNavPinned) {
+      // If pinned, clicking All unpins and closes
+      setNavOpen(false);
+    } else {
+      // Toggle open/close
+      setNavOpen(!isNavOpen);
+    }
+  };
+
   return (
     <header
       className={cn(
-        'bg-sn-chrome h-12 flex items-center px-4 gap-4',
+        'bg-sn-chrome h-12 flex items-center px-4 gap-4 relative z-50',
         className
       )}
     >
@@ -100,7 +115,13 @@ export function SNHeader({ className }: SNHeaderProps) {
 
       {/* Primary Navigation */}
       <nav className="flex items-center gap-1">
-        <NavItem icon={<LayoutGrid className="w-4 h-4" />} label="All" />
+        <NavItem
+          icon={<LayoutGrid className="w-4 h-4" />}
+          label="All"
+          active={isNavOpen || isNavPinned}
+          onClick={handleAllClick}
+          data-nav-trigger
+        />
         <NavItem icon={<Star className="w-4 h-4" />} label="Favorites" />
         <NavItem icon={<Clock className="w-4 h-4" />} label="History" />
         {/* <NavItem icon={<LayoutDashboard className="w-4 h-4" />} label="Workspaces" /> */}
@@ -108,6 +129,13 @@ export function SNHeader({ className }: SNHeaderProps) {
           <MoreVertical className="w-4 h-4" />
         </button>
       </nav>
+
+      {/* Nav Menu Dropdown (only when unpinned) */}
+      {isNavOpen && !isNavPinned && (
+        <div className="absolute top-12 left-0 shadow-sn-5 z-50">
+          <SNNavMenu />
+        </div>
+      )}
 
       {/* App Pill - Current Location */}
       <div className="flex-1 flex justify-center">
