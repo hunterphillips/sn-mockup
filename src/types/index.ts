@@ -72,6 +72,9 @@ export interface RelatedListDefinition {
   columns?: string[]
 }
 
+/** Supported AI providers */
+export type AiProvider = 'anthropic' | 'openai' | 'google' | 'ollama'
+
 /** Field-level AI assist configuration */
 export interface AiAssistFieldConfig {
   /** Whether AI assist is enabled (defaults to true if config object is present) */
@@ -80,12 +83,24 @@ export interface AiAssistFieldConfig {
   contextFields?: string[]
   /** Custom instructions for this field (e.g., "Use Given/When/Then format") */
   instructions?: string
+  /** AI provider (overrides table/env default) */
+  provider?: AiProvider
+  /** AI model (overrides table/env default) */
+  model?: string
+  /** Maximum tokens for AI response (overrides table default) */
+  maxTokens?: number
 }
 
 /** Table-level AI assist configuration */
 export interface AiAssistTableConfig {
   /** Default context fields for all AI-enabled fields on this table */
   contextFields?: string[]
+  /** Default AI provider for this table */
+  provider?: AiProvider
+  /** Default AI model for this table */
+  model?: string
+  /** Default max tokens for AI responses on this table */
+  maxTokens?: number
 }
 
 /** A single record from any table */

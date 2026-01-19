@@ -1,8 +1,20 @@
-import type { FieldDefinition, SNRecord, TableDefinition, AiAssistFieldConfig } from '../types';
+import type {
+  FieldDefinition,
+  SNRecord,
+  TableDefinition,
+  AiAssistFieldConfig,
+  AiAssistTableConfig,
+} from '../types';
 import { getDisplayValue } from '../utils/fieldValue';
 
 /** Default context fields if none configured */
-const DEFAULT_CONTEXT_FIELDS = ['short_description', 'description', 'number', 'state', 'priority'];
+const DEFAULT_CONTEXT_FIELDS = [
+  'short_description',
+  'description',
+  'number',
+  'state',
+  'priority',
+];
 
 /** Request payload for Now Assist content generation */
 export interface NowAssistRequest {
@@ -10,6 +22,12 @@ export interface NowAssistRequest {
   tableDef: TableDefinition;
   recordData: Partial<SNRecord>;
   refinement?: 'shorter' | 'more_detailed';
+}
+
+/** Response from Now Assist content generation */
+export interface NowAssistResponse {
+  content: string;
+  error?: string;
 }
 
 /** Get resolved AI config for a field */
@@ -20,27 +38,11 @@ function getFieldAiConfig(field: FieldDefinition): AiAssistFieldConfig | null {
   return field.aiAssist;
 }
 
-/** Response from Now Assist content generation */
-export interface NowAssistResponse {
-  content: string;
-  error?: string;
-}
-
-/** Get the configured Anthropic model */
-function getModel(): string {
-  return import.meta.env.VITE_ANTHROPIC_MODEL || 'claude-sonnet-4-20250514';
-}
-
-/** Get the configured Anthropic API key */
-function getApiKey(): string {
-  return import.meta.env.VITE_ANTHROPIC_API_KEY || '';
-}
-
 /** Build context from record data for AI prompt */
 function buildRecordContext(
   tableDef: TableDefinition,
   recordData: Partial<SNRecord>,
-  contextFields: string[]
+  contextFields: string[],
 ): string {
   const contextParts: string[] = [];
 
@@ -58,29 +60,34 @@ function buildRecordContext(
   return contextParts.join('\n');
 }
 
-/** Resolve context fields: field config > table config > defaults */
-function resolveContextFields(
+/** Resolve AI config value: field config > table config > default */
+function resolveAiConfig<
+  K extends keyof AiAssistFieldConfig & keyof AiAssistTableConfig,
+>(
+  key: K,
   fieldConfig: AiAssistFieldConfig,
-  tableDef: TableDefinition
-): string[] {
-  return fieldConfig.contextFields
-    ?? tableDef.aiAssist?.contextFields
-    ?? DEFAULT_CONTEXT_FIELDS;
+  tableDef: TableDefinition,
+  defaultValue?: AiAssistFieldConfig[K],
+): AiAssistFieldConfig[K] {
+  return fieldConfig[key] ?? tableDef.aiAssist?.[key] ?? defaultValue;
 }
 
-/** Call Anthropic API for content generation */
-export async function generateContent(
-  request: NowAssistRequest
-): Promise<NowAssistResponse> {
-  const apiKey = getApiKey();
-  if (!apiKey) {
-    return { content: '', error: 'Anthropic API key not configured. Add VITE_ANTHROPIC_API_KEY to your .env file.' };
-  }
-
-  // Get field AI config (already validated as enabled by caller)
-  const fieldConfig = getFieldAiConfig(request.field) ?? {};
-  const contextFields = resolveContextFields(fieldConfig, request.tableDef);
-  const recordContext = buildRecordContext(request.tableDef, request.recordData, contextFields);
+/** Build the full prompt for AI generation */
+function buildPrompt(
+  request: NowAssistRequest,
+  fieldConfig: AiAssistFieldConfig,
+): string {
+  const contextFields = resolveAiConfig(
+    'contextFields',
+    fieldConfig,
+    request.tableDef,
+    DEFAULT_CONTEXT_FIELDS,
+  )!;
+  const recordContext = buildRecordContext(
+    request.tableDef,
+    request.recordData,
+    contextFields,
+  );
 
   let prompt = `You are helping a ServiceNow user fill in the "${request.field.label}" field for a ${request.tableDef.label} record.
 
@@ -89,7 +96,6 @@ ${recordContext}
 
 Generate appropriate content for the "${request.field.label}" field.`;
 
-  // Add custom instructions if configured
   if (fieldConfig.instructions) {
     prompt += `\n\n${fieldConfig.instructions}`;
   }
@@ -107,36 +113,45 @@ IMPORTANT: Output raw HTML only. Do NOT wrap in code fences or markdown.`;
     prompt += '\n\nProvide comprehensive, detailed content.';
   }
 
+  return prompt;
+}
+
+/** Generate content using AI (via server-side proxy) */
+export async function generateContent(
+  request: NowAssistRequest,
+): Promise<NowAssistResponse> {
+  const fieldConfig = getFieldAiConfig(request.field) ?? {};
+  const prompt = buildPrompt(request, fieldConfig);
+  const provider = resolveAiConfig('provider', fieldConfig, request.tableDef);
+  const model = resolveAiConfig('model', fieldConfig, request.tableDef);
+  const maxTokens = resolveAiConfig(
+    'maxTokens',
+    fieldConfig,
+    request.tableDef,
+    request.field.maxLength ?? 2048,
+  );
+
   try {
-    const response = await fetch('https://api.anthropic.com/v1/messages', {
+    const response = await fetch('/api/ai/generate', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'x-api-key': apiKey,
-        'anthropic-version': '2023-06-01',
-        'anthropic-dangerous-direct-browser-access': 'true',
-      },
-      body: JSON.stringify({
-        model: getModel(),
-        max_tokens: 1024,
-        messages: [
-          {
-            role: 'user',
-            content: prompt,
-          },
-        ],
-      }),
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ prompt, provider, model, maxTokens }),
     });
 
     if (!response.ok) {
-      const errorText = await response.text();
-      return { content: '', error: `API error: ${response.status} - ${errorText}` };
+      const data = await response.json().catch(() => ({}));
+      return {
+        content: '',
+        error: data.error || `API error: ${response.status}`,
+      };
     }
 
     const data = await response.json();
-    const content = data.content?.[0]?.text || '';
-    return { content };
+    return { content: data.content || '' };
   } catch (error) {
-    return { content: '', error: `Network error: ${error instanceof Error ? error.message : 'Unknown error'}` };
+    return {
+      content: '',
+      error: `Network error: ${error instanceof Error ? error.message : 'Unknown error'}`,
+    };
   }
 }
