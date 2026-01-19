@@ -21,6 +21,7 @@ import {
   SNRichTextEditor,
 } from '../components/sn/common';
 import { SNRelatedLists } from '../components/sn/Form';
+import { NowAssistFieldWrapper } from '../components/sn/NowAssist';
 import type { SNRecord, FieldDefinition } from '../types';
 import {
   ChevronLeft,
@@ -127,6 +128,27 @@ export function FormPage() {
     }
   };
 
+  // Helper to wrap field with Now Assist if enabled
+  const wrapWithNowAssist = (
+    field: FieldDefinition,
+    fieldElement: React.ReactNode,
+    isReadonly: boolean
+  ) => {
+    if (field.aiAssist && !isReadonly && tableDef) {
+      return (
+        <NowAssistFieldWrapper
+          field={field}
+          tableDef={tableDef}
+          formData={formData}
+          onInsert={(content) => handleFieldChange(field.name, content)}
+        >
+          {fieldElement}
+        </NowAssistFieldWrapper>
+      );
+    }
+    return fieldElement;
+  };
+
   // Render a form field based on type
   const renderField = (field: FieldDefinition) => {
     const fieldData = formData[field.name];
@@ -139,25 +161,29 @@ export function FormPage() {
 
     switch (fieldType) {
       case 'text':
-        return (
+        return wrapWithNowAssist(
+          field,
           <SNTextarea
             value={displayVal}
             onChange={(e) => handleFieldChange(field.name, e.target.value)}
             disabled={isReadonly}
             rows={4}
             fullWidth
-          />
+          />,
+          !!isReadonly
         );
 
       case 'richtext':
-        return (
+        return wrapWithNowAssist(
+          field,
           <SNRichTextEditor
             value={displayVal}
             onChange={(html) => handleFieldChange(field.name, html)}
             disabled={isReadonly}
             rows={6}
             fullWidth
-          />
+          />,
+          !!isReadonly
         );
 
       case 'choice':

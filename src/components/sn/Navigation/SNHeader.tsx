@@ -35,7 +35,7 @@ function NavItem({ icon, label, to, active, onClick, ...props }: NavItemProps) {
   const baseStyles = cn(
     'flex items-center gap-2 px-3 py-1.5 text-sm font-medium rounded transition-colors',
     'text-white/90 hover:text-white hover:bg-white/10',
-    active && 'bg-white/10 text-white'
+    active && 'bg-white/10 text-white',
   );
 
   if (to) {
@@ -103,7 +103,7 @@ export function SNHeader({ className }: SNHeaderProps) {
     <header
       className={cn(
         'bg-sn-chrome h-12 flex items-center px-4 gap-4 relative z-50',
-        className
+        className,
       )}
     >
       {/* Logo */}
