@@ -454,6 +454,11 @@ export function snImportPlugin(): Plugin {
             formLayout,
           );
 
+          // Ensure tables directory exists
+          if (!fs.existsSync(tablesDir)) {
+            fs.mkdirSync(tablesDir, { recursive: true });
+          }
+
           // Write to file
           const filePath = path.join(tablesDir, `${tableName}.json`);
           fs.writeFileSync(filePath, JSON.stringify(tableDef, null, 2) + '\n');

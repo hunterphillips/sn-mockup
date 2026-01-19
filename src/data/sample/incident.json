@@ -73,12 +73,7 @@
       "label": "Type of issue",
       "required": true,
       "maxLength": 40,
-      "choices": [
-        "-- None --",
-        "Tier 1",
-        "Tier 2",
-        "Tier 3"
-      ]
+      "choices": ["-- None --", "Tier 1", "Tier 2", "Tier 3"]
     },
     {
       "name": "state",
@@ -140,11 +135,7 @@
       "label": "Impact",
       "required": true,
       "maxLength": 40,
-      "choices": [
-        "1 - High",
-        "2 - Medium",
-        "3 - Low"
-      ]
+      "choices": ["1 - High", "2 - Medium", "3 - Low"]
     },
     {
       "name": "active",
@@ -238,11 +229,7 @@
       "type": "choice",
       "label": "Notify",
       "maxLength": 40,
-      "choices": [
-        "Do Not Notify",
-        "Send Email",
-        "Telephone"
-      ]
+      "choices": ["Do Not Notify", "Send Email", "Telephone"]
     },
     {
       "name": "service_offering",
@@ -316,12 +303,7 @@
       "label": "Escalation",
       "readonly": true,
       "maxLength": 40,
-      "choices": [
-        "Normal",
-        "Moderate",
-        "High",
-        "Overdue"
-      ]
+      "choices": ["Normal", "Moderate", "High", "Overdue"]
     },
     {
       "name": "upon_approval",
@@ -600,11 +582,7 @@
       "label": "Channel",
       "required": true,
       "maxLength": 40,
-      "choices": [
-        "-- None --",
-        "Phone",
-        "Self-service"
-      ]
+      "choices": ["-- None --", "Phone", "Self-service"]
     },
     {
       "name": "incident_state",
@@ -626,11 +604,7 @@
       "label": "Urgency",
       "required": true,
       "maxLength": 40,
-      "choices": [
-        "1 - High",
-        "2 - Medium",
-        "3 - Low"
-      ]
+      "choices": ["1 - High", "2 - Medium", "3 - Low"]
     },
     {
       "name": "problem_id",
@@ -657,11 +631,7 @@
       "type": "choice",
       "label": "Severity",
       "maxLength": 40,
-      "choices": [
-        "1 - High",
-        "2 - Medium",
-        "3 - Low"
-      ]
+      "choices": ["1 - High", "2 - Medium", "3 - Low"]
     },
     {
       "name": "comments",
@@ -674,12 +644,7 @@
       "type": "choice",
       "label": "Approval",
       "maxLength": 40,
-      "choices": [
-        "Not Yet Requested",
-        "Requested",
-        "Approved",
-        "Rejected"
-      ]
+      "choices": ["Not Yet Requested", "Requested", "Approved", "Rejected"]
     },
     {
       "name": "due_date",
@@ -767,23 +732,13 @@
         "name": "notes",
         "label": "Notes",
         "columns": 2,
-        "fields": [
-          "watch_list",
-          "work_notes_list",
-          "comments",
-          "work_notes"
-        ]
+        "fields": ["watch_list", "work_notes_list", "comments", "work_notes"]
       },
       {
         "name": "related_records",
         "label": "Related Records",
         "columns": 2,
-        "fields": [
-          "parent_incident",
-          "problem_id",
-          "rfc",
-          "caused_by"
-        ]
+        "fields": ["parent_incident", "problem_id", "rfc", "caused_by"]
       },
       {
         "name": "resolution_information",
