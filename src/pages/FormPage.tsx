@@ -139,7 +139,7 @@ export function FormPage() {
   const wrapWithNowAssist = (
     field: FieldDefinition,
     fieldElement: React.ReactNode,
-    isReadonly: boolean
+    isReadonly: boolean,
   ) => {
     if (isAiAssistEnabled(field) && !isReadonly && tableDef) {
       return (
@@ -177,7 +177,7 @@ export function FormPage() {
             rows={4}
             fullWidth
           />,
-          !!isReadonly
+          !!isReadonly,
         );
 
       case 'richtext':
@@ -190,7 +190,7 @@ export function FormPage() {
             rows={6}
             fullWidth
           />,
-          !!isReadonly
+          !!isReadonly,
         );
 
       case 'choice':
@@ -260,7 +260,7 @@ export function FormPage() {
   return (
     <div className="h-[calc(100vh-48px)] flex flex-col">
       {/* Form Header */}
-      <div className="bg-white border-b border-sn-neutral-3 px-4 py-3">
+      <div className="bg-sn-neutral-2 border-b border-sn-neutral-3 px-4 py-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <button
@@ -270,10 +270,10 @@ export function FormPage() {
               <ChevronLeft className="w-5 h-5 text-sn-neutral-7" />
             </button>
             <div className="border-l border-sn-neutral-3 pl-3">
-              <div className="text-sm font-medium text-sn-neutral-9">
+              <div className="text-sm font-bold text-sn-neutral-9">
                 {tableDef.label}
               </div>
-              <div className="text-xs text-sn-neutral-6">{recordNumber}</div>
+              <div className="text-xs text-sn-neutral-7">{recordNumber}</div>
             </div>
           </div>
 
@@ -314,8 +314,8 @@ export function FormPage() {
       </div>
 
       {/* Form Content */}
-      <div className="flex-1 overflow-auto p-6 bg-sn-neutral-1">
-        <div className="max-w-5xl mx-auto bg-white rounded-sn border border-sn-neutral-3">
+      <div className="flex-1 overflow-auto p-6 bg-white">
+        <div className="max-w-5xl mx-auto rounded-sn">
           {tableDef.form.sections.map((section) => {
             const sectionFields = section.fields
               .map((fieldName) =>
@@ -339,7 +339,7 @@ export function FormPage() {
                 >
                   {sectionFields.map((field) => (
                     <div key={field.name} className="flex items-start gap-4">
-                      <label className="w-32 shrink-0 text-right text-sm text-sn-neutral-7 pt-2">
+                      <label className="w-32 shrink-0 text-right text-sm pt-2">
                         {field.required && (
                           <span className="text-sn-critical">* </span>
                         )}

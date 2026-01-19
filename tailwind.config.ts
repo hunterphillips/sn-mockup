@@ -1,29 +1,26 @@
-import type { Config } from 'tailwindcss'
+import type { Config } from 'tailwindcss';
 
 const config: Config = {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-  ],
+  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
       colors: {
         // ServiceNow Horizon Design System Colors
         sn: {
           // Chrome/Brand (header)
-          'chrome': {
-            DEFAULT: '#293e40',
+          chrome: {
+            DEFAULT: '#181826',
             light: '#3d5a5e',
             dark: '#1a2a2c',
           },
           // Primary (actions)
-          'primary': {
-            DEFAULT: '#1a73e8',
+          primary: {
+            DEFAULT: '#4f52bd',
             hover: '#1557b0',
             light: '#e8f0fe',
           },
           // Neutral palette
-          'neutral': {
+          neutral: {
             0: '#ffffff',
             1: '#f7f7f7',
             2: '#ebebeb',
@@ -37,24 +34,24 @@ const config: Config = {
             10: '#000000',
           },
           // Semantic colors
-          'critical': {
+          critical: {
             DEFAULT: '#d32f2f',
             light: '#ffebee',
           },
-          'warning': {
+          warning: {
             DEFAULT: '#ed6c02',
             light: '#fff3e0',
           },
-          'positive': {
+          positive: {
             DEFAULT: '#2e7d32',
             light: '#e8f5e9',
           },
-          'info': {
+          info: {
             DEFAULT: '#0288d1',
             light: '#e1f5fe',
           },
           // Interactive
-          'link': {
+          link: {
             DEFAULT: '#1a73e8',
             hover: '#1557b0',
             visited: '#681da8',
@@ -62,15 +59,15 @@ const config: Config = {
         },
       },
       fontFamily: {
-        'header': ['Cabin', 'sans-serif'],
-        'body': ['Lato', 'sans-serif'],
+        header: ['Cabin', 'sans-serif'],
+        body: ['Lato', 'sans-serif'],
       },
       fontSize: {
-        'xs': ['12px', { lineHeight: '16px' }],
-        'sm': ['14px', { lineHeight: '20px' }],
-        'base': ['16px', { lineHeight: '24px' }],
-        'lg': ['20px', { lineHeight: '28px' }],
-        'xl': ['24px', { lineHeight: '32px' }],
+        xs: ['12px', { lineHeight: '16px' }],
+        sm: ['14px', { lineHeight: '20px' }],
+        base: ['16px', { lineHeight: '24px' }],
+        lg: ['20px', { lineHeight: '28px' }],
+        xl: ['24px', { lineHeight: '32px' }],
         '2xl': ['32px', { lineHeight: '40px' }],
       },
       spacing: {
@@ -91,18 +88,22 @@ const config: Config = {
       boxShadow: {
         // ServiceNow elevation levels
         'sn-1': '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
-        'sn-2': '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1)',
-        'sn-3': '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1)',
-        'sn-4': '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1)',
-        'sn-5': '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)',
+        'sn-2':
+          '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1)',
+        'sn-3':
+          '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1)',
+        'sn-4':
+          '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1)',
+        'sn-5':
+          '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)',
       },
       borderRadius: {
-        'sn': '4px',
+        sn: '4px',
         'sn-lg': '8px',
       },
     },
   },
   plugins: [],
-}
+};
 
-export default config
+export default config;

@@ -11,7 +11,7 @@ import {
   Star,
   Clock,
   MoreVertical,
-  Globe,
+  // Globe,
   MessageSquare,
   HelpCircle,
   Bell,
@@ -107,10 +107,15 @@ export function SNHeader({ className }: SNHeaderProps) {
       )}
     >
       {/* Logo */}
-      <Link to="/" className="flex items-center gap-2 shrink-0">
-        <span className="text-white font-header font-bold text-lg tracking-tight">
-          service<span className="font-normal">now</span>
-        </span>
+      <Link
+        to="/"
+        className="flex items-center gap-2 shrink-0 max-h-[-webkit-fill-available] overflow-clip"
+      >
+        <img
+          src="/src/assets/sn-logo-white.png"
+          alt="logo"
+          className="h-[70px]"
+        />
       </Link>
 
       {/* Primary Navigation */}
@@ -149,9 +154,9 @@ export function SNHeader({ className }: SNHeaderProps) {
 
       {/* Utility Icons */}
       <div className="flex items-center gap-1">
-        <IconButton label="Scope">
+        {/* <IconButton label="Scope">
           <Globe className="w-5 h-5" />
-        </IconButton>
+        </IconButton> */}
         <IconButton label="Connect">
           <MessageSquare className="w-5 h-5" />
         </IconButton>

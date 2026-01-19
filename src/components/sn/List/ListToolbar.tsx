@@ -1,36 +1,29 @@
-import { Link } from 'react-router-dom'
-import { cn } from '../../../utils/cn'
-import { SNButton } from '../common/SNButton'
-import { SNInput } from '../common/SNInput'
-import { SNSelect } from '../common/SNSelect'
-import {
-  Menu,
-  Filter,
-  Settings,
-  Download,
-  Minus,
-  Plus,
-} from 'lucide-react'
+import { Link } from 'react-router-dom';
+import { cn } from '../../../utils/cn';
+import { SNButton } from '../common/SNButton';
+import { SNInput } from '../common/SNInput';
+import { SNSelect } from '../common/SNSelect';
+import { Menu, Filter, Settings, Download, Minus, Plus } from 'lucide-react';
 
 export interface ListToolbarProps {
   /** Table name for "New" button navigation */
-  tableName: string
+  tableName: string;
   /** Table label */
-  tableLabel: string
+  tableLabel: string;
   /** Current filter breadcrumb */
-  filterBreadcrumb?: string
+  filterBreadcrumb?: string;
   /** Callback to toggle filter panel */
-  onToggleFilter?: () => void
+  onToggleFilter?: () => void;
   /** Whether filter panel is visible */
-  filterVisible?: boolean
+  filterVisible?: boolean;
   /** Global search value */
-  searchValue?: string
+  searchValue?: string;
   /** Callback when search changes */
-  onSearchChange?: (value: string) => void
+  onSearchChange?: (value: string) => void;
   /** Number of selected rows */
-  selectedCount?: number
+  selectedCount?: number;
   /** Additional CSS classes */
-  className?: string
+  className?: string;
 }
 
 /**
@@ -56,7 +49,12 @@ export function ListToolbar({
   className,
 }: ListToolbarProps) {
   return (
-    <div className={cn('bg-white border-b border-sn-neutral-3 px-4 py-2', className)}>
+    <div
+      className={cn(
+        'bg-white border-b border-sn-neutral-3 px-4 py-2',
+        className,
+      )}
+    >
       {/* Top row */}
       <div className="flex items-center justify-between gap-4">
         <div className="flex items-center gap-2">
@@ -67,7 +65,9 @@ export function ListToolbar({
             onClick={onToggleFilter}
             className={cn(
               'p-1.5 rounded transition-colors',
-              filterVisible ? 'bg-sn-primary-light text-sn-primary' : 'hover:bg-sn-neutral-1 text-sn-neutral-7'
+              filterVisible
+                ? 'bg-sn-primary-light text-sn-primary'
+                : 'hover:bg-sn-neutral-1 text-sn-neutral-7',
             )}
             aria-label="Toggle filter"
           >
@@ -76,7 +76,9 @@ export function ListToolbar({
 
           {/* Table name and search */}
           <div className="flex items-center gap-2 border-l border-sn-neutral-3 pl-3 ml-1">
-            <span className="text-sm font-medium text-sn-neutral-8">{tableLabel}</span>
+            <span className="text-sm font-medium text-sn-neutral-8">
+              {tableLabel}
+            </span>
             <SNSelect
               size="sm"
               options={[{ value: 'number', label: 'Number' }]}
@@ -108,7 +110,9 @@ export function ListToolbar({
 
           <SNSelect
             size="sm"
-            options={[{ value: 'actions', label: 'Actions on selected rows...' }]}
+            options={[
+              { value: 'actions', label: 'Actions on selected rows...' },
+            ]}
             value="actions"
             onChange={() => {}}
             disabled={selectedCount === 0}
@@ -116,7 +120,11 @@ export function ListToolbar({
           />
 
           <Link to={`/${tableName}/new`}>
-            <SNButton variant="primary" size="sm" icon={<Plus className="w-4 h-4" />}>
+            <SNButton
+              variant="primary"
+              size="sm"
+              icon={<Plus className="w-4 h-4" />}
+            >
               New
             </SNButton>
           </Link>
@@ -125,10 +133,8 @@ export function ListToolbar({
 
       {/* Filter breadcrumb */}
       {filterBreadcrumb && (
-        <div className="mt-2 text-xs text-sn-neutral-7">
-          {filterBreadcrumb}
-        </div>
+        <div className="mt-2 text-xs text-sn-neutral-7">{filterBreadcrumb}</div>
       )}
     </div>
-  )
+  );
 }
