@@ -28,6 +28,7 @@
   --sn-text-secondary: #6b6b6b;
   --sn-text-tertiary: #8c8c8c;
   --sn-text-inverse: #ffffff;
+  --sn-text-purple: #4f52bd;
 }
 
 @layer base {
@@ -37,7 +38,12 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply font-header font-semibold;
   }
 }
@@ -79,5 +85,9 @@
   .sn-rich-text-content .tiptap p.is-editor-empty:first-child::before {
     @apply text-sn-neutral-5 float-left h-0 pointer-events-none;
     content: attr(data-placeholder);
+  }
+
+  .sn-text-purple {
+    color: var(--sn-text-purple);
   }
 }
