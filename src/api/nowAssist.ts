@@ -1,5 +1,8 @@
-import type { FieldDefinition, SNRecord, TableDefinition } from '../types';
+import type { FieldDefinition, SNRecord, TableDefinition, AiAssistFieldConfig } from '../types';
 import { getDisplayValue } from '../utils/fieldValue';
+
+/** Default context fields if none configured */
+const DEFAULT_CONTEXT_FIELDS = ['short_description', 'description', 'number', 'state', 'priority'];
 
 /** Request payload for Now Assist content generation */
 export interface NowAssistRequest {
@@ -7,6 +10,14 @@ export interface NowAssistRequest {
   tableDef: TableDefinition;
   recordData: Partial<SNRecord>;
   refinement?: 'shorter' | 'more_detailed';
+}
+
+/** Get resolved AI config for a field */
+function getFieldAiConfig(field: FieldDefinition): AiAssistFieldConfig | null {
+  if (!field.aiAssist) return null;
+  if (field.aiAssist === true) return {};
+  if (field.aiAssist.enabled === false) return null;
+  return field.aiAssist;
 }
 
 /** Response from Now Assist content generation */
@@ -28,16 +39,14 @@ function getApiKey(): string {
 /** Build context from record data for AI prompt */
 function buildRecordContext(
   tableDef: TableDefinition,
-  recordData: Partial<SNRecord>
+  recordData: Partial<SNRecord>,
+  contextFields: string[]
 ): string {
   const contextParts: string[] = [];
 
-  // Add table info
   contextParts.push(`Table: ${tableDef.label}`);
 
-  // Add relevant field values
-  const importantFields = ['short_description', 'description', 'number', 'state', 'priority'];
-  for (const fieldName of importantFields) {
+  for (const fieldName of contextFields) {
     const value = getDisplayValue(recordData[fieldName]);
     if (value) {
       const fieldDef = tableDef.fields.find((f) => f.name === fieldName);
@@ -49,6 +58,16 @@ function buildRecordContext(
   return contextParts.join('\n');
 }
 
+/** Resolve context fields: field config > table config > defaults */
+function resolveContextFields(
+  fieldConfig: AiAssistFieldConfig,
+  tableDef: TableDefinition
+): string[] {
+  return fieldConfig.contextFields
+    ?? tableDef.aiAssist?.contextFields
+    ?? DEFAULT_CONTEXT_FIELDS;
+}
+
 /** Call Anthropic API for content generation */
 export async function generateContent(
   request: NowAssistRequest
@@ -58,7 +77,10 @@ export async function generateContent(
     return { content: '', error: 'Anthropic API key not configured. Add VITE_ANTHROPIC_API_KEY to your .env file.' };
   }
 
-  const recordContext = buildRecordContext(request.tableDef, request.recordData);
+  // Get field AI config (already validated as enabled by caller)
+  const fieldConfig = getFieldAiConfig(request.field) ?? {};
+  const contextFields = resolveContextFields(fieldConfig, request.tableDef);
+  const recordContext = buildRecordContext(request.tableDef, request.recordData, contextFields);
 
   let prompt = `You are helping a ServiceNow user fill in the "${request.field.label}" field for a ${request.tableDef.label} record.
 
@@ -66,6 +88,11 @@ Record context:
 ${recordContext}
 
 Generate appropriate content for the "${request.field.label}" field.`;
+
+  // Add custom instructions if configured
+  if (fieldConfig.instructions) {
+    prompt += `\n\n${fieldConfig.instructions}`;
+  }
 
   if (request.field.type === 'richtext') {
     prompt += `

@@ -128,13 +128,20 @@ export function FormPage() {
     }
   };
 
+  // Check if AI assist is enabled for a field
+  const isAiAssistEnabled = (field: FieldDefinition): boolean => {
+    if (!field.aiAssist) return false;
+    if (field.aiAssist === true) return true;
+    return field.aiAssist.enabled !== false;
+  };
+
   // Helper to wrap field with Now Assist if enabled
   const wrapWithNowAssist = (
     field: FieldDefinition,
     fieldElement: React.ReactNode,
     isReadonly: boolean
   ) => {
-    if (field.aiAssist && !isReadonly && tableDef) {
+    if (isAiAssistEnabled(field) && !isReadonly && tableDef) {
       return (
         <NowAssistFieldWrapper
           field={field}

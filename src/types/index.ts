@@ -31,7 +31,8 @@ export interface FieldDefinition {
   reference?: string // Table name for reference fields
   defaultValue?: unknown
   maxLength?: number
-  aiAssist?: boolean // Enable Now Assist AI content generation
+  /** Enable Now Assist AI - true for defaults, or config object for customization */
+  aiAssist?: boolean | AiAssistFieldConfig
 }
 
 /** List view configuration */
@@ -71,6 +72,22 @@ export interface RelatedListDefinition {
   columns?: string[]
 }
 
+/** Field-level AI assist configuration */
+export interface AiAssistFieldConfig {
+  /** Whether AI assist is enabled (defaults to true if config object is present) */
+  enabled?: boolean
+  /** Fields to include in AI prompt context (overrides table default) */
+  contextFields?: string[]
+  /** Custom instructions for this field (e.g., "Use Given/When/Then format") */
+  instructions?: string
+}
+
+/** Table-level AI assist configuration */
+export interface AiAssistTableConfig {
+  /** Default context fields for all AI-enabled fields on this table */
+  contextFields?: string[]
+}
+
 /** A single record from any table */
 export interface SNRecord {
   sys_id: string
@@ -86,6 +103,7 @@ export interface TableDefinition {
   list: ListConfig
   form: FormConfig
   relatedLists?: RelatedListDefinition[]
+  aiAssist?: AiAssistTableConfig
   data: SNRecord[]
 }
 
