@@ -260,7 +260,7 @@ export function FormPage() {
   return (
     <div className="h-[calc(100vh-48px)] flex flex-col">
       {/* Form Header */}
-      <div className="bg-sn-neutral-2 border-b border-sn-neutral-3 px-4 py-3">
+      <div className="bg-sn-neutral-2 border-b border-sn-neutral-3 px-4 py-2">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <button
@@ -315,7 +315,7 @@ export function FormPage() {
 
       {/* Form Content */}
       <div className="flex-1 overflow-auto p-6 bg-white">
-        <div className="max-w-5xl mx-auto rounded-sn">
+        <div className="max-w-6xl mx-auto rounded-sn">
           {tableDef.form.sections.map((section) => {
             const sectionFields = section.fields
               .map((fieldName) =>
