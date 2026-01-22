@@ -4,6 +4,8 @@ import type {
   TableDefinition,
   AiAssistFieldConfig,
   AiAssistTableConfig,
+  AiToolName,
+  AiToolConfig,
 } from '../types';
 import { getDisplayValue } from '../utils/fieldValue';
 
@@ -72,6 +74,26 @@ function resolveAiConfig<
   return fieldConfig[key] ?? tableDef.aiAssist?.[key] ?? defaultValue;
 }
 
+/** Resolve tools configuration: field config > table config */
+function resolveTools(
+  fieldConfig: AiAssistFieldConfig,
+  tableDef: TableDefinition,
+): string[] {
+  const toolsConfig = fieldConfig.tools ?? tableDef.aiAssist?.tools;
+  if (!toolsConfig) return [];
+
+  // Normalize to array of tool names
+  return toolsConfig.map((t: AiToolName | AiToolConfig) =>
+    typeof t === 'string' ? t : t.name,
+  ).filter((name): name is AiToolName => {
+    // Filter out disabled tools
+    const config = toolsConfig.find(
+      (tc): tc is AiToolConfig => typeof tc === 'object' && tc.name === name,
+    );
+    return config?.enabled !== false;
+  });
+}
+
 /** Build the full prompt for AI generation */
 function buildPrompt(
   request: NowAssistRequest,
@@ -130,12 +152,13 @@ export async function generateContent(
     request.tableDef,
     request.field.maxLength ?? 2048,
   );
+  const tools = resolveTools(fieldConfig, request.tableDef);
 
   try {
     const response = await fetch('/api/ai/generate', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ prompt, provider, model, maxTokens }),
+      body: JSON.stringify({ prompt, provider, model, maxTokens, tools }),
     });
 
     if (!response.ok) {

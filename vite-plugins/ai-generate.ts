@@ -4,6 +4,7 @@ import { createAnthropic } from '@ai-sdk/anthropic';
 import { createOpenAI } from '@ai-sdk/openai';
 import { createGoogleGenerativeAI } from '@ai-sdk/google';
 import { ollama } from 'ollama-ai-provider';
+import { executeWebSearch } from './tools';
 
 /** Supported AI providers */
 type AiProvider = 'anthropic' | 'openai' | 'google' | 'ollama';
@@ -22,10 +23,15 @@ interface GenerateRequest {
   model?: string;
   prompt: string;
   maxTokens?: number;
+  tools?: string[];
 }
 
 /** Get the model instance for a provider */
-function getModel(provider: AiProvider, modelId: string, apiKey?: string): LanguageModel {
+function getModel(
+  provider: AiProvider,
+  modelId: string,
+  apiKey?: string,
+): LanguageModel {
   // Cast through unknown due to SDK version mismatch (some providers return V1, SDK expects V2/V3)
   switch (provider) {
     case 'anthropic':
@@ -33,7 +39,9 @@ function getModel(provider: AiProvider, modelId: string, apiKey?: string): Langu
     case 'openai':
       return createOpenAI({ apiKey })(modelId) as unknown as LanguageModel;
     case 'google':
-      return createGoogleGenerativeAI({ apiKey })(modelId) as unknown as LanguageModel;
+      return createGoogleGenerativeAI({ apiKey })(
+        modelId,
+      ) as unknown as LanguageModel;
     case 'ollama':
       return ollama(modelId) as unknown as LanguageModel;
     default:
@@ -42,8 +50,59 @@ function getModel(provider: AiProvider, modelId: string, apiKey?: string): Langu
 }
 
 /**
+ * Execute tools and gather context for enriched generation.
+ * Returns tool results as context string.
+ */
+async function executeToolsForContext(
+  model: LanguageModel,
+  prompt: string,
+  requestedTools: string[],
+  env: Record<string, string>,
+): Promise<string> {
+  const toolsContext: string[] = [];
+
+  // Execute web_search tool if requested
+  if (requestedTools.includes('web_search')) {
+    const serperKey = env.SERPER_API_KEY;
+    if (!serperKey) {
+      toolsContext.push(
+        '[web_search unavailable: SERPER_API_KEY not configured]',
+      );
+    } else {
+      try {
+        // Ask the model to generate a search query based on the prompt
+        const queryResult = await generateText({
+          model,
+          prompt: `Based on this request, generate a concise search query (just the query, nothing else):
+
+"${prompt}"
+
+Search query:`,
+          maxOutputTokens: 50,
+        });
+
+        const query = queryResult.text.trim();
+        if (query) {
+          console.log(`[web_search] Searching for: ${query}`);
+          const searchResults = await executeWebSearch(query, serperKey);
+          toolsContext.push(`[web_search results for "${query}"]\n${searchResults}`);
+        }
+      } catch (error) {
+        console.error('web_search failed:', error);
+        toolsContext.push(
+          `[web_search error: ${error instanceof Error ? error.message : 'unknown'}]`,
+        );
+      }
+    }
+  }
+
+  return toolsContext.join('\n\n');
+}
+
+/**
  * Vite plugin that provides an API endpoint for AI content generation.
  * Routes requests through Vercel AI SDK to multiple providers.
+ * Supports tools that enrich context before final generation.
  * API keys are kept server-side for security.
  */
 export function aiGeneratePlugin(): Plugin {
@@ -94,10 +153,38 @@ export function aiGeneratePlugin(): Plugin {
             return;
           }
 
-          // Generate content using Vercel AI SDK
+          const modelInstance = getModel(provider, model, apiKey);
+
+          // Phase 1: Execute tools to gather context (if tools requested)
+          let enrichedPrompt = request.prompt;
+          let toolsUsed: string[] = [];
+
+          if (request.tools?.length) {
+            const toolContext = await executeToolsForContext(
+              modelInstance,
+              request.prompt,
+              request.tools,
+              env,
+            );
+
+            if (toolContext) {
+              enrichedPrompt = `${request.prompt}
+
+---
+Additional context from research:
+
+${toolContext}
+
+---
+Use the above research to inform your response.`;
+              toolsUsed = request.tools;
+            }
+          }
+
+          // Phase 2: Generate final content with enriched context
           const result = await generateText({
-            model: getModel(provider, model, apiKey),
-            prompt: request.prompt,
+            model: modelInstance,
+            prompt: enrichedPrompt,
             maxOutputTokens: request.maxTokens || 1024,
           });
 
@@ -108,6 +195,7 @@ export function aiGeneratePlugin(): Plugin {
               content: result.text,
               provider,
               model,
+              toolsUsed,
             }),
           );
         } catch (error) {

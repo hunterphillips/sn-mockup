@@ -75,6 +75,17 @@ export interface RelatedListDefinition {
 /** Supported AI providers */
 export type AiProvider = 'anthropic' | 'openai' | 'google' | 'ollama'
 
+/** Built-in AI tool names */
+export type AiToolName = 'web_search' | 'lookup_record'
+
+/** Tool configuration */
+export interface AiToolConfig {
+  name: AiToolName
+  enabled?: boolean
+  /** Tool-specific options */
+  options?: Record<string, unknown>
+}
+
 /** Field-level AI assist configuration */
 export interface AiAssistFieldConfig {
   /** Whether AI assist is enabled (defaults to true if config object is present) */
@@ -89,6 +100,8 @@ export interface AiAssistFieldConfig {
   model?: string
   /** Maximum tokens for AI response (overrides table default) */
   maxTokens?: number
+  /** Tools to enable for this field */
+  tools?: AiToolName[] | AiToolConfig[]
 }
 
 /** Table-level AI assist configuration */
@@ -101,6 +114,8 @@ export interface AiAssistTableConfig {
   model?: string
   /** Default max tokens for AI responses on this table */
   maxTokens?: number
+  /** Default tools for all AI-enabled fields on this table */
+  tools?: AiToolName[] | AiToolConfig[]
 }
 
 /** A single record from any table */
