@@ -1,4 +1,12 @@
-import { useState, useRef, useEffect, type ReactNode } from 'react';
+import {
+  useState,
+  useRef,
+  useEffect,
+  cloneElement,
+  isValidElement,
+  type ReactNode,
+  type ReactElement,
+} from 'react';
 import { createPortal } from 'react-dom';
 import type {
   FieldDefinition,
@@ -38,6 +46,8 @@ export function NowAssistFieldWrapper({
   const [error, setError] = useState<string | undefined>();
   const triggerRef = useRef<HTMLDivElement>(null);
   const popupRef = useRef<HTMLDivElement>(null);
+
+  const isRichText = field.type === 'richtext';
 
   // Close popup on click outside or escape
   useEffect(() => {
@@ -126,15 +136,36 @@ export function NowAssistFieldWrapper({
     setIsOpen(false);
   };
 
+  // The trigger button element
+  const triggerButton = (
+    <NowAssistTrigger
+      isOpen={isOpen}
+      onClick={handleOpen}
+      variant={isRichText ? 'inline' : 'default'}
+    />
+  );
+
+  // For richtext fields, inject trigger into toolbar via cloneElement
+  const renderChildren = () => {
+    if (isRichText && isValidElement(children)) {
+      return cloneElement(children as ReactElement<{ toolbarActions?: ReactNode }>, {
+        toolbarActions: <div ref={triggerRef}>{triggerButton}</div>,
+      });
+    }
+    return children;
+  };
+
   return (
     <div className="relative">
-      {/* Trigger button positioned at top-right */}
-      <div ref={triggerRef} className="absolute -top-1 -right-1 z-10">
-        <NowAssistTrigger isOpen={isOpen} onClick={handleOpen} />
-      </div>
+      {/* For non-richtext fields, show floating trigger at top-right */}
+      {!isRichText && (
+        <div ref={triggerRef} className="absolute -top-1 -right-1 z-10">
+          {triggerButton}
+        </div>
+      )}
 
-      {/* The wrapped field */}
-      {children}
+      {/* The wrapped field (possibly with injected toolbarActions) */}
+      {renderChildren()}
 
       {/* Popup rendered via portal to body */}
       {isOpen &&
@@ -154,3 +185,4 @@ export function NowAssistFieldWrapper({
     </div>
   );
 }
+
