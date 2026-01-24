@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useEditor, EditorContent } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import Underline from '@tiptap/extension-underline'
@@ -8,6 +8,8 @@ import {
   Underline as UnderlineIcon,
   List,
   ListOrdered,
+  ChevronDown,
+  ChevronUp,
 } from 'lucide-react'
 import { cn } from '../../../utils/cn'
 
@@ -24,6 +26,10 @@ export interface SNRichTextEditorProps {
   fullWidth?: boolean
   /** Number of visible rows (affects min-height) */
   rows?: number
+  /** Start in collapsed state */
+  defaultCollapsed?: boolean
+  /** Custom actions to render in the toolbar (before collapse toggle) */
+  toolbarActions?: React.ReactNode
   /** Additional class names */
   className?: string
 }
@@ -78,8 +84,12 @@ export function SNRichTextEditor({
   error = false,
   fullWidth = false,
   rows = 4,
+  defaultCollapsed = false,
+  toolbarActions,
   className,
 }: SNRichTextEditorProps) {
+  const [collapsed, setCollapsed] = useState(defaultCollapsed)
+  
   const editor = useEditor({
     extensions: [
       StarterKit.configure({
@@ -115,7 +125,9 @@ export function SNRichTextEditor({
     }
   }, [disabled, editor])
 
-  const minHeight = rows * 24 // ~24px per row
+  // Collapsed = 2 rows (~48px), expanded = configured rows
+  const collapsedRows = 2
+  const minHeight = (collapsed ? collapsedRows : rows) * 24
 
   return (
     <div
@@ -180,16 +192,35 @@ export function SNRichTextEditor({
         >
           <ListOrdered className="w-4 h-4" />
         </ToolbarButton>
+
+        {/* Spacer to push actions to the right */}
+        <div className="flex-1" />
+
+        {/* Custom toolbar actions (e.g., Now Assist) */}
+        {toolbarActions}
+
+        {/* Collapse/Expand Toggle */}
+        <ToolbarButton
+          onClick={() => setCollapsed(!collapsed)}
+          title={collapsed ? 'Expand editor' : 'Collapse editor'}
+        >
+          {collapsed ? (
+            <ChevronDown className="w-4 h-4" />
+          ) : (
+            <ChevronUp className="w-4 h-4" />
+          )}
+        </ToolbarButton>
       </div>
 
       {/* Editor Content */}
       <EditorContent
         editor={editor}
         className={cn(
-          'sn-rich-text-content',
-          disabled && 'pointer-events-none'
+          'sn-rich-text-content transition-all duration-200',
+          disabled && 'pointer-events-none',
+          collapsed && 'overflow-hidden'
         )}
-        style={{ minHeight: `${minHeight}px` }}
+        style={{ minHeight: `${minHeight}px`, maxHeight: collapsed ? `${minHeight}px` : undefined }}
       />
     </div>
   )

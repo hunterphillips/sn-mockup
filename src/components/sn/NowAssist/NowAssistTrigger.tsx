@@ -6,6 +6,8 @@ export interface NowAssistTriggerProps
   extends ButtonHTMLAttributes<HTMLButtonElement> {
   /** Whether the popup is currently open */
   isOpen?: boolean;
+  /** Variant: 'default' for floating overlay, 'inline' for toolbar integration */
+  variant?: 'default' | 'inline';
 }
 
 /**
@@ -14,7 +16,9 @@ export interface NowAssistTriggerProps
 export const NowAssistTrigger = forwardRef<
   HTMLButtonElement,
   NowAssistTriggerProps
->(({ isOpen, className, ...props }, ref) => {
+>(({ isOpen, variant = 'default', className, ...props }, ref) => {
+  const isInline = variant === 'inline';
+
   return (
     <button
       ref={ref}
@@ -22,19 +26,30 @@ export const NowAssistTrigger = forwardRef<
       title="Write with Now Assist"
       className={cn(
         'inline-flex items-center justify-center',
-        'w-7 h-7 rounded-full',
-        'bg-sn-primary text-white',
-        'hover:bg-sn-primary-hover',
-        'focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-sn-primary',
         'transition-colors',
-        isOpen && 'bg-sn-primary-hover',
+        'focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-sn-primary',
+        isInline
+          ? [
+              // Inline/toolbar style - subtle, matches toolbar buttons
+              'p-1.5 rounded',
+              'text-sn-neutral-6 hover:text-sn-primary hover:bg-sn-neutral-2',
+              isOpen && 'text-sn-primary bg-sn-neutral-2',
+            ]
+          : [
+              // Default floating style - more subtle than before
+              'w-6 h-6 rounded-full',
+              'bg-sn-neutral-3 text-sn-neutral-7',
+              'hover:bg-sn-primary hover:text-white',
+              isOpen && 'bg-sn-primary text-white',
+            ],
         className
       )}
       {...props}
     >
-      <Sparkles className="w-4 h-4" />
+      <Sparkles className={cn(isInline ? 'w-4 h-4' : 'w-3.5 h-3.5')} />
     </button>
   );
 });
 
 NowAssistTrigger.displayName = 'NowAssistTrigger';
+
