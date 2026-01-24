@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { cn } from '../../../utils/cn';
-import { Search, ChevronDown } from 'lucide-react';
+import { Search } from 'lucide-react';
 
 export interface GlobalSearchProps {
   /** Additional CSS classes */
