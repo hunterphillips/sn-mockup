@@ -24,6 +24,7 @@ export interface NowAssistRequest {
   tableDef: TableDefinition;
   recordData: Partial<SNRecord>;
   refinement?: 'shorter' | 'more_detailed';
+  userInput?: string;
 }
 
 /** Response from Now Assist content generation */
@@ -83,15 +84,15 @@ function resolveTools(
   if (!toolsConfig) return [];
 
   // Normalize to array of tool names
-  return toolsConfig.map((t: AiToolName | AiToolConfig) =>
-    typeof t === 'string' ? t : t.name,
-  ).filter((name): name is AiToolName => {
-    // Filter out disabled tools
-    const config = toolsConfig.find(
-      (tc): tc is AiToolConfig => typeof tc === 'object' && tc.name === name,
-    );
-    return config?.enabled !== false;
-  });
+  return toolsConfig
+    .map((t: AiToolName | AiToolConfig) => (typeof t === 'string' ? t : t.name))
+    .filter((name): name is AiToolName => {
+      // Filter out disabled tools
+      const config = toolsConfig.find(
+        (tc): tc is AiToolConfig => typeof tc === 'object' && tc.name === name,
+      );
+      return config?.enabled !== false;
+    });
 }
 
 /** Build the full prompt for AI generation */
@@ -133,6 +134,11 @@ IMPORTANT: Output raw HTML only. Do NOT wrap in code fences or markdown.`;
     prompt += '\n\nMake the content concise and brief.';
   } else if (request.refinement === 'more_detailed') {
     prompt += '\n\nProvide comprehensive, detailed content.';
+  }
+
+  // Include additional user input if present
+  if (request.userInput?.trim()) {
+    prompt += `\n\nUser guidance: ${request.userInput.trim()}`;
   }
 
   return prompt;

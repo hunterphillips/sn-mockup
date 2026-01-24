@@ -102,6 +102,13 @@ export interface AiAssistFieldConfig {
   maxTokens?: number
   /** Tools to enable for this field */
   tools?: AiToolName[] | AiToolConfig[]
+  /** Show input prompt before generating - allows user to provide optional guidance */
+  collectInput?: boolean | {
+    /** Placeholder text for the input field */
+    placeholder?: string
+    /** Label/prompt shown above the input */
+    label?: string
+  }
 }
 
 /** Table-level AI assist configuration */

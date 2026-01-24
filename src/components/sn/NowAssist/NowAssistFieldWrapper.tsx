@@ -12,10 +12,11 @@ import type {
   FieldDefinition,
   SNRecord,
   TableDefinition,
+  AiAssistFieldConfig,
 } from '../../../types';
 import { generateContent } from '../../../api/nowAssist';
 import { NowAssistTrigger } from './NowAssistTrigger';
-import { NowAssistPopup } from './NowAssistPopup';
+import { NowAssistPopup, type NowAssistPhase } from './NowAssistPopup';
 
 export interface NowAssistFieldWrapperProps {
   /** The field definition */
@@ -30,6 +31,29 @@ export interface NowAssistFieldWrapperProps {
   children: ReactNode;
 }
 
+/** Get field-level AI config */
+function getFieldAiConfig(field: FieldDefinition): AiAssistFieldConfig | null {
+  if (!field.aiAssist) return null;
+  if (field.aiAssist === true) return {};
+  if (field.aiAssist.enabled === false) return null;
+  return field.aiAssist;
+}
+
+/** Check if collectInput is enabled and get its config */
+function getCollectInputConfig(aiConfig: AiAssistFieldConfig | null): {
+  enabled: boolean;
+  placeholder?: string;
+  label?: string;
+} {
+  if (!aiConfig?.collectInput) return { enabled: false };
+  if (aiConfig.collectInput === true) return { enabled: true };
+  return {
+    enabled: true,
+    placeholder: aiConfig.collectInput.placeholder,
+    label: aiConfig.collectInput.label,
+  };
+}
+
 /**
  * Wraps a text/richtext field to add Now Assist AI capability
  */
@@ -41,13 +65,16 @@ export function NowAssistFieldWrapper({
   children,
 }: NowAssistFieldWrapperProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const [phase, setPhase] = useState<NowAssistPhase>('input');
   const [content, setContent] = useState('');
   const [error, setError] = useState<string | undefined>();
+  const [currentUserInput, setCurrentUserInput] = useState<string | undefined>();
   const triggerRef = useRef<HTMLDivElement>(null);
   const popupRef = useRef<HTMLDivElement>(null);
 
   const isRichText = field.type === 'richtext';
+  const aiConfig = getFieldAiConfig(field);
+  const collectInputConfig = getCollectInputConfig(aiConfig);
 
   // Close popup on click outside or escape
   useEffect(() => {
@@ -78,10 +105,27 @@ export function NowAssistFieldWrapper({
     };
   }, [isOpen]);
 
-  // Generate content when popup opens
-  const handleOpen = async () => {
+  // Handle trigger click - open popup
+  const handleOpen = () => {
     setIsOpen(true);
-    setIsLoading(true);
+    setError(undefined);
+    setContent('');
+    setCurrentUserInput(undefined);
+    
+    // If collectInput is enabled, start with input phase; otherwise go straight to loading
+    if (collectInputConfig.enabled) {
+      setPhase('input');
+    } else {
+      // No input collection, generate immediately
+      setPhase('loading');
+      doGenerate(undefined);
+    }
+  };
+
+  // Generate content (called from input phase or directly)
+  const doGenerate = async (userInput?: string) => {
+    setPhase('loading');
+    setCurrentUserInput(userInput);
     setError(undefined);
 
     try {
@@ -89,6 +133,7 @@ export function NowAssistFieldWrapper({
         field,
         tableDef,
         recordData: formData,
+        userInput,
       });
 
       if (response.error) {
@@ -101,13 +146,18 @@ export function NowAssistFieldWrapper({
         err instanceof Error ? err.message : 'Failed to generate content',
       );
     } finally {
-      setIsLoading(false);
+      setPhase('result');
     }
+  };
+
+  // Handle generate from input phase
+  const handleGenerate = (userInput?: string) => {
+    doGenerate(userInput);
   };
 
   // Handle refinement
   const handleRefine = async (type: 'shorter' | 'more_detailed') => {
-    setIsLoading(true);
+    setPhase('loading');
     setError(undefined);
 
     try {
@@ -116,6 +166,7 @@ export function NowAssistFieldWrapper({
         tableDef,
         recordData: formData,
         refinement: type,
+        userInput: currentUserInput,
       });
 
       if (response.error) {
@@ -126,13 +177,18 @@ export function NowAssistFieldWrapper({
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to refine content');
     } finally {
-      setIsLoading(false);
+      setPhase('result');
     }
   };
 
   // Handle insert
   const handleInsert = () => {
     onInsert(content);
+    setIsOpen(false);
+  };
+
+  // Handle close
+  const handleClose = () => {
     setIsOpen(false);
   };
 
@@ -172,12 +228,15 @@ export function NowAssistFieldWrapper({
         createPortal(
           <div ref={popupRef}>
             <NowAssistPopup
-              isLoading={isLoading}
+              phase={phase}
               content={content}
               error={error}
               onInsert={handleInsert}
               onRefine={handleRefine}
-              onClose={() => setIsOpen(false)}
+              onClose={handleClose}
+              onGenerate={handleGenerate}
+              inputPlaceholder={collectInputConfig.placeholder}
+              inputLabel={collectInputConfig.label}
             />
           </div>,
           document.body,
@@ -185,4 +244,5 @@ export function NowAssistFieldWrapper({
     </div>
   );
 }
+
 
