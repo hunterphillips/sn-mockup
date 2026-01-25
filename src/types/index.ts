@@ -109,6 +109,20 @@ export interface AiAssistFieldConfig {
     /** Label/prompt shown above the input */
     label?: string
   }
+  /** Pre-flight check: AI evaluates context sufficiency and asks clarifying questions if needed */
+  clarifyContext?: boolean | ClarifyContextConfig
+}
+
+/** Configuration for the clarifyContext pre-flight phase */
+export interface ClarifyContextConfig {
+  /** Custom objective (defaults to field's `instructions`, or "Generate content for {field.label}" if none) */
+  objective?: string
+  /** Maximum number of clarifying questions to ask (default: 3) */
+  maxQuestions?: number
+  /** Provider for clarify phase (use cheaper model; defaults to table/env default) */
+  provider?: AiProvider
+  /** Model for clarify phase (defaults to table/env default) */
+  model?: string
 }
 
 /** Table-level AI assist configuration */

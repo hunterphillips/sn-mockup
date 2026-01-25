@@ -6,6 +6,7 @@ import type {
   AiAssistTableConfig,
   AiToolName,
   AiToolConfig,
+  ClarifyContextConfig,
 } from '../types';
 import { getDisplayValue } from '../utils/fieldValue';
 
@@ -180,6 +181,103 @@ export async function generateContent(
   } catch (error) {
     return {
       content: '',
+      error: `Network error: ${error instanceof Error ? error.message : 'Unknown error'}`,
+    };
+  }
+}
+
+/** Request payload for context clarification */
+export interface ClarifyRequest {
+  field: FieldDefinition;
+  tableDef: TableDefinition;
+  recordData: Partial<SNRecord>;
+}
+
+/** Response from context clarification */
+export interface ClarifyResponse {
+  sufficient: boolean;
+  questions?: string[];
+  error?: string;
+}
+
+/** Get clarifyContext config for a field */
+function getClarifyConfig(
+  field: FieldDefinition,
+): ClarifyContextConfig | null {
+  const aiConfig = getFieldAiConfig(field);
+  if (!aiConfig?.clarifyContext) return null;
+  if (aiConfig.clarifyContext === true) return {};
+  return aiConfig.clarifyContext;
+}
+
+/** Evaluate context sufficiency and get clarifying questions if needed */
+export async function clarifyContext(
+  request: ClarifyRequest,
+): Promise<ClarifyResponse> {
+  const clarifyConfig = getClarifyConfig(request.field);
+  if (!clarifyConfig) {
+    // Clarify not enabled, context is sufficient
+    return { sufficient: true };
+  }
+
+  const fieldConfig = getFieldAiConfig(request.field) ?? {};
+  const contextFields = resolveAiConfig(
+    'contextFields',
+    fieldConfig,
+    request.tableDef,
+    DEFAULT_CONTEXT_FIELDS,
+  )!;
+  const context = buildRecordContext(
+    request.tableDef,
+    request.recordData,
+    contextFields,
+  );
+
+  // Objective: use clarifyConfig.objective, then field.instructions, then default
+  const objective =
+    clarifyConfig.objective ||
+    fieldConfig.instructions ||
+    `Generate content for the "${request.field.label}" field`;
+
+  // Provider/model: use clarifyConfig overrides, then resolve normally
+  const provider =
+    clarifyConfig.provider ??
+    resolveAiConfig('provider', fieldConfig, request.tableDef);
+  const model =
+    clarifyConfig.model ??
+    resolveAiConfig('model', fieldConfig, request.tableDef);
+
+  const maxQuestions = clarifyConfig.maxQuestions ?? 3;
+
+  try {
+    const response = await fetch('/api/ai/clarify', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        context,
+        objective,
+        provider,
+        model,
+        maxQuestions,
+      }),
+    });
+
+    if (!response.ok) {
+      const data = await response.json().catch(() => ({}));
+      return {
+        sufficient: true, // Default to sufficient on error
+        error: data.error || `API error: ${response.status}`,
+      };
+    }
+
+    const data = await response.json();
+    return {
+      sufficient: data.sufficient ?? true,
+      questions: data.questions,
+    };
+  } catch (error) {
+    return {
+      sufficient: true, // Default to sufficient on network error
       error: `Network error: ${error instanceof Error ? error.message : 'Unknown error'}`,
     };
   }
