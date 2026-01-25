@@ -16,6 +16,7 @@ type ImportStatus = 'idle' | 'loading' | 'success' | 'error';
  */
 export function TableImporter({ onImportSuccess }: TableImporterProps) {
   const [tableName, setTableName] = useState('');
+  const [recordLimit, setRecordLimit] = useState(10);
   const [status, setStatus] = useState<ImportStatus>('idle');
   const [result, setResult] = useState<ImportResult | null>(null);
 
@@ -25,7 +26,7 @@ export function TableImporter({ onImportSuccess }: TableImporterProps) {
     setStatus('loading');
     setResult(null);
 
-    const importResult = await importTable(tableName.trim());
+    const importResult = await importTable(tableName.trim(), recordLimit);
     setResult(importResult);
 
     if (importResult.success) {
@@ -60,6 +61,20 @@ export function TableImporter({ onImportSuccess }: TableImporterProps) {
           disabled={status === 'loading'}
           fullWidth
         />
+        <SNInput
+          type="number"
+          value={recordLimit}
+          onChange={(e) =>
+            setRecordLimit(Math.max(1, parseInt(e.target.value) || 1))
+          }
+          disabled={status === 'loading'}
+          className="w-20 text-center"
+          min={1}
+          max={1000}
+        />
+        <span className="self-center text-sm text-sn-neutral-6 whitespace-nowrap">
+          rows
+        </span>
         <SNButton
           variant="primary"
           onClick={handleImport}

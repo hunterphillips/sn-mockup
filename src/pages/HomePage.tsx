@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useData } from '../context/DataContext';
 import { SNButton } from '../components/sn/common';
 import { TableImporter } from '../components/sn/TableImporter';
@@ -9,6 +9,7 @@ import { List, FileText } from 'lucide-react';
  */
 export function HomePage() {
   const { tables, isLoading, registerTable } = useData();
+  const navigate = useNavigate();
 
   if (isLoading) {
     return (
@@ -34,7 +35,8 @@ export function HomePage() {
         {tables.map((table) => (
           <div
             key={table.name}
-            className="bg-white border border-sn-neutral-3 rounded-sn-lg p-6 hover:shadow-sn-2 transition-shadow"
+            onClick={() => navigate(`/${table.name}/list`)}
+            className="bg-white border border-sn-neutral-3 rounded-sn-lg p-6 hover:shadow-sn-2 transition-shadow cursor-pointer"
           >
             <h2 className="text-lg font-semibold text-sn-neutral-9 mb-1">
               {table.labelPlural || table.label}
@@ -43,7 +45,7 @@ export function HomePage() {
               {table.data.length} records • {table.fields.length} fields
             </p>
             <div className="flex gap-2">
-              <Link to={`/${table.name}/list`}>
+              <Link to={`/${table.name}/list`} onClick={(e) => e.stopPropagation()}>
                 <SNButton
                   variant="secondary"
                   size="sm"
@@ -52,7 +54,7 @@ export function HomePage() {
                   View List
                 </SNButton>
               </Link>
-              <Link to={`/${table.name}/new`}>
+              <Link to={`/${table.name}/new`} onClick={(e) => e.stopPropagation()}>
                 <SNButton
                   variant="primary"
                   size="sm"

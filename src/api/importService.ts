@@ -13,12 +13,12 @@ export interface ImportResult {
  * Import a table definition from a ServiceNow instance.
  * Calls the dev server endpoint which proxies to ServiceNow to avoid CORS.
  */
-export async function importTable(tableName: string): Promise<ImportResult> {
+export async function importTable(tableName: string, recordLimit: number = 10): Promise<ImportResult> {
   try {
     const response = await fetch('/api/sn/import', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ tableName }),
+      body: JSON.stringify({ tableName, recordLimit }),
     })
 
     const data = await response.json()

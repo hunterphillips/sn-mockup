@@ -345,7 +345,7 @@ export function snImportPlugin(): Plugin {
         }
 
         try {
-          const { tableName } = JSON.parse(body);
+          const { tableName, recordLimit = 10 } = JSON.parse(body);
           if (!tableName) {
             res.statusCode = 400;
             res.end(JSON.stringify({ error: 'tableName is required' }));
@@ -417,7 +417,7 @@ export function snImportPlugin(): Plugin {
           const meta = (await metaResponse.json()) as SNMetaResponse;
 
           // Fetch sample records
-          const recordsUrl = `${instance}/api/now/table/${tableName}?sysparm_limit=10&sysparm_display_value=all`;
+          const recordsUrl = `${instance}/api/now/table/${tableName}?sysparm_limit=${recordLimit}&sysparm_display_value=all`;
           const recordsResponse = await fetch(recordsUrl, {
             headers: {
               Authorization: authHeader,
