@@ -134,7 +134,7 @@ export function NowAssistPopup({
         <>
           <div className="p-4 space-y-4">
             <p className="text-sm text-sn-neutral-7">
-              Please answer these questions to help generate better content:
+              Please answer these questions to help generate a better response:
             </p>
             {clarifyQuestions.map((question, index) => (
               <div key={index} className="space-y-1">

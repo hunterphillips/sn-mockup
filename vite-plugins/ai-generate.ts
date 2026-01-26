@@ -1,5 +1,6 @@
 import { loadEnv, type Plugin } from 'vite';
-import { generateText, type LanguageModel } from 'ai';
+import { generateText, generateObject, type LanguageModel } from 'ai';
+import { z } from 'zod';
 import { createAnthropic } from '@ai-sdk/anthropic';
 import { createOpenAI } from '@ai-sdk/openai';
 import { createGoogleGenerativeAI } from '@ai-sdk/google';
@@ -264,6 +265,12 @@ Use the above research to inform your response.`;
           const modelInstance = getModel(provider, model, apiKey);
           const maxQuestions = request.maxQuestions ?? 3;
 
+          // Schema for validated JSON response
+          const ClarifyResponseSchema = z.object({
+            sufficient: z.boolean().describe('Whether the context is sufficient to accomplish the objective'),
+            questions: z.array(z.string()).optional().describe('Clarifying questions if context is insufficient'),
+          });
+
           const clarifyPrompt = `You are evaluating whether the provided context is sufficient to accomplish an objective.
 
 OBJECTIVE: ${request.objective}
@@ -273,44 +280,23 @@ ${request.context}
 
 Evaluate if this context is sufficient to reasonably accomplish the objective.
 
-Respond with ONLY valid JSON in one of these formats:
-- If sufficient: {"sufficient": true}
-- If not sufficient: {"sufficient": false, "questions": ["question 1", "question 2"]}
-
 If asking questions:
 - Ask only the most critical questions needed (max ${maxQuestions})
 - Be specific and actionable
-- Focus on information that would significantly improve the outcome
-
-JSON response:`;
+- Focus on information that would significantly improve the outcome`;
 
           console.log('[clarify] Evaluating context sufficiency...');
-          const result = await generateText({
+          const result = await generateObject({
             model: modelInstance,
+            schema: ClarifyResponseSchema,
             prompt: clarifyPrompt,
-            maxOutputTokens: 500,
           });
-
-          // Parse the JSON response
-          const responseText = result.text.trim();
-          let parsed: { sufficient: boolean; questions?: string[] };
-          
-          try {
-            // Handle potential markdown code blocks
-            const jsonMatch = responseText.match(/```(?:json)?\s*([\s\S]*?)\s*```/) ||
-              [null, responseText];
-            parsed = JSON.parse(jsonMatch[1] || responseText);
-          } catch {
-            console.error('[clarify] Failed to parse AI response:', responseText);
-            // Default to sufficient if we can't parse
-            parsed = { sufficient: true };
-          }
 
           res.statusCode = 200;
           res.setHeader('Content-Type', 'application/json');
           res.end(JSON.stringify({
-            sufficient: parsed.sufficient,
-            questions: parsed.questions,
+            sufficient: result.object.sufficient,
+            questions: result.object.questions,
             provider,
             model,
           }));
