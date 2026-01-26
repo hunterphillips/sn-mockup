@@ -78,6 +78,7 @@ export function NowAssistFieldWrapper({
   const [error, setError] = useState<string | undefined>();
   const [currentUserInput, setCurrentUserInput] = useState<string | undefined>();
   const [clarifyQuestions, setClarifyQuestions] = useState<string[]>([]);
+  const [clarifyAnswers, setClarifyAnswers] = useState<string | undefined>();
   const triggerRef = useRef<HTMLDivElement>(null);
   const popupRef = useRef<HTMLDivElement>(null);
 
@@ -117,11 +118,13 @@ export function NowAssistFieldWrapper({
 
   // Handle trigger click - open popup
   const handleOpen = async () => {
+    if (isOpen) return;
     setIsOpen(true);
     setError(undefined);
     setContent('');
     setCurrentUserInput(undefined);
     setClarifyQuestions([]);
+    setClarifyAnswers(undefined);
 
     // If clarifyContext is enabled, start by evaluating context
     if (clarifyConfig) {
@@ -159,12 +162,17 @@ export function NowAssistFieldWrapper({
     setCurrentUserInput(userInput);
     setError(undefined);
 
+    // Combine clarify answers with user input
+    const combinedInput = [clarifyAnswers, userInput]
+      .filter(Boolean)
+      .join('\n\n') || undefined;
+
     try {
       const response = await generateContent({
         field,
         tableDef,
         recordData: formData,
-        userInput,
+        userInput: combinedInput,
       });
 
       if (response.error) {
@@ -188,19 +196,21 @@ export function NowAssistFieldWrapper({
 
   // Handle clarify submit - proceed with answers as additional context
   const handleClarifySubmit = (answers: string[]) => {
-    // Format answers as additional user input
+    // Format answers as context to preserve
     const answersContext = clarifyQuestions
       .map((q, i) => answers[i] ? `Q: ${q}\nA: ${answers[i]}` : null)
       .filter(Boolean)
       .join('\n\n');
     
+    // Store clarify answers in separate state so they persist through input phase
+    setClarifyAnswers(answersContext || undefined);
+    
     if (collectInputConfig.enabled) {
-      // Store answers and go to input phase for additional guidance
-      setCurrentUserInput(answersContext);
+      // Go to input phase for additional guidance
       setPhase('input');
     } else {
       // Generate directly with answers as context
-      doGenerate(answersContext);
+      doGenerate(undefined);
     }
   };
 
@@ -218,13 +228,18 @@ export function NowAssistFieldWrapper({
     setPhase('loading');
     setError(undefined);
 
+    // Combine clarify answers with user input (same as doGenerate)
+    const combinedInput = [clarifyAnswers, currentUserInput]
+      .filter(Boolean)
+      .join('\n\n') || undefined;
+
     try {
       const response = await generateContent({
         field,
         tableDef,
         recordData: formData,
         refinement: type,
-        userInput: currentUserInput,
+        userInput: combinedInput,
       });
 
       if (response.error) {
