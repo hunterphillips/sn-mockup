@@ -3,7 +3,7 @@ import { Sparkles, X, ChevronDown, ThumbsUp, ThumbsDown } from 'lucide-react';
 import { cn } from '../../../utils/cn';
 
 /** Popup phase state */
-export type NowAssistPhase = 'input' | 'loading' | 'result';
+export type NowAssistPhase = 'clarify' | 'input' | 'loading' | 'result';
 
 export interface NowAssistPopupProps {
   /** Current phase of the popup */
@@ -18,6 +18,12 @@ export interface NowAssistPopupProps {
   onGenerate: (userInput?: string) => void;
   inputPlaceholder?: string;
   inputLabel?: string;
+  /** Clarifying questions to display (in clarify phase) */
+  clarifyQuestions?: string[];
+  /** Called when user submits answers to clarifying questions */
+  onClarifySubmit?: (answers: string[]) => void;
+  /** Called when user skips clarifying questions */
+  onClarifySkip?: () => void;
 }
 
 /**
@@ -33,19 +39,31 @@ export function NowAssistPopup({
   onGenerate,
   inputPlaceholder = 'e.g., Focus on security requirements, use bullet points...',
   inputLabel = 'What would you like to include? (optional)',
+  clarifyQuestions = [],
+  onClarifySubmit,
+  onClarifySkip,
 }: NowAssistPopupProps) {
   const [refineOpen, setRefineOpen] = useState(false);
   const [feedback, setFeedback] = useState<'up' | 'down' | null>(null);
   const [userInput, setUserInput] = useState('');
+  const [clarifyAnswers, setClarifyAnswers] = useState<string[]>([]);
   const refineRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
+  const clarifyInputRef = useRef<HTMLTextAreaElement>(null);
 
-  // Focus input field when in input phase
+  // Focus input field when in input or clarify phase
   useEffect(() => {
     if (phase === 'input' && inputRef.current) {
       inputRef.current.focus();
     }
-  }, [phase]);
+    if (phase === 'clarify' && clarifyInputRef.current) {
+      clarifyInputRef.current.focus();
+    }
+    // Reset clarify answers when entering clarify phase
+    if (phase === 'clarify') {
+      setClarifyAnswers(clarifyQuestions.map(() => ''));
+    }
+  }, [phase, clarifyQuestions]);
 
   // Close refine dropdown when clicking outside
   useEffect(() => {
@@ -71,6 +89,18 @@ export function NowAssistPopup({
     }
   };
 
+  const handleClarifySubmit = () => {
+    onClarifySubmit?.(clarifyAnswers.filter(a => a.trim()));
+  };
+
+  const handleClarifyAnswerChange = (index: number, value: string) => {
+    setClarifyAnswers(prev => {
+      const next = [...prev];
+      next[index] = value;
+      return next;
+    });
+  };
+
   return (
     <div
       className={cn(
@@ -85,7 +115,9 @@ export function NowAssistPopup({
         <div className="flex items-center gap-2">
           <Sparkles className="w-4 h-4 text-sn-primary" />
           <span className="text-sm font-medium text-sn-neutral-9">
-            {phase === 'loading' ? 'Generating...' : 'Write with Now Assist'}
+            {phase === 'loading' ? 'Generating...' : 
+             phase === 'clarify' ? 'A few questions first...' : 
+             'Write with Now Assist'}
           </span>
         </div>
         <button
@@ -96,6 +128,58 @@ export function NowAssistPopup({
           <X className="w-4 h-4 text-sn-neutral-6" />
         </button>
       </div>
+
+      {/* Clarify Phase */}
+      {phase === 'clarify' && clarifyQuestions.length > 0 && (
+        <>
+          <div className="p-4 space-y-4">
+            <p className="text-sm text-sn-neutral-7">
+              Please answer these questions to help generate a better response:
+            </p>
+            {clarifyQuestions.map((question, index) => (
+              <div key={index} className="space-y-1">
+                <label className="block text-sm font-medium text-sn-neutral-8">
+                  {index + 1}. {question}
+                </label>
+                <textarea
+                  ref={index === 0 ? clarifyInputRef : undefined}
+                  value={clarifyAnswers[index] || ''}
+                  onChange={(e) => handleClarifyAnswerChange(index, e.target.value)}
+                  rows={2}
+                  className={cn(
+                    'w-full px-3 py-2 text-sm',
+                    'border border-sn-neutral-4 rounded-sn',
+                    'focus:outline-none focus:border-sn-primary focus:ring-1 focus:ring-sn-primary',
+                    'placeholder:text-sn-neutral-5',
+                    'resize-none',
+                  )}
+                  placeholder="Your answer..."
+                />
+              </div>
+            ))}
+          </div>
+          <div className="flex items-center justify-between px-4 py-3 border-t border-sn-neutral-3">
+            <button
+              type="button"
+              onClick={onClarifySkip}
+              className="text-sm text-sn-neutral-6 hover:text-sn-neutral-8 transition-colors"
+            >
+              Skip
+            </button>
+            <button
+              type="button"
+              onClick={handleClarifySubmit}
+              className={cn(
+                'px-4 py-1.5 text-sm font-medium',
+                'bg-sn-primary text-white rounded-sn',
+                'hover:bg-sn-primary-hover transition-colors',
+              )}
+            >
+              Continue
+            </button>
+          </div>
+        </>
+      )}
 
       {/* Input Phase */}
       {phase === 'input' && (

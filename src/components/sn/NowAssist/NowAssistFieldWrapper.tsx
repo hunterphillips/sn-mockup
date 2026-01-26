@@ -13,8 +13,9 @@ import type {
   SNRecord,
   TableDefinition,
   AiAssistFieldConfig,
+  ClarifyContextConfig,
 } from '../../../types';
-import { generateContent } from '../../../api/nowAssist';
+import { generateContent, clarifyContext } from '../../../api/nowAssist';
 import { NowAssistTrigger } from './NowAssistTrigger';
 import { NowAssistPopup, type NowAssistPhase } from './NowAssistPopup';
 
@@ -54,6 +55,13 @@ function getCollectInputConfig(aiConfig: AiAssistFieldConfig | null): {
   };
 }
 
+/** Check if clarifyContext is enabled and get its config */
+function getClarifyContextConfig(aiConfig: AiAssistFieldConfig | null): ClarifyContextConfig | null {
+  if (!aiConfig?.clarifyContext) return null;
+  if (aiConfig.clarifyContext === true) return {};
+  return aiConfig.clarifyContext;
+}
+
 /**
  * Wraps a text/richtext field to add Now Assist AI capability
  */
@@ -69,12 +77,15 @@ export function NowAssistFieldWrapper({
   const [content, setContent] = useState('');
   const [error, setError] = useState<string | undefined>();
   const [currentUserInput, setCurrentUserInput] = useState<string | undefined>();
+  const [clarifyQuestions, setClarifyQuestions] = useState<string[]>([]);
+  const [clarifyAnswers, setClarifyAnswers] = useState<string | undefined>();
   const triggerRef = useRef<HTMLDivElement>(null);
   const popupRef = useRef<HTMLDivElement>(null);
 
   const isRichText = field.type === 'richtext';
   const aiConfig = getFieldAiConfig(field);
   const collectInputConfig = getCollectInputConfig(aiConfig);
+  const clarifyConfig = getClarifyContextConfig(aiConfig);
 
   // Close popup on click outside or escape
   useEffect(() => {
@@ -106,17 +117,40 @@ export function NowAssistFieldWrapper({
   }, [isOpen]);
 
   // Handle trigger click - open popup
-  const handleOpen = () => {
+  const handleOpen = async () => {
+    if (isOpen) return;
     setIsOpen(true);
     setError(undefined);
     setContent('');
     setCurrentUserInput(undefined);
-    
-    // If collectInput is enabled, start with input phase; otherwise go straight to loading
+    setClarifyQuestions([]);
+    setClarifyAnswers(undefined);
+
+    // If clarifyContext is enabled, start by evaluating context
+    if (clarifyConfig) {
+      setPhase('loading');
+      try {
+        const clarifyResponse = await clarifyContext({
+          field,
+          tableDef,
+          recordData: formData,
+        });
+
+        if (!clarifyResponse.sufficient && clarifyResponse.questions?.length) {
+          setClarifyQuestions(clarifyResponse.questions);
+          setPhase('clarify');
+          return;
+        }
+      } catch (err) {
+        console.error('Clarify context failed:', err);
+        // Continue to normal flow on error
+      }
+    }
+
+    // If collectInput is enabled, show input phase; otherwise generate immediately
     if (collectInputConfig.enabled) {
       setPhase('input');
     } else {
-      // No input collection, generate immediately
       setPhase('loading');
       doGenerate(undefined);
     }
@@ -128,12 +162,17 @@ export function NowAssistFieldWrapper({
     setCurrentUserInput(userInput);
     setError(undefined);
 
+    // Combine clarify answers with user input
+    const combinedInput = [clarifyAnswers, userInput]
+      .filter(Boolean)
+      .join('\n\n') || undefined;
+
     try {
       const response = await generateContent({
         field,
         tableDef,
         recordData: formData,
-        userInput,
+        userInput: combinedInput,
       });
 
       if (response.error) {
@@ -155,10 +194,44 @@ export function NowAssistFieldWrapper({
     doGenerate(userInput);
   };
 
+  // Handle clarify submit - proceed with answers as additional context
+  const handleClarifySubmit = (answers: string[]) => {
+    // Format answers as context to preserve
+    const answersContext = clarifyQuestions
+      .map((q, i) => answers[i] ? `Q: ${q}\nA: ${answers[i]}` : null)
+      .filter(Boolean)
+      .join('\n\n');
+    
+    // Store clarify answers in separate state so they persist through input phase
+    setClarifyAnswers(answersContext || undefined);
+    
+    if (collectInputConfig.enabled) {
+      // Go to input phase for additional guidance
+      setPhase('input');
+    } else {
+      // Generate directly with answers as context
+      doGenerate(undefined);
+    }
+  };
+
+  // Handle clarify skip - proceed without answers
+  const handleClarifySkip = () => {
+    if (collectInputConfig.enabled) {
+      setPhase('input');
+    } else {
+      doGenerate(undefined);
+    }
+  };
+
   // Handle refinement
   const handleRefine = async (type: 'shorter' | 'more_detailed') => {
     setPhase('loading');
     setError(undefined);
+
+    // Combine clarify answers with user input (same as doGenerate)
+    const combinedInput = [clarifyAnswers, currentUserInput]
+      .filter(Boolean)
+      .join('\n\n') || undefined;
 
     try {
       const response = await generateContent({
@@ -166,7 +239,7 @@ export function NowAssistFieldWrapper({
         tableDef,
         recordData: formData,
         refinement: type,
-        userInput: currentUserInput,
+        userInput: combinedInput,
       });
 
       if (response.error) {
@@ -237,6 +310,9 @@ export function NowAssistFieldWrapper({
               onGenerate={handleGenerate}
               inputPlaceholder={collectInputConfig.placeholder}
               inputLabel={collectInputConfig.label}
+              clarifyQuestions={clarifyQuestions}
+              onClarifySubmit={handleClarifySubmit}
+              onClarifySkip={handleClarifySkip}
             />
           </div>,
           document.body,
