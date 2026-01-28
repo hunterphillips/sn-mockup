@@ -1,0 +1,329 @@
+{
+  "name": "vtb_board",
+  "label": "Visual Task Board",
+  "labelPlural": "Visual Task Boards",
+  "fields": [
+    {
+      "name": "assignment_group",
+      "type": "reference",
+      "label": "Assignment group",
+      "maxLength": 32,
+      "reference": "sys_user_group"
+    },
+    {
+      "name": "card_limit",
+      "type": "integer",
+      "label": "Card limit",
+      "maxLength": 40
+    },
+    {
+      "name": "stream_limit",
+      "type": "integer",
+      "label": "Stream limit",
+      "maxLength": 40
+    },
+    {
+      "name": "lane_filter_table",
+      "type": "string",
+      "label": "Lane Filter table",
+      "maxLength": 80
+    },
+    {
+      "name": "sys_updated_on",
+      "type": "datetime",
+      "label": "Updated",
+      "maxLength": 40
+    },
+    {
+      "name": "swim_lane_filter",
+      "type": "string",
+      "label": "Swim Lane Filter",
+      "maxLength": 3500
+    },
+    {
+      "name": "sys_id",
+      "type": "string",
+      "label": "Sys ID",
+      "required": true,
+      "maxLength": 32
+    },
+    {
+      "name": "show_empty_swimlane",
+      "type": "boolean",
+      "label": "Show Empty Value Swimlane",
+      "maxLength": 40
+    },
+    {
+      "name": "sys_updated_by",
+      "type": "string",
+      "label": "Updated by",
+      "maxLength": 40
+    },
+    {
+      "name": "readable_filter",
+      "type": "string",
+      "label": "Readable Filter",
+      "maxLength": 4000
+    },
+    {
+      "name": "show_board_picker",
+      "type": "boolean",
+      "label": "Show board picker",
+      "maxLength": 40
+    },
+    {
+      "name": "table",
+      "type": "choice",
+      "label": "Task table",
+      "maxLength": 80,
+      "choices": [
+        "Action",
+        "Asset Reclamation Request",
+        "Asset Task",
+        "Budget Task",
+        "Business Application Request",
+        "Case",
+        "Catalog Task",
+        "Change Phase",
+        "Change Request",
+        "Change Task",
+        "Chat Queue Entry",
+        "CMDB Data Management Task",
+        "CMDB Multisource Recompute Task",
+        "Customer Service Inquiries",
+        "Decision",
+        "Defect",
+        "Demand",
+        "Demand Task",
+        "Deployment Request",
+        "Developer Collaboration Task",
+        "Documentation Task",
+        "Enhancement",
+        "Epic",
+        "Escalation",
+        "Feature",
+        "Feature Task",
+        "Firm Initiative Task",
+        "Follow On Task",
+        "Group approval",
+        "Guidance Task",
+        "Guided Setup Task",
+        "Idea",
+        "Idea",
+        "IMAC",
+        "Implementation",
+        "Incident",
+        "Incident Task",
+        "Issue",
+        "KB Submission",
+        "Knowledge Feedback Task",
+        "Node Task",
+        "OCM Task",
+        "Orphan CI Remediation",
+        "Planned task",
+        "Planned test task",
+        "Private Task",
+        "Problem",
+        "Problem Task",
+        "Product",
+        "Program",
+        "Program Task",
+        "Project",
+        "Project Task",
+        "Project Task Link",
+        "Reclassification Task",
+        "Recommended Field Remediation",
+        "Release",
+        "Release Phase",
+        "Release Phase",
+        "Release Task",
+        "Remediate Duplicate Task",
+        "Renew Lease Task",
+        "Request",
+        "Request Change",
+        "Request new Knowledge Base",
+        "Requested Item",
+        "Required Field Remediation",
+        "Requirement",
+        "Roster schedule entry proposal",
+        "Scan Task",
+        "Scrum release",
+        "Scrum task",
+        "SDLC release",
+        "Service Order",
+        "Service Order Task",
+        "Service Task",
+        "Sprint",
+        "Stale CI Remediation",
+        "Standard Change Proposal",
+        "Story",
+        "Task",
+        "Task",
+        "Test cycle",
+        "Test execution suite",
+        "Test plan",
+        "Testing Task",
+        "Ticket",
+        "Transfer Order Line Subtask",
+        "Transfer Order Line Task",
+        "Upgrade History Task",
+        "Work Order",
+        "Work Order Task",
+        "Workplace Case",
+        "Workplace Request",
+        "Workplace Task",
+        "Zero Touch Refresh Fulfillment Request"
+      ]
+    },
+    {
+      "name": "owner",
+      "type": "reference",
+      "label": "Owner",
+      "required": true,
+      "maxLength": 32,
+      "reference": "sys_user"
+    },
+    {
+      "name": "comments",
+      "type": "text",
+      "label": "Comments",
+      "maxLength": 4000
+    },
+    {
+      "name": "show_empty_lane",
+      "type": "boolean",
+      "label": "Show Empty Value Lane",
+      "maxLength": 40
+    },
+    {
+      "name": "active",
+      "type": "boolean",
+      "label": "Active",
+      "maxLength": 40
+    },
+    {
+      "name": "swim_lane_field",
+      "type": "string",
+      "label": "Swimlane field",
+      "maxLength": 80
+    },
+    {
+      "name": "show_labels",
+      "type": "boolean",
+      "label": "Show labels",
+      "maxLength": 40
+    },
+    {
+      "name": "show_list_toggle",
+      "type": "boolean",
+      "label": "Show list toggle",
+      "maxLength": 40
+    },
+    {
+      "name": "swim_lane_filter_table",
+      "type": "string",
+      "label": "Swim Lane Filter table",
+      "maxLength": 80
+    },
+    {
+      "name": "swim_lanes_enabled",
+      "type": "boolean",
+      "label": "Swimlanes Enabled",
+      "maxLength": 40
+    },
+    {
+      "name": "lane_filter",
+      "type": "string",
+      "label": "Lane Filter",
+      "maxLength": 3500
+    },
+    {
+      "name": "last_synchronized",
+      "type": "datetime",
+      "label": "Last Sync",
+      "maxLength": 40
+    },
+    {
+      "name": "filter",
+      "type": "string",
+      "label": "Filter",
+      "maxLength": 3500
+    },
+    {
+      "name": "background_color",
+      "type": "string",
+      "label": "Background color",
+      "maxLength": 40
+    },
+    {
+      "name": "due_date_field",
+      "type": "string",
+      "label": "Due Date Field",
+      "maxLength": 80
+    },
+    {
+      "name": "field",
+      "type": "string",
+      "label": "Lane field",
+      "maxLength": 80
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "label": "Name",
+      "required": true,
+      "maxLength": 80
+    },
+    {
+      "name": "list_view_name",
+      "type": "string",
+      "label": "List view name",
+      "maxLength": 40
+    },
+    {
+      "name": "exclude_child_table_lanes",
+      "type": "boolean",
+      "label": "Exclude Child Table Lanes",
+      "maxLength": 40
+    }
+  ],
+  "list": {
+    "columns": [
+      "name",
+      "active",
+      "assignment_group",
+      "background_color",
+      "card_limit",
+      "comments",
+      "due_date_field",
+      "exclude_child_table_lanes",
+      "field",
+      "filter"
+    ],
+    "defaultSort": {
+      "field": "sys_updated_on",
+      "direction": "desc"
+    },
+    "pageSize": 20
+  },
+  "form": {
+    "sections": [
+      {
+        "name": "section_undefined",
+        "columns": 2,
+        "fields": [
+          "name",
+          "owner",
+          "sys_updated_on",
+          "table",
+          "field",
+          "active",
+          "assignment_group",
+          "background_color",
+          "card_limit",
+          "filter"
+        ]
+      }
+    ]
+  }
+}
