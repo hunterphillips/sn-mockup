@@ -329,6 +329,7 @@ async function fetchFormLayout(
  */
 export function snImportPlugin(): Plugin {
   const tablesDir = path.resolve(__dirname, '../src/data/tables');
+  const recordDataDir = path.resolve(__dirname, '../src/data/recordData');
 
   return {
     name: 'sn-import',
@@ -454,14 +455,24 @@ export function snImportPlugin(): Plugin {
             formLayout,
           );
 
-          // Ensure tables directory exists
+          // Ensure directories exist
           if (!fs.existsSync(tablesDir)) {
             fs.mkdirSync(tablesDir, { recursive: true });
           }
+          if (!fs.existsSync(recordDataDir)) {
+            fs.mkdirSync(recordDataDir, { recursive: true });
+          }
 
-          // Write to file
-          const filePath = path.join(tablesDir, `${tableName}.json`);
-          fs.writeFileSync(filePath, JSON.stringify(tableDef, null, 2) + '\n');
+          // Separate definition from data
+          const { data, ...tableConfig } = tableDef;
+
+          // Write table definition (without data) to tables/
+          const defFilePath = path.join(tablesDir, `${tableName}.json`);
+          fs.writeFileSync(defFilePath, JSON.stringify(tableConfig, null, 2) + '\n');
+
+          // Write records array to recordData/
+          const dataFilePath = path.join(recordDataDir, `${tableName}.json`);
+          fs.writeFileSync(dataFilePath, JSON.stringify(data, null, 2) + '\n');
 
           // Backfill missing first-level references for local tables
           const backfilled = await backfillReferences(
@@ -477,10 +488,10 @@ export function snImportPlugin(): Plugin {
             JSON.stringify({
               success: true,
               tableName,
-              fieldCount: tableDef.fields.length,
-              recordCount: tableDef.data.length,
+              fieldCount: tableConfig.fields.length,
+              recordCount: data.length,
               backfilled,
-              tableDef,
+              tableDef, // Still return full tableDef for client registration
             }),
           );
         } catch (error) {

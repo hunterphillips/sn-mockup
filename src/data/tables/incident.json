@@ -1,0 +1,826 @@
+{
+  "name": "incident",
+  "label": "Incident",
+  "labelPlural": "Incidents",
+  "fields": [
+    {
+      "name": "parent",
+      "type": "reference",
+      "label": "Parent",
+      "maxLength": 32,
+      "reference": "task"
+    },
+    {
+      "name": "caused_by",
+      "type": "reference",
+      "label": "Caused by Change",
+      "maxLength": 32,
+      "reference": "change_request"
+    },
+    {
+      "name": "watch_list",
+      "type": "string",
+      "label": "Watch list",
+      "maxLength": 4000,
+      "reference": "sys_user"
+    },
+    {
+      "name": "upon_reject",
+      "type": "choice",
+      "label": "Upon reject",
+      "maxLength": 40,
+      "choices": [
+        "-- None --",
+        "Cancel all future Tasks",
+        "Go to a previous Task"
+      ]
+    },
+    {
+      "name": "sys_updated_on",
+      "type": "datetime",
+      "label": "Updated",
+      "maxLength": 40
+    },
+    {
+      "name": "origin_table",
+      "type": "string",
+      "label": "Origin table",
+      "maxLength": 80
+    },
+    {
+      "name": "approval_history",
+      "type": "text",
+      "label": "Approval history",
+      "maxLength": 4000
+    },
+    {
+      "name": "skills",
+      "type": "string",
+      "label": "Skills",
+      "maxLength": 4000,
+      "reference": "cmn_skill"
+    },
+    {
+      "name": "number",
+      "type": "string",
+      "label": "Number",
+      "readonly": true,
+      "maxLength": 40
+    },
+    {
+      "name": "u_inc_type",
+      "type": "choice",
+      "label": "Type of issue",
+      "required": true,
+      "maxLength": 40,
+      "choices": [
+        "-- None --",
+        "Tier 1",
+        "Tier 2",
+        "Tier 3"
+      ]
+    },
+    {
+      "name": "state",
+      "type": "choice",
+      "label": "State",
+      "required": true,
+      "maxLength": 40,
+      "choices": [
+        "New",
+        "In Progress",
+        "On Hold",
+        "Resolved",
+        "Closed",
+        "Canceled"
+      ]
+    },
+    {
+      "name": "knowledge",
+      "type": "boolean",
+      "label": "Knowledge",
+      "maxLength": 40
+    },
+    {
+      "name": "order",
+      "type": "integer",
+      "label": "Order",
+      "maxLength": 40
+    },
+    {
+      "name": "u_caller_email",
+      "type": "string",
+      "label": "Caller Email",
+      "maxLength": 80
+    },
+    {
+      "name": "cmdb_ci",
+      "type": "reference",
+      "label": "Configuration item",
+      "maxLength": 32,
+      "reference": "cmdb_ci"
+    },
+    {
+      "name": "delivery_plan",
+      "type": "reference",
+      "label": "Delivery plan",
+      "maxLength": 32,
+      "reference": "sc_cat_item_delivery_plan"
+    },
+    {
+      "name": "contract",
+      "type": "reference",
+      "label": "Contract",
+      "maxLength": 32,
+      "reference": "ast_contract"
+    },
+    {
+      "name": "impact",
+      "type": "choice",
+      "label": "Impact",
+      "required": true,
+      "maxLength": 40,
+      "choices": [
+        "1 - High",
+        "2 - Medium",
+        "3 - Low"
+      ]
+    },
+    {
+      "name": "active",
+      "type": "boolean",
+      "label": "Active",
+      "maxLength": 40
+    },
+    {
+      "name": "work_notes_list",
+      "type": "string",
+      "label": "Work notes list",
+      "maxLength": 4000,
+      "reference": "sys_user"
+    },
+    {
+      "name": "priority",
+      "type": "choice",
+      "label": "Priority",
+      "maxLength": 40,
+      "choices": [
+        "-- None --",
+        "1 - Critical",
+        "2 - High",
+        "3 - Moderate",
+        "4 - Low",
+        "5 - Planning"
+      ]
+    },
+    {
+      "name": "business_duration",
+      "type": "string",
+      "label": "Business duration",
+      "readonly": true,
+      "maxLength": 40
+    },
+    {
+      "name": "group_list",
+      "type": "string",
+      "label": "Group list",
+      "maxLength": 4000,
+      "reference": "sys_user_group"
+    },
+    {
+      "name": "approval_set",
+      "type": "datetime",
+      "label": "Approval set",
+      "maxLength": 40
+    },
+    {
+      "name": "universal_request",
+      "type": "reference",
+      "label": "Universal Request",
+      "maxLength": 32,
+      "reference": "task"
+    },
+    {
+      "name": "short_description",
+      "type": "string",
+      "label": "Short description",
+      "required": true,
+      "maxLength": 160
+    },
+    {
+      "name": "correlation_display",
+      "type": "string",
+      "label": "Correlation display",
+      "maxLength": 100
+    },
+    {
+      "name": "delivery_task",
+      "type": "reference",
+      "label": "Delivery task",
+      "maxLength": 32,
+      "reference": "sc_cat_item_delivery_task"
+    },
+    {
+      "name": "work_start",
+      "type": "datetime",
+      "label": "Actual start",
+      "maxLength": 40
+    },
+    {
+      "name": "additional_assignee_list",
+      "type": "string",
+      "label": "Additional assignee list",
+      "maxLength": 4000,
+      "reference": "sys_user"
+    },
+    {
+      "name": "notify",
+      "type": "choice",
+      "label": "Notify",
+      "maxLength": 40,
+      "choices": [
+        "Do Not Notify",
+        "Send Email",
+        "Telephone"
+      ]
+    },
+    {
+      "name": "service_offering",
+      "type": "reference",
+      "label": "Service offering",
+      "maxLength": 32,
+      "reference": "service_offering"
+    },
+    {
+      "name": "closed_by",
+      "type": "reference",
+      "label": "Closed by",
+      "maxLength": 32,
+      "reference": "sys_user"
+    },
+    {
+      "name": "follow_up",
+      "type": "datetime",
+      "label": "Follow up",
+      "maxLength": 40
+    },
+    {
+      "name": "parent_incident",
+      "type": "reference",
+      "label": "Parent Incident",
+      "maxLength": 32,
+      "reference": "incident"
+    },
+    {
+      "name": "reopened_by",
+      "type": "reference",
+      "label": "Last reopened by",
+      "readonly": true,
+      "maxLength": 32,
+      "reference": "sys_user"
+    },
+    {
+      "name": "reassignment_count",
+      "type": "integer",
+      "label": "Reassignment count",
+      "maxLength": 40
+    },
+    {
+      "name": "assigned_to",
+      "type": "reference",
+      "label": "Assigned to",
+      "maxLength": 32,
+      "reference": "sys_user"
+    },
+    {
+      "name": "sla_due",
+      "type": "string",
+      "label": "SLA due",
+      "maxLength": 40
+    },
+    {
+      "name": "comments_and_work_notes",
+      "type": "string",
+      "label": "Comments and Work notes",
+      "maxLength": 4000
+    },
+    {
+      "name": "u_caller_phone_number",
+      "type": "phone",
+      "label": "Caller Phone Number",
+      "maxLength": 40
+    },
+    {
+      "name": "escalation",
+      "type": "choice",
+      "label": "Escalation",
+      "readonly": true,
+      "maxLength": 40,
+      "choices": [
+        "Normal",
+        "Moderate",
+        "High",
+        "Overdue"
+      ]
+    },
+    {
+      "name": "upon_approval",
+      "type": "choice",
+      "label": "Upon approval",
+      "maxLength": 40,
+      "choices": [
+        "-- None --",
+        "Proceed to Next Task",
+        "Wait for a User to Close this task"
+      ]
+    },
+    {
+      "name": "correlation_id",
+      "type": "string",
+      "label": "Correlation ID",
+      "maxLength": 100
+    },
+    {
+      "name": "made_sla",
+      "type": "boolean",
+      "label": "Made SLA",
+      "maxLength": 40
+    },
+    {
+      "name": "child_incidents",
+      "type": "integer",
+      "label": "Child Incidents",
+      "maxLength": 40
+    },
+    {
+      "name": "hold_reason",
+      "type": "choice",
+      "label": "On hold reason",
+      "maxLength": 40,
+      "choices": [
+        "-- None --",
+        "Awaiting Caller",
+        "Awaiting Change",
+        "Awaiting Problem"
+      ]
+    },
+    {
+      "name": "task_effective_number",
+      "type": "string",
+      "label": "Effective number",
+      "readonly": true,
+      "maxLength": 40
+    },
+    {
+      "name": "resolved_by",
+      "type": "reference",
+      "label": "Resolved by",
+      "maxLength": 32,
+      "reference": "sys_user"
+    },
+    {
+      "name": "sys_updated_by",
+      "type": "string",
+      "label": "Updated by",
+      "maxLength": 40
+    },
+    {
+      "name": "u_phone",
+      "type": "string",
+      "label": "Phone number",
+      "maxLength": 40
+    },
+    {
+      "name": "opened_by",
+      "type": "reference",
+      "label": "Opened by",
+      "maxLength": 32,
+      "reference": "sys_user"
+    },
+    {
+      "name": "user_input",
+      "type": "string",
+      "label": "User input",
+      "maxLength": 4000
+    },
+    {
+      "name": "route_reason",
+      "type": "choice",
+      "label": "Route reason",
+      "readonly": true,
+      "maxLength": 40,
+      "choices": [
+        "-- None --",
+        "Transfer with Resolution",
+        "Transfer without Resolution"
+      ]
+    },
+    {
+      "name": "calendar_stc",
+      "type": "integer",
+      "label": "Resolve time",
+      "readonly": true,
+      "maxLength": 40
+    },
+    {
+      "name": "closed_at",
+      "type": "datetime",
+      "label": "Closed",
+      "maxLength": 40
+    },
+    {
+      "name": "business_service",
+      "type": "reference",
+      "label": "Service",
+      "maxLength": 32,
+      "reference": "cmdb_ci_service"
+    },
+    {
+      "name": "business_impact",
+      "type": "string",
+      "label": "Business impact",
+      "maxLength": 4000
+    },
+    {
+      "name": "rfc",
+      "type": "reference",
+      "label": "Change Request",
+      "maxLength": 32,
+      "reference": "change_request"
+    },
+    {
+      "name": "time_worked",
+      "type": "string",
+      "label": "Time worked",
+      "maxLength": 40
+    },
+    {
+      "name": "expected_start",
+      "type": "datetime",
+      "label": "Expected start",
+      "maxLength": 40
+    },
+    {
+      "name": "opened_at",
+      "type": "datetime",
+      "label": "Opened",
+      "maxLength": 40
+    },
+    {
+      "name": "work_end",
+      "type": "datetime",
+      "label": "Actual end",
+      "maxLength": 40
+    },
+    {
+      "name": "caller_id",
+      "type": "reference",
+      "label": "Caller",
+      "maxLength": 32,
+      "reference": "sys_user"
+    },
+    {
+      "name": "reopened_time",
+      "type": "datetime",
+      "label": "Last reopened at",
+      "readonly": true,
+      "maxLength": 40
+    },
+    {
+      "name": "resolved_at",
+      "type": "datetime",
+      "label": "Resolved",
+      "maxLength": 40
+    },
+    {
+      "name": "subcategory",
+      "type": "choice",
+      "label": "Subcategory",
+      "maxLength": 40,
+      "choices": [
+        "-- None --",
+        "Antivirus",
+        "CPU",
+        "DB2",
+        "DHCP",
+        "Disk",
+        "DNS",
+        "Email",
+        "Internal Application",
+        "IP Address",
+        "Keyboard",
+        "Memory",
+        "Monitor",
+        "Mouse",
+        "MS SQL Server",
+        "Operating System",
+        "Oracle",
+        "VPN",
+        "Wireless"
+      ]
+    },
+    {
+      "name": "work_notes",
+      "type": "text",
+      "label": "Work notes",
+      "maxLength": 4000
+    },
+    {
+      "name": "close_code",
+      "type": "choice",
+      "label": "Resolution code",
+      "maxLength": 40,
+      "choices": [
+        "-- None --",
+        "Resolved – Workaround Applied",
+        "Resolved – Permanent Fix Applied",
+        "Resolved – Fixed by Caller",
+        "Resolved – Fixed Without Action",
+        "Not Resolved – Not Reproducible",
+        "Not Resolved – Problem Raised"
+      ]
+    },
+    {
+      "name": "assignment_group",
+      "type": "reference",
+      "label": "Assignment group",
+      "required": true,
+      "maxLength": 32,
+      "reference": "sys_user_group"
+    },
+    {
+      "name": "business_stc",
+      "type": "integer",
+      "label": "Business resolve time",
+      "readonly": true,
+      "maxLength": 40
+    },
+    {
+      "name": "cause",
+      "type": "string",
+      "label": "Probable cause",
+      "maxLength": 4000
+    },
+    {
+      "name": "description",
+      "type": "string",
+      "label": "Description",
+      "required": true,
+      "maxLength": 4000
+    },
+    {
+      "name": "origin_id",
+      "type": "string",
+      "label": "Origin",
+      "maxLength": 32
+    },
+    {
+      "name": "calendar_duration",
+      "type": "string",
+      "label": "Duration",
+      "readonly": true,
+      "maxLength": 40
+    },
+    {
+      "name": "close_notes",
+      "type": "string",
+      "label": "Resolution notes",
+      "maxLength": 4000
+    },
+    {
+      "name": "sys_id",
+      "type": "string",
+      "label": "Sys ID",
+      "required": true,
+      "maxLength": 32
+    },
+    {
+      "name": "contact_type",
+      "type": "choice",
+      "label": "Channel",
+      "required": true,
+      "maxLength": 40,
+      "choices": [
+        "-- None --",
+        "Phone",
+        "Self-service"
+      ]
+    },
+    {
+      "name": "incident_state",
+      "type": "choice",
+      "label": "Incident state",
+      "maxLength": 40,
+      "choices": [
+        "New",
+        "In Progress",
+        "On Hold",
+        "Resolved",
+        "Closed",
+        "Canceled"
+      ]
+    },
+    {
+      "name": "urgency",
+      "type": "choice",
+      "label": "Urgency",
+      "required": true,
+      "maxLength": 40,
+      "choices": [
+        "1 - High",
+        "2 - Medium",
+        "3 - Low"
+      ]
+    },
+    {
+      "name": "problem_id",
+      "type": "reference",
+      "label": "Problem",
+      "maxLength": 32,
+      "reference": "problem"
+    },
+    {
+      "name": "company",
+      "type": "reference",
+      "label": "Company",
+      "maxLength": 32,
+      "reference": "core_company"
+    },
+    {
+      "name": "activity_due",
+      "type": "string",
+      "label": "Activity due",
+      "maxLength": 40
+    },
+    {
+      "name": "severity",
+      "type": "choice",
+      "label": "Severity",
+      "maxLength": 40,
+      "choices": [
+        "1 - High",
+        "2 - Medium",
+        "3 - Low"
+      ]
+    },
+    {
+      "name": "comments",
+      "type": "text",
+      "label": "Additional comments",
+      "maxLength": 4000
+    },
+    {
+      "name": "approval",
+      "type": "choice",
+      "label": "Approval",
+      "maxLength": 40,
+      "choices": [
+        "Not Yet Requested",
+        "Requested",
+        "Approved",
+        "Rejected"
+      ]
+    },
+    {
+      "name": "due_date",
+      "type": "datetime",
+      "label": "Due date",
+      "maxLength": 40
+    },
+    {
+      "name": "u_affected_user",
+      "type": "reference",
+      "label": "Affected user",
+      "maxLength": 32,
+      "reference": "sys_user"
+    },
+    {
+      "name": "reopen_count",
+      "type": "integer",
+      "label": "Reopen count",
+      "maxLength": 40
+    },
+    {
+      "name": "location",
+      "type": "reference",
+      "label": "Location",
+      "maxLength": 32,
+      "reference": "cmn_location"
+    },
+    {
+      "name": "category",
+      "type": "choice",
+      "label": "Category",
+      "maxLength": 40,
+      "choices": [
+        "-- None --",
+        "Inquiry / Help",
+        "Software",
+        "Hardware",
+        "Network",
+        "Database",
+        "Password Reset"
+      ]
+    },
+    {
+      "name": "u_string_3",
+      "type": "string",
+      "label": "New String",
+      "maxLength": 40
+    },
+    {
+      "name": "u_string_2",
+      "type": "string",
+      "label": "Example",
+      "readonly": true,
+      "maxLength": 40
+    }
+  ],
+  "list": {
+    "columns": [
+      "number",
+      "active",
+      "opened_at",
+      "state",
+      "calendar_stc",
+      "business_stc",
+      "business_duration",
+      "short_description",
+      "cmdb_ci",
+      "caller_id",
+      "priority",
+      "category",
+      "assignment_group",
+      "assigned_to",
+      "sys_updated_on",
+      "sys_updated_by"
+    ],
+    "defaultSort": {
+      "field": "sys_updated_on",
+      "direction": "desc"
+    },
+    "pageSize": 20
+  },
+  "form": {
+    "sections": [
+      {
+        "name": "notes",
+        "label": "Notes",
+        "columns": 2,
+        "fields": [
+          "watch_list",
+          "work_notes_list",
+          "comments",
+          "work_notes"
+        ]
+      },
+      {
+        "name": "related_records",
+        "label": "Related Records",
+        "columns": 2,
+        "fields": [
+          "parent_incident",
+          "problem_id",
+          "rfc",
+          "caused_by"
+        ]
+      },
+      {
+        "name": "resolution_information",
+        "label": "Resolution Information",
+        "columns": 2,
+        "fields": [
+          "knowledge",
+          "close_code",
+          "resolved_by",
+          "resolved_at",
+          "close_notes"
+        ]
+      },
+      {
+        "name": "section_undefined",
+        "columns": 2,
+        "fields": [
+          "number",
+          "caller_id",
+          "u_caller_email",
+          "category",
+          "subcategory",
+          "business_service",
+          "cmdb_ci",
+          "contact_type",
+          "state",
+          "hold_reason",
+          "impact",
+          "urgency",
+          "priority",
+          "assignment_group",
+          "assigned_to",
+          "short_description",
+          "description",
+          "u_caller_phone_number"
+        ]
+      }
+    ]
+  }
+}

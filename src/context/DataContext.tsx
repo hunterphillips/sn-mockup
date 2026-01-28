@@ -6,28 +6,68 @@ import {
   useCallback,
   type ReactNode,
 } from 'react';
-import type { TableDefinition, UserProfile } from '../types';
+import type { TableDefinition, SNRecord, UserProfile } from '../types';
 import {
   initializeApi,
   getTableDefinitions,
   registerTableDefinition,
 } from '../api/mockApi';
 
-// include sample Incident data. Will be overwritten by user-imported data if present.
+// Sample data: full TableDefinition with embedded data (tracked, ships with repo)
 const sampleModules = import.meta.glob<{ default: TableDefinition }>(
   '../data/sample/*.json',
   { eager: true },
 );
+
+// Table definitions: may or may not have data property (user-imported)
 const tableModules = import.meta.glob<{ default: TableDefinition }>(
   '../data/tables/*.json',
   { eager: true },
 );
 
+// Record data: plain arrays of SNRecord (separate from definitions)
+const recordDataModules = import.meta.glob<{ default: SNRecord[] }>(
+  '../data/recordData/*.json',
+  { eager: true },
+);
+
+// Helper to extract table name from module path
+function getTableNameFromPath(modulePath: string): string {
+  const match = modulePath.match(/\/([^/]+)\.json$/);
+  return match ? match[1] : '';
+}
+
+// Build map of record data by table name
+const recordDataByTable = new Map<string, SNRecord[]>();
+for (const [path, module] of Object.entries(recordDataModules)) {
+  const tableName = getTableNameFromPath(path);
+  if (tableName && Array.isArray(module.default)) {
+    recordDataByTable.set(tableName, module.default);
+  }
+}
+
+// Merge table definitions with record data
+// Priority: tables/ overrides sample/, recordData/ supplements definitions without data
 const appData = Array.from(
   new Map(
     [sampleModules, tableModules]
-      .flatMap(Object.values)
-      .map((m) => [m.default.name, m.default] as const),
+      .flatMap(Object.entries)
+      .map(([, m]) => {
+        const tableDef = m.default;
+        const tableName = tableDef.name;
+
+        // If definition has no data (or empty), check recordData
+        if (!tableDef.data || tableDef.data.length === 0) {
+          const records = recordDataByTable.get(tableName);
+          if (records) {
+            return [tableName, { ...tableDef, data: records }] as const;
+          }
+          // No records found, use empty array
+          return [tableName, { ...tableDef, data: [] }] as const;
+        }
+
+        return [tableName, tableDef] as const;
+      }),
   ).values(),
 );
 

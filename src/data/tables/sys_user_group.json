@@ -1,0 +1,175 @@
+{
+  "name": "sys_user_group",
+  "label": "Group",
+  "labelPlural": "Groups",
+  "fields": [
+    {
+      "name": "parent",
+      "type": "reference",
+      "label": "Parent",
+      "maxLength": 32,
+      "reference": "sys_user_group"
+    },
+    {
+      "name": "manager",
+      "type": "reference",
+      "label": "Manager",
+      "maxLength": 32,
+      "reference": "sys_user"
+    },
+    {
+      "name": "roles",
+      "type": "string",
+      "label": "Roles",
+      "maxLength": 100
+    },
+    {
+      "name": "active",
+      "type": "boolean",
+      "label": "Active",
+      "maxLength": 40
+    },
+    {
+      "name": "description",
+      "type": "string",
+      "label": "Description",
+      "maxLength": 1000
+    },
+    {
+      "name": "average_daily_fte",
+      "type": "integer",
+      "label": "Average Daily FTE Hours/Hours Per Person Day",
+      "maxLength": 20
+    },
+    {
+      "name": "source",
+      "type": "string",
+      "label": "Source",
+      "maxLength": 255
+    },
+    {
+      "name": "sys_updated_on",
+      "type": "datetime",
+      "label": "Updated",
+      "maxLength": 40
+    },
+    {
+      "name": "type",
+      "type": "string",
+      "label": "Type",
+      "maxLength": 1024,
+      "reference": "sys_user_group_type"
+    },
+    {
+      "name": "points",
+      "type": "integer",
+      "label": "Group capacity (points)",
+      "maxLength": 40
+    },
+    {
+      "name": "sys_id",
+      "type": "string",
+      "label": "Sys ID",
+      "required": true,
+      "maxLength": 32
+    },
+    {
+      "name": "sys_updated_by",
+      "type": "string",
+      "label": "Updated by",
+      "maxLength": 40
+    },
+    {
+      "name": "cost_center",
+      "type": "reference",
+      "label": "Cost center",
+      "maxLength": 32,
+      "reference": "cmn_cost_center"
+    },
+    {
+      "name": "default_assignee",
+      "type": "reference",
+      "label": "Default assignee",
+      "maxLength": 32,
+      "reference": "sys_user"
+    },
+    {
+      "name": "hourly_rate",
+      "type": "currency",
+      "label": "Hourly rate",
+      "maxLength": 20
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "label": "Name",
+      "maxLength": 80
+    },
+    {
+      "name": "exclude_manager",
+      "type": "boolean",
+      "label": "Exclude manager",
+      "maxLength": 40
+    },
+    {
+      "name": "vendors",
+      "type": "string",
+      "label": "Vendors",
+      "maxLength": 1024,
+      "reference": "core_company"
+    },
+    {
+      "name": "email",
+      "type": "email",
+      "label": "Group email",
+      "maxLength": 100
+    },
+    {
+      "name": "include_members",
+      "type": "boolean",
+      "label": "Include members",
+      "maxLength": 40
+    }
+  ],
+  "list": {
+    "columns": [
+      "name",
+      "description",
+      "sys_updated_by",
+      "roles",
+      "active",
+      "manager",
+      "parent",
+      "sys_updated_on"
+    ],
+    "defaultSort": {
+      "field": "sys_updated_on",
+      "direction": "desc"
+    },
+    "pageSize": 20
+  },
+  "form": {
+    "sections": [
+      {
+        "name": "section_undefined",
+        "columns": 2,
+        "fields": [
+          "name",
+          "manager",
+          "hourly_rate",
+          "email",
+          "parent",
+          "description"
+        ]
+      }
+    ]
+  },
+  "relatedLists": [
+    {
+      "table": "sys_user_grmember",
+      "title": "Group Members",
+      "parentField": "group",
+      "columns": ["user", "scrum_role", "points", "sys_updated_on"]
+    }
+  ]
+}

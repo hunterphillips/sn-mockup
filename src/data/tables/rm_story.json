@@ -1,0 +1,1151 @@
+{
+  "name": "rm_story",
+  "label": "Story",
+  "labelPlural": "Storys",
+  "aiAssist": {
+    "contextFields": [
+      "type",
+      "short_description",
+      "description",
+      "acceptance_criteria",
+      "technical_research"
+    ]
+  },
+  "fields": [
+    {
+      "name": "parent",
+      "type": "reference",
+      "label": "Parent",
+      "maxLength": 32,
+      "reference": "task"
+    },
+    {
+      "name": "shadow",
+      "type": "boolean",
+      "label": "Shadow",
+      "readonly": true,
+      "maxLength": 40
+    },
+    {
+      "name": "release",
+      "type": "reference",
+      "label": "Release",
+      "maxLength": 32,
+      "reference": "rm_release_scrum"
+    },
+    {
+      "name": "watch_list",
+      "type": "string",
+      "label": "Watch list",
+      "maxLength": 4000,
+      "reference": "sys_user"
+    },
+    {
+      "name": "phase_type",
+      "type": "choice",
+      "label": "Phase type",
+      "maxLength": 40,
+      "choices": ["Waterfall", "Agile", "Test"]
+    },
+    {
+      "name": "wbs",
+      "type": "string",
+      "label": "WBS",
+      "readonly": true,
+      "maxLength": 80
+    },
+    {
+      "name": "project_phase",
+      "type": "reference",
+      "label": "Project phase",
+      "maxLength": 32,
+      "reference": "pm_project_task"
+    },
+    {
+      "name": "upon_reject",
+      "type": "choice",
+      "label": "Upon reject",
+      "maxLength": 40,
+      "choices": [
+        "-- None --",
+        "Cancel all future Tasks",
+        "Go to a previous Task"
+      ]
+    },
+    {
+      "name": "product_rank",
+      "type": "integer",
+      "label": "Product rank",
+      "maxLength": 40
+    },
+    {
+      "name": "sys_updated_on",
+      "type": "datetime",
+      "label": "Updated",
+      "maxLength": 40
+    },
+    {
+      "name": "type",
+      "type": "choice",
+      "label": "Type",
+      "maxLength": 40,
+      "choices": ["-- None --", "Development", "Documentation", "Spike"]
+    },
+    {
+      "name": "approval_history",
+      "type": "text",
+      "label": "Approval history",
+      "maxLength": 4000
+    },
+    {
+      "name": "rollup",
+      "type": "boolean",
+      "label": "Rollup",
+      "readonly": true,
+      "maxLength": 40
+    },
+    {
+      "name": "skills",
+      "type": "string",
+      "label": "Skills",
+      "maxLength": 4000,
+      "reference": "cmn_skill"
+    },
+    {
+      "name": "number",
+      "type": "string",
+      "label": "Number",
+      "readonly": true,
+      "maxLength": 40
+    },
+    {
+      "name": "defect",
+      "type": "reference",
+      "label": "Defect",
+      "maxLength": 32,
+      "reference": "rm_defect"
+    },
+    {
+      "name": "top_program",
+      "type": "reference",
+      "label": "Top program",
+      "readonly": true,
+      "maxLength": 32,
+      "reference": "pm_program"
+    },
+    {
+      "name": "schedule_start_date",
+      "type": "datetime",
+      "label": "Original start date",
+      "readonly": true,
+      "maxLength": 40
+    },
+    {
+      "name": "split_from",
+      "type": "reference",
+      "label": "Split from",
+      "maxLength": 32,
+      "reference": "rm_story"
+    },
+    {
+      "name": "rank",
+      "type": "integer",
+      "label": "Rank",
+      "maxLength": 40
+    },
+    {
+      "name": "capex_cost",
+      "type": "currency",
+      "label": "Planned capital",
+      "maxLength": 20
+    },
+    {
+      "name": "state",
+      "type": "choice",
+      "label": "State",
+      "required": true,
+      "maxLength": 40,
+      "choices": [
+        "Draft",
+        "Ready",
+        "Work in progress",
+        "Ready for testing",
+        "Testing",
+        "Complete",
+        "Cancelled"
+      ]
+    },
+    {
+      "name": "knowledge",
+      "type": "boolean",
+      "label": "Knowledge",
+      "maxLength": 40
+    },
+    {
+      "name": "order",
+      "type": "integer",
+      "label": "Order",
+      "maxLength": 40
+    },
+    {
+      "name": "work_duration",
+      "type": "string",
+      "label": "Actual duration",
+      "maxLength": 40
+    },
+    {
+      "name": "budget_cost",
+      "type": "currency",
+      "label": "Budget cost",
+      "readonly": true,
+      "maxLength": 20
+    },
+    {
+      "name": "cmdb_ci",
+      "type": "reference",
+      "label": "Configuration item",
+      "maxLength": 32,
+      "reference": "cmdb_ci"
+    },
+    {
+      "name": "delivery_plan",
+      "type": "reference",
+      "label": "Delivery plan",
+      "maxLength": 32,
+      "reference": "sc_cat_item_delivery_plan"
+    },
+    {
+      "name": "dependency",
+      "type": "string",
+      "label": "Dependency",
+      "readonly": true,
+      "maxLength": 40
+    },
+    {
+      "name": "contract",
+      "type": "reference",
+      "label": "Contract",
+      "maxLength": 32,
+      "reference": "ast_contract"
+    },
+    {
+      "name": "impact",
+      "type": "choice",
+      "label": "Impact",
+      "maxLength": 40,
+      "choices": ["1 - High", "2 - Medium", "3 - Low"]
+    },
+    {
+      "name": "key_milestone",
+      "type": "boolean",
+      "label": "Key milestone",
+      "maxLength": 40
+    },
+    {
+      "name": "remaining_effort",
+      "type": "string",
+      "label": "Remaining effort",
+      "maxLength": 40
+    },
+    {
+      "name": "active",
+      "type": "boolean",
+      "label": "Active",
+      "maxLength": 40
+    },
+    {
+      "name": "work_notes_list",
+      "type": "string",
+      "label": "Work notes list",
+      "maxLength": 4000,
+      "reference": "sys_user"
+    },
+    {
+      "name": "epic",
+      "type": "reference",
+      "label": "Epic",
+      "maxLength": 32,
+      "reference": "rm_epic"
+    },
+    {
+      "name": "classification",
+      "type": "choice",
+      "label": "Classification",
+      "maxLength": 40,
+      "choices": ["Feature", "Defect"]
+    },
+    {
+      "name": "priority",
+      "type": "choice",
+      "label": "Priority",
+      "maxLength": 40,
+      "choices": [
+        "-- None --",
+        "1 - Critical",
+        "2 - High",
+        "3 - Moderate",
+        "4 - Low"
+      ]
+    },
+    {
+      "name": "demand",
+      "type": "reference",
+      "label": "Demand",
+      "readonly": true,
+      "maxLength": 32,
+      "reference": "dmn_demand"
+    },
+    {
+      "name": "version",
+      "type": "integer",
+      "label": "Version",
+      "readonly": true,
+      "maxLength": 40
+    },
+    {
+      "name": "business_duration",
+      "type": "string",
+      "label": "Business duration",
+      "readonly": true,
+      "maxLength": 40
+    },
+    {
+      "name": "group_list",
+      "type": "string",
+      "label": "Group list",
+      "maxLength": 4000,
+      "reference": "sys_user_group"
+    },
+    {
+      "name": "override_status",
+      "type": "boolean",
+      "label": "Override status",
+      "maxLength": 40
+    },
+    {
+      "name": "approval_set",
+      "type": "datetime",
+      "label": "Approval set",
+      "maxLength": 40
+    },
+    {
+      "name": "critical_path",
+      "type": "boolean",
+      "label": "Critical path",
+      "maxLength": 40
+    },
+    {
+      "name": "status",
+      "type": "choice",
+      "label": "Status",
+      "maxLength": 40,
+      "choices": ["Green", "Yellow", "Red"]
+    },
+    {
+      "name": "universal_request",
+      "type": "reference",
+      "label": "Universal Request",
+      "maxLength": 32,
+      "reference": "task"
+    },
+    {
+      "name": "end_date",
+      "type": "datetime",
+      "label": "Planned end date",
+      "maxLength": 40
+    },
+    {
+      "name": "short_description",
+      "type": "string",
+      "label": "Short description",
+      "required": true,
+      "maxLength": 160
+    },
+    {
+      "name": "correlation_display",
+      "type": "string",
+      "label": "Correlation display",
+      "maxLength": 100
+    },
+    {
+      "name": "delivery_task",
+      "type": "reference",
+      "label": "Delivery task",
+      "maxLength": 32,
+      "reference": "sc_cat_item_delivery_task"
+    },
+    {
+      "name": "work_start",
+      "type": "datetime",
+      "label": "Actual start date",
+      "maxLength": 40
+    },
+    {
+      "name": "top_task",
+      "type": "reference",
+      "label": "Top task",
+      "readonly": true,
+      "maxLength": 32,
+      "reference": "planned_task"
+    },
+    {
+      "name": "is_enabler",
+      "type": "boolean",
+      "label": "Enabler",
+      "maxLength": 40
+    },
+    {
+      "name": "time_constraint",
+      "type": "choice",
+      "label": "Time constraint",
+      "maxLength": 40,
+      "choices": [
+        "Start ASAP",
+        "Start on specific date",
+        "Start no earlier than",
+        "Start no later than"
+      ]
+    },
+    {
+      "name": "additional_assignee_list",
+      "type": "string",
+      "label": "Additional assignee list",
+      "maxLength": 4000,
+      "reference": "sys_user"
+    },
+    {
+      "name": "service_offering",
+      "type": "reference",
+      "label": "Service offering",
+      "maxLength": 32,
+      "reference": "service_offering"
+    },
+    {
+      "name": "closed_by",
+      "type": "reference",
+      "label": "Closed by",
+      "maxLength": 32,
+      "reference": "sys_user"
+    },
+    {
+      "name": "follow_up",
+      "type": "datetime",
+      "label": "Follow up",
+      "maxLength": 40
+    },
+    {
+      "name": "top_portfolio",
+      "type": "reference",
+      "label": "Top portfolio",
+      "readonly": true,
+      "maxLength": 32,
+      "reference": "pm_portfolio"
+    },
+    {
+      "name": "calculation_type",
+      "type": "choice",
+      "label": "Calculation",
+      "maxLength": 40,
+      "choices": ["Automatic", "Manual"]
+    },
+    {
+      "name": "project_index",
+      "type": "string",
+      "label": "Project Index",
+      "maxLength": 40
+    },
+    {
+      "name": "blocked",
+      "type": "boolean",
+      "label": "Blocked",
+      "maxLength": 40
+    },
+    {
+      "name": "product_rel_index",
+      "type": "string",
+      "label": "Product Index",
+      "maxLength": 40
+    },
+    {
+      "name": "theme",
+      "type": "reference",
+      "label": "Theme",
+      "maxLength": 32,
+      "reference": "scrum_theme"
+    },
+    {
+      "name": "reassignment_count",
+      "type": "integer",
+      "label": "Reassignment count",
+      "maxLength": 40
+    },
+    {
+      "name": "schedule_end_date",
+      "type": "datetime",
+      "label": "Original end date",
+      "readonly": true,
+      "maxLength": 40
+    },
+    {
+      "name": "assigned_to",
+      "type": "reference",
+      "label": "Assigned to",
+      "maxLength": 32,
+      "reference": "sys_user"
+    },
+    {
+      "name": "start_date",
+      "type": "datetime",
+      "label": "Planned start date",
+      "maxLength": 40
+    },
+    {
+      "name": "mpp_task_id",
+      "type": "integer",
+      "label": "MPP task id",
+      "readonly": true,
+      "maxLength": 40
+    },
+    {
+      "name": "product",
+      "type": "reference",
+      "label": "Product",
+      "maxLength": 32,
+      "reference": "cmdb_model"
+    },
+    {
+      "name": "sub_tree_root",
+      "type": "reference",
+      "label": "Sub tree root",
+      "readonly": true,
+      "maxLength": 32,
+      "reference": "planned_task"
+    },
+    {
+      "name": "sla_due",
+      "type": "string",
+      "label": "SLA due",
+      "maxLength": 40
+    },
+    {
+      "name": "story_points",
+      "type": "integer",
+      "label": "Points",
+      "maxLength": 40
+    },
+    {
+      "name": "comments_and_work_notes",
+      "type": "string",
+      "label": "Comments and Work notes",
+      "maxLength": 4000
+    },
+    {
+      "name": "remaining_duration",
+      "type": "string",
+      "label": "Remaining duration",
+      "maxLength": 40
+    },
+    {
+      "name": "team",
+      "type": "reference",
+      "label": "Team",
+      "maxLength": 32,
+      "reference": "scrum_pp_team"
+    },
+    {
+      "name": "resource_allocated_cost",
+      "type": "currency",
+      "label": "Resource allocated cost",
+      "readonly": true,
+      "maxLength": 20
+    },
+    {
+      "name": "has_conflict",
+      "type": "boolean",
+      "label": "Has Issue",
+      "readonly": true,
+      "maxLength": 40
+    },
+    {
+      "name": "allow_dates_outside_schedule",
+      "type": "boolean",
+      "label": "Allow dates outside schedule",
+      "maxLength": 40
+    },
+    {
+      "name": "escalation",
+      "type": "choice",
+      "label": "Escalation",
+      "readonly": true,
+      "maxLength": 40,
+      "choices": ["Normal", "Moderate", "High", "Overdue"]
+    },
+    {
+      "name": "upon_approval",
+      "type": "choice",
+      "label": "Upon approval",
+      "maxLength": 40,
+      "choices": [
+        "-- None --",
+        "Proceed to Next Task",
+        "Wait for a User to Close this task"
+      ]
+    },
+    {
+      "name": "correlation_id",
+      "type": "string",
+      "label": "Correlation ID",
+      "maxLength": 100
+    },
+    {
+      "name": "release_index",
+      "type": "string",
+      "label": "Release Index",
+      "maxLength": 40
+    },
+    {
+      "name": "made_sla",
+      "type": "boolean",
+      "label": "Made SLA",
+      "maxLength": 40
+    },
+    {
+      "name": "sprint",
+      "type": "reference",
+      "label": "Sprint",
+      "maxLength": 32,
+      "reference": "rm_sprint"
+    },
+    {
+      "name": "project",
+      "type": "reference",
+      "label": "Project",
+      "maxLength": 32,
+      "reference": "pm_project"
+    },
+    {
+      "name": "wbs_order",
+      "type": "integer",
+      "label": "WBS Order",
+      "maxLength": 40
+    },
+    {
+      "name": "enhancement",
+      "type": "reference",
+      "label": "Enhancement",
+      "maxLength": 32,
+      "reference": "rm_enhancement"
+    },
+    {
+      "name": "backlog_type",
+      "type": "choice",
+      "label": "Backlog Type",
+      "readonly": true,
+      "maxLength": 40,
+      "choices": ["-- None --", "One Off", "Product", "Project"]
+    },
+    {
+      "name": "task_effective_number",
+      "type": "string",
+      "label": "Effective number",
+      "readonly": true,
+      "maxLength": 40
+    },
+    {
+      "name": "prereq",
+      "type": "richtext",
+      "label": "Prerequisites",
+      "maxLength": 8000
+    },
+    {
+      "name": "work_effort",
+      "type": "string",
+      "label": "Actual effort",
+      "maxLength": 40
+    },
+    {
+      "name": "sys_updated_by",
+      "type": "string",
+      "label": "Updated by",
+      "maxLength": 40
+    },
+    {
+      "name": "opened_by",
+      "type": "reference",
+      "label": "Opened by",
+      "maxLength": 32,
+      "reference": "sys_user"
+    },
+    {
+      "name": "user_input",
+      "type": "string",
+      "label": "User input",
+      "maxLength": 4000
+    },
+    {
+      "name": "group_rank",
+      "type": "integer",
+      "label": "Group rank",
+      "maxLength": 40
+    },
+    {
+      "name": "acceptance_criteria",
+      "type": "richtext",
+      "label": "Acceptance criteria",
+      "maxLength": 4000,
+      "aiAssist": {
+        "enabled": true,
+        "instructions": "Write concise, testable acceptance criteria as a bulleted list.",
+        "clarifyContext": {
+          "maxQuestions": 2
+        }
+      }
+    },
+    {
+      "name": "global_rank",
+      "type": "string",
+      "label": "Global rank",
+      "readonly": true,
+      "maxLength": 40
+    },
+    {
+      "name": "resource_planned_cost",
+      "type": "currency",
+      "label": "Resource planned cost",
+      "readonly": true,
+      "maxLength": 20
+    },
+    {
+      "name": "route_reason",
+      "type": "choice",
+      "label": "Route reason",
+      "readonly": true,
+      "maxLength": 40,
+      "choices": [
+        "-- None --",
+        "Transfer with Resolution",
+        "Transfer without Resolution"
+      ]
+    },
+    {
+      "name": "start_date_derived_from",
+      "type": "reference",
+      "label": "Start date derived from",
+      "readonly": true,
+      "maxLength": 32,
+      "reference": "planned_task"
+    },
+    {
+      "name": "orig_sys_id",
+      "type": "reference",
+      "label": "Orig sys ID",
+      "readonly": true,
+      "maxLength": 32,
+      "reference": "planned_task"
+    },
+    {
+      "name": "sprint_index",
+      "type": "string",
+      "label": "Sprint Index",
+      "maxLength": 40
+    },
+    {
+      "name": "closed_at",
+      "type": "datetime",
+      "label": "Closed",
+      "maxLength": 40
+    },
+    {
+      "name": "level",
+      "type": "integer",
+      "label": "Level",
+      "readonly": true,
+      "maxLength": 40
+    },
+    {
+      "name": "parent_feature",
+      "type": "reference",
+      "label": "Parent feature",
+      "maxLength": 32,
+      "reference": "rm_feature"
+    },
+    {
+      "name": "business_service",
+      "type": "reference",
+      "label": "Service",
+      "maxLength": 32,
+      "reference": "cmdb_ci_service"
+    },
+    {
+      "name": "relation_applied",
+      "type": "reference",
+      "label": "Relation applied",
+      "readonly": true,
+      "maxLength": 32,
+      "reference": "planned_task_rel_planned_task"
+    },
+    {
+      "name": "time_worked",
+      "type": "string",
+      "label": "Time worked",
+      "maxLength": 40
+    },
+    {
+      "name": "expected_start",
+      "type": "datetime",
+      "label": "Expected start",
+      "maxLength": 40
+    },
+    {
+      "name": "actual_benefits",
+      "type": "currency",
+      "label": "Actual benefit",
+      "readonly": true,
+      "maxLength": 20
+    },
+    {
+      "name": "opened_at",
+      "type": "datetime",
+      "label": "Opened",
+      "maxLength": 40
+    },
+    {
+      "name": "task",
+      "type": "string",
+      "label": "Task",
+      "maxLength": 300
+    },
+    {
+      "name": "work_end",
+      "type": "datetime",
+      "label": "Actual end date",
+      "maxLength": 40
+    },
+    {
+      "name": "run_calc_brs",
+      "type": "boolean",
+      "label": "Run calculation brs",
+      "readonly": true,
+      "maxLength": 40
+    },
+    {
+      "name": "work_notes",
+      "type": "text",
+      "label": "Work notes",
+      "maxLength": 4000
+    },
+    {
+      "name": "benefits",
+      "type": "currency",
+      "label": "Planned benefit",
+      "maxLength": 20
+    },
+    {
+      "name": "time_card_at_top_task",
+      "type": "boolean",
+      "label": "Generate time cards for top task only",
+      "maxLength": 40
+    },
+    {
+      "name": "work_cost",
+      "type": "currency",
+      "label": "Actual cost",
+      "maxLength": 20
+    },
+    {
+      "name": "assignment_group",
+      "type": "reference",
+      "label": "Assignment group",
+      "maxLength": 32,
+      "reference": "sys_user_group"
+    },
+    {
+      "name": "orig_top_task_id",
+      "type": "reference",
+      "label": "Orig top task ID",
+      "readonly": true,
+      "maxLength": 32,
+      "reference": "planned_task"
+    },
+    {
+      "name": "software_model",
+      "type": "reference",
+      "label": "Software Model",
+      "maxLength": 32,
+      "reference": "cmdb_software_product_model"
+    },
+    {
+      "name": "team_index",
+      "type": "string",
+      "label": "Team Index",
+      "maxLength": 40
+    },
+    {
+      "name": "description",
+      "type": "string",
+      "label": "Description",
+      "required": true,
+      "maxLength": 4000
+    },
+    {
+      "name": "technical_research",
+      "type": "richtext",
+      "label": "Technical Research",
+      "maxLength": 8000,
+      "aiAssist": {
+        "enabled": true,
+        "tools": ["web_search"],
+        "instructions": "Research and provide technical implementation details. Structure the output with these sections:\n\n1. **Summary** - 2-3 sentence overview of the technical approach\n2. **Key Technologies** - Bullet list of ServiceNow components/APIs/tables involved\n3. **Implementation Approach** - Step-by-step technical guidance\n4. **Considerations** - Dependencies, risks, or constraints\n5. **References** - Links to relevant ServiceNow documentation or resources",
+        "collectInput": {
+          "label": "Any additional details you want to include?",
+          "placeholder": "e.g., Focus on API validation, include edge cases, cover error handling..."
+        }
+      }
+    },
+    {
+      "name": "implementation_plan",
+      "type": "richtext",
+      "label": "Implementation Plan",
+      "maxLength": 8000,
+      "aiAssist": {
+        "enabled": true,
+        "contextFields": [
+          "short_description",
+          "description",
+          "acceptance_criteria",
+          "technical_research"
+        ],
+        "instructions": "Generate a developer-ready implementation plan. Structure the output with these sections:\n\n1. **Objective** - What this implementation accomplishes (1-2 sentences)\n2. **Prerequisites** - Required access, configurations, or dependencies\n3. **Implementation Steps** - Numbered step-by-step instructions with specific file/table/script names\n4. **Testing Plan** - How to verify the implementation works correctly\n5. **Rollback Plan** - How to revert changes if issues arise",
+        "collectInput": {
+          "label": "Any specific requirements or constraints for the implementation?",
+          "placeholder": "e.g., Must use scoped APIs, adhere to performance best practices..."
+        }
+      }
+    },
+    {
+      "name": "effort",
+      "type": "string",
+      "label": "Planned effort",
+      "maxLength": 40
+    },
+    {
+      "name": "calendar_duration",
+      "type": "string",
+      "label": "Duration",
+      "readonly": true,
+      "maxLength": 40
+    },
+    {
+      "name": "end_date_derived_from",
+      "type": "reference",
+      "label": "End date derived from",
+      "readonly": true,
+      "maxLength": 32,
+      "reference": "planned_task"
+    },
+    {
+      "name": "close_notes",
+      "type": "string",
+      "label": "Close notes",
+      "maxLength": 4000
+    },
+    {
+      "name": "duration",
+      "type": "string",
+      "label": "Planned duration",
+      "maxLength": 40
+    },
+    {
+      "name": "sys_id",
+      "type": "string",
+      "label": "Sys ID",
+      "required": true,
+      "maxLength": 32
+    },
+    {
+      "name": "contact_type",
+      "type": "choice",
+      "label": "Contact type",
+      "required": true,
+      "maxLength": 40,
+      "choices": [
+        "-- None --",
+        "Email",
+        "Phone",
+        "Self-service",
+        "Virtual Agent",
+        "Walk-in"
+      ]
+    },
+    {
+      "name": "urgency",
+      "type": "choice",
+      "label": "Urgency",
+      "maxLength": 40,
+      "choices": ["1 - High", "2 - Medium", "3 - Low"]
+    },
+    {
+      "name": "constraint_date",
+      "type": "datetime",
+      "label": "Constraint date",
+      "maxLength": 40
+    },
+    {
+      "name": "company",
+      "type": "reference",
+      "label": "Company",
+      "maxLength": 32,
+      "reference": "core_company"
+    },
+    {
+      "name": "end",
+      "type": "date",
+      "label": "end date",
+      "maxLength": 40
+    },
+    {
+      "name": "activity_due",
+      "type": "string",
+      "label": "Activity due",
+      "maxLength": 40
+    },
+    {
+      "name": "comments",
+      "type": "text",
+      "label": "Additional comments",
+      "maxLength": 4000
+    },
+    {
+      "name": "cost",
+      "type": "currency",
+      "label": "Total planned cost",
+      "readonly": true,
+      "maxLength": 20
+    },
+    {
+      "name": "approval",
+      "type": "choice",
+      "label": "Approval",
+      "maxLength": 40,
+      "choices": ["Not Yet Requested", "Requested", "Approved", "Rejected"]
+    },
+    {
+      "name": "due_date",
+      "type": "datetime",
+      "label": "Due date",
+      "maxLength": 40
+    },
+    {
+      "name": "start",
+      "type": "date",
+      "label": "start date",
+      "maxLength": 40
+    },
+    {
+      "name": "model_id",
+      "type": "reference",
+      "label": "Model ID",
+      "maxLength": 32,
+      "reference": "cmdb_model"
+    },
+    {
+      "name": "opex_cost",
+      "type": "currency",
+      "label": "Planned operating",
+      "maxLength": 20
+    },
+    {
+      "name": "time_zone",
+      "type": "string",
+      "label": "Time Zone",
+      "readonly": true,
+      "maxLength": 40
+    },
+    {
+      "name": "html_description",
+      "type": "richtext",
+      "label": "HTML description",
+      "maxLength": 8000
+    },
+    {
+      "name": "percent_complete",
+      "type": "integer",
+      "label": "Percent complete",
+      "maxLength": 15
+    },
+    {
+      "name": "milestone",
+      "type": "boolean",
+      "label": "Milestone",
+      "maxLength": 40
+    },
+    {
+      "name": "blocked_reason",
+      "type": "string",
+      "label": "Blocked reason",
+      "maxLength": 1000
+    },
+    {
+      "name": "location",
+      "type": "reference",
+      "label": "Location",
+      "maxLength": 32,
+      "reference": "cmn_location"
+    }
+  ],
+  "list": {
+    "columns": [
+      "number",
+      "short_description",
+      "assignment_group",
+      "sprint",
+      "story_points",
+      "state",
+      "priority"
+    ],
+    "defaultSort": {
+      "field": "sys_updated_on",
+      "direction": "desc"
+    },
+    "pageSize": 20
+  },
+  "form": {
+    "sections": [
+      {
+        "name": "section_undefined",
+        "columns": 2,
+        "fields": [
+          "number",
+          "project",
+          "project_phase",
+          "assignment_group",
+          "team",
+          "sprint",
+          "story_points",
+          "priority",
+          "type",
+          "state",
+          "assigned_to",
+          "short_description"
+        ]
+      },
+      {
+        "name": "section_undefined_2",
+        "columns": 1,
+        "fields": [
+          "description",
+          "acceptance_criteria",
+          "technical_research",
+          "implementation_plan"
+        ]
+      }
+    ]
+  },
+  "relatedLists": [
+    {
+      "table": "x_staged_app_file",
+      "title": "Staged Files",
+      "parentField": "story"
+    }
+  ]
+}
