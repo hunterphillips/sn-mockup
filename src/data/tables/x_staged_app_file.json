@@ -1,0 +1,112 @@
+{
+  "name": "x_staged_app_file",
+  "label": "Staged App File",
+  "labelPlural": "Staged App Files",
+  "fields": [
+    {
+      "name": "sys_id",
+      "type": "string",
+      "label": "Sys ID",
+      "readonly": true,
+      "maxLength": 32
+    },
+    {
+      "name": "sys_created_on",
+      "type": "datetime",
+      "label": "Created",
+      "readonly": true,
+      "maxLength": 40
+    },
+    {
+      "name": "sys_updated_on",
+      "type": "datetime",
+      "label": "Updated",
+      "readonly": true,
+      "maxLength": 40
+    },
+    {
+      "name": "story",
+      "type": "reference",
+      "label": "Story",
+      "maxLength": 32,
+      "reference": "rm_story"
+    },
+    {
+      "name": "parent",
+      "type": "reference",
+      "label": "Parent",
+      "maxLength": 32,
+      "reference": "x_staged_app_file"
+    },
+    {
+      "name": "type",
+      "type": "reference",
+      "label": "Type",
+      "maxLength": 32,
+      "reference": "x_app_file_def"
+    },
+    {
+      "name": "status",
+      "type": "choice",
+      "label": "Status",
+      "maxLength": 40,
+      "choices": ["draft", "approved", "ignored", "generated", "failed"]
+    },
+    {
+      "name": "payload",
+      "type": "text",
+      "label": "Payload",
+      "maxLength": 65000
+    },
+    {
+      "name": "generated_app_file",
+      "type": "reference",
+      "label": "Generated app file",
+      "maxLength": 32,
+      "reference": "sys_metadata"
+    },
+    {
+      "name": "sequence",
+      "type": "integer",
+      "label": "Sequence",
+      "maxLength": 40
+    }
+  ],
+  "list": {
+    "columns": [
+      "story",
+      "type",
+      "status",
+      "sequence",
+      "parent",
+      "sys_updated_on"
+    ],
+    "defaultSort": {
+      "field": "sequence",
+      "direction": "asc"
+    },
+    "pageSize": 20
+  },
+  "form": {
+    "sections": [
+      {
+        "name": "main",
+        "columns": 2,
+        "fields": [
+          "story",
+          "status",
+          "type",
+          "sequence",
+          "parent",
+          "generated_app_file"
+        ]
+      },
+      {
+        "name": "content",
+        "label": "Content",
+        "columns": 1,
+        "fields": ["payload"]
+      }
+    ]
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "name": "sys_user_grmember",
+  "label": "Group Member",
+  "labelPlural": "Group Members",
+  "fields": [
+    {
+      "name": "sys_id",
+      "type": "string",
+      "label": "Sys ID",
+      "required": true,
+      "maxLength": 32
+    },
+    {
+      "name": "sys_updated_by",
+      "type": "string",
+      "label": "Updated by",
+      "maxLength": 40
+    },
+    {
+      "name": "sys_updated_on",
+      "type": "datetime",
+      "label": "Updated",
+      "maxLength": 40
+    },
+    {
+      "name": "user",
+      "type": "reference",
+      "label": "User",
+      "maxLength": 32,
+      "reference": "sys_user"
+    },
+    {
+      "name": "group",
+      "type": "reference",
+      "label": "Group",
+      "maxLength": 32,
+      "reference": "sys_user_group"
+    },
+    {
+      "name": "points",
+      "type": "integer",
+      "label": "Average points per sprint",
+      "maxLength": 40
+    },
+    {
+      "name": "scrum_role",
+      "type": "choice",
+      "label": "Scrum role",
+      "maxLength": 40,
+      "choices": [
+        "-- None --",
+        "Product owner",
+        "Scrum master",
+        "Developer",
+        "QA",
+        "Information developer",
+        "Support"
+      ]
+    }
+  ],
+  "list": {
+    "columns": ["group", "user", "sys_updated_on", "sys_updated_by"],
+    "defaultSort": {
+      "field": "sys_updated_on",
+      "direction": "desc"
+    },
+    "pageSize": 20
+  },
+  "form": {
+    "sections": [
+      {
+        "name": "section_undefined",
+        "columns": 2,
+        "fields": ["user", "group"]
+      }
+    ]
+  }
+}

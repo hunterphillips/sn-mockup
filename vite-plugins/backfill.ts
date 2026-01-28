@@ -24,10 +24,28 @@ export function loadLocalTableData(
   tableName: string,
 ): { tableDef: TableDefinition; sysIds: Set<string> } | null {
   try {
-    const filePath = path.join(tablesDir, `${tableName}.json`);
-    const content = fs.readFileSync(filePath, 'utf-8');
-    const tableDef = JSON.parse(content) as TableDefinition;
-    const sysIds = new Set(tableDef.data.map((r) => r.sys_id));
+    // Read table definition from tables/
+    const defFilePath = path.join(tablesDir, `${tableName}.json`);
+    if (!fs.existsSync(defFilePath)) return null;
+
+    const defContent = fs.readFileSync(defFilePath, 'utf-8');
+    const tableConfig = JSON.parse(defContent);
+
+    // Read record data from recordData/ (sibling directory)
+    const recordDataDir = path.join(path.dirname(tablesDir), 'recordData');
+    const dataFilePath = path.join(recordDataDir, `${tableName}.json`);
+
+    let data: SNRecord[] = [];
+    if (fs.existsSync(dataFilePath)) {
+      const dataContent = fs.readFileSync(dataFilePath, 'utf-8');
+      data = JSON.parse(dataContent);
+    } else if (tableConfig.data) {
+      // Fallback: use embedded data if present (backwards compat)
+      data = tableConfig.data;
+    }
+
+    const tableDef: TableDefinition = { ...tableConfig, data };
+    const sysIds = new Set(data.map((r) => r.sys_id));
     return { tableDef, sysIds };
   } catch {
     return null;
@@ -156,21 +174,32 @@ export async function fetchMissingRecords(
   return allRecords;
 }
 
-/** Append new records to a local table's JSON file */
+/** Append new records to a local table's record data file */
 export function appendToLocalTable(
   tablesDir: string,
   tableName: string,
   newRecords: SNRecord[],
 ): void {
-  const filePath = path.join(tablesDir, `${tableName}.json`);
-  const content = fs.readFileSync(filePath, 'utf-8');
-  const tableDef = JSON.parse(content) as TableDefinition;
+  const recordDataDir = path.join(path.dirname(tablesDir), 'recordData');
+  const dataFilePath = path.join(recordDataDir, `${tableName}.json`);
+
+  // Ensure recordData directory exists
+  if (!fs.existsSync(recordDataDir)) {
+    fs.mkdirSync(recordDataDir, { recursive: true });
+  }
+
+  // Read existing records (or start with empty array)
+  let data: SNRecord[] = [];
+  if (fs.existsSync(dataFilePath)) {
+    const content = fs.readFileSync(dataFilePath, 'utf-8');
+    data = JSON.parse(content);
+  }
 
   // Append new records
-  tableDef.data.push(...newRecords);
+  data.push(...newRecords);
 
-  // Write back
-  fs.writeFileSync(filePath, JSON.stringify(tableDef, null, 2) + '\n');
+  // Write back just the records array
+  fs.writeFileSync(dataFilePath, JSON.stringify(data, null, 2) + '\n');
 }
 
 /** Backfill missing first-level references for local tables */

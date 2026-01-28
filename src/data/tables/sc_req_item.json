@@ -1,0 +1,677 @@
+{
+  "name": "sc_req_item",
+  "label": "Requested Item",
+  "labelPlural": "Requested Items",
+  "fields": [
+    {
+      "name": "parent",
+      "type": "reference",
+      "label": "Parent",
+      "maxLength": 32,
+      "reference": "task"
+    },
+    {
+      "name": "made_sla",
+      "type": "boolean",
+      "label": "Made SLA",
+      "maxLength": 40
+    },
+    {
+      "name": "watch_list",
+      "type": "string",
+      "label": "Watch list",
+      "maxLength": 4000,
+      "reference": "sys_user"
+    },
+    {
+      "name": "sc_catalog",
+      "type": "reference",
+      "label": "Catalog",
+      "readonly": true,
+      "maxLength": 32,
+      "reference": "sc_catalog"
+    },
+    {
+      "name": "upon_reject",
+      "type": "choice",
+      "label": "Upon reject",
+      "maxLength": 40,
+      "choices": [
+        "-- None --",
+        "Cancel all future Tasks",
+        "Go to a previous Task"
+      ]
+    },
+    {
+      "name": "requested_for",
+      "type": "reference",
+      "label": "Requested for",
+      "maxLength": 32,
+      "reference": "sys_user"
+    },
+    {
+      "name": "sys_updated_on",
+      "type": "datetime",
+      "label": "Updated",
+      "maxLength": 40
+    },
+    {
+      "name": "task_effective_number",
+      "type": "string",
+      "label": "Effective number",
+      "readonly": true,
+      "maxLength": 40
+    },
+    {
+      "name": "approval_history",
+      "type": "text",
+      "label": "Approval history",
+      "maxLength": 4000
+    },
+    {
+      "name": "skills",
+      "type": "string",
+      "label": "Skills",
+      "maxLength": 4000,
+      "reference": "cmn_skill"
+    },
+    {
+      "name": "number",
+      "type": "string",
+      "label": "Number",
+      "readonly": true,
+      "maxLength": 40
+    },
+    {
+      "name": "sys_updated_by",
+      "type": "string",
+      "label": "Updated by",
+      "maxLength": 40
+    },
+    {
+      "name": "opened_by",
+      "type": "reference",
+      "label": "Opened by",
+      "maxLength": 32,
+      "reference": "sys_user"
+    },
+    {
+      "name": "user_input",
+      "type": "string",
+      "label": "User input",
+      "maxLength": 4000
+    },
+    {
+      "name": "price",
+      "type": "currency",
+      "label": "Price",
+      "maxLength": 20
+    },
+    {
+      "name": "recurring_frequency",
+      "type": "choice",
+      "label": "Recurring price frequency",
+      "maxLength": 40,
+      "choices": [
+        "-- None --",
+        "Daily",
+        "Weekly",
+        "Every 2 Weeks",
+        "Monthly",
+        "Every 2 Months",
+        "Quarterly",
+        "Semi-Annual",
+        "Annually"
+      ]
+    },
+    {
+      "name": "context",
+      "type": "reference",
+      "label": "Context",
+      "maxLength": 32,
+      "reference": "wf_context"
+    },
+    {
+      "name": "state",
+      "type": "choice",
+      "label": "State",
+      "required": true,
+      "maxLength": 40,
+      "choices": [
+        "Pending",
+        "Open",
+        "Work in Progress",
+        "Closed Complete",
+        "Closed Incomplete",
+        "Closed Skipped",
+        "Resolved"
+      ]
+    },
+    {
+      "name": "route_reason",
+      "type": "choice",
+      "label": "Route reason",
+      "readonly": true,
+      "maxLength": 40,
+      "choices": [
+        "-- None --",
+        "Transfer with Resolution",
+        "Transfer without Resolution"
+      ]
+    },
+    {
+      "name": "knowledge",
+      "type": "boolean",
+      "label": "Knowledge",
+      "maxLength": 40
+    },
+    {
+      "name": "order",
+      "type": "integer",
+      "label": "Order",
+      "maxLength": 40
+    },
+    {
+      "name": "closed_at",
+      "type": "datetime",
+      "label": "Closed",
+      "maxLength": 40
+    },
+    {
+      "name": "cmdb_ci",
+      "type": "reference",
+      "label": "Configuration item",
+      "maxLength": 32,
+      "reference": "cmdb_ci"
+    },
+    {
+      "name": "delivery_plan",
+      "type": "reference",
+      "label": "Delivery plan",
+      "maxLength": 32,
+      "reference": "sc_cat_item_delivery_plan"
+    },
+    {
+      "name": "backordered",
+      "type": "boolean",
+      "label": "Backordered",
+      "maxLength": 40
+    },
+    {
+      "name": "contract",
+      "type": "reference",
+      "label": "Contract",
+      "maxLength": 32,
+      "reference": "ast_contract"
+    },
+    {
+      "name": "impact",
+      "type": "choice",
+      "label": "Impact",
+      "maxLength": 40,
+      "choices": [
+        "1 - High",
+        "2 - Medium",
+        "3 - Low"
+      ]
+    },
+    {
+      "name": "active",
+      "type": "boolean",
+      "label": "Active",
+      "maxLength": 40
+    },
+    {
+      "name": "work_notes_list",
+      "type": "string",
+      "label": "Work notes list",
+      "maxLength": 4000,
+      "reference": "sys_user"
+    },
+    {
+      "name": "business_service",
+      "type": "reference",
+      "label": "Service",
+      "maxLength": 32,
+      "reference": "cmdb_ci_service"
+    },
+    {
+      "name": "priority",
+      "type": "choice",
+      "label": "Priority",
+      "maxLength": 40,
+      "choices": [
+        "-- None --",
+        "1 - Critical",
+        "2 - High",
+        "3 - Moderate",
+        "4 - Low",
+        "5 - Planning"
+      ]
+    },
+    {
+      "name": "time_worked",
+      "type": "string",
+      "label": "Time worked",
+      "maxLength": 40
+    },
+    {
+      "name": "expected_start",
+      "type": "datetime",
+      "label": "Expected start",
+      "maxLength": 40
+    },
+    {
+      "name": "flow_context",
+      "type": "reference",
+      "label": "Flow Context",
+      "maxLength": 32,
+      "reference": "sys_flow_context"
+    },
+    {
+      "name": "opened_at",
+      "type": "datetime",
+      "label": "Opened",
+      "maxLength": 40
+    },
+    {
+      "name": "x_880628_project_0_resolution_notes",
+      "type": "string",
+      "label": "Resolution notes",
+      "maxLength": 4000
+    },
+    {
+      "name": "business_duration",
+      "type": "string",
+      "label": "Business duration",
+      "readonly": true,
+      "maxLength": 40
+    },
+    {
+      "name": "group_list",
+      "type": "string",
+      "label": "Group list",
+      "maxLength": 4000,
+      "reference": "sys_user_group"
+    },
+    {
+      "name": "configuration_item",
+      "type": "reference",
+      "label": "Configuration item",
+      "maxLength": 32,
+      "reference": "cmdb_ci"
+    },
+    {
+      "name": "work_end",
+      "type": "datetime",
+      "label": "Actual end",
+      "maxLength": 40
+    },
+    {
+      "name": "approval_set",
+      "type": "datetime",
+      "label": "Approval set",
+      "maxLength": 40
+    },
+    {
+      "name": "work_notes",
+      "type": "text",
+      "label": "Work notes",
+      "maxLength": 4000
+    },
+    {
+      "name": "order_guide",
+      "type": "reference",
+      "label": "Order Guide",
+      "maxLength": 32,
+      "reference": "sc_cat_item_guide"
+    },
+    {
+      "name": "universal_request",
+      "type": "reference",
+      "label": "Universal Request",
+      "maxLength": 32,
+      "reference": "task"
+    },
+    {
+      "name": "request",
+      "type": "reference",
+      "label": "Request",
+      "maxLength": 32,
+      "reference": "sc_request"
+    },
+    {
+      "name": "short_description",
+      "type": "string",
+      "label": "Short description",
+      "maxLength": 160
+    },
+    {
+      "name": "correlation_display",
+      "type": "string",
+      "label": "Correlation display",
+      "maxLength": 100
+    },
+    {
+      "name": "delivery_task",
+      "type": "reference",
+      "label": "Delivery task",
+      "maxLength": 32,
+      "reference": "sc_cat_item_delivery_task"
+    },
+    {
+      "name": "work_start",
+      "type": "datetime",
+      "label": "Actual start",
+      "maxLength": 40
+    },
+    {
+      "name": "assignment_group",
+      "type": "reference",
+      "label": "Assignment group",
+      "maxLength": 32,
+      "reference": "sys_user_group"
+    },
+    {
+      "name": "additional_assignee_list",
+      "type": "string",
+      "label": "Additional assignee list",
+      "maxLength": 4000,
+      "reference": "sys_user"
+    },
+    {
+      "name": "description",
+      "type": "string",
+      "label": "Description",
+      "required": true,
+      "maxLength": 4000
+    },
+    {
+      "name": "calendar_duration",
+      "type": "string",
+      "label": "Duration",
+      "readonly": true,
+      "maxLength": 40
+    },
+    {
+      "name": "close_notes",
+      "type": "string",
+      "label": "Close notes",
+      "maxLength": 4000
+    },
+    {
+      "name": "service_offering",
+      "type": "reference",
+      "label": "Service offering",
+      "maxLength": 32,
+      "reference": "service_offering"
+    },
+    {
+      "name": "closed_by",
+      "type": "reference",
+      "label": "Closed by",
+      "maxLength": 32,
+      "reference": "sys_user"
+    },
+    {
+      "name": "follow_up",
+      "type": "datetime",
+      "label": "Follow up",
+      "maxLength": 40
+    },
+    {
+      "name": "sys_id",
+      "type": "string",
+      "label": "Sys ID",
+      "required": true,
+      "maxLength": 32
+    },
+    {
+      "name": "contact_type",
+      "type": "choice",
+      "label": "Contact type",
+      "required": true,
+      "maxLength": 40,
+      "choices": [
+        "-- None --",
+        "Email",
+        "Phone",
+        "Self-service",
+        "Virtual Agent",
+        "Walk-in"
+      ]
+    },
+    {
+      "name": "urgency",
+      "type": "choice",
+      "label": "Urgency",
+      "maxLength": 40,
+      "choices": [
+        "1 - High",
+        "2 - Medium",
+        "3 - Low"
+      ]
+    },
+    {
+      "name": "company",
+      "type": "reference",
+      "label": "Company",
+      "maxLength": 32,
+      "reference": "core_company"
+    },
+    {
+      "name": "reassignment_count",
+      "type": "integer",
+      "label": "Reassignment count",
+      "maxLength": 40
+    },
+    {
+      "name": "activity_due",
+      "type": "string",
+      "label": "Activity due",
+      "maxLength": 40
+    },
+    {
+      "name": "assigned_to",
+      "type": "reference",
+      "label": "Assigned to",
+      "maxLength": 32,
+      "reference": "sys_user"
+    },
+    {
+      "name": "comments",
+      "type": "text",
+      "label": "Additional comments",
+      "maxLength": 4000
+    },
+    {
+      "name": "quantity",
+      "type": "integer",
+      "label": "Quantity",
+      "maxLength": 40
+    },
+    {
+      "name": "approval",
+      "type": "choice",
+      "label": "Approval",
+      "maxLength": 40,
+      "choices": [
+        "Not Yet Requested",
+        "Requested",
+        "Approved",
+        "Rejected"
+      ]
+    },
+    {
+      "name": "sla_due",
+      "type": "string",
+      "label": "SLA due",
+      "maxLength": 40
+    },
+    {
+      "name": "comments_and_work_notes",
+      "type": "string",
+      "label": "Comments and Work notes",
+      "maxLength": 4000
+    },
+    {
+      "name": "due_date",
+      "type": "datetime",
+      "label": "Due date",
+      "maxLength": 40
+    },
+    {
+      "name": "recurring_price",
+      "type": "string",
+      "label": "Recurring price",
+      "maxLength": 20
+    },
+    {
+      "name": "billable",
+      "type": "boolean",
+      "label": "Billable",
+      "maxLength": 40
+    },
+    {
+      "name": "cat_item",
+      "type": "reference",
+      "label": "Item",
+      "maxLength": 32,
+      "reference": "sc_cat_item"
+    },
+    {
+      "name": "stage",
+      "type": "choice",
+      "label": "Stage",
+      "readonly": true,
+      "maxLength": 80,
+      "choices": [
+        "-- None --",
+        "Not Started",
+        "Approval",
+        "Awaiting Delivery",
+        "Backordered",
+        "CIO Approval",
+        "Completed",
+        "Configuration",
+        "Delivery",
+        "Deployment",
+        "Dept. Head Approval",
+        "Fulfillment",
+        "Fulfilment",
+        "Order Fulfillment",
+        "Request Cancelled",
+        "Request Approved",
+        "Waiting for Approval",
+        "Go-Live",
+        "Plan",
+        "Implement",
+        "Request Cancelled",
+        "Reinforce",
+        "Fulfillment",
+        "Waiting for Approval",
+        "Discover",
+        "Closed Incomplete",
+        "Start Approval",
+        "Request approved",
+        "Completed",
+        "Service fulfillment process"
+      ]
+    },
+    {
+      "name": "x_ipnll_office_adm_inventory_item",
+      "type": "reference",
+      "label": "Inventory Item",
+      "maxLength": 32,
+      "reference": "x_ipnll_office_adm_inventory_tracking"
+    },
+    {
+      "name": "escalation",
+      "type": "choice",
+      "label": "Escalation",
+      "readonly": true,
+      "maxLength": 40,
+      "choices": [
+        "Normal",
+        "Moderate",
+        "High",
+        "Overdue"
+      ]
+    },
+    {
+      "name": "upon_approval",
+      "type": "choice",
+      "label": "Upon approval",
+      "maxLength": 40,
+      "choices": [
+        "-- None --",
+        "Proceed to Next Task",
+        "Wait for a User to Close this task"
+      ]
+    },
+    {
+      "name": "correlation_id",
+      "type": "string",
+      "label": "Correlation ID",
+      "maxLength": 100
+    },
+    {
+      "name": "location",
+      "type": "reference",
+      "label": "Location",
+      "maxLength": 32,
+      "reference": "cmn_location"
+    },
+    {
+      "name": "estimated_delivery",
+      "type": "datetime",
+      "label": "Estimated delivery",
+      "maxLength": 40
+    }
+  ],
+  "list": {
+    "columns": [
+      "number",
+      "cat_item",
+      "stage",
+      "request",
+      "requested_for",
+      "due_date",
+      "quantity",
+      "sys_updated_on",
+      "assigned_to"
+    ],
+    "defaultSort": {
+      "field": "sys_updated_on",
+      "direction": "desc"
+    },
+    "pageSize": 20
+  },
+  "form": {
+    "sections": [
+      {
+        "name": "section_undefined",
+        "columns": 2,
+        "fields": [
+          "number",
+          "cat_item",
+          "request",
+          "requested_for",
+          "due_date",
+          "watch_list",
+          "opened_at",
+          "opened_by",
+          "stage",
+          "state",
+          "assignment_group",
+          "assigned_to",
+          "short_description",
+          "description",
+          "x_880628_project_0_resolution_notes",
+          "comments",
+          "work_notes"
+        ]
+      }
+    ]
+  }
+}

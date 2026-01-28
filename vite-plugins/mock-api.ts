@@ -5,9 +5,11 @@ import path from 'node:path'
 /**
  * Vite plugin that provides a dev server API for persisting mock data to JSON files.
  * Only active during development.
+ *
+ * Record data is stored separately from table definitions in recordData/ directory.
  */
 export function mockApiPlugin(): Plugin {
-  const tablesDir = path.resolve(__dirname, '../src/data/tables')
+  const recordDataDir = path.resolve(__dirname, '../src/data/recordData')
 
   return {
     name: 'mock-api',
@@ -37,24 +39,16 @@ export function mockApiPlugin(): Plugin {
 
         try {
           const { data } = JSON.parse(body)
-          const filePath = path.join(tablesDir, `${tableName}.json`)
 
-          // Check if table file exists
-          if (!fs.existsSync(filePath)) {
-            res.statusCode = 404
-            res.end(JSON.stringify({ error: `Table file not found: ${tableName}.json` }))
-            return
+          // Ensure recordData directory exists
+          if (!fs.existsSync(recordDataDir)) {
+            fs.mkdirSync(recordDataDir, { recursive: true })
           }
 
-          // Read existing table definition
-          const tableContent = fs.readFileSync(filePath, 'utf-8')
-          const tableDef = JSON.parse(tableContent)
+          const filePath = path.join(recordDataDir, `${tableName}.json`)
 
-          // Update only the data array
-          tableDef.data = data
-
-          // Write back to file with pretty formatting
-          fs.writeFileSync(filePath, JSON.stringify(tableDef, null, 2) + '\n')
+          // Write just the records array (not wrapped in TableDefinition)
+          fs.writeFileSync(filePath, JSON.stringify(data, null, 2) + '\n')
 
           res.statusCode = 200
           res.setHeader('Content-Type', 'application/json')

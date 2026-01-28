@@ -158,6 +158,9 @@ export interface TableDefinition {
   data: SNRecord[]
 }
 
+/** Table definition without record data (for schema-only files) */
+export type TableConfig = Omit<TableDefinition, 'data'>
+
 /** Query parameters for listing records */
 export interface QueryParams {
   page?: number
