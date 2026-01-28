@@ -53,7 +53,11 @@
       "type": "choice",
       "label": "Phase type",
       "maxLength": 40,
-      "choices": ["Waterfall", "Agile", "Test"]
+      "choices": [
+        "Waterfall",
+        "Agile",
+        "Test"
+      ]
     },
     {
       "name": "wbs",
@@ -133,7 +137,13 @@
       "label": "State",
       "required": true,
       "maxLength": 40,
-      "choices": ["Draft", "Planning", "Current", "Complete", "Cancelled"]
+      "choices": [
+        "Draft",
+        "Planning",
+        "Current",
+        "Complete",
+        "Cancelled"
+      ]
     },
     {
       "name": "knowledge",
@@ -193,7 +203,11 @@
       "type": "choice",
       "label": "Impact",
       "maxLength": 40,
-      "choices": ["1 - High", "2 - Medium", "3 - Low"]
+      "choices": [
+        "1 - High",
+        "2 - Medium",
+        "3 - Low"
+      ]
     },
     {
       "name": "key_milestone",
@@ -278,7 +292,11 @@
       "type": "choice",
       "label": "Status",
       "maxLength": 40,
-      "choices": ["Green", "Yellow", "Red"]
+      "choices": [
+        "Green",
+        "Yellow",
+        "Red"
+      ]
     },
     {
       "name": "universal_request",
@@ -392,7 +410,10 @@
       "type": "choice",
       "label": "Calculation",
       "maxLength": 40,
-      "choices": ["Automatic", "Manual"]
+      "choices": [
+        "Automatic",
+        "Manual"
+      ]
     },
     {
       "name": "reassignment_count",
@@ -493,7 +514,12 @@
       "label": "Escalation",
       "readonly": true,
       "maxLength": 40,
-      "choices": ["Normal", "Moderate", "High", "Overdue"]
+      "choices": [
+        "Normal",
+        "Moderate",
+        "High",
+        "Overdue"
+      ]
     },
     {
       "name": "upon_approval",
@@ -805,7 +831,11 @@
       "type": "choice",
       "label": "Urgency",
       "maxLength": 40,
-      "choices": ["1 - High", "2 - Medium", "3 - Low"]
+      "choices": [
+        "1 - High",
+        "2 - Medium",
+        "3 - Low"
+      ]
     },
     {
       "name": "constraint_date",
@@ -850,7 +880,12 @@
       "type": "choice",
       "label": "Approval",
       "maxLength": 40,
-      "choices": ["Not Yet Requested", "Requested", "Approved", "Rejected"]
+      "choices": [
+        "Not Yet Requested",
+        "Requested",
+        "Approved",
+        "Rejected"
+      ]
     },
     {
       "name": "actual_points",
