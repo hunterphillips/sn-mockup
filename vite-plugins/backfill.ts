@@ -39,7 +39,7 @@ export function loadLocalTableData(
     if (fs.existsSync(dataFilePath)) {
       const dataContent = fs.readFileSync(dataFilePath, 'utf-8');
       data = JSON.parse(dataContent);
-    } else if (tableConfig.data) {
+    } else if (tableConfig?.data && Array.isArray(tableConfig.data)) {
       // Fallback: use embedded data if present (backwards compat)
       data = tableConfig.data;
     }
@@ -73,7 +73,10 @@ export function findMissingReferences(
 
   // Find reference fields that point to local tables
   const referenceFields = tableDef.fields.filter(
-    (f) => f.type === 'reference' && f.reference && localTables.includes(f.reference),
+    (f) =>
+      f.type === 'reference' &&
+      f.reference &&
+      localTables.includes(f.reference),
   );
 
   if (referenceFields.length === 0) return missingByTable;
@@ -124,14 +127,19 @@ function transformRecord(record: Record<string, unknown>): SNRecord {
         typeof value === 'object' && value !== null && 'value' in value
           ? (value as { value: string }).value
           : String(value);
-    } else if (typeof value === 'object' && value !== null && 'value' in value) {
+    } else if (
+      typeof value === 'object' &&
+      value !== null &&
+      'value' in value
+    ) {
       const snValue = value as { value: string; display_value?: string };
       transformed[key] = {
         value: snValue.value ?? '',
         display_value: snValue.display_value ?? snValue.value ?? '',
       };
     } else {
-      const strValue = value === null || value === undefined ? '' : String(value);
+      const strValue =
+        value === null || value === undefined ? '' : String(value);
       transformed[key] = { value: strValue, display_value: strValue };
     }
   }
@@ -214,7 +222,9 @@ export async function backfillReferences(
   const missingByTable = findMissingReferences(tableDef, tablesDir);
 
   for (const [refTable, missingSysIds] of missingByTable) {
-    console.log(`Backfilling ${missingSysIds.size} missing records from ${refTable}...`);
+    console.log(
+      `Backfilling ${missingSysIds.size} missing records from ${refTable}...`,
+    );
 
     const newRecords = await fetchMissingRecords(
       instance,
