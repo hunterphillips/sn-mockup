@@ -54,8 +54,14 @@ export function FilterBuilder({
   ]
 
   const addCondition = (conjunction: 'AND' | 'OR' = 'AND') => {
+    // For OR conjunction, inherit the field from the previous condition
+    const lastCondition = conditions[conditions.length - 1]
+    const defaultField = conjunction === 'OR' && lastCondition?.field
+      ? lastCondition.field
+      : fields[0]?.name || ''
+
     const newCondition: FilterCondition = {
-      field: fields[0]?.name || '',
+      field: defaultField,
       operator: 'is',
       value: '',
       conjunction: conditions.length > 0 ? conjunction : undefined,
@@ -83,9 +89,15 @@ export function FilterBuilder({
     onConditionsChange([])
   }
 
-  // Get choices for a field (if it's a choice field)
+  // Get choices for a field (choice fields or boolean fields)
   const getFieldChoices = (fieldName: string) => {
     const field = fields.find(f => f.name === fieldName)
+    if (field?.type === 'boolean') {
+      return [
+        { value: 'true', label: 'True' },
+        { value: 'false', label: 'False' },
+      ]
+    }
     if (field?.choices) {
       return field.choices.map(c => ({ value: c, label: c }))
     }
