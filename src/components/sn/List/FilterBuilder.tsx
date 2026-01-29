@@ -112,92 +112,86 @@ export function FilterBuilder({
       </div>
 
       {/* Condition rows */}
-      {conditions.length === 0 ? (
-        <div className="text-sm text-sn-neutral-6 py-2">
-          No filter conditions. Click AND or OR to add a condition.
-        </div>
-      ) : (
-        <div className="space-y-2">
-          {conditions.map((condition, index) => {
-            const choices = getFieldChoices(condition.field)
+      <div className="space-y-2">
+        {conditions.map((condition, index) => {
+          const choices = getFieldChoices(condition.field)
 
-            return (
-              <div key={index} className="flex items-center gap-2">
-                {/* Conjunction (for conditions after the first) */}
-                {index > 0 && (
-                  <SNSelect
-                    size="sm"
-                    value={condition.conjunction || 'AND'}
-                    onChange={(e) => updateCondition(index, { conjunction: e.target.value as 'AND' | 'OR' })}
-                    options={[
-                      { value: 'AND', label: 'AND' },
-                      { value: 'OR', label: 'OR' },
-                    ]}
-                    className="w-20"
-                  />
-                )}
-                {index === 0 && <div className="w-20" />}
-
-                {/* Field */}
+          return (
+            <div key={index} className="flex items-center gap-2">
+              {/* Conjunction (for conditions after the first) */}
+              {index > 0 && (
                 <SNSelect
                   size="sm"
-                  value={condition.field}
-                  onChange={(e) => updateCondition(index, { field: e.target.value })}
-                  options={fieldOptions}
+                  value={condition.conjunction || 'AND'}
+                  onChange={(e) => updateCondition(index, { conjunction: e.target.value as 'AND' | 'OR' })}
+                  options={[
+                    { value: 'AND', label: 'AND' },
+                    { value: 'OR', label: 'OR' },
+                  ]}
+                  className="w-20"
+                />
+              )}
+              {index === 0 && <div className="w-20" />}
+
+              {/* Field */}
+              <SNSelect
+                size="sm"
+                value={condition.field}
+                onChange={(e) => updateCondition(index, { field: e.target.value })}
+                options={fieldOptions}
+                className="w-40"
+              />
+
+              {/* Operator */}
+              <SNSelect
+                size="sm"
+                value={condition.operator}
+                onChange={(e) => updateCondition(index, { operator: e.target.value as FilterCondition['operator'] })}
+                options={OPERATORS}
+                className="w-32"
+              />
+
+              {/* Value */}
+              {choices ? (
+                <SNSelect
+                  size="sm"
+                  value={condition.value}
+                  onChange={(e) => updateCondition(index, { value: e.target.value })}
+                  options={choices}
+                  placeholder="Select value..."
                   className="w-40"
                 />
-
-                {/* Operator */}
-                <SNSelect
+              ) : (
+                <SNInput
                   size="sm"
-                  value={condition.operator}
-                  onChange={(e) => updateCondition(index, { operator: e.target.value as FilterCondition['operator'] })}
-                  options={OPERATORS}
-                  className="w-32"
+                  value={condition.value}
+                  onChange={(e) => updateCondition(index, { value: e.target.value })}
+                  placeholder="Enter value..."
+                  className="w-40"
                 />
+              )}
 
-                {/* Value */}
-                {choices ? (
-                  <SNSelect
-                    size="sm"
-                    value={condition.value}
-                    onChange={(e) => updateCondition(index, { value: e.target.value })}
-                    options={choices}
-                    placeholder="Select value..."
-                    className="w-40"
-                  />
-                ) : (
-                  <SNInput
-                    size="sm"
-                    value={condition.value}
-                    onChange={(e) => updateCondition(index, { value: e.target.value })}
-                    placeholder="Enter value..."
-                    className="w-40"
-                  />
-                )}
+              {/* AND/OR buttons for this row */}
+              <SNButton variant="secondary" size="sm" onClick={() => addCondition('AND')}>
+                AND
+              </SNButton>
+              <SNButton variant="secondary" size="sm" onClick={() => addCondition('OR')}>
+                OR
+              </SNButton>
 
-                {/* AND/OR buttons for this row */}
-                <SNButton variant="secondary" size="sm" onClick={() => addCondition('AND')}>
-                  AND
-                </SNButton>
-                <SNButton variant="secondary" size="sm" onClick={() => addCondition('OR')}>
-                  OR
-                </SNButton>
-
-                {/* Remove button */}
-                <SNButton
-                  variant="bare"
-                  size="sm"
-                  onClick={() => removeCondition(index)}
-                  aria-label="Remove condition"
-                >
-                  <X className="w-4 h-4 text-sn-critical" />
-                </SNButton>
-              </div>
-            )
-          })}
-        </div>
-      )}
+              {/* Remove button */}
+              <SNButton
+                variant="bare"
+                size="sm"
+                onClick={() => removeCondition(index)}
+                aria-label="Remove condition"
+              >
+                <X className="w-4 h-4 text-sn-critical" />
+              </SNButton>
+            </div>
+          )
+        })}
+      </div>
     </div>
   )
 }

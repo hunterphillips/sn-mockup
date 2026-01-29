@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import { cn } from '../../../utils/cn'
 import { useTable } from '../../../context/DataContext'
 import { getRecords } from '../../../api/mockApi'
@@ -7,6 +8,19 @@ import { FilterBuilder } from './FilterBuilder'
 import { DataTable, type DataTableColumn } from './DataTable'
 import { Pagination } from './Pagination'
 import type { SNRecord, FilterCondition, QueryParams } from '../../../types'
+
+// URL param helpers for filter persistence
+const encodeFilters = (filters: FilterCondition[]): string =>
+  filters.length > 0 ? JSON.stringify(filters) : ''
+
+const decodeFilters = (param: string | null): FilterCondition[] => {
+  if (!param) return []
+  try {
+    return JSON.parse(param)
+  } catch {
+    return []
+  }
+}
 
 export interface SNListProps {
   /** Table name */
@@ -23,6 +37,7 @@ export interface SNListProps {
  */
 export function SNList({ tableName, className }: SNListProps) {
   const tableDef = useTable(tableName)
+  const [searchParams, setSearchParams] = useSearchParams()
 
   // State
   const [data, setData] = useState<SNRecord[]>([])
@@ -32,7 +47,10 @@ export function SNList({ tableName, className }: SNListProps) {
   const [sortField, setSortField] = useState<string | undefined>(tableDef?.list.defaultSort?.field)
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>(tableDef?.list.defaultSort?.direction || 'asc')
   const [filterVisible, setFilterVisible] = useState(false)
-  const [conditions, setConditions] = useState<FilterCondition[]>([])
+  const [conditions, setConditions] = useState<FilterCondition[]>([]) // Draft conditions (editing)
+  const [appliedConditions, setAppliedConditions] = useState<FilterCondition[]>(() =>
+    decodeFilters(searchParams.get('filter'))
+  ) // Applied conditions (used in queries)
   const [searchValue, setSearchValue] = useState('')
   const [columnFilters, setColumnFilters] = useState<{ [field: string]: string }>({})
   const [selectedRows, setSelectedRows] = useState<string[]>([])
@@ -51,7 +69,7 @@ export function SNList({ tableName, className }: SNListProps) {
     }
   }) || []
 
-  // Fetch data
+  // Fetch data - uses appliedConditions (not draft conditions)
   const fetchData = useCallback(async () => {
     if (!tableDef) return
 
@@ -62,7 +80,7 @@ export function SNList({ tableName, className }: SNListProps) {
         pageSize,
         sortField,
         sortDirection,
-        filters: conditions.length > 0 ? conditions : undefined,
+        filters: appliedConditions.length > 0 ? appliedConditions : undefined,
         search: searchValue || undefined,
       }
 
@@ -74,16 +92,46 @@ export function SNList({ tableName, className }: SNListProps) {
     } finally {
       setLoading(false)
     }
-  }, [tableName, tableDef, page, pageSize, sortField, sortDirection, conditions, searchValue])
+  }, [tableName, tableDef, page, pageSize, sortField, sortDirection, appliedConditions, searchValue])
 
   useEffect(() => {
     fetchData()
   }, [fetchData])
 
-  // Reset page when filters change
+  // Initialize draft conditions from applied (on mount or when applied changes from URL)
+  useEffect(() => {
+    setConditions(appliedConditions)
+  }, [appliedConditions])
+
+  // Add starter condition when filter panel opens with no conditions
+  useEffect(() => {
+    if (filterVisible && conditions.length === 0 && tableDef) {
+      setConditions([{
+        field: tableDef.fields[0]?.name || '',
+        operator: 'is',
+        value: '',
+      }])
+    }
+  }, [filterVisible, conditions.length, tableDef])
+
+  // Reset page when applied filters change
   useEffect(() => {
     setPage(1)
-  }, [conditions, searchValue])
+  }, [appliedConditions, searchValue])
+
+  // Handle "Run" - apply draft conditions and update URL
+  const handleRunFilter = () => {
+    setAppliedConditions(conditions)
+    setSearchParams(prev => {
+      const encoded = encodeFilters(conditions)
+      if (encoded) {
+        prev.set('filter', encoded)
+      } else {
+        prev.delete('filter')
+      }
+      return prev
+    })
+  }
 
   // Handle sort
   const handleSort = (field: string) => {
@@ -109,9 +157,9 @@ export function SNList({ tableName, className }: SNListProps) {
     )
   }
 
-  // Build filter breadcrumb from actual conditions
-  const filterBreadcrumb = conditions.length > 0
-    ? `All > ${conditions.map(c => `${c.field} ${c.operator} "${c.value}"`).join(` ${conditions[1]?.conjunction || 'AND'} `)}`
+  // Build filter breadcrumb from applied conditions
+  const filterBreadcrumb = appliedConditions.length > 0
+    ? `All > ${appliedConditions.map(c => `${c.field} ${c.operator} "${c.value}"`).join(` ${appliedConditions[1]?.conjunction || 'AND'} `)}`
     : 'All'
 
   return (
@@ -132,7 +180,7 @@ export function SNList({ tableName, className }: SNListProps) {
           fields={tableDef.fields}
           conditions={conditions}
           onConditionsChange={setConditions}
-          onRun={fetchData}
+          onRun={handleRunFilter}
         />
       )}
 
