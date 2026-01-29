@@ -137,9 +137,10 @@ describe('FilterBuilder', () => {
 
     await user.click(screen.getByRole('button', { name: /Reset/i }))
 
-    // After reset, no condition rows — no value inputs or selects beyond toolbar
+    // After reset, shows placeholder row with field dropdown only (no value input)
     expect(screen.queryByPlaceholderText('Enter value...')).not.toBeInTheDocument()
-    expect(screen.queryAllByRole('combobox')).toHaveLength(0)
+    // Placeholder row has 1 select (field dropdown)
+    expect(screen.queryAllByRole('combobox')).toHaveLength(1)
   })
 
   it('removes a single condition when its remove button is clicked', async () => {

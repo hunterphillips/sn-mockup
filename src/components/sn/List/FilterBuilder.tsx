@@ -46,7 +46,12 @@ export function FilterBuilder({
   onRun,
   className,
 }: FilterBuilderProps) {
-  const fieldOptions = fields.map(f => ({ value: f.name, label: f.label }))
+  const fieldOptions = [
+    { value: '', label: '-- choose field --' },
+    ...fields
+      .map(f => ({ value: f.name, label: f.label }))
+      .sort((a, b) => a.label.localeCompare(b.label))
+  ]
 
   const addCondition = (conjunction: 'AND' | 'OR' = 'AND') => {
     const newCondition: FilterCondition = {
@@ -113,6 +118,37 @@ export function FilterBuilder({
 
       {/* Condition rows */}
       <div className="space-y-2">
+        {/* Placeholder row when no conditions */}
+        {conditions.length === 0 && (
+          <div className="flex items-center gap-2">
+            <div className="w-20" />
+            <SNSelect
+              size="sm"
+              value=""
+              onChange={(e) => {
+                if (e.target.value) {
+                  onConditionsChange([{ field: e.target.value, operator: 'is', value: '' }])
+                }
+              }}
+              options={fieldOptions}
+              className="w-40"
+            />
+            <SNInput
+              size="sm"
+              value=""
+              disabled
+              placeholder="-- value --"
+              className="w-32"
+            />
+            <SNInput
+              size="sm"
+              value=""
+              disabled
+              placeholder="-- value --"
+              className="w-40"
+            />
+          </div>
+        )}
         {conditions.map((condition, index) => {
           const choices = getFieldChoices(condition.field)
 

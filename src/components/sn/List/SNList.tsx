@@ -103,27 +103,18 @@ export function SNList({ tableName, className }: SNListProps) {
     setConditions(appliedConditions)
   }, [appliedConditions])
 
-  // Add starter condition when filter panel opens with no conditions
-  useEffect(() => {
-    if (filterVisible && conditions.length === 0 && tableDef) {
-      setConditions([{
-        field: tableDef.fields[0]?.name || '',
-        operator: 'is',
-        value: '',
-      }])
-    }
-  }, [filterVisible, conditions.length, tableDef])
-
   // Reset page when applied filters change
   useEffect(() => {
     setPage(1)
   }, [appliedConditions, searchValue])
 
   // Handle "Run" - apply draft conditions and update URL
+  // Filter out incomplete conditions (placeholder rows with no field selected)
   const handleRunFilter = () => {
-    setAppliedConditions(conditions)
+    const validConditions = conditions.filter(c => c.field !== '')
+    setAppliedConditions(validConditions)
     setSearchParams(prev => {
-      const encoded = encodeFilters(conditions)
+      const encoded = encodeFilters(validConditions)
       if (encoded) {
         prev.set('filter', encoded)
       } else {

@@ -75,8 +75,7 @@ function generateSysId(): string {
 function matchesFilters(record: SNRecord, filters: FilterCondition[]): boolean {
   if (!filters.length) return true;
 
-  let result = true;
-  let currentConjunction: 'AND' | 'OR' = 'AND';
+  let result: boolean | null = null;
 
   for (const filter of filters) {
     const value = getFieldDisplayValue(record[filter.field]);
@@ -108,16 +107,21 @@ function matchesFilters(record: SNRecord, filters: FilterCondition[]): boolean {
         break;
     }
 
-    if (currentConjunction === 'AND') {
-      result = result && matches;
+    // First filter: just use its match result
+    if (result === null) {
+      result = matches;
     } else {
-      result = result || matches;
+      // Subsequent filters: use THIS filter's conjunction to combine with previous result
+      const conjunction = filter.conjunction ?? 'AND';
+      if (conjunction === 'OR') {
+        result = result || matches;
+      } else {
+        result = result && matches;
+      }
     }
-
-    currentConjunction = filter.conjunction ?? 'AND';
   }
 
-  return result;
+  return result ?? true;
 }
 
 /** Get records from a table with optional filtering, sorting, and pagination */
