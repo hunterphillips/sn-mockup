@@ -174,7 +174,7 @@ export interface QueryParams {
 /** Filter condition for queries */
 export interface FilterCondition {
   field: string
-  operator: 'is' | 'is_not' | 'contains' | 'starts_with' | 'ends_with' | 'greater_than' | 'less_than'
+  operator: '' | 'is' | 'is_not' | 'contains' | 'starts_with' | 'ends_with' | 'greater_than' | 'less_than'
   value: string
   conjunction?: 'AND' | 'OR'
 }

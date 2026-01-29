@@ -192,8 +192,8 @@ describe('mockApi', () => {
 
         const result = await getRecords('test_table', {
           filters: [
-            { field: 'name', operator: 'is', value: 'Alice', conjunction: 'OR' },
-            { field: 'name', operator: 'is', value: 'Bob' },
+            { field: 'name', operator: 'is', value: 'Alice' },
+            { field: 'name', operator: 'is', value: 'Bob', conjunction: 'OR' },
           ],
         })
 
