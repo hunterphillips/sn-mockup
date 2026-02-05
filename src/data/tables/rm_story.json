@@ -1,7 +1,7 @@
 {
   "name": "rm_story",
   "label": "Story",
-  "labelPlural": "Storys",
+  "labelPlural": "Stories",
   "aiAssist": {
     "contextFields": [
       "type",

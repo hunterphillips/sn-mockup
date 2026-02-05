@@ -1,0 +1,841 @@
+{
+  "name": "problem",
+  "label": "Problem",
+  "labelPlural": "Problems",
+  "fields": [
+    {
+      "name": "parent",
+      "type": "reference",
+      "label": "Parent",
+      "maxLength": 32,
+      "reference": "task"
+    },
+    {
+      "name": "watch_list",
+      "type": "string",
+      "label": "Watch list",
+      "maxLength": 4000,
+      "reference": "sys_user"
+    },
+    {
+      "name": "fix_communicated_by",
+      "type": "reference",
+      "label": "Fix communicated by",
+      "readonly": true,
+      "maxLength": 32,
+      "reference": "sys_user"
+    },
+    {
+      "name": "upon_reject",
+      "type": "choice",
+      "label": "Upon reject",
+      "maxLength": 40,
+      "choices": [
+        "-- None --",
+        "Cancel all future Tasks",
+        "Go to a previous Task"
+      ]
+    },
+    {
+      "name": "sys_updated_on",
+      "type": "datetime",
+      "label": "Updated",
+      "maxLength": 40
+    },
+    {
+      "name": "approval_history",
+      "type": "text",
+      "label": "Approval history",
+      "maxLength": 4000
+    },
+    {
+      "name": "skills",
+      "type": "string",
+      "label": "Skills",
+      "maxLength": 4000,
+      "reference": "cmn_skill"
+    },
+    {
+      "name": "number",
+      "type": "string",
+      "label": "Number",
+      "readonly": true,
+      "maxLength": 40
+    },
+    {
+      "name": "state",
+      "type": "choice",
+      "label": "State",
+      "required": true,
+      "readonly": true,
+      "maxLength": 40,
+      "choices": [
+        "New",
+        "Assess",
+        "Root Cause Analysis",
+        "Fix in Progress",
+        "Resolved",
+        "Closed"
+      ]
+    },
+    {
+      "name": "knowledge",
+      "type": "boolean",
+      "label": "Knowledge",
+      "maxLength": 40
+    },
+    {
+      "name": "order",
+      "type": "integer",
+      "label": "Order",
+      "maxLength": 40
+    },
+    {
+      "name": "major_problem",
+      "type": "boolean",
+      "label": "Major problem",
+      "maxLength": 40
+    },
+    {
+      "name": "cmdb_ci",
+      "type": "reference",
+      "label": "Configuration item",
+      "maxLength": 32,
+      "reference": "cmdb_ci"
+    },
+    {
+      "name": "delivery_plan",
+      "type": "reference",
+      "label": "Delivery plan",
+      "maxLength": 32,
+      "reference": "sc_cat_item_delivery_plan"
+    },
+    {
+      "name": "contract",
+      "type": "reference",
+      "label": "Contract",
+      "maxLength": 32,
+      "reference": "ast_contract"
+    },
+    {
+      "name": "impact",
+      "type": "choice",
+      "label": "Impact",
+      "maxLength": 40,
+      "choices": [
+        "1 - High",
+        "2 - Medium",
+        "3 - Low"
+      ]
+    },
+    {
+      "name": "active",
+      "type": "boolean",
+      "label": "Active",
+      "maxLength": 40
+    },
+    {
+      "name": "work_notes_list",
+      "type": "string",
+      "label": "Work notes list",
+      "maxLength": 4000,
+      "reference": "sys_user"
+    },
+    {
+      "name": "priority",
+      "type": "choice",
+      "label": "Priority",
+      "maxLength": 40,
+      "choices": [
+        "-- None --",
+        "1 - Critical",
+        "2 - High",
+        "3 - Moderate",
+        "4 - Low",
+        "5 - Planning"
+      ]
+    },
+    {
+      "name": "business_duration",
+      "type": "string",
+      "label": "Business duration",
+      "readonly": true,
+      "maxLength": 40
+    },
+    {
+      "name": "group_list",
+      "type": "string",
+      "label": "Group list",
+      "maxLength": 4000,
+      "reference": "sys_user_group"
+    },
+    {
+      "name": "approval_set",
+      "type": "datetime",
+      "label": "Approval set",
+      "maxLength": 40
+    },
+    {
+      "name": "universal_request",
+      "type": "reference",
+      "label": "Universal Request",
+      "maxLength": 32,
+      "reference": "task"
+    },
+    {
+      "name": "short_description",
+      "type": "string",
+      "label": "Problem statement",
+      "required": true,
+      "maxLength": 160
+    },
+    {
+      "name": "correlation_display",
+      "type": "string",
+      "label": "Correlation display",
+      "maxLength": 100
+    },
+    {
+      "name": "delivery_task",
+      "type": "reference",
+      "label": "Delivery task",
+      "maxLength": 32,
+      "reference": "sc_cat_item_delivery_task"
+    },
+    {
+      "name": "work_start",
+      "type": "datetime",
+      "label": "Actual start",
+      "maxLength": 40
+    },
+    {
+      "name": "known_error",
+      "type": "boolean",
+      "label": "Known error",
+      "maxLength": 40
+    },
+    {
+      "name": "additional_assignee_list",
+      "type": "string",
+      "label": "Additional assignee list",
+      "maxLength": 4000,
+      "reference": "sys_user"
+    },
+    {
+      "name": "service_offering",
+      "type": "reference",
+      "label": "Service offering",
+      "maxLength": 32,
+      "reference": "service_offering"
+    },
+    {
+      "name": "closed_by",
+      "type": "reference",
+      "label": "Closed by",
+      "readonly": true,
+      "maxLength": 32,
+      "reference": "sys_user"
+    },
+    {
+      "name": "follow_up",
+      "type": "datetime",
+      "label": "Follow up",
+      "maxLength": 40
+    },
+    {
+      "name": "workaround",
+      "type": "richtext",
+      "label": "Workaround",
+      "maxLength": 65536
+    },
+    {
+      "name": "reopened_by",
+      "type": "reference",
+      "label": "Last reopened by",
+      "readonly": true,
+      "maxLength": 32,
+      "reference": "sys_user"
+    },
+    {
+      "name": "reassignment_count",
+      "type": "integer",
+      "label": "Reassignment count",
+      "maxLength": 40
+    },
+    {
+      "name": "confirmed_at",
+      "type": "datetime",
+      "label": "Confirmed",
+      "readonly": true,
+      "maxLength": 40
+    },
+    {
+      "name": "related_incidents",
+      "type": "integer",
+      "label": "Related Incidents",
+      "maxLength": 40
+    },
+    {
+      "name": "assigned_to",
+      "type": "reference",
+      "label": "Assigned to",
+      "maxLength": 32,
+      "reference": "sys_user"
+    },
+    {
+      "name": "prb_model",
+      "type": "reference",
+      "label": "Model",
+      "maxLength": 32,
+      "reference": "prb_model"
+    },
+    {
+      "name": "sla_due",
+      "type": "string",
+      "label": "SLA due",
+      "maxLength": 40
+    },
+    {
+      "name": "comments_and_work_notes",
+      "type": "string",
+      "label": "Comments and Work notes",
+      "maxLength": 4000
+    },
+    {
+      "name": "u_cause_code",
+      "type": "choice",
+      "label": "Cause code",
+      "maxLength": 40,
+      "choices": [
+        "-- None --",
+        "Change",
+        "CI issue",
+        "Data issue",
+        "Existing known error",
+        "Hardware/environment",
+        "Network",
+        "Operational issue",
+        "Other",
+        "Process failure",
+        "Security issue",
+        "Software",
+        "Unidentified"
+      ]
+    },
+    {
+      "name": "escalation",
+      "type": "choice",
+      "label": "Escalation",
+      "readonly": true,
+      "maxLength": 40,
+      "choices": [
+        "Normal",
+        "Moderate",
+        "High",
+        "Overdue"
+      ]
+    },
+    {
+      "name": "upon_approval",
+      "type": "choice",
+      "label": "Upon approval",
+      "maxLength": 40,
+      "choices": [
+        "-- None --",
+        "Proceed to Next Task",
+        "Wait for a User to Close this task"
+      ]
+    },
+    {
+      "name": "confirmed_by",
+      "type": "reference",
+      "label": "Confirmed by",
+      "readonly": true,
+      "maxLength": 32,
+      "reference": "sys_user"
+    },
+    {
+      "name": "correlation_id",
+      "type": "string",
+      "label": "Correlation ID",
+      "maxLength": 100
+    },
+    {
+      "name": "first_reported_by_task",
+      "type": "reference",
+      "label": "First reported by",
+      "maxLength": 32,
+      "reference": "task"
+    },
+    {
+      "name": "made_sla",
+      "type": "boolean",
+      "label": "Made SLA",
+      "maxLength": 40
+    },
+    {
+      "name": "cause_notes",
+      "type": "richtext",
+      "label": "Cause notes",
+      "maxLength": 65536
+    },
+    {
+      "name": "task_effective_number",
+      "type": "string",
+      "label": "Effective number",
+      "readonly": true,
+      "maxLength": 40
+    },
+    {
+      "name": "fix_at",
+      "type": "datetime",
+      "label": "Fix",
+      "readonly": true,
+      "maxLength": 40
+    },
+    {
+      "name": "resolved_by",
+      "type": "reference",
+      "label": "Resolved by",
+      "readonly": true,
+      "maxLength": 32,
+      "reference": "sys_user"
+    },
+    {
+      "name": "sys_updated_by",
+      "type": "string",
+      "label": "Updated by",
+      "maxLength": 40
+    },
+    {
+      "name": "opened_by",
+      "type": "reference",
+      "label": "Opened by",
+      "readonly": true,
+      "maxLength": 32,
+      "reference": "sys_user"
+    },
+    {
+      "name": "user_input",
+      "type": "string",
+      "label": "User input",
+      "maxLength": 4000
+    },
+    {
+      "name": "route_reason",
+      "type": "choice",
+      "label": "Route reason",
+      "readonly": true,
+      "maxLength": 40,
+      "choices": [
+        "-- None --",
+        "Transfer with Resolution",
+        "Transfer without Resolution"
+      ]
+    },
+    {
+      "name": "closed_at",
+      "type": "datetime",
+      "label": "Closed",
+      "readonly": true,
+      "maxLength": 40
+    },
+    {
+      "name": "business_service",
+      "type": "reference",
+      "label": "Service",
+      "maxLength": 32,
+      "reference": "cmdb_ci_service"
+    },
+    {
+      "name": "rfc",
+      "type": "reference",
+      "label": "Change request",
+      "maxLength": 32,
+      "reference": "change_request"
+    },
+    {
+      "name": "time_worked",
+      "type": "string",
+      "label": "Time worked",
+      "maxLength": 40
+    },
+    {
+      "name": "expected_start",
+      "type": "datetime",
+      "label": "Expected start",
+      "maxLength": 40
+    },
+    {
+      "name": "opened_at",
+      "type": "datetime",
+      "label": "Opened",
+      "readonly": true,
+      "maxLength": 40
+    },
+    {
+      "name": "work_end",
+      "type": "datetime",
+      "label": "Actual end",
+      "maxLength": 40
+    },
+    {
+      "name": "resolved_at",
+      "type": "datetime",
+      "label": "Resolved",
+      "readonly": true,
+      "maxLength": 40
+    },
+    {
+      "name": "subcategory",
+      "type": "choice",
+      "label": "Subcategory",
+      "maxLength": 40,
+      "choices": [
+        "-- None --",
+        "CPU",
+        "DB2",
+        "DHCP",
+        "Disk",
+        "DNS",
+        "Email",
+        "IP Address",
+        "Keyboard",
+        "Memory",
+        "Monitor",
+        "Mouse",
+        "MS SQL Server",
+        "Operating System",
+        "Oracle",
+        "VPN",
+        "Wireless"
+      ]
+    },
+    {
+      "name": "work_notes",
+      "type": "text",
+      "label": "Work notes",
+      "maxLength": 4000
+    },
+    {
+      "name": "reopened_at",
+      "type": "datetime",
+      "label": "Last reopened at",
+      "readonly": true,
+      "maxLength": 40
+    },
+    {
+      "name": "assignment_group",
+      "type": "reference",
+      "label": "Assignment group",
+      "maxLength": 32,
+      "reference": "sys_user_group"
+    },
+    {
+      "name": "description",
+      "type": "string",
+      "label": "Description",
+      "required": true,
+      "maxLength": 4000
+    },
+    {
+      "name": "calendar_duration",
+      "type": "string",
+      "label": "Duration",
+      "readonly": true,
+      "maxLength": 40
+    },
+    {
+      "name": "fix_by",
+      "type": "reference",
+      "label": "Fix by",
+      "readonly": true,
+      "maxLength": 32,
+      "reference": "sys_user"
+    },
+    {
+      "name": "close_notes",
+      "type": "string",
+      "label": "Close notes",
+      "maxLength": 4000
+    },
+    {
+      "name": "sys_id",
+      "type": "string",
+      "label": "Sys ID",
+      "required": true,
+      "maxLength": 32
+    },
+    {
+      "name": "contact_type",
+      "type": "choice",
+      "label": "Contact type",
+      "required": true,
+      "maxLength": 40,
+      "choices": [
+        "-- None --",
+        "Email",
+        "Phone",
+        "Self-service",
+        "Virtual Agent",
+        "Walk-in"
+      ]
+    },
+    {
+      "name": "resolution_code",
+      "type": "choice",
+      "label": "Resolution code",
+      "readonly": true,
+      "maxLength": 40,
+      "choices": [
+        "-- None --",
+        "Fix Applied",
+        "Risk Accepted",
+        "Canceled",
+        "Duplicate"
+      ]
+    },
+    {
+      "name": "urgency",
+      "type": "choice",
+      "label": "Urgency",
+      "maxLength": 40,
+      "choices": [
+        "1 - High",
+        "2 - Medium",
+        "3 - Low"
+      ]
+    },
+    {
+      "name": "company",
+      "type": "reference",
+      "label": "Company",
+      "maxLength": 32,
+      "reference": "core_company"
+    },
+    {
+      "name": "activity_due",
+      "type": "string",
+      "label": "Activity due",
+      "maxLength": 40
+    },
+    {
+      "name": "workaround_communicated_by",
+      "type": "reference",
+      "label": "Workaround communicated by",
+      "readonly": true,
+      "maxLength": 32,
+      "reference": "sys_user"
+    },
+    {
+      "name": "review_outcome",
+      "type": "string",
+      "label": "Major problem review notes",
+      "maxLength": 4000
+    },
+    {
+      "name": "comments",
+      "type": "text",
+      "label": "Additional comments",
+      "maxLength": 4000
+    },
+    {
+      "name": "fix_communicated_at",
+      "type": "datetime",
+      "label": "Fix communicated",
+      "readonly": true,
+      "maxLength": 40
+    },
+    {
+      "name": "approval",
+      "type": "choice",
+      "label": "Approval",
+      "maxLength": 40,
+      "choices": [
+        "Not Yet Requested",
+        "Requested",
+        "Approved",
+        "Rejected"
+      ]
+    },
+    {
+      "name": "due_date",
+      "type": "datetime",
+      "label": "Due date",
+      "maxLength": 40
+    },
+    {
+      "name": "problem_state",
+      "type": "choice",
+      "label": "Problem state",
+      "maxLength": 40,
+      "choices": [
+        "New",
+        "Assess",
+        "Root Cause Analysis",
+        "Fix in Progress",
+        "Resolved",
+        "Closed"
+      ]
+    },
+    {
+      "name": "reopen_count",
+      "type": "integer",
+      "label": "Reopen count",
+      "readonly": true,
+      "maxLength": 40
+    },
+    {
+      "name": "duplicate_of",
+      "type": "reference",
+      "label": "Duplicate of",
+      "maxLength": 32,
+      "reference": "problem"
+    },
+    {
+      "name": "location",
+      "type": "reference",
+      "label": "Location",
+      "maxLength": 32,
+      "reference": "cmn_location"
+    },
+    {
+      "name": "workaround_communicated_at",
+      "type": "datetime",
+      "label": "Workaround communicated",
+      "readonly": true,
+      "maxLength": 40
+    },
+    {
+      "name": "category",
+      "type": "choice",
+      "label": "Category",
+      "maxLength": 40,
+      "choices": [
+        "-- None --",
+        "Software",
+        "Hardware",
+        "Network",
+        "Database"
+      ]
+    },
+    {
+      "name": "fix_notes",
+      "type": "richtext",
+      "label": "Fix notes",
+      "maxLength": 65536
+    },
+    {
+      "name": "workaround_applied",
+      "type": "boolean",
+      "label": "Workaround applied",
+      "maxLength": 40
+    }
+  ],
+  "list": {
+    "columns": [
+      "number",
+      "short_description",
+      "state",
+      "resolution_code",
+      "assignment_group",
+      "assigned_to",
+      "cmdb_ci",
+      "related_incidents",
+      "opened_by"
+    ],
+    "defaultSort": {
+      "field": "sys_updated_on",
+      "direction": "desc"
+    },
+    "pageSize": 20
+  },
+  "form": {
+    "sections": [
+      {
+        "name": "analysis_information",
+        "label": "Analysis Information",
+        "columns": 2,
+        "fields": [
+          "workaround",
+          "cause_notes"
+        ]
+      },
+      {
+        "name": "resolution_information",
+        "label": "Resolution Information",
+        "columns": 2,
+        "fields": [
+          "resolved_by",
+          "resolved_at",
+          "fix_notes"
+        ]
+      },
+      {
+        "name": "notes",
+        "label": "Notes",
+        "columns": 2,
+        "fields": [
+          "work_notes_list",
+          "work_notes"
+        ]
+      },
+      {
+        "name": "section_undefined",
+        "columns": 2,
+        "fields": [
+          "number",
+          "first_reported_by_task",
+          "category",
+          "subcategory",
+          "business_service",
+          "service_offering",
+          "cmdb_ci",
+          "prb_model",
+          "state",
+          "resolution_code",
+          "duplicate_of",
+          "workaround_applied",
+          "impact",
+          "urgency",
+          "priority",
+          "assignment_group",
+          "assigned_to",
+          "short_description",
+          "description"
+        ]
+      },
+      {
+        "name": "closure_information",
+        "label": "Closure Information",
+        "columns": 2,
+        "fields": [
+          "closed_by",
+          "closed_at",
+          "review_outcome",
+          "close_notes"
+        ]
+      },
+      {
+        "name": "other_information",
+        "label": "Other Information",
+        "columns": 2,
+        "fields": [
+          "opened_by",
+          "confirmed_by",
+          "fix_by",
+          "closed_by",
+          "workaround_communicated_by",
+          "fix_communicated_by",
+          "opened_at",
+          "confirmed_at",
+          "fix_at",
+          "closed_at",
+          "workaround_communicated_at",
+          "fix_communicated_at",
+          "close_notes"
+        ]
+      }
+    ]
+  }
+}
