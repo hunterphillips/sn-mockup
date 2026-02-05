@@ -31,6 +31,7 @@ Thumbs.db
 vite.config.ts.timestamp-*
 
 # Project-specific
-.claude
+.claude/*
+!.claude/CLAUDE.md
 notes.txt
 src/data/recordData
