@@ -1,6 +1,6 @@
 # SN Mockup
 
-A rapid prototyping tool for ServiceNow platform UI. Build and interact with high-fidelity list views, forms, and navigation that match ServiceNow's Horizon design system — all backed by a local JSON data layer with full CRUD operations. No ServiceNow instance required.
+A rapid prototyping tool for ServiceNow platform UI. Build and interact with high-fidelity list views, forms, and navigation that match ServiceNow's Horizon design system — all backed by a local JSON data layer with full CRUD operations.
 
 ![List view with filtering, sorting, and column search](src/assets/list-view.png)
 
